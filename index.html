@@ -15,7 +15,7 @@
       </div>
       <div class="nav__menu">
         <div class="nav__list">
-          <a href="#" class="nav__list__button nav__list__button--plus"></a>
+          <a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>
           <a href="#" class="nav__list__button nav__list__button--fav"></a>
           <a href="#" class="nav__list__button nav__list__button--user"></a>
         </div>
@@ -24,28 +24,38 @@
 
 
     <section class="search-section">
-      <form class="search__form">
-        <h3> Szukaj</h3>
-        <input type="text" name="przepis">
-        <input type="submit" value="szukaj">
-          <select id="kategoria">
+      <form class="search__form" action="search.php" method="post">
+        <div class="search__form__searchbar">
+          <input type="text" name="przepis" placeholder="Szukaj przepisu...">
+          <input type="submit" value="">
+        </div>
+        <div class="search__form__select">
+          <select id="kategoria" name="kategoria">
+            <option value="" disabled selected>Kategoria</option>
             <option value="1">Śniadanie</option>
             <option value="2">Obiad</option>
             <option value="3">Kolacja</option>
             <option value="4">Vege</option>
           </select>
-        <select id="czas">
-          <option value="15">15 min</option>
-          <option value="20">20 min</option>
-          <option value="30">30 min</option>
-          <option value="45">45 min</option>
-        </select>
-        <select id="sort">
-          <option value="nazwa">nazwa</option>
-          <option value="oceny">oceny</option>
-          <option value="czas">czas</option>
-          <option value="poziom">poziom trudnosci</option>
-        </select>
+        </div>
+        <div class="search__form__select">
+          <select id="czas" name="czas">
+            <option value="" disabled selected>Czas przygotowania</option>
+            <option value="15">15 min</option>
+            <option value="20">20 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+          </select>
+        </div>
+        <div class="search__form__select">
+          <select id="sort" name="sort">
+            <option value="" disabled selected>Sortuj po...</option>
+            <option value="nazwa">nazwa</option>
+            <option value="oceny">oceny</option>
+            <option value="czas">czas</option>
+            <option value="poziom">poziom trudnosci</option>
+          </select>
+        </div>
       </form>
     </section>
 

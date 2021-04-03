@@ -2,34 +2,45 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 @font-face {
   font-family: 'Rancho';
-  src:url('../../fonts/Rancho-Regular.ttf');
+  src: url("../../fonts/Rancho-Regular.ttf");
   font-weight: normal;
 }
 @font-face {
   font-family: 'Petrona';
-  src:url('../../fonts/Petrona-Regular.ttf');
+  src: url("../../fonts/Petrona-Regular.ttf");
   font-weight: normal;
 }
-
 $header_color: #36CFAB;
 $search_color: #40B196;
+
 $button_color: #058B63;
+$button_color_light: #03ab79;
+
+$remove_color: #a80909;
+$remove_color_light: #db0909;
+
+$button_special_color: #e0d101;
+$button_special_color_light: #f0e006;
+
 $content_element_color: #AFE7DD;
+$search_arrow_color: #84DEB8;
 
 body {
   margin: 0;
   font-family: Roboto;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 nav {
   background-color: $header_color;
   position: sticky;
-  padding: 5px 10px 5px 10px;
+  padding: 5px 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
 .nav__name {
   & a {
     font-family: Rancho;
@@ -55,24 +66,28 @@ nav {
   border-radius: 60px;
   width: 170px;
   height: 170px;
-  margin: 0 10px 0 10px;
+  margin: 0 10px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
+
 .nav__list__button--user {
-  background-image: url('../../img/user icon.png');
+  background-image: url("../../img/user icon.png");
 }
+
 .nav__list__button--plus {
-  background-image: url('../../img/plus icon.png');
+  background-image: url("../../img/plus icon.png");
 }
+
 .nav__list__button--fav {
   background-color: white;
-  background-image: url('../../img/star icon.png');
+  background-image: url("../../img/star icon.png");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 .search-section {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -81,12 +96,60 @@ nav {
 }
 
 .search__form {
-  display:flex;
+  display: flex;
   flex-direction: column;
+  padding: 20px 0 20px 0;
+  .search__form__select {
+    padding: 5px 0 5px 0;
+  }
+  select {
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    font-size: 3em;
+    padding: 0.2em 3.2em 0.2em 0.5em;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  select:focus {
+    outline: none;
+  }
+
+  .search__form__searchbar {
+    display: flex;
+    flex-wrap: nowrap;
+    input[type=text] {
+      border: none;
+      border-bottom: 1px solid $button_color;
+      outline: none;
+      padding: 2px;
+      font-size: 3em;
+      line-height: 2em;
+      width: 80%;
+    }
+    & input[type=submit] {
+      width: 20%;
+      background-image: url("../../img/search icon.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: $button_color;
+      color: white;
+      border: 0;
+    }
+  }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 .content {
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -118,6 +181,156 @@ nav {
   flex-wrap: wrap;
 }
 
+//FORMULARZ DODAWANIA PRZEPISU
+.content__form {
+  width: 100%;
+  background-color: $content_element_color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 20px 0;
+  margin: 0;
+  h1 {
+    font-size: 3em;
+  }
+}
+
+.content__form__input {
+  position: relative;
+  display: flex;
+  width: 80%;
+  padding: 20px 0 20px 0;
+
+  > input {
+    width: 100%;
+    font-size: 45px;
+    outline: none;
+    outline-color: $button_color;
+    padding: 5px;
+  }
+
+  > input:focus::placeholder, textarea:focus::placeholder {
+    opacity: 0;
+  }
+
+  > textarea {
+    width: 100%;
+    font-size: 35px;
+    height: 200px;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+  > .form__label__forImage {
+    border: 1px solid #ccc;
+    background-color: $button_special_color;
+    font-weight: bold;
+    font-size: 35px;
+    display: inline-block;
+    padding: 15px;
+    cursor: pointer;
+    img {
+      width: 35px;
+      height: 35px;
+      padding-right: 8px;
+    }
+  }
+  > .form__label__forImage:hover {
+    background-color: $button_special_color_light;
+  }
+}
+
+.content__form__button {
+  position: relative;
+  display: flex;
+  width: 80%;
+  padding: 20px 0 20px 0;
+  > button {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: $button_color;
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+    img {
+      width: 35px;
+      height: 35px;
+      padding-right: 8px;
+    }
+  }
+  > button:hover {
+      background-color: $button_color_light;
+  }
+}
+
+.content__form__stages {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.content__form__stage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px 5px 15px 5px;
+  > h2 {
+    font-size: 40px;
+    margin: 0 0 5px 0;
+  }
+  .content__form__stage__inputs {
+    display: flex;
+    flex-direction: row;
+    > button {
+      border: 1px solid #ccc;
+      background-color: $remove_color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+    > button:hover {
+      background-color: $remove_color_light;
+    }
+    > .form__label__stage {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      background-color: $button_special_color;
+      font-weight: bold;
+      padding: 15px;
+      cursor: pointer;
+      img {
+        width: 35px;
+        height: 35px;
+        padding-right: 8px;
+      }
+      input[type="file"] {
+        display: none;
+      }
+    }
+    > textarea {
+      flex-grow: 50;
+      height: 200px;
+      font-size: 30px;
+      resize: vertical;
+    }
+  }
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 footer {
   background-color: $header_color;
 }
