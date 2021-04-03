@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<database name="kulinaria" defaultIdMethod="native">
+ 
+  <table name="uzytkownik" phpName="Uzytkownik">
+ 
+    <column name="login" type="varchar" size="20" required="true" primaryKey="true" />
+ 
+    <column name="nazwa" type="varchar" size="20" required="true" />
+ 
+    <column name="haslo" type="varchar" size="20" required="true" />
+ 
+    <column name="rodzaj_konta" type="integer" required="true" /> 
+
+    <column name="status_konta" type="integer" required="true" />   
+ 
+  </table>
+ 
+  <table name="przepis" phpName="Przepis">
+ 
+    <column name="id_przepis" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+ 
+    <column name="nazwa" type="varchar" size="40" required="true" />
+
+    <column name="stopien_trudnosci" type="integer" required="true" />
+
+    <column name="czas_przygotowania" type="integer" required="true" />
+
+    <column name="dla_ilu_osob" type="integer" required="true" />
+ 
+    <column name="opis" type="varchar" size="10000" required="true" /> 
+
+    <column name="data_dodania" type="date" required="true" /> 
+
+    <column name="status" type="integer" required="true" />
+
+    <column name="zdjecie_ogolne" type="blob" />
+
+    <column name="UZYTKOWNIK_login" type="varchar" size="20" required="true" />
+
+    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik" refPhpName="UZYTKOWNIK_login">
+ 
+        <reference local="UZYTKOWNIK_login" foreign="login" />
+ 
+    </foreign-key> 
+ 
+  </table>
+
+  <table name="etap" phpName="Etap">
+ 
+    <column name="id_etap" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+ 
+    <column name="nr_etapu" type="integer" required="true" />
+
+    <column name="opis" type="varchar" size="10000" required="true" /> 
+
+    <column name="zdjecie" type="blob" />
+
+    <column name="PRZEPIS_id_przepis" type="integer" required="true" />
+
+    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+ 
+        <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
+ 
+    </foreign-key> 
+ 
+  </table>
+
+
+  <table name="kategoria" phpName="Kategoria">
+ 
+    <column name="nazwa" type="varchar" size="40" required="true" primaryKey="true" />
+ 
+    <column name="opis" type="varchar" size="1000" /> 
+ 
+  </table>
+
+
+  <table name="skladniki" phpName="Skladniki">
+ 
+    <column name="id_skladnik" type="integer" required="true" primaryKey="true" autoIncrement="true" />
+ 
+    <column name="nazwa" type="varchar" size="40" required="true" /> 
+ 
+  </table>
+
+
+  <table name="ulubione" phpName="Ulubione">
+ 
+    <column name="UZYTKOWNIK_login" type="varchar" size="20" required="true" primaryKey="true" />
+ 
+    <column name="PRZEPIS_id_przepis" type="integer" required="true" primaryKey="true" /> 
+
+    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik" refPhpName="UZYTKOWNIK_login">
+ 
+        <reference local="UZYTKOWNIK_login" foreign="login" />
+ 
+    </foreign-key> 
+
+    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+ 
+        <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
+ 
+    </foreign-key> 
+ 
+  </table>
+
+
+  <table name="lubie_to" phpName="Lubit_to">
+ 
+    <column name="UZYTKOWNIK_login" type="varchar" size="20" required="true" primaryKey="true" />
+ 
+    <column name="PRZEPIS_id_przepis" type="integer" required="true" primaryKey="true" /> 
+
+    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik" refPhpName="UZYTKOWNIK_login">
+ 
+        <reference local="UZYTKOWNIK_login" foreign="login" />
+ 
+    </foreign-key> 
+
+    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+ 
+        <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
+ 
+    </foreign-key> 
+ 
+  </table>
+
+
+  <table name="nalezy" phpName="Nalezy">
+ 
+    <column name="PRZEPIS_id_przepis" type="integer" required="true" primaryKey="true" /> 
+
+    <column name="KATEGORIA_nazwa" type="varchar" size="40" required="true" primaryKey="true" />
+
+    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+ 
+        <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
+ 
+    </foreign-key> 
+
+    <foreign-key foreignTable="kategoria" phpName="Kategoria" refPhpName="KATEGORIA_nazwa">
+ 
+        <reference local="KATEGORIA_nazwa" foreign="nazwa" />
+ 
+    </foreign-key> 
+ 
+  </table>
+
+
+
+  <table name="zawiera" phpName="Zawiera">
+ 
+    <column name="PRZEPIS_id_przepis" type="integer" required="true" primaryKey="true" /> 
+
+    <column name="SKLADNIKI_id_skladnik" type="integer" required="true" primaryKey="true" />
+
+    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+ 
+        <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
+ 
+    </foreign-key> 
+
+    <foreign-key foreignTable="skladniki" phpName="Skladniki" refPhpName="SKLADNIKI_id_skladnik">
+ 
+        <reference local="SKLADNIKI_id_skladnik" foreign="id_skladnik" />
+ 
+    </foreign-key> 
+ 
+  </table>
+ 
+</database>
