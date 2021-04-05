@@ -1,19 +1,94 @@
 document.getElementById("button").addEventListener("click", addStage, false);
-
-
+document.getElementById("ingredientButton").addEventListener("click", addIngredient, false);
+document.getElementById("categoryButton").addEventListener("click", addCategory, false);
 var stageArray = [];
 var ileEtapow = 1;
+var ileSkladnikow = 1;
+var ileKategorii = 1;
+
+function addCategory() {
+  ileKategorii = ileKategorii + 1;
+  var numer = ileKategorii;
+  var clone = document.getElementById("category_1").cloneNode(true);
+  clone.id = "category_" + numer;
+
+  var new_buttonRem = document.createElement("button");
+  new_buttonRem.setAttribute("type", "button");
+  new_buttonRem.classList.add("content__form__removeButton");
+  new_buttonRem.addEventListener("click", function() {
+    removeCategory(this.parentNode.id)
+  }, false);
+
+  var imgRem = document.createElement("img");
+  imgRem.setAttribute("src", "img/x icon.png");
+  new_buttonRem.appendChild(imgRem);
+  clone.appendChild(new_buttonRem);
+
+  var button = document.getElementById("categoryButtonDiv");
+  document.getElementById("categories").appendChild(clone);
+  document.getElementById("categories").appendChild(button);
+
+}
+
+function removeCategory(x) {
+  document.getElementById(x).remove();
+  ileKategorii--;
+}
+
+function addIngredient() {
+  ileSkladnikow = ileSkladnikow + 1;
+  var numer = ileSkladnikow;
+  var new_ingredient = document.createElement("div");
+  new_ingredient.classList.add("content__form__ingredient");
+  new_ingredient.setAttribute("id", "skladnik_" + numer);
+
+  var new_buttonRem = document.createElement("button");
+  new_buttonRem.setAttribute("type", "button");
+  new_buttonRem.classList.add("content__form__removeButton");
+  new_buttonRem.addEventListener("click", function() {
+    removeIngredient(this.parentNode.id)
+  }, false);
+
+  var imgRem = document.createElement("img");
+  imgRem.setAttribute("src", "img/x icon.png");
+  new_buttonRem.appendChild(imgRem);
+  new_ingredient.appendChild(new_buttonRem);
+
+  var new_input = document.createElement("input");
+  new_input.setAttribute("type", "text");
+  new_input.setAttribute("name", "skladnik_nazwa[]");
+  new_input.setAttribute("placeholder", "Nazwa składnika");
+  new_ingredient.appendChild(new_input);
+
+  new_input = document.createElement("input");
+  new_input.setAttribute("type", "text");
+  new_input.setAttribute("name", "skladnik_ilosc[]");
+  new_input.setAttribute("placeholder", "Ilość (np.: 2 kg)");
+  new_ingredient.appendChild(new_input);
+
+  var button = document.getElementById("ingredientButtonDiv");
+  document.getElementById("ingredients").appendChild(new_ingredient);
+  document.getElementById("ingredients").appendChild(button);
+
+}
+
+function removeIngredient(x) {
+  document.getElementById(x).remove();
+  ileSkladnikow--;
+}
+
+
 
 function addStage() {
-  ileEtapow = ileEtapow+1;
+  ileEtapow = ileEtapow + 1;
   var numer = ileEtapow;
   var new_stage = document.createElement("div");
   new_stage.classList.add("content__form__stage");
-  new_stage.setAttribute("id", "etap_"+numer);
+  new_stage.setAttribute("id", "etap_" + numer);
 
   var h2 = document.createElement("h2");
-  h2.appendChild(document.createTextNode("Etap "+numer));
-  h2.setAttribute("id", "h2_etap_"+numer);
+  h2.appendChild(document.createTextNode("Etap " + numer));
+  h2.setAttribute("id", "h2_etap_" + numer);
   new_stage.appendChild(h2);
 
   var content_form_inputs = document.createElement("div");
@@ -21,8 +96,11 @@ function addStage() {
 
   var new_buttonRem = document.createElement("button");
   new_buttonRem.setAttribute("type", "button");
-  new_buttonRem.setAttribute("id", "buttonRem_etap_"+numer);
-  new_buttonRem.addEventListener("click", function(){removeStage(this.id)}, false);
+  new_buttonRem.setAttribute("id", "buttonRem_etap_" + numer);
+  new_buttonRem.classList.add("content__form__removeButton");
+  new_buttonRem.addEventListener("click", function() {
+    removeStage(this.id)
+  }, false);
 
   var imgRem = document.createElement("img");
   imgRem.setAttribute("src", "img/x icon.png");
@@ -30,15 +108,15 @@ function addStage() {
   content_form_inputs.appendChild(new_buttonRem);
 
   var textarea = document.createElement("textarea");
-  textarea.setAttribute("name", "etap_"+numer);
+  textarea.setAttribute("name", "etap[]");
   textarea.setAttribute("placeholder", "Opis etapu");
-  textarea.setAttribute("id", "textarea_etap_"+numer);
+  textarea.setAttribute("id", "textarea_etap_" + numer);
   content_form_inputs.appendChild(textarea);
 
   var new_label = document.createElement("label");
   new_label.classList.add("form__label__stage");
-  new_label.setAttribute("for", "etap_"+numer+"_image");
-  new_label.setAttribute("id", "label_etap_"+numer);
+  new_label.setAttribute("for", "etap_" + numer + "_image");
+  new_label.setAttribute("id", "label_etap_" + numer);
 
   var img = document.createElement("img");
   img.setAttribute("src", "img/image icon.png");
@@ -46,8 +124,8 @@ function addStage() {
 
   var new_input = document.createElement("input");
   new_input.setAttribute("type", "file");
-  new_input.setAttribute("name", "etap_"+numer+"_image");
-  new_input.setAttribute("id", "etap_"+numer+"_image");
+  new_input.setAttribute("name", "etap_image[]");
+  new_input.setAttribute("id", "etap_" + numer + "_image");
   new_label.appendChild(new_input);
   content_form_inputs.appendChild(new_label);
 
@@ -57,17 +135,15 @@ function addStage() {
   document.getElementById("stages").appendChild(new_stage);
   document.getElementById("stages").appendChild(button);
 
-
   stageArray.push({
     StageNum: numer,
-    StageID: "etap_"+numer,
-    removeButton: "buttonRem_etap_"+numer,
-    title: "h2_etap_"+numer,
-    text: "textarea_etap_"+numer,
-    input: "etap_"+numer+"_image",
-    label: "label_etap_"+numer
+    StageID: "etap_" + numer,
+    removeButton: "buttonRem_etap_" + numer,
+    title: "h2_etap_" + numer,
+    text: "textarea_etap_" + numer,
+    input: "etap_" + numer + "_image",
+    label: "label_etap_" + numer
   });
-  //console.log(stageArray);
 }
 
 function removeStage(x) {
@@ -76,38 +152,38 @@ function removeStage(x) {
   var target = document.getElementById(id);
   var numer;
   //console.log("Usuwany etap = "+id);
-  for(i=n-1; i<stageArray.length; i++) {
-    numer = parseInt(stageArray[i].StageNum-1);
+  for (i = n - 1; i < stageArray.length; i++) {
+    numer = parseInt(stageArray[i].StageNum - 1);
     //console.log("Przerabiany etap = " + document.getElementById(stageArray[i].StageID).id);
     //console.log("-StageID = " + stageArray[i].StageID);
-    document.getElementById(stageArray[i].StageID).id = "etap_"+numer;
-    stageArray[i].StageID = "etap_"+numer;
+    document.getElementById(stageArray[i].StageID).id = "etap_" + numer;
+    stageArray[i].StageID = "etap_" + numer;
     //console.log("+StageID = " + stageArray[i].StageID);
     //console.log("Nowe id etapu= " + "etap_"+numer);
 
     //console.log("-title = " + stageArray[i].title);
     document.getElementById(stageArray[i].title).innerHTML = "";
-    document.getElementById(stageArray[i].title).appendChild(document.createTextNode("Etap "+numer));
-    document.getElementById(stageArray[i].title).id = "h2_etap_"+numer;
-    stageArray[i].title = "h2_etap_"+numer;
+    document.getElementById(stageArray[i].title).appendChild(document.createTextNode("Etap " + numer));
+    document.getElementById(stageArray[i].title).id = "h2_etap_" + numer;
+    stageArray[i].title = "h2_etap_" + numer;
     //console.log("+title = " + stageArray[i].title);
 
     //console.log("-text = " + stageArray[i].text);
-    document.getElementById(stageArray[i].text).name = "etap_"+numer;
-    document.getElementById(stageArray[i].text).id = "textarea_etap_"+numer;
-    stageArray[i].text = "textarea_etap_"+numer;
+    document.getElementById(stageArray[i].text).name = "etap[]";
+    document.getElementById(stageArray[i].text).id = "textarea_etap_" + numer;
+    stageArray[i].text = "textarea_etap_" + numer;
     //console.log("+text = " + stageArray[i].text);
 
     //console.log("-input = " + stageArray[i].input);
-    document.getElementById(stageArray[i].input).name = "etap_"+numer+"_image";
-    document.getElementById(stageArray[i].input).id = "etap_"+numer+"_image";
-    stageArray[i].input = "etap_"+numer+"_image";
+    document.getElementById(stageArray[i].input).name = "etap_image[]";
+    document.getElementById(stageArray[i].input).id = "etap_" + numer + "_image";
+    stageArray[i].input = "etap_" + numer + "_image";
     //console.log("+input = " + stageArray[i].input);
 
     //console.log("-label = " + stageArray[i].label);
-    document.getElementById(stageArray[i].label).htmlFor = "etap_"+numer+"_image";
-    document.getElementById(stageArray[i].label).id = "label_etap_"+numer;
-    stageArray[i].label = "label_etap_"+numer;
+    document.getElementById(stageArray[i].label).htmlFor = "etap_" + numer + "_image";
+    document.getElementById(stageArray[i].label).id = "label_etap_" + numer;
+    stageArray[i].label = "label_etap_" + numer;
     //console.log("+label = " + stageArray[i].label);
     //console.log("-StageNum = " + stageArray[i].StageNum);
     stageArray[i].StageNum = numer;
@@ -115,7 +191,7 @@ function removeStage(x) {
 
   }
   //console.log("Usuwany index tablicy = "+parseInt(n-2));
-  stageArray.splice(n-2, 1);
+  stageArray.splice(n - 2, 1);
   //console.log(stageArray);
   target.remove();
   ileEtapow--;

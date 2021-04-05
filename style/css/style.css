@@ -67,9 +67,9 @@ nav {
 .search__form {
   display: flex;
   flex-direction: column;
-  padding: 20px 0 20px 0; }
+  padding: 20px 0; }
   .search__form .search__form__select {
-    padding: 5px 0 5px 0; }
+    padding: 5px 0; }
   .search__form select {
     width: 100%;
     background-color: white;
@@ -142,7 +142,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
   margin: 0; }
   .content__form h1 {
     font-size: 3em; }
@@ -151,14 +151,15 @@ nav {
   position: relative;
   display: flex;
   width: 80%;
-  padding: 20px 0 20px 0; }
+  padding: 20px 0; }
   .content__form__input > input {
     width: 100%;
     font-size: 45px;
     outline: none;
     outline-color: #058B63;
     padding: 5px; }
-  .content__form__input > input:focus::placeholder, .content__form__input textarea:focus::placeholder {
+  .content__form__input > input:focus::placeholder,
+  .content__form__input textarea:focus::placeholder {
     opacity: 0; }
   .content__form__input > textarea {
     width: 100%;
@@ -185,7 +186,7 @@ nav {
   position: relative;
   display: flex;
   width: 80%;
-  padding: 20px 0 20px 0; }
+  padding: 20px 0; }
   .content__form__button > button {
     display: flex;
     align-items: center;
@@ -204,34 +205,43 @@ nav {
   .content__form__button > button:hover {
     background-color: #03ab79; }
 
-.content__form__stages {
+.content__form__button--submit {
+  justify-content: center; }
+
+.content__form__removeButton {
+  border: 1px solid #ccc;
+  background-color: #a80909;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px; }
+  .content__form__removeButton img {
+    width: 35px;
+    height: 35px; }
+
+.content__form__removeButton:hover {
+  background-color: #db0909; }
+
+.content__form__dynamicInputs {
   display: flex;
   flex-direction: column;
-  width: 80%; }
+  width: 80%;
+  margin-top: 30px; }
+  .content__form__dynamicInputs > h2 {
+    font-size: 40px;
+    margin: 0 0 5px; }
 
 .content__form__stage {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 15px 5px 15px 5px; }
+  padding: 15px 5px; }
   .content__form__stage > h2 {
     font-size: 40px;
-    margin: 0 0 5px 0; }
+    margin: 0 0 5px; }
   .content__form__stage .content__form__stage__inputs {
     display: flex;
     flex-direction: row; }
-    .content__form__stage .content__form__stage__inputs > button {
-      border: 1px solid #ccc;
-      background-color: #a80909;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px; }
-      .content__form__stage .content__form__stage__inputs > button img {
-        width: 35px;
-        height: 35px; }
-    .content__form__stage .content__form__stage__inputs > button:hover {
-      background-color: #db0909; }
     .content__form__stage .content__form__stage__inputs > .form__label__stage {
       flex-grow: 1;
       display: flex;
@@ -253,6 +263,43 @@ nav {
       height: 200px;
       font-size: 30px;
       resize: vertical; }
+
+.content__form__ingredient {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 5px 0; }
+  .content__form__ingredient > button {
+    margin-right: 20px; }
+  .content__form__ingredient > input {
+    flex-grow: 3;
+    font-size: 30px;
+    padding: 5px;
+    margin-right: 20px; }
+  .content__form__ingredient > input[name="skladnik_ilosc[]"] {
+    max-width: 250px;
+    margin: 0; }
+
+.content__form__category {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0; }
+  .content__form__category select {
+    min-width: 300px;
+    background-color: white;
+    border: none;
+    display: inline-block;
+    font: inherit;
+    font-size: 30px;
+    padding: 5px;
+    margin-right: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none; }
+  .content__form__category select:focus {
+    outline: none; }
 
 footer {
   background-color: #36CFAB; }

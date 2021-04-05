@@ -12,16 +12,12 @@
 }
 $header_color: #36CFAB;
 $search_color: #40B196;
-
 $button_color: #058B63;
 $button_color_light: #03ab79;
-
 $remove_color: #a80909;
 $remove_color_light: #db0909;
-
 $button_special_color: #e0d101;
 $button_special_color_light: #f0e006;
-
 $content_element_color: #AFE7DD;
 $search_arrow_color: #84DEB8;
 
@@ -98,10 +94,12 @@ nav {
 .search__form {
   display: flex;
   flex-direction: column;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
+
   .search__form__select {
-    padding: 5px 0 5px 0;
+    padding: 5px 0;
   }
+
   select {
     width: 100%;
     background-color: white;
@@ -118,6 +116,7 @@ nav {
     -webkit-appearance: none;
     -moz-appearance: none;
   }
+
   select:focus {
     outline: none;
   }
@@ -125,6 +124,7 @@ nav {
   .search__form__searchbar {
     display: flex;
     flex-wrap: nowrap;
+
     input[type=text] {
       border: none;
       border-bottom: 1px solid $button_color;
@@ -134,6 +134,7 @@ nav {
       line-height: 2em;
       width: 80%;
     }
+
     & input[type=submit] {
       width: 20%;
       background-image: url("../../img/search icon.png");
@@ -180,16 +181,17 @@ nav {
   justify-content: space-around;
   flex-wrap: wrap;
 }
-
 //FORMULARZ DODAWANIA PRZEPISU
+
 .content__form {
   width: 100%;
   background-color: $content_element_color;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
   margin: 0;
+
   h1 {
     font-size: 3em;
   }
@@ -199,7 +201,7 @@ nav {
   position: relative;
   display: flex;
   width: 80%;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
 
   > input {
     width: 100%;
@@ -209,7 +211,8 @@ nav {
     padding: 5px;
   }
 
-  > input:focus::placeholder, textarea:focus::placeholder {
+  > input:focus::placeholder,
+  textarea:focus::placeholder {
     opacity: 0;
   }
 
@@ -222,6 +225,7 @@ nav {
   input[type="file"] {
     display: none;
   }
+
   > .form__label__forImage {
     border: 1px solid #ccc;
     background-color: $button_special_color;
@@ -230,12 +234,14 @@ nav {
     display: inline-block;
     padding: 15px;
     cursor: pointer;
+
     img {
       width: 35px;
       height: 35px;
       padding-right: 8px;
     }
   }
+
   > .form__label__forImage:hover {
     background-color: $button_special_color_light;
   }
@@ -245,7 +251,8 @@ nav {
   position: relative;
   display: flex;
   width: 80%;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
+
   > button {
     display: flex;
     align-items: center;
@@ -257,50 +264,68 @@ nav {
     text-align: center;
     padding: 15px;
     cursor: pointer;
+
     img {
       width: 35px;
       height: 35px;
       padding-right: 8px;
     }
   }
+
   > button:hover {
-      background-color: $button_color_light;
+    background-color: $button_color_light;
   }
 }
 
-.content__form__stages {
+.content__form__button--submit {
+  justify-content: center;
+}
+
+.content__form__removeButton {
+  border: 1px solid #ccc;
+  background-color: $remove_color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.content__form__removeButton:hover {
+  background-color: $remove_color_light;
+}
+
+.content__form__dynamicInputs {
   display: flex;
   flex-direction: column;
   width: 80%;
+  margin-top: 30px;
+
+  > h2 {
+    font-size: 40px;
+    margin: 0 0 5px;
+  }
 }
 
 .content__form__stage {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 15px 5px 15px 5px;
+  padding: 15px 5px;
+
   > h2 {
     font-size: 40px;
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
   }
+
   .content__form__stage__inputs {
     display: flex;
     flex-direction: row;
-    > button {
-      border: 1px solid #ccc;
-      background-color: $remove_color;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px;
-      img {
-        width: 35px;
-        height: 35px;
-      }
-    }
-    > button:hover {
-      background-color: $remove_color_light;
-    }
+
     > .form__label__stage {
       flex-grow: 1;
       display: flex;
@@ -311,15 +336,18 @@ nav {
       font-weight: bold;
       padding: 15px;
       cursor: pointer;
+
       img {
         width: 35px;
         height: 35px;
         padding-right: 8px;
       }
+
       input[type="file"] {
         display: none;
       }
     }
+
     > textarea {
       flex-grow: 50;
       height: 200px;
@@ -327,10 +355,62 @@ nav {
       resize: vertical;
     }
   }
-
 }
 
+.content__form__ingredient {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 5px 0;
+
+  > button {
+    margin-right: 20px;
+  }
+
+  > input {
+    flex-grow: 3;
+    font-size: 30px;
+    padding: 5px;
+    margin-right: 20px;
+  }
+
+  > input[name="skladnik_ilosc[]"] {
+    max-width: 250px;
+    margin: 0;
+  }
+}
+
+.content__form__category {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0;
+
+  select {
+    //width: 100%;
+    min-width: 300px;
+    background-color: white;
+    border: none;
+    //border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    //font-size: 3em;
+    font-size: 30px;
+    //padding: 0.2em 3.2em 0.2em 0.5em;
+    padding: 5px;
+    margin-right: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  select:focus {
+    outline: none;
+  }
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
 footer {
   background-color: $header_color;
 }

@@ -23,7 +23,7 @@
     </nav>
 
     <section class="content">
-      <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post" onsubmit="return validateForm()">
+      <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post">
         <h1>Formularz dodawania przepisu</h1>
         <div class="content__form__input">
           <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" />
@@ -48,14 +48,45 @@
           </label>
         </div>
 
-        <div class="content__form__stages" id="stages">
+        <div class="content__form__dynamicInputs" id="categories">
+          <h2>Kategorie</h2>
+          <!-- Ten div poniżej to div dla kategorii
+          <div class="content__form__category" id="category_1">
+            <select name="categories[]">
+              <option value="" disabled selected>Kategoria</option>
+              ///////////////////////////////// Opcje powinny pochodzić z bazy danych, value to powinna być nazwa kategorii
+              <option value="sniadanie">Śniadanie</option>
+              <option value="obiad">Obiad</option>
+              <option value="kolacja">Kolacja</option>
+              <option value="vege">Vege</option>
+            </select>
+          </div>
+          -->
+          <div id="categoryButtonDiv" class="content__form__button">
+            <button id="categoryButton" type="button" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
+          </div>
+        </div>
+
+        <div class="content__form__dynamicInputs" id="ingredients">
+          <h2>Lista Składników</h2>
+          <div class="content__form__ingredient" id="skladnik_1">
+            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" />
+            <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
+          </div>
+          <div id="ingredientButtonDiv" class="content__form__button">
+            <button id="ingredientButton" type="button" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
+          </div>
+
+        </div>
+
+        <div class="content__form__dynamicInputs" id="stages">
           <div class="content__form__stage" id="etap_1">
             <h2>Etap 1</h2>
             <div class="content__form__stage__inputs">
-              <textarea name="etap_1" placeholder="Opis etapu"></textarea>
+              <textarea name="etap[]" placeholder="Opis etapu"></textarea>
               <label class="form__label__stage" for="etap_1_image">
                 <img src="img/image icon.png" />
-                <input type="file" name="etap_1_image" />
+                <input type="file" id="etap_1_image" name="etap[]" />
               </label>
             </div>
           </div>
@@ -64,9 +95,10 @@
           </div>
           <script src="script.js"></script>
         </div>
+        <div class="content__form__button content__form__button--submit">
+          <button type="submit"> Dodaj przepis</button>
+        </div>
 
-
-        <input type="submit" />
       </form>
 
 
