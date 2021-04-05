@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 26 Mar 2021, 16:48
+-- Czas generowania: 31 Mar 2021, 21:02
 -- Wersja serwera: 10.4.18-MariaDB
 -- Wersja PHP: 8.0.3
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `etap` (
   `id_etap` int(10) UNSIGNED NOT NULL,
+  `nr_etapu` int(10) UNSIGNED NOT NULL,
   `opis` varchar(10000) COLLATE utf8_polish_ci NOT NULL,
   `zdjecie` longblob DEFAULT NULL,
   `PRZEPIS_id_przepis` int(11) NOT NULL
@@ -120,7 +121,7 @@ CREATE TABLE `uzytkownik` (
   `haslo` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `rodzaj_konta` int(11) UNSIGNED NOT NULL,
   `status_konta` int(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ;
 
 -- --------------------------------------------------------
 
