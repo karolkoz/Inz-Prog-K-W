@@ -18,6 +18,7 @@ $remove_color: #a80909;
 $remove_color_light: #db0909;
 $button_special_color: #e0d101;
 $button_special_color_light: #f0e006;
+$accept_color: #21d503;
 $content_element_color: #AFE7DD;
 $search_arrow_color: #84DEB8;
 
@@ -247,6 +248,11 @@ nav {
   }
 }
 
+.content__form__uploadedMainImage {
+  width: 80%;
+  height: 80%;
+}
+
 .content__form__button {
   position: relative;
   display: flex;
@@ -336,16 +342,16 @@ nav {
       font-weight: bold;
       padding: 15px;
       cursor: pointer;
-
       img {
         width: 35px;
         height: 35px;
-        padding-right: 8px;
       }
-
       input[type="file"] {
         display: none;
       }
+    }
+    > .form__label__stage--uploaded {
+      background-color: $accept_color;
     }
 
     > textarea {
@@ -409,6 +415,8 @@ nav {
     outline: none;
   }
 }
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 footer {

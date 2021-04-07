@@ -44,9 +44,10 @@
           <label class="form__label__forImage" for="image">
             <img src="img/image icon.png" />
             Dodaj obrazek do przepisu!
-            <input type="file" name="image" id="image" />
+            <input type="file" name="image" id="image" onchange="loadMainImage(event)" />
           </label>
         </div>
+        <img class="content__form__uploadedMainImage" id="uploadedMainImage"/>
 
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
@@ -84,16 +85,15 @@
             <h2>Etap 1</h2>
             <div class="content__form__stage__inputs">
               <textarea name="etap[]" placeholder="Opis etapu"></textarea>
-              <label class="form__label__stage" for="etap_1_image">
+              <label class="form__label__stage" for="etap_1_image" id="label_etap_1">
                 <img src="img/image icon.png" />
-                <input type="file" id="etap_1_image" name="etap[]" />
+                <input type="file" id="etap_1_image" name="etap[]" onchange="loadStageImage(label_etap_1)" />
               </label>
             </div>
           </div>
           <div id="buttonDiv" class="content__form__button">
             <button id="button" type="button" > <img src="img/plus icon.png" /> Dodaj nowy etap</button>
           </div>
-          <script src="script.js"></script>
         </div>
         <div class="content__form__button content__form__button--submit">
           <button type="submit"> Dodaj przepis</button>
@@ -101,7 +101,7 @@
 
       </form>
 
-
+      <script src="script.js"></script>
     </section>
 
 

@@ -78,7 +78,6 @@ function removeIngredient(x) {
 }
 
 
-
 function addStage() {
   ileEtapow = ileEtapow + 1;
   var numer = ileEtapow;
@@ -126,6 +125,9 @@ function addStage() {
   new_input.setAttribute("type", "file");
   new_input.setAttribute("name", "etap_image[]");
   new_input.setAttribute("id", "etap_" + numer + "_image");
+  new_input.addEventListener("change", function() {
+    loadStageImage("label_etap_" + numer)
+  }, false);
   new_label.appendChild(new_input);
   content_form_inputs.appendChild(new_label);
 
@@ -196,3 +198,16 @@ function removeStage(x) {
   target.remove();
   ileEtapow--;
 }
+
+function loadStageImage(x) {
+  console.log(x);
+  document.getElementById(x).classList.add("form__label__stage--uploaded");
+}
+
+var loadMainImage = function(event) {
+  var output = document.getElementById('uploadedMainImage');
+  output.src = URL.createObjectURL(event.target.files[0]);
+  output.onload = function() {
+    URL.revokeObjectURL(output.src)
+  }
+};
