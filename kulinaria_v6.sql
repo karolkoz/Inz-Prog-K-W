@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Mar 2021, 21:02
+-- Czas generowania: 09 Kwi 2021, 16:10
 -- Wersja serwera: 10.4.18-MariaDB
 -- Wersja PHP: 8.0.3
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `etap` (
-  `id_etap` int(10) UNSIGNED NOT NULL,
-  `nr_etapu` int(10) UNSIGNED NOT NULL,
+  `id_etap` int(11) NOT NULL,
+  `nr_etapu` int(11) NOT NULL,
   `opis` varchar(10000) COLLATE utf8_polish_ci NOT NULL,
-  `zdjecie` longblob DEFAULT NULL,
+  `zdjecie` blob DEFAULT NULL,
   `PRZEPIS_id_przepis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -45,6 +45,24 @@ CREATE TABLE `kategoria` (
   `nazwa` varchar(40) COLLATE utf8_polish_ci NOT NULL,
   `opis` varchar(1000) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `kategoria`
+--
+
+INSERT INTO `kategoria` (`nazwa`, `opis`) VALUES
+('Fit', 'Kategoria dla osób, które chcą dbać o sylwetkę ale jednocześnie nie chcą rezygnować z pysznych potraw. Sprawdź pomysły na zdrowe dania i wybierz swoje ulubione!'),
+('Kolacja ', 'Najlepsze propozycje kolacji na każdą okazję. Spróbuj sam, bo warto! '),
+('Obiad', 'Obiady błyskawiczne dla zapracowanych. Obiady wymyślne dla ciągłych poszukiwaczy smaków. Obiady lekkie dla osób na redukcji. Obiady syte dla tych, co lubią zjeść. Jest cały wachlarz możliwości do przetestowania!'),
+('Przekąski', 'Wiele propozycji szybkich przekąsek na każdą imprezę i nie tylko! - Czyli pomysły jak zrobić coś pysznego bez dużego nakładu pracy.'),
+('Sałatki', 'Znudzony robieniem ciągle tych samych sałatek? Już czas spróbować czegoś nowego! W tej kategorii znajdziesz wiele ciekawych propozycji na pyszne sałatki. '),
+('Śniadanie', 'Propozycje śniadań dla każdego - od lekkich i tradycyjnych (np. owsianki, amerykańskie placki pancake, omlety) po wyszukane, które zaskoczą niejednego fana nowych smaków!'),
+('Tradycyjne', 'Tradycyjne dania \'jak u Mamy\'. Jeśli szukasz tradycyjnych smaków, marzy Ci się danie \'jak dawniej\' - ta kategoria jest dla Ciebie.'),
+('Vege', 'To specjalna kategoria dla każdego, kto poszukuje alternatywy dla mięsa. Zobacz przepisy i daj się zaskoczyć możliwościami jakie są na wyciągnięcie ręki.'),
+('Wegańskie ', 'Kategoria dla osób, które wiedzą czego szukają. Tu znajdziesz propozycje potraw nie tylko bezmięsnych, ale również bez innych składników pochodzenia zwierzęcego. Sprawdź!'),
+('Wegetariańskie', 'To specjalna kategoria dla każdego, kto poszukuje alternatywy dla mięsa. Zobacz przepisy i daj się zaskoczyć możliwościami jakie są na wyciągnięcie ręki.'),
+('Wypieki', 'Kategoria dla łasuchów. Masz ochotę upiec coś pysznego? Sprawdź dostępne przepisy!'),
+('Wytrawne', 'Kategoria z daniami wytrawnymi. Przekonaj się, ile jest możliwości aby przygotować wytrawny posiłek.');
 
 -- --------------------------------------------------------
 
@@ -83,7 +101,7 @@ CREATE TABLE `przepis` (
   `opis` varchar(10000) COLLATE utf8_polish_ci NOT NULL,
   `data_dodania` date NOT NULL,
   `status` int(11) NOT NULL,
-  `zdjecie_ogolne` longblob DEFAULT NULL,
+  `zdjecie_ogolne` blob DEFAULT NULL,
   `UZYTKOWNIK_login` varchar(20) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -94,7 +112,7 @@ CREATE TABLE `przepis` (
 --
 
 CREATE TABLE `skladniki` (
-  `id_skladnik` int(10) UNSIGNED NOT NULL,
+  `id_skladnik` int(11) NOT NULL,
   `nazwa` varchar(40) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -119,9 +137,16 @@ CREATE TABLE `uzytkownik` (
   `login` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `nazwa` varchar(20) COLLATE utf8_polish_ci NOT NULL,
   `haslo` varchar(20) COLLATE utf8_polish_ci NOT NULL,
-  `rodzaj_konta` int(11) UNSIGNED NOT NULL,
-  `status_konta` int(11) UNSIGNED NOT NULL
-) ;
+  `rodzaj_konta` int(11) NOT NULL,
+  `status_konta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `uzytkownik`
+--
+
+INSERT INTO `uzytkownik` (`login`, `nazwa`, `haslo`, `rodzaj_konta`, `status_konta`) VALUES
+('dummy123', 'dummy', 'dummy', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -131,7 +156,7 @@ CREATE TABLE `uzytkownik` (
 
 CREATE TABLE `zawiera` (
   `PRZEPIS_id_przepis` int(11) NOT NULL,
-  `SKLADNIKI_id_skladnik` int(11) UNSIGNED NOT NULL,
+  `SKLADNIKI_id_skladnik` int(11) NOT NULL,
   `ilosc` varchar(20) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
@@ -144,7 +169,7 @@ CREATE TABLE `zawiera` (
 --
 ALTER TABLE `etap`
   ADD PRIMARY KEY (`id_etap`),
-  ADD KEY `PRZEPIS_id_przepis` (`PRZEPIS_id_przepis`);
+  ADD KEY `etap_fi_1dec01` (`PRZEPIS_id_przepis`);
 
 --
 -- Indeksy dla tabeli `kategoria`
@@ -156,22 +181,22 @@ ALTER TABLE `kategoria`
 -- Indeksy dla tabeli `lubie_to`
 --
 ALTER TABLE `lubie_to`
-  ADD PRIMARY KEY (`PRZEPIS_id_przepis`,`UZYTKOWNIK_login`),
-  ADD KEY `UZYTKOWNIK_login` (`UZYTKOWNIK_login`);
+  ADD PRIMARY KEY (`UZYTKOWNIK_login`,`PRZEPIS_id_przepis`),
+  ADD KEY `lubie_to_fi_1dec01` (`PRZEPIS_id_przepis`);
 
 --
 -- Indeksy dla tabeli `nalezy`
 --
 ALTER TABLE `nalezy`
   ADD PRIMARY KEY (`PRZEPIS_id_przepis`,`KATEGORIA_nazwa`),
-  ADD KEY `KATEGORIA_nazwa` (`KATEGORIA_nazwa`);
+  ADD KEY `nalezy_fi_eee2d7` (`KATEGORIA_nazwa`);
 
 --
 -- Indeksy dla tabeli `przepis`
 --
 ALTER TABLE `przepis`
   ADD PRIMARY KEY (`id_przepis`),
-  ADD KEY `UZYTKOWNIK_login` (`UZYTKOWNIK_login`);
+  ADD KEY `przepis_fi_0ae17c` (`UZYTKOWNIK_login`);
 
 --
 -- Indeksy dla tabeli `skladniki`
@@ -184,7 +209,7 @@ ALTER TABLE `skladniki`
 --
 ALTER TABLE `ulubione`
   ADD PRIMARY KEY (`UZYTKOWNIK_login`,`PRZEPIS_id_przepis`),
-  ADD KEY `PRZEPIS_id_przepis` (`PRZEPIS_id_przepis`);
+  ADD KEY `ulubione_fi_1dec01` (`PRZEPIS_id_przepis`);
 
 --
 -- Indeksy dla tabeli `uzytkownik`
@@ -197,7 +222,7 @@ ALTER TABLE `uzytkownik`
 --
 ALTER TABLE `zawiera`
   ADD PRIMARY KEY (`PRZEPIS_id_przepis`,`SKLADNIKI_id_skladnik`),
-  ADD KEY `SKLADNIKI_id_skladnik` (`SKLADNIKI_id_skladnik`);
+  ADD KEY `zawiera_fi_159e2f` (`SKLADNIKI_id_skladnik`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
@@ -207,7 +232,7 @@ ALTER TABLE `zawiera`
 -- AUTO_INCREMENT dla tabeli `etap`
 --
 ALTER TABLE `etap`
-  MODIFY `id_etap` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_etap` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT dla tabeli `przepis`
@@ -219,7 +244,7 @@ ALTER TABLE `przepis`
 -- AUTO_INCREMENT dla tabeli `skladniki`
 --
 ALTER TABLE `skladniki`
-  MODIFY `id_skladnik` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_skladnik` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Ograniczenia dla zrzutów tabel
@@ -229,41 +254,41 @@ ALTER TABLE `skladniki`
 -- Ograniczenia dla tabeli `etap`
 --
 ALTER TABLE `etap`
-  ADD CONSTRAINT `etap_ibfk_1` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`) ON DELETE CASCADE;
+  ADD CONSTRAINT `etap_fk_1dec01` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`);
 
 --
 -- Ograniczenia dla tabeli `lubie_to`
 --
 ALTER TABLE `lubie_to`
-  ADD CONSTRAINT `lubie_to_ibfk_1` FOREIGN KEY (`UZYTKOWNIK_login`) REFERENCES `uzytkownik` (`login`) ON DELETE CASCADE,
-  ADD CONSTRAINT `lubie_to_ibfk_2` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`) ON DELETE CASCADE;
+  ADD CONSTRAINT `lubie_to_fk_0ae17c` FOREIGN KEY (`UZYTKOWNIK_login`) REFERENCES `uzytkownik` (`login`),
+  ADD CONSTRAINT `lubie_to_fk_1dec01` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`);
 
 --
 -- Ograniczenia dla tabeli `nalezy`
 --
 ALTER TABLE `nalezy`
-  ADD CONSTRAINT `nalezy_ibfk_1` FOREIGN KEY (`KATEGORIA_nazwa`) REFERENCES `kategoria` (`nazwa`) ON DELETE CASCADE,
-  ADD CONSTRAINT `nalezy_ibfk_2` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`) ON DELETE CASCADE;
+  ADD CONSTRAINT `nalezy_fk_1dec01` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`),
+  ADD CONSTRAINT `nalezy_fk_eee2d7` FOREIGN KEY (`KATEGORIA_nazwa`) REFERENCES `kategoria` (`nazwa`);
 
 --
 -- Ograniczenia dla tabeli `przepis`
 --
 ALTER TABLE `przepis`
-  ADD CONSTRAINT `przepis_ibfk_1` FOREIGN KEY (`UZYTKOWNIK_login`) REFERENCES `uzytkownik` (`login`) ON DELETE CASCADE;
+  ADD CONSTRAINT `przepis_fk_0ae17c` FOREIGN KEY (`UZYTKOWNIK_login`) REFERENCES `uzytkownik` (`login`);
 
 --
 -- Ograniczenia dla tabeli `ulubione`
 --
 ALTER TABLE `ulubione`
-  ADD CONSTRAINT `ulubione_ibfk_1` FOREIGN KEY (`UZYTKOWNIK_login`) REFERENCES `uzytkownik` (`login`) ON DELETE CASCADE,
-  ADD CONSTRAINT `ulubione_ibfk_2` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`) ON DELETE CASCADE;
+  ADD CONSTRAINT `ulubione_fk_0ae17c` FOREIGN KEY (`UZYTKOWNIK_login`) REFERENCES `uzytkownik` (`login`),
+  ADD CONSTRAINT `ulubione_fk_1dec01` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`);
 
 --
 -- Ograniczenia dla tabeli `zawiera`
 --
 ALTER TABLE `zawiera`
-  ADD CONSTRAINT `zawiera_ibfk_1` FOREIGN KEY (`SKLADNIKI_id_skladnik`) REFERENCES `skladniki` (`id_skladnik`) ON DELETE CASCADE,
-  ADD CONSTRAINT `zawiera_ibfk_2` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`) ON DELETE CASCADE;
+  ADD CONSTRAINT `zawiera_fk_159e2f` FOREIGN KEY (`SKLADNIKI_id_skladnik`) REFERENCES `skladniki` (`id_skladnik`),
+  ADD CONSTRAINT `zawiera_fk_1dec01` FOREIGN KEY (`PRZEPIS_id_przepis`) REFERENCES `przepis` (`id_przepis`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

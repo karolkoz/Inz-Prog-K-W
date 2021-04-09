@@ -11,7 +11,7 @@
   <main>
     <nav>
       <div class="nav__name">
-        <a href="index.html"> Pyszniutkie.pl</a>
+        <a href="index.php"> Pyszniutkie.pl</a>
       </div>
       <div class="nav__menu">
         <div class="nav__list">
@@ -61,27 +61,52 @@
 
 
     <section class="content">
-      content
-      <div class="content__element">
-        <div class="content__element__left">
-          lewo
-        </div>
-        <div class="content__element__right">
-          <h2 class="content__element__right__title">Tytuł przepisu</h2>
-          <div class="content__element__right__data">
-            <div class="content__element__right__data__part">
-              fghfgh
+      <div class="content__elements">
+        <div class="content__element">
+          <div class="content__element__left">
+            <img src="img/placeholder icon.png" />
+          </div>
+          <div class="content__element__right">
+            <h2 class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</h2>
+            <div class="content__element__right__data">
+              <div class="content__element__right__data__part">
+                <img src="img/like green.png" /> 353
+              </div>
+              <div class="content__element__right__data__part">
+                <img src="img/clock icon.png" /> 30 min.
+              </div>
             </div>
-            <div class="content__element__right__data__part">
-              fghf
+            <div class="content__element__right__data">
+              <div class="content__element__right__data__part">
+                <img src="img/people icon.png" /> 4
+              </div>
+              <div class="content__element__right__data__part">
+                <img src="img/difficulty icon.png" /> Łatwe
+              </div>
             </div>
           </div>
-          <div class="content__element__right__data">
-            <div class="content__element__right__data__part">
-              fkjlfdg
+        </div>
+        <div class="content__element">
+          <div class="content__element__left">
+            <img src="img/placeholder icon.png" />
+          </div>
+          <div class="content__element__right">
+            <h2 class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej</h2>
+            <div class="content__element__right__data">
+              <div class="content__element__right__data__part">
+                <img src="img/like green.png" /> 353
+              </div>
+              <div class="content__element__right__data__part">
+                <img src="img/clock icon.png" /> 30 min.
+              </div>
             </div>
-            <div class="content__element__right__data__part">
-              ffsafafasfsf
+            <div class="content__element__right__data">
+              <div class="content__element__right__data__part">
+                <img src="img/people icon.png" /> 4
+              </div>
+              <div class="content__element__right__data__part">
+                <img src="img/difficulty icon.png" /> Łatwe
+              </div>
             </div>
           </div>
         </div>

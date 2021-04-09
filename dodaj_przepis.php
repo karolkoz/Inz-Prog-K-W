@@ -11,7 +11,7 @@
   <main>
     <nav>
       <div class="nav__name">
-        <a href="index.html"> Pyszniutkie.pl</a>
+        <a href="index.php"> Pyszniutkie.pl</a>
       </div>
       <div class="nav__menu">
         <div class="nav__list">
@@ -51,18 +51,52 @@
 
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
-          <!-- Ten div poniżej to div dla kategorii
           <div class="content__form__category" id="category_1">
-            <select name="categories[]">
+
+            <?php
+            require_once "connect.php";
+
+            $link = new mysqli($host, $db_user, $db_password, $db_name);
+
+            if($link->connect_errno!=0)
+            {
+	             echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+            }
+            else {
+	#$login = $_POST['login'];
+	#$haslo = $_POST['haslo'];
+
+             $zapytanie = mysqli_query($link, "SELECT nazwa FROM kategoria");
+
+             echo '<select name="categories[]">';
+
+             echo '<option value=""disabled selected>Wybierz kategorię</option>';
+
+             while($option = mysqli_fetch_assoc($zapytanie)) {
+
+             echo '<option value="'.$option['nazwa'].'">'.$option['nazwa'].'</option>';
+
+             }
+
+             echo '</select>';
+
+	           $link->close();
+           }
+
+            ?>
+
+            <!-- <select name="categories[]" style="width:100px" >
               <option value="" disabled selected>Kategoria</option>
-              ///////////////////////////////// Opcje powinny pochodzić z bazy danych, value to powinna być nazwa kategorii
-              <option value="sniadanie">Śniadanie</option>
+
+               ///////////////////////////////// Opcje powinny pochodzić z bazy danych, value to powinna być nazwa kategorii
+
+               <option value="sniadanie">Śniadanie</option>
               <option value="obiad">Obiad</option>
               <option value="kolacja">Kolacja</option>
               <option value="vege">Vege</option>
-            </select>
+            </select> -->
           </div>
-          -->
+
           <div id="categoryButtonDiv" class="content__form__button">
             <button id="categoryButton" type="button" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
           </div>
