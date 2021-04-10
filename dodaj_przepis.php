@@ -57,44 +57,29 @@
             require_once "connect.php";
 
             $link = new mysqli($host, $db_user, $db_password, $db_name);
+            $link->query("SET NAMES 'utf8'");
+            if ($link->connect_errno!=0) {
+                echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+            } else {
+                #$login = $_POST['login'];
+                #$haslo = $_POST['haslo'];
 
-            if($link->connect_errno!=0)
-            {
-	             echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+                $zapytanie = mysqli_query($link, "SELECT nazwa FROM kategoria");
+
+                echo '<select name="categories[]">';
+
+                echo '<option value=""disabled selected>Wybierz kategorię</option>';
+
+                while ($option = mysqli_fetch_assoc($zapytanie)) {
+                    echo '<option value="'.$option['nazwa'].'">'.$option['nazwa'].'</option>';
+                }
+
+                echo '</select>';
+
+                $link->close();
             }
-            else {
-	#$login = $_POST['login'];
-	#$haslo = $_POST['haslo'];
-
-             $zapytanie = mysqli_query($link, "SELECT nazwa FROM kategoria");
-
-             echo '<select name="categories[]">';
-
-             echo '<option value=""disabled selected>Wybierz kategorię</option>';
-
-             while($option = mysqli_fetch_assoc($zapytanie)) {
-
-             echo '<option value="'.$option['nazwa'].'">'.$option['nazwa'].'</option>';
-
-             }
-
-             echo '</select>';
-
-	           $link->close();
-           }
 
             ?>
-
-            <!-- <select name="categories[]" style="width:100px" >
-              <option value="" disabled selected>Kategoria</option>
-
-               ///////////////////////////////// Opcje powinny pochodzić z bazy danych, value to powinna być nazwa kategorii
-
-               <option value="sniadanie">Śniadanie</option>
-              <option value="obiad">Obiad</option>
-              <option value="kolacja">Kolacja</option>
-              <option value="vege">Vege</option>
-            </select> -->
           </div>
 
           <div id="categoryButtonDiv" class="content__form__button">
