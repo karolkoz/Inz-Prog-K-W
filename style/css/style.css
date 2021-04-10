@@ -8,13 +8,16 @@
   font-family: 'Petrona';
   src: url("../../fonts/Petrona-Regular.ttf");
   font-weight: normal; }
+@font-face {
+  font-family: 'Rowdies';
+  src: url("../../fonts/Rowdies-Regular.ttf");
+  font-weight: normal; }
 body {
   margin: 0;
   font-family: Roboto; }
 
 nav {
   background-color: #36CFAB;
-  position: sticky;
   padding: 5px 10px;
   display: flex;
   flex-direction: row;
@@ -150,7 +153,10 @@ nav {
   padding: 0 0 0 10px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  text-decoration: none;
+  color: black;
+  font-weight: bold; }
 
 .content__element__right__data {
   display: flex;
@@ -170,6 +176,145 @@ nav {
     width: 75px;
     height: 75px;
     padding-right: 10px; }
+
+.content__recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 95%; }
+
+.content__recipe__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 10px; }
+
+.content__recipe__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding-bottom: 10px; }
+
+.content__recipe__element__desc {
+  margin: 0;
+  font-size: 2em;
+  padding: 15px 0 15px 0; }
+
+.content__recipe__title {
+  margin: 0;
+  padding: 40px 0 15px 0;
+  font-family: Petrona;
+  font-size: 2.8em;
+  text-align: center; }
+
+.content__recipe__author {
+  margin: 0;
+  font-family: Petrona;
+  font-size: 2em;
+  padding: 5px 0 30px 0;
+  white-space: nowrap;
+  color: grey; }
+
+.content__recipe__image {
+  display: flex;
+  width: 80%; }
+
+.content__recipe__buttons {
+  display: flex;
+  flex-direction: row;
+  width: 80%; }
+  .content__recipe__buttons button {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 3em;
+    font-family: Rowdies;
+    white-space: nowrap;
+    padding: 5px 8px 5px 8px;
+    border: none; }
+    .content__recipe__buttons button span {
+      display: flex;
+      width: 70%;
+      height: 100%;
+      justify-content: center;
+      align-items: center; }
+    .content__recipe__buttons button img {
+      width: 30%;
+      max-width: 150px;
+      max-height: 150px; }
+  .content__recipe__buttons .content__recipe__button--like {
+    color: white;
+    background-color: #34C34B; }
+  .content__recipe__buttons .content__recipe__button--like:hover {
+    background-color: #2ba13e; }
+  .content__recipe__buttons .content__recipe__button--favourite {
+    background-color: #FAFF05; }
+  .content__recipe__buttons .content__recipe__button--favourite:hover {
+    background-color: #d8dd06; }
+
+.content__recipe__stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-wrap: wrap; }
+
+.content__recipe__stats__element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px 5px 15px;
+  font-size: 2em;
+  font-weight: bold; }
+  .content__recipe__stats__element img {
+    width: 75px;
+    height: 75px;
+    padding-right: 10px; }
+
+.content__recipe__h2 {
+  white-space: nowrap;
+  align-self: flex-start;
+  font-size: 2.8em;
+  margin: 0;
+  padding: 20px 0 20px 0; }
+
+.content__recipe__ingredientsTable {
+  display: flex;
+  font-size: 3em;
+  width: 100%; }
+  .content__recipe__ingredientsTable td {
+    padding: 5px;
+    border-bottom: 2.5px solid #058B63; }
+  .content__recipe__ingredientsTable td:nth-child(1) {
+    width: 400px;
+    border-right: 2.5px solid #058B63; }
+
+.content__recipe__stage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  background-color: #AFE7DD;
+  margin-bottom: 20px; }
+  .content__recipe__stage h2 {
+    font-size: 3em;
+    margin: 0; }
+
+.content__recipe__stage__data {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+  .content__recipe__stage__data img {
+    width: 300px;
+    height: 300px; }
+  .content__recipe__stage__data p {
+    font-size: 2.2em;
+    height: 100%;
+    margin: 0; }
 
 .content__form {
   width: 100%;

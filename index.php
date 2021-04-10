@@ -67,13 +67,13 @@
             <img src="img/placeholder icon.png" />
           </div>
           <div class="content__element__right">
-            <h2 class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</h2>
+            <a href="wyswietl_przepis.php" class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</a>
             <div class="content__element__right__data">
               <div class="content__element__right__data__part">
-                <img src="img/like green.png" /> 353
+                <img src="img/like green.png" /> 325
               </div>
               <div class="content__element__right__data__part">
-                <img src="img/clock icon.png" /> 30 min.
+                <img src="img/clock icon.png" /> 50 min.
               </div>
             </div>
             <div class="content__element__right__data">
@@ -81,7 +81,7 @@
                 <img src="img/people icon.png" /> 4
               </div>
               <div class="content__element__right__data__part">
-                <img src="img/difficulty icon.png" /> Łatwe
+                <img src="img/difficulty icon.png" /> Trudne
               </div>
             </div>
           </div>
@@ -91,7 +91,7 @@
             <img src="img/placeholder icon.png" />
           </div>
           <div class="content__element__right">
-            <h2 class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej</h2>
+            <h2 class="content__element__right__title">Dzika Świnia po kaszubsku w panierce ziołowej</h2>
             <div class="content__element__right__data">
               <div class="content__element__right__data__part">
                 <img src="img/like green.png" /> 353
