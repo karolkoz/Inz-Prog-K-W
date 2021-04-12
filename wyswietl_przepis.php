@@ -26,8 +26,32 @@
       <div class="content__recipe">
         <div class="content__recipe__row">
           <div class="content__recipe__element">
-            <h1 class="content__recipe__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</h1>
-            <h2 class="content__recipe__author">Autor przepisu: <i>Użytkownik3445325</i></h2>
+            <?php
+            require_once "connect.php";
+
+            $link = new mysqli($host, $db_user, $db_password, $db_name);
+            $link->query("SET NAMES 'utf8'");
+            if ($link->connect_errno!=0) {
+                echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+            } else {
+
+                $zapytanie = mysqli_query($link, "SELECT nazwa FROM przepis WHERE id_przepis=10");
+                $zapytanie2 = mysqli_query($link, "SELECT u.login FROM uzytkownik u JOIN przepis p ON u.login=p.UZYTKOWNIK_login WHERE p.id_przepis=10");
+
+                while ($option = mysqli_fetch_assoc($zapytanie)) {
+                    echo '<h1 class="content__recipe__title">'.$option['nazwa'].'</h1>';
+                }
+
+                while ($option2 = mysqli_fetch_assoc($zapytanie2)) {
+                    echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$option2['login'].'</i></h2>';
+                }
+
+
+                $link->close();
+            }
+
+
+            ?>
           </div>
         </div>
 
@@ -40,24 +64,98 @@
             </div>
           </div>
           <div class="content__recipe__element">
-            <p class="content__recipe__element__desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            <?php
+            require_once "connect.php";
+
+            $link = new mysqli($host, $db_user, $db_password, $db_name);
+            $link->query("SET NAMES 'utf8'");
+            if ($link->connect_errno!=0) {
+                echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+            } else {
+
+                $zapytanie = mysqli_query($link, "SELECT opis FROM przepis WHERE id_przepis=10");
+
+                while ($option = mysqli_fetch_assoc($zapytanie)) {
+                    echo '<p class="content__recipe__element__desc">'.$option['opis'].'</p>';
+                }
+
+                $link->close();
+            }
+            ?>
             <div class="content__recipe__stats">
               <div class="content__recipe__stats__element">
                 <img src="img/people icon.png" />
-                <span>4</span>
+                <?php
+                require_once "connect.php";
+
+                $link = new mysqli($host, $db_user, $db_password, $db_name);
+                $link->query("SET NAMES 'utf8'");
+                if ($link->connect_errno!=0) {
+                    echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+                } else {
+
+                    $zapytanie = mysqli_query($link, "SELECT dla_ilu_osob FROM przepis WHERE id_przepis=10");
+
+                    while ($option = mysqli_fetch_assoc($zapytanie)) {
+                        echo '<span>'.$option['dla_ilu_osob'].'</span>';
+                    }
+
+                    $link->close();
+                }
+                ?>
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/clock icon.png" />
-                <span>50 min.</span>
+                <?php
+                require_once "connect.php";
+
+                $link = new mysqli($host, $db_user, $db_password, $db_name);
+                $link->query("SET NAMES 'utf8'");
+                if ($link->connect_errno!=0) {
+                    echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+                } else {
+
+                    $zapytanie = mysqli_query($link, "SELECT czas_przygotowania FROM przepis WHERE id_przepis=10");
+
+                    while ($option = mysqli_fetch_assoc($zapytanie)) {
+                        echo '<span>'.$option['czas_przygotowania'].' min.'.'</span>';
+                    }
+
+                    $link->close();
+                }
+                ?>
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/difficulty icon.png" />
-                <span>Trudne</span>
+                <?php
+                require_once "connect.php";
+
+                $link = new mysqli($host, $db_user, $db_password, $db_name);
+                $link->query("SET NAMES 'utf8'");
+                if ($link->connect_errno!=0) {
+                    echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+                } else {
+
+                    $zapytanie = mysqli_query($link, "SELECT stopien_trudnosci FROM przepis WHERE id_przepis=10");
+
+                    while ($option = mysqli_fetch_assoc($zapytanie)) {
+                      if($option['stopien_trudnosci']>0 && $option['stopien_trudnosci']<4)
+                      {
+                        echo '<span>'.'łatwy'.'</span>';
+                      }
+                      if($option['stopien_trudnosci']>=4 && $option['stopien_trudnosci']<8)
+                      {
+                        echo '<span>'.'średni'.'</span>';
+                      }
+                      if($option['stopien_trudnosci']>=8 && $option['stopien_trudnosci']<=10)
+                      {
+                        echo '<span>'.'trudny'.'</span>';
+                      }
+                    }
+
+                    $link->close();
+                }
+                ?>
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/like green.png" />
@@ -70,72 +168,50 @@
           <div class="content__recipe__element">
             <h2 class="content__recipe__h2">Lista Składników</h2>
             <table class="content__recipe__ingredientsTable">
-              <tr>
-                <td>
-                  Kaczka
-                </td>
-                <td>
-                  1 szt.
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Kartofle
-                </td>
-                <td>
-                  3 kg
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Zioła
-                </td>
-                <td>
-                  1 szczypta
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Jajka
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Mąka
-                </td>
-                <td>
-                  0.5 kg
-                </td>
-              </tr>
+              <?php
+              require_once "connect.php";
+
+              $link = new mysqli($host, $db_user, $db_password, $db_name);
+              $link->query("SET NAMES 'utf8'");
+              if ($link->connect_errno!=0) {
+                  echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+              } else {
+
+                  $zapytanie = mysqli_query($link, "SELECT s.nazwa, z.ilosc FROM przepis p JOIN zawiera z ON p.id_przepis=z.PRZEPIS_id_przepis JOIN skladniki s ON s.id_skladnik=z.SKLADNIKI_id_skladnik WHERE p.id_przepis=10");
+
+                  while ($option = mysqli_fetch_assoc($zapytanie)) {
+                      echo '<tr><td>'.$option['nazwa'].'</td><td>'.$option['ilosc'].'</td></tr>';
+                  }
+
+                  $link->close();
+              }
+            ?>
             </table>
 
           </div>
           <div class="content__recipe__element">
             <h2 class="content__recipe__h2">Przygotowanie</h2>
-            <div class="content__recipe__stage">
-              <h2>Etap 1</h2>
-              <div class="content__recipe__stage__data">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
-                </p>
-                <img src="img/placeholder icon.png" />
-              </div>
-            </div>
-            <div class="content__recipe__stage">
-              <h2>Etap 2</h2>
-              <div class="content__recipe__stage__data">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                </p>
-                <img src="img/placeholder icon.png" />
-              </div>
-            </div>
+              <?php
+              require_once "connect.php";
+
+              $link = new mysqli($host, $db_user, $db_password, $db_name);
+              $link->query("SET NAMES 'utf8'");
+              if ($link->connect_errno!=0) {
+                  echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+              } else {
+
+                  $zapytanie = mysqli_query($link, "SELECT e.nr_etapu, e.opis FROM przepis p JOIN etap e ON p.id_przepis=e.PRZEPIS_id_przepis WHERE p.id_przepis=10");
+
+                  while ($option = mysqli_fetch_assoc($zapytanie)) {
+                      echo '<div class="content__recipe__stage">';
+                      echo '<h2>Etap '.$option['nr_etapu'].'</h2>';
+                      echo '<div class="content__recipe__stage__data"><p>'.$option['opis'].'</p><img src="img/placeholder icon.png" /></div>';
+                      echo '</div>';
+                  }
+
+                  $link->close();
+              }
+              ?>
           </div>
         </div>
       </div>

@@ -34,11 +34,10 @@ else
 
  echo "Połączono z bazą!";
 
-//  $sql=mysqli_query($link, "INSERT INTO przepis(nazwa, stopien_trudnosci, czas_przygotowania, dla_ilu_osob, opis, data_dodania, status, UZYTKOWNIK_login)
-// VALUES
-// (‚$_POST[nazwa]’,’$_POST[trudnosc]’,’$_POST[czas_przygotowania]’,’$_POST[ile_osob]’,’$_POST[opis]’, $data, $status, $UZYTKOWNIK_login)");
-
 // dodajemy rekord do bazy
+
+    // $photo = $_FILES['image']['tmp_name'];
+
     $ins = @mysqli_query($link, "INSERT INTO przepis SET nazwa='$nazwa', stopien_trudnosci='$trudnosc', czas_przygotowania='$czas_przygotowania', dla_ilu_osob='$ile_osob', opis='$opis', data_dodania='$data', status='$status', UZYTKOWNIK_login='$UZYTKOWNIK_login'");
 
     if($ins) echo " Rekord został dodany poprawnie do tabeli przepisy, jego id to: ".mysqli_insert_id($link);

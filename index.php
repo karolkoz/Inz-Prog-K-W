@@ -30,13 +30,40 @@
           <input type="submit" value="">
         </div>
         <div class="search__form__select">
-          <select id="kategoria" name="kategoria">
+          <?php
+          require_once "connect.php";
+
+          $link = new mysqli($host, $db_user, $db_password, $db_name);
+          $link->query("SET NAMES 'utf8'");
+          if ($link->connect_errno!=0) {
+              echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
+          } else {
+              #$login = $_POST['login'];
+              #$haslo = $_POST['haslo'];
+
+              $zapytanie = mysqli_query($link, "SELECT nazwa FROM kategoria");
+
+              echo '<select name="categories[]">';
+
+              echo '<option value=""disabled selected>Kategoria</option>';
+
+              while ($option = mysqli_fetch_assoc($zapytanie)) {
+                  echo '<option value="'.$option['nazwa'].'">'.$option['nazwa'].'</option>';
+              }
+
+              echo '</select>';
+
+              $link->close();
+          }
+
+          ?>
+          <!-- <select id="kategoria" name="kategoria">
             <option value="" disabled selected>Kategoria</option>
             <option value="sniadanie">Śniadanie</option>
             <option value="obiad">Obiad</option>
             <option value="kolacja">Kolacja</option>
             <option value="vege">Vege</option>
-          </select>
+          </select> -->
         </div>
         <div class="search__form__select">
           <select id="czas" name="czas">
