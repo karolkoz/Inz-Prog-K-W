@@ -1,0 +1,15 @@
+{
+ 
+    "require": {
+ 
+        "propel/propel": "~2.0@dev"
+ 
+    },  
+ 
+    "autoload": {
+ 
+    "classmap": ["generated-classes/"]
+ 
+    }
+ 
+}

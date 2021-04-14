@@ -1,0 +1,37 @@
+# propel.yaml
+ 
+propel:
+ 
+  database:
+ 
+      connections:
+ 
+          kulinaria:
+ 
+              adapter: mysql
+ 
+              classname: Propel\Runtime\Connection\ConnectionWrapper
+ 
+              dsn: "mysql:host=localhost;dbname=kulinaria"
+ 
+              user: root
+ 
+              password: INEZ$a$$11
+ 
+              attributes:
+ 
+  runtime:
+ 
+      defaultConnection: kulinaria
+ 
+      connections:
+ 
+          - kulinaria
+ 
+  generator:
+ 
+      defaultConnection: kulinaria
+ 
+      connections:
+ 
+          - kulinaria
