@@ -76,34 +76,21 @@
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
           <div class="content__form__category" id="category_1">
+            <select name="categories[]">
+              <option value=""disabled selected>Kategoria</option>
 
-            <?php
-            require_once "connect.php";
+              <?php
+              require_once __DIR__.'/vendor/autoload.php';
+              require_once __DIR__.'/generated-conf/config.php';
 
-            $link = new mysqli($host, $db_user, $db_password, $db_name);
-            $link->query("SET NAMES 'utf8'");
-            if ($link->connect_errno!=0) {
-                echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-            } else {
-                #$login = $_POST['login'];
-                #$haslo = $_POST['haslo'];
-
-                $zapytanie = mysqli_query($link, "SELECT nazwa FROM kategoria");
-
-                echo '<select name="categories[]">';
-
-                echo '<option value=""disabled selected>Wybierz kategorię</option>';
-
-                while ($option = mysqli_fetch_assoc($zapytanie)) {
-                    echo '<option value="'.$option['nazwa'].'">'.$option['nazwa'].'</option>';
+              $kategorie = KategoriaQuery::create()->find();
+                foreach($kategorie as $kat) {
+                  echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
                 }
 
-                echo '</select>';
+              ?>
 
-                $link->close();
-            }
-
-            ?>
+            </select>
           </div>
 
           <div id="categoryButtonDiv" class="content__form__button">
