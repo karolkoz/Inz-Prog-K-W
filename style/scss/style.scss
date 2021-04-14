@@ -28,7 +28,6 @@ $button_like_color: #34C34B;
 $button_like_color_dark: #2ba13e;
 $button_fav_color: #FAFF05;
 $button_fav_color_dark: #d8dd06;
-
 $content_element_color: #AFE7DD;
 $search_arrow_color: #84DEB8;
 
@@ -175,6 +174,7 @@ nav {
   justify-content: center;
   width: 100%;
 }
+
 .content__element {
   display: flex;
   flex-direction: row;
@@ -188,11 +188,13 @@ nav {
 .content__element__left {
   display: flex;
   align-items: center;
+
   img {
     width: 200px;
     height: 200px;
   }
 }
+
 .content__element__right {
   display: flex;
   flex-direction: column;
@@ -225,7 +227,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px 5px 15px;
+  padding: 10px 15px 5px;
+
   img {
     width: 75px;
     height: 75px;
@@ -234,14 +237,15 @@ nav {
   font-size: 2.1em;
   font-weight: bold;
 }
-
 ////////////////////////////////////////////////PRZEPIS////////////////////////////////////////////////////////////////////////
+
 .content__recipe {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 95%;
 }
+
 .content__recipe__row {
   display: flex;
   flex-direction: row;
@@ -262,21 +266,22 @@ nav {
 .content__recipe__element__desc {
   margin: 0;
   font-size: 2em;
-  padding: 15px 0 15px 0;
+  padding: 15px 0;
 }
 
 .content__recipe__title {
   margin: 0;
-  padding: 40px 0 15px 0;
+  padding: 40px 0 15px;
   font-family: Petrona;
   font-size: 2.8em;
   text-align: center;
 }
+
 .content__recipe__author {
   margin: 0;
   font-family: Petrona;
   font-size: 2em;
-  padding: 5px 0 30px 0;
+  padding: 5px 0 30px;
   white-space: nowrap;
   color: grey;
 }
@@ -290,6 +295,7 @@ nav {
   display: flex;
   flex-direction: row;
   width: 80%;
+
   button {
     width: 50%;
     display: flex;
@@ -298,8 +304,9 @@ nav {
     font-size: 3em;
     font-family: Rowdies;
     white-space: nowrap;
-    padding: 5px 8px 5px 8px;
+    padding: 5px 8px;
     border: none;
+
     span {
       display: flex;
       width: 70%;
@@ -307,22 +314,27 @@ nav {
       justify-content: center;
       align-items: center;
     }
+
     img {
       width: 30%;
       max-width: 150px;
       max-height: 150px;
     }
   }
+
   .content__recipe__button--like {
     color: white;
     background-color: $button_like_color;
   }
+
   .content__recipe__button--like:hover {
     background-color: $button_like_color_dark;
   }
+
   .content__recipe__button--favourite {
     background-color: $button_fav_color;
   }
+
   .content__recipe__button--favourite:hover {
     background-color: $button_fav_color_dark;
   }
@@ -335,11 +347,13 @@ nav {
   width: 100%;
   flex-wrap: wrap;
 }
+
 .content__recipe__stats__element {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px 5px 15px;
+  padding: 10px 15px 5px;
+
   img {
     width: 75px;
     height: 75px;
@@ -354,17 +368,19 @@ nav {
   align-self: flex-start;
   font-size: 2.8em;
   margin: 0;
-  padding: 20px 0 20px 0;
+  padding: 20px 0;
 }
 
 .content__recipe__ingredientsTable {
   display: flex;
   font-size: 3em;
   width: 100%;
+
   td {
     padding: 5px;
     border-bottom: 2.5px solid $button_color;
   }
+
   td:nth-child(1) {
     width: 400px;
     border-right: 2.5px solid $button_color;
@@ -378,30 +394,30 @@ nav {
   padding: 10px;
   background-color: $content_element_color;
   margin-bottom: 20px;
+
   h2 {
     font-size: 3em;
     margin: 0;
   }
 }
+
 .content__recipe__stage__data {
   display: flex;
   flex-direction: row;
   align-items: center;
+
   img {
     width: 300px;
     height: 300px;
   }
+
   p {
     font-size: 2.2em;
     height: 100%;
     margin: 0;
   }
 }
-
-
-
 ////////////////////////////////////////////////FORMULARZ DODAWANIA PRZEPISU////////////////////////////////////////////////////
-
 .content__form {
   width: 100%;
   background-color: $content_element_color;
@@ -421,6 +437,13 @@ nav {
   display: flex;
   width: 80%;
   padding: 20px 0;
+  align-items: center;
+
+  > img {
+    width: 80px;
+    height: 80px;
+    padding-right: 10px;
+  }
 
   > input {
     width: 100%;
@@ -464,6 +487,47 @@ nav {
   > .form__label__forImage:hover {
     background-color: $button_special_color_light;
   }
+}
+
+.content__form__rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  padding: 0 10px;
+}
+
+.content__form__rating:not(:checked) > input {
+  display: none;
+}
+
+.content__form__rating:not(:checked) > label {
+  float: right;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: #ccc;
+  width: 60px;
+  height: 60px;
+}
+
+
+
+.content__form__rating > input:checked ~ label {
+  background-color: #2bff00;
+}
+
+.content__form__rating:not(:checked) > label:hover,
+.content__form__rating:not(:checked) > label:hover ~ label {
+  background-color: #27de17;
+}
+
+.content__form__rating > input:checked + label:hover,
+.content__form__rating > input:checked + label:hover ~ label,
+.content__form__rating > input:checked ~ label:hover,
+.content__form__rating > input:checked ~ label:hover ~ label,
+.content__form__rating > label:hover ~ input:checked ~ label {
+  background-color: #0cc608;
 }
 
 .content__form__uploadedMainImage {
@@ -560,14 +624,17 @@ nav {
       font-weight: bold;
       padding: 15px;
       cursor: pointer;
+
       img {
         width: 35px;
         height: 35px;
       }
+
       input[type="file"] {
         display: none;
       }
     }
+
     > .form__label__stage--uploaded {
       background-color: $accept_color;
     }
@@ -633,10 +700,7 @@ nav {
     outline: none;
   }
 }
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
 footer {
   background-color: $header_color;
 }

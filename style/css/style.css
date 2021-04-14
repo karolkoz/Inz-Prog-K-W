@@ -169,7 +169,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px 5px 15px;
+  padding: 10px 15px 5px;
   font-size: 2.1em;
   font-weight: bold; }
   .content__element__right__data__part img {
@@ -201,11 +201,11 @@ nav {
 .content__recipe__element__desc {
   margin: 0;
   font-size: 2em;
-  padding: 15px 0 15px 0; }
+  padding: 15px 0; }
 
 .content__recipe__title {
   margin: 0;
-  padding: 40px 0 15px 0;
+  padding: 40px 0 15px;
   font-family: Petrona;
   font-size: 2.8em;
   text-align: center; }
@@ -214,7 +214,7 @@ nav {
   margin: 0;
   font-family: Petrona;
   font-size: 2em;
-  padding: 5px 0 30px 0;
+  padding: 5px 0 30px;
   white-space: nowrap;
   color: grey; }
 
@@ -234,7 +234,7 @@ nav {
     font-size: 3em;
     font-family: Rowdies;
     white-space: nowrap;
-    padding: 5px 8px 5px 8px;
+    padding: 5px 8px;
     border: none; }
     .content__recipe__buttons button span {
       display: flex;
@@ -267,7 +267,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 15px 5px 15px;
+  padding: 10px 15px 5px;
   font-size: 2em;
   font-weight: bold; }
   .content__recipe__stats__element img {
@@ -280,7 +280,7 @@ nav {
   align-self: flex-start;
   font-size: 2.8em;
   margin: 0;
-  padding: 20px 0 20px 0; }
+  padding: 20px 0; }
 
 .content__recipe__ingredientsTable {
   display: flex;
@@ -331,7 +331,12 @@ nav {
   position: relative;
   display: flex;
   width: 80%;
-  padding: 20px 0; }
+  padding: 20px 0;
+  align-items: center; }
+  .content__form__input > img {
+    width: 80px;
+    height: 80px;
+    padding-right: 10px; }
   .content__form__input > input {
     width: 100%;
     font-size: 45px;
@@ -361,6 +366,39 @@ nav {
       padding-right: 8px; }
   .content__form__input > .form__label__forImage:hover {
     background-color: #f0e006; }
+
+.content__form__rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  padding: 0 10px; }
+
+.content__form__rating:not(:checked) > input {
+  display: none; }
+
+.content__form__rating:not(:checked) > label {
+  float: right;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: #ccc;
+  width: 60px;
+  height: 60px; }
+
+.content__form__rating > input:checked ~ label {
+  background-color: #2bff00; }
+
+.content__form__rating:not(:checked) > label:hover,
+.content__form__rating:not(:checked) > label:hover ~ label {
+  background-color: #27de17; }
+
+.content__form__rating > input:checked + label:hover,
+.content__form__rating > input:checked + label:hover ~ label,
+.content__form__rating > input:checked ~ label:hover,
+.content__form__rating > input:checked ~ label:hover ~ label,
+.content__form__rating > label:hover ~ input:checked ~ label {
+  background-color: #0cc608; }
 
 .content__form__uploadedMainImage {
   width: 80%;

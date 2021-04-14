@@ -29,12 +29,36 @@
           <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" />
         </div>
         <div class="content__form__input">
-          <input type="number" id="trudnosc" name="trudnosc" placeholder="Stopień trudności (od 1 do 10)" />
+          <img src="img/difficulty icon.png" />
+          <div class="content__form__rating">
+            <input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+            <label for="trudnosc10"></label>
+            <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+            <label for="trudnosc9"></label>
+            <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+            <label for="trudnosc8"></label>
+            <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+            <label for="trudnosc7"></label>
+            <input type="radio" id="trudnosc6" name="trudnosc" value="6" />
+            <label for="trudnosc6"></label>
+            <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+            <label for="trudnosc5"></label>
+            <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+            <label for="trudnosc4"></label>
+            <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+            <label for="trudnosc3"></label>
+            <input type="radio" id="trudnosc2" name="trudnosc" value="2" />
+            <label for="trudnosc2"></label>
+            <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+            <label for="trudnosc1"></label>
+          </div>
         </div>
         <div class="content__form__input">
+          <img src="img/people icon.png" />
           <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" />
         </div>
         <div class="content__form__input">
+          <img src="img/clock icon.png" />
           <input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" />
         </div>
         <div class="content__form__input">
