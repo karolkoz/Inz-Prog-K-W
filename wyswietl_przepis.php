@@ -25,6 +25,14 @@
     <section class="content">
       <div class="content__recipe">
         <div class="content__recipe__row">
+          <form class="content__recipe__element content__recipe__form" method="post" action="usun_przepis.php">
+              <button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>
+          </form>
+            <form class="content__recipe__element content__recipe__form" method="post" action="edytuj_przepis.php">
+                <button class="content__recipe__button" type="submit" name="przepis" value="10"><img src="img/edit icon.png" />Edycja przepisu</button>
+            </form>
+        </div>
+        <div class="content__recipe__row">
           <div class="content__recipe__element">
             <?php
             require_once "connect.php";
@@ -34,7 +42,6 @@
             if ($link->connect_errno!=0) {
                 echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
             } else {
-
                 $zapytanie = mysqli_query($link, "SELECT nazwa FROM przepis WHERE id_przepis=10");
                 $zapytanie2 = mysqli_query($link, "SELECT u.login FROM uzytkownik u JOIN przepis p ON u.login=p.UZYTKOWNIK_login WHERE p.id_przepis=10");
 
@@ -72,7 +79,6 @@
             if ($link->connect_errno!=0) {
                 echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
             } else {
-
                 $zapytanie = mysqli_query($link, "SELECT opis FROM przepis WHERE id_przepis=10");
 
                 while ($option = mysqli_fetch_assoc($zapytanie)) {
@@ -93,7 +99,6 @@
                 if ($link->connect_errno!=0) {
                     echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
                 } else {
-
                     $zapytanie = mysqli_query($link, "SELECT dla_ilu_osob FROM przepis WHERE id_przepis=10");
 
                     while ($option = mysqli_fetch_assoc($zapytanie)) {
@@ -114,7 +119,6 @@
                 if ($link->connect_errno!=0) {
                     echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
                 } else {
-
                     $zapytanie = mysqli_query($link, "SELECT czas_przygotowania FROM przepis WHERE id_przepis=10");
 
                     while ($option = mysqli_fetch_assoc($zapytanie)) {
@@ -135,22 +139,18 @@
                 if ($link->connect_errno!=0) {
                     echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
                 } else {
-
                     $zapytanie = mysqli_query($link, "SELECT stopien_trudnosci FROM przepis WHERE id_przepis=10");
 
                     while ($option = mysqli_fetch_assoc($zapytanie)) {
-                      if($option['stopien_trudnosci']>0 && $option['stopien_trudnosci']<4)
-                      {
-                        echo '<span>'.'łatwy'.'</span>';
-                      }
-                      if($option['stopien_trudnosci']>=4 && $option['stopien_trudnosci']<8)
-                      {
-                        echo '<span>'.'średni'.'</span>';
-                      }
-                      if($option['stopien_trudnosci']>=8 && $option['stopien_trudnosci']<=10)
-                      {
-                        echo '<span>'.'trudny'.'</span>';
-                      }
+                        if ($option['stopien_trudnosci']>0 && $option['stopien_trudnosci']<4) {
+                            echo '<span>'.'łatwy'.'</span>';
+                        }
+                        if ($option['stopien_trudnosci']>=4 && $option['stopien_trudnosci']<8) {
+                            echo '<span>'.'średni'.'</span>';
+                        }
+                        if ($option['stopien_trudnosci']>=8 && $option['stopien_trudnosci']<=10) {
+                            echo '<span>'.'trudny'.'</span>';
+                        }
                     }
 
                     $link->close();
@@ -176,7 +176,6 @@
               if ($link->connect_errno!=0) {
                   echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
               } else {
-
                   $zapytanie = mysqli_query($link, "SELECT s.nazwa, z.ilosc FROM przepis p JOIN zawiera z ON p.id_przepis=z.PRZEPIS_id_przepis JOIN skladniki s ON s.id_skladnik=z.SKLADNIKI_id_skladnik WHERE p.id_przepis=10");
 
                   while ($option = mysqli_fetch_assoc($zapytanie)) {
@@ -199,7 +198,6 @@
               if ($link->connect_errno!=0) {
                   echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
               } else {
-
                   $zapytanie = mysqli_query($link, "SELECT e.nr_etapu, e.opis FROM przepis p JOIN etap e ON p.id_przepis=e.PRZEPIS_id_przepis WHERE p.id_przepis=10");
 
                   while ($option = mysqli_fetch_assoc($zapytanie)) {
