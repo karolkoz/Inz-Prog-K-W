@@ -81,8 +81,8 @@ abstract class Kategoria implements ActiveRecordInterface
     /**
      * @var        ObjectCollection|ChildNalezy[] Collection to store aggregation of ChildNalezy objects.
      */
-    protected $collKATEGORIA_nazwas;
-    protected $collKATEGORIA_nazwasPartial;
+    protected $collNalezies;
+    protected $collNaleziesPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -96,7 +96,7 @@ abstract class Kategoria implements ActiveRecordInterface
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildNalezy[]
      */
-    protected $kATEGORIA_nazwasScheduledForDeletion = null;
+    protected $naleziesScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Kategoria object.
@@ -494,7 +494,7 @@ abstract class Kategoria implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->collKATEGORIA_nazwas = null;
+            $this->collNalezies = null;
 
         } // if (deep)
     }
@@ -610,17 +610,17 @@ abstract class Kategoria implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->kATEGORIA_nazwasScheduledForDeletion !== null) {
-                if (!$this->kATEGORIA_nazwasScheduledForDeletion->isEmpty()) {
+            if ($this->naleziesScheduledForDeletion !== null) {
+                if (!$this->naleziesScheduledForDeletion->isEmpty()) {
                     \NalezyQuery::create()
-                        ->filterByPrimaryKeys($this->kATEGORIA_nazwasScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->naleziesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->kATEGORIA_nazwasScheduledForDeletion = null;
+                    $this->naleziesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collKATEGORIA_nazwas !== null) {
-                foreach ($this->collKATEGORIA_nazwas as $referrerFK) {
+            if ($this->collNalezies !== null) {
+                foreach ($this->collNalezies as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -772,7 +772,7 @@ abstract class Kategoria implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->collKATEGORIA_nazwas) {
+            if (null !== $this->collNalezies) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -782,10 +782,10 @@ abstract class Kategoria implements ActiveRecordInterface
                         $key = 'nalezies';
                         break;
                     default:
-                        $key = 'KATEGORIA_nazwas';
+                        $key = 'Nalezies';
                 }
 
-                $result[$key] = $this->collKATEGORIA_nazwas->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collNalezies->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1002,9 +1002,9 @@ abstract class Kategoria implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
-            foreach ($this->getKATEGORIA_nazwas() as $relObj) {
+            foreach ($this->getNalezies() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addKATEGORIA_nazwa($relObj->copy($deepCopy));
+                    $copyObj->addNalezy($relObj->copy($deepCopy));
                 }
             }
 
@@ -1048,38 +1048,38 @@ abstract class Kategoria implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
-        if ('KATEGORIA_nazwa' === $relationName) {
-            $this->initKATEGORIA_nazwas();
+        if ('Nalezy' === $relationName) {
+            $this->initNalezies();
             return;
         }
     }
 
     /**
-     * Clears out the collKATEGORIA_nazwas collection
+     * Clears out the collNalezies collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addKATEGORIA_nazwas()
+     * @see        addNalezies()
      */
-    public function clearKATEGORIA_nazwas()
+    public function clearNalezies()
     {
-        $this->collKATEGORIA_nazwas = null; // important to set this to NULL since that means it is uninitialized
+        $this->collNalezies = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collKATEGORIA_nazwas collection loaded partially.
+     * Reset is the collNalezies collection loaded partially.
      */
-    public function resetPartialKATEGORIA_nazwas($v = true)
+    public function resetPartialNalezies($v = true)
     {
-        $this->collKATEGORIA_nazwasPartial = $v;
+        $this->collNaleziesPartial = $v;
     }
 
     /**
-     * Initializes the collKATEGORIA_nazwas collection.
+     * Initializes the collNalezies collection.
      *
-     * By default this just sets the collKATEGORIA_nazwas collection to an empty array (like clearcollKATEGORIA_nazwas());
+     * By default this just sets the collNalezies collection to an empty array (like clearcollNalezies());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1088,16 +1088,16 @@ abstract class Kategoria implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initKATEGORIA_nazwas($overrideExisting = true)
+    public function initNalezies($overrideExisting = true)
     {
-        if (null !== $this->collKATEGORIA_nazwas && !$overrideExisting) {
+        if (null !== $this->collNalezies && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = NalezyTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collKATEGORIA_nazwas = new $collectionClassName;
-        $this->collKATEGORIA_nazwas->setModel('\Nalezy');
+        $this->collNalezies = new $collectionClassName;
+        $this->collNalezies->setModel('\Nalezy');
     }
 
     /**
@@ -1114,57 +1114,57 @@ abstract class Kategoria implements ActiveRecordInterface
      * @return ObjectCollection|ChildNalezy[] List of ChildNalezy objects
      * @throws PropelException
      */
-    public function getKATEGORIA_nazwas(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getNalezies(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collKATEGORIA_nazwasPartial && !$this->isNew();
-        if (null === $this->collKATEGORIA_nazwas || null !== $criteria || $partial) {
+        $partial = $this->collNaleziesPartial && !$this->isNew();
+        if (null === $this->collNalezies || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collKATEGORIA_nazwas) {
-                    $this->initKATEGORIA_nazwas();
+                if (null === $this->collNalezies) {
+                    $this->initNalezies();
                 } else {
                     $collectionClassName = NalezyTableMap::getTableMap()->getCollectionClassName();
 
-                    $collKATEGORIA_nazwas = new $collectionClassName;
-                    $collKATEGORIA_nazwas->setModel('\Nalezy');
+                    $collNalezies = new $collectionClassName;
+                    $collNalezies->setModel('\Nalezy');
 
-                    return $collKATEGORIA_nazwas;
+                    return $collNalezies;
                 }
             } else {
-                $collKATEGORIA_nazwas = ChildNalezyQuery::create(null, $criteria)
+                $collNalezies = ChildNalezyQuery::create(null, $criteria)
                     ->filterByKategoria($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collKATEGORIA_nazwasPartial && count($collKATEGORIA_nazwas)) {
-                        $this->initKATEGORIA_nazwas(false);
+                    if (false !== $this->collNaleziesPartial && count($collNalezies)) {
+                        $this->initNalezies(false);
 
-                        foreach ($collKATEGORIA_nazwas as $obj) {
-                            if (false == $this->collKATEGORIA_nazwas->contains($obj)) {
-                                $this->collKATEGORIA_nazwas->append($obj);
+                        foreach ($collNalezies as $obj) {
+                            if (false == $this->collNalezies->contains($obj)) {
+                                $this->collNalezies->append($obj);
                             }
                         }
 
-                        $this->collKATEGORIA_nazwasPartial = true;
+                        $this->collNaleziesPartial = true;
                     }
 
-                    return $collKATEGORIA_nazwas;
+                    return $collNalezies;
                 }
 
-                if ($partial && $this->collKATEGORIA_nazwas) {
-                    foreach ($this->collKATEGORIA_nazwas as $obj) {
+                if ($partial && $this->collNalezies) {
+                    foreach ($this->collNalezies as $obj) {
                         if ($obj->isNew()) {
-                            $collKATEGORIA_nazwas[] = $obj;
+                            $collNalezies[] = $obj;
                         }
                     }
                 }
 
-                $this->collKATEGORIA_nazwas = $collKATEGORIA_nazwas;
-                $this->collKATEGORIA_nazwasPartial = false;
+                $this->collNalezies = $collNalezies;
+                $this->collNaleziesPartial = false;
             }
         }
 
-        return $this->collKATEGORIA_nazwas;
+        return $this->collNalezies;
     }
 
     /**
@@ -1173,32 +1173,32 @@ abstract class Kategoria implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $kATEGORIA_nazwas A Propel collection.
+     * @param      Collection $nalezies A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildKategoria The current object (for fluent API support)
      */
-    public function setKATEGORIA_nazwas(Collection $kATEGORIA_nazwas, ConnectionInterface $con = null)
+    public function setNalezies(Collection $nalezies, ConnectionInterface $con = null)
     {
-        /** @var ChildNalezy[] $kATEGORIA_nazwasToDelete */
-        $kATEGORIA_nazwasToDelete = $this->getKATEGORIA_nazwas(new Criteria(), $con)->diff($kATEGORIA_nazwas);
+        /** @var ChildNalezy[] $naleziesToDelete */
+        $naleziesToDelete = $this->getNalezies(new Criteria(), $con)->diff($nalezies);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->kATEGORIA_nazwasScheduledForDeletion = clone $kATEGORIA_nazwasToDelete;
+        $this->naleziesScheduledForDeletion = clone $naleziesToDelete;
 
-        foreach ($kATEGORIA_nazwasToDelete as $kATEGORIA_nazwaRemoved) {
-            $kATEGORIA_nazwaRemoved->setKategoria(null);
+        foreach ($naleziesToDelete as $nalezyRemoved) {
+            $nalezyRemoved->setKategoria(null);
         }
 
-        $this->collKATEGORIA_nazwas = null;
-        foreach ($kATEGORIA_nazwas as $kATEGORIA_nazwa) {
-            $this->addKATEGORIA_nazwa($kATEGORIA_nazwa);
+        $this->collNalezies = null;
+        foreach ($nalezies as $nalezy) {
+            $this->addNalezy($nalezy);
         }
 
-        $this->collKATEGORIA_nazwas = $kATEGORIA_nazwas;
-        $this->collKATEGORIA_nazwasPartial = false;
+        $this->collNalezies = $nalezies;
+        $this->collNaleziesPartial = false;
 
         return $this;
     }
@@ -1212,16 +1212,16 @@ abstract class Kategoria implements ActiveRecordInterface
      * @return int             Count of related Nalezy objects.
      * @throws PropelException
      */
-    public function countKATEGORIA_nazwas(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countNalezies(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collKATEGORIA_nazwasPartial && !$this->isNew();
-        if (null === $this->collKATEGORIA_nazwas || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collKATEGORIA_nazwas) {
+        $partial = $this->collNaleziesPartial && !$this->isNew();
+        if (null === $this->collNalezies || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collNalezies) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getKATEGORIA_nazwas());
+                return count($this->getNalezies());
             }
 
             $query = ChildNalezyQuery::create(null, $criteria);
@@ -1234,7 +1234,7 @@ abstract class Kategoria implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collKATEGORIA_nazwas);
+        return count($this->collNalezies);
     }
 
     /**
@@ -1244,18 +1244,18 @@ abstract class Kategoria implements ActiveRecordInterface
      * @param  ChildNalezy $l ChildNalezy
      * @return $this|\Kategoria The current object (for fluent API support)
      */
-    public function addKATEGORIA_nazwa(ChildNalezy $l)
+    public function addNalezy(ChildNalezy $l)
     {
-        if ($this->collKATEGORIA_nazwas === null) {
-            $this->initKATEGORIA_nazwas();
-            $this->collKATEGORIA_nazwasPartial = true;
+        if ($this->collNalezies === null) {
+            $this->initNalezies();
+            $this->collNaleziesPartial = true;
         }
 
-        if (!$this->collKATEGORIA_nazwas->contains($l)) {
-            $this->doAddKATEGORIA_nazwa($l);
+        if (!$this->collNalezies->contains($l)) {
+            $this->doAddNalezy($l);
 
-            if ($this->kATEGORIA_nazwasScheduledForDeletion and $this->kATEGORIA_nazwasScheduledForDeletion->contains($l)) {
-                $this->kATEGORIA_nazwasScheduledForDeletion->remove($this->kATEGORIA_nazwasScheduledForDeletion->search($l));
+            if ($this->naleziesScheduledForDeletion and $this->naleziesScheduledForDeletion->contains($l)) {
+                $this->naleziesScheduledForDeletion->remove($this->naleziesScheduledForDeletion->search($l));
             }
         }
 
@@ -1263,29 +1263,29 @@ abstract class Kategoria implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildNalezy $kATEGORIA_nazwa The ChildNalezy object to add.
+     * @param ChildNalezy $nalezy The ChildNalezy object to add.
      */
-    protected function doAddKATEGORIA_nazwa(ChildNalezy $kATEGORIA_nazwa)
+    protected function doAddNalezy(ChildNalezy $nalezy)
     {
-        $this->collKATEGORIA_nazwas[]= $kATEGORIA_nazwa;
-        $kATEGORIA_nazwa->setKategoria($this);
+        $this->collNalezies[]= $nalezy;
+        $nalezy->setKategoria($this);
     }
 
     /**
-     * @param  ChildNalezy $kATEGORIA_nazwa The ChildNalezy object to remove.
+     * @param  ChildNalezy $nalezy The ChildNalezy object to remove.
      * @return $this|ChildKategoria The current object (for fluent API support)
      */
-    public function removeKATEGORIA_nazwa(ChildNalezy $kATEGORIA_nazwa)
+    public function removeNalezy(ChildNalezy $nalezy)
     {
-        if ($this->getKATEGORIA_nazwas()->contains($kATEGORIA_nazwa)) {
-            $pos = $this->collKATEGORIA_nazwas->search($kATEGORIA_nazwa);
-            $this->collKATEGORIA_nazwas->remove($pos);
-            if (null === $this->kATEGORIA_nazwasScheduledForDeletion) {
-                $this->kATEGORIA_nazwasScheduledForDeletion = clone $this->collKATEGORIA_nazwas;
-                $this->kATEGORIA_nazwasScheduledForDeletion->clear();
+        if ($this->getNalezies()->contains($nalezy)) {
+            $pos = $this->collNalezies->search($nalezy);
+            $this->collNalezies->remove($pos);
+            if (null === $this->naleziesScheduledForDeletion) {
+                $this->naleziesScheduledForDeletion = clone $this->collNalezies;
+                $this->naleziesScheduledForDeletion->clear();
             }
-            $this->kATEGORIA_nazwasScheduledForDeletion[]= clone $kATEGORIA_nazwa;
-            $kATEGORIA_nazwa->setKategoria(null);
+            $this->naleziesScheduledForDeletion[]= clone $nalezy;
+            $nalezy->setKategoria(null);
         }
 
         return $this;
@@ -1297,7 +1297,7 @@ abstract class Kategoria implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Kategoria is new, it will return
      * an empty collection; or if this Kategoria has previously
-     * been saved, it will retrieve related KATEGORIA_nazwas from storage.
+     * been saved, it will retrieve related Nalezies from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -1308,12 +1308,12 @@ abstract class Kategoria implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildNalezy[] List of ChildNalezy objects
      */
-    public function getKATEGORIA_nazwasJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getNaleziesJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildNalezyQuery::create(null, $criteria);
         $query->joinWith('Przepis', $joinBehavior);
 
-        return $this->getKATEGORIA_nazwas($query, $con);
+        return $this->getNalezies($query, $con);
     }
 
     /**
@@ -1343,14 +1343,14 @@ abstract class Kategoria implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collKATEGORIA_nazwas) {
-                foreach ($this->collKATEGORIA_nazwas as $o) {
+            if ($this->collNalezies) {
+                foreach ($this->collNalezies as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
         } // if ($deep)
 
-        $this->collKATEGORIA_nazwas = null;
+        $this->collNalezies = null;
     }
 
     /**

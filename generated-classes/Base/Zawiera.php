@@ -1153,7 +1153,7 @@ abstract class Zawiera implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildPrzepis object, it will not be re-added.
         if ($v !== null) {
-            $v->addPRZEPIS_id_przepis($this);
+            $v->addZawiera($this);
         }
 
 
@@ -1177,7 +1177,7 @@ abstract class Zawiera implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aPrzepis->addPRZEPIS_id_przepiss($this);
+                $this->aPrzepis->addZawieras($this);
              */
         }
 
@@ -1204,7 +1204,7 @@ abstract class Zawiera implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildSkladniki object, it will not be re-added.
         if ($v !== null) {
-            $v->addSKLADNIKI_id_skladnik($this);
+            $v->addZawiera($this);
         }
 
 
@@ -1228,7 +1228,7 @@ abstract class Zawiera implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aSkladniki->addSKLADNIKI_id_skladniks($this);
+                $this->aSkladniki->addZawieras($this);
              */
         }
 
@@ -1243,10 +1243,10 @@ abstract class Zawiera implements ActiveRecordInterface
     public function clear()
     {
         if (null !== $this->aPrzepis) {
-            $this->aPrzepis->removePRZEPIS_id_przepis($this);
+            $this->aPrzepis->removeZawiera($this);
         }
         if (null !== $this->aSkladniki) {
-            $this->aSkladniki->removeSKLADNIKI_id_skladnik($this);
+            $this->aSkladniki->removeZawiera($this);
         }
         $this->przepis_id_przepis = null;
         $this->skladniki_id_skladnik = null;

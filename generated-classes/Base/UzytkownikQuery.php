@@ -40,35 +40,35 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUzytkownikQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildUzytkownikQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
- * @method     ChildUzytkownikQuery leftJoinUZYTKOWNIK_login($relationAlias = null) Adds a LEFT JOIN clause to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery rightJoinUZYTKOWNIK_login($relationAlias = null) Adds a RIGHT JOIN clause to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery innerJoinUZYTKOWNIK_login($relationAlias = null) Adds a INNER JOIN clause to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery leftJoinPrzepis($relationAlias = null) Adds a LEFT JOIN clause to the query using the Przepis relation
+ * @method     ChildUzytkownikQuery rightJoinPrzepis($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Przepis relation
+ * @method     ChildUzytkownikQuery innerJoinPrzepis($relationAlias = null) Adds a INNER JOIN clause to the query using the Przepis relation
  *
- * @method     ChildUzytkownikQuery joinWithUZYTKOWNIK_login($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery joinWithPrzepis($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Przepis relation
  *
- * @method     ChildUzytkownikQuery leftJoinWithUZYTKOWNIK_login() Adds a LEFT JOIN clause and with to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery rightJoinWithUZYTKOWNIK_login() Adds a RIGHT JOIN clause and with to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery innerJoinWithUZYTKOWNIK_login() Adds a INNER JOIN clause and with to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery leftJoinWithPrzepis() Adds a LEFT JOIN clause and with to the query using the Przepis relation
+ * @method     ChildUzytkownikQuery rightJoinWithPrzepis() Adds a RIGHT JOIN clause and with to the query using the Przepis relation
+ * @method     ChildUzytkownikQuery innerJoinWithPrzepis() Adds a INNER JOIN clause and with to the query using the Przepis relation
  *
- * @method     ChildUzytkownikQuery leftJoinUZYTKOWNIK_login($relationAlias = null) Adds a LEFT JOIN clause to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery rightJoinUZYTKOWNIK_login($relationAlias = null) Adds a RIGHT JOIN clause to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery innerJoinUZYTKOWNIK_login($relationAlias = null) Adds a INNER JOIN clause to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery leftJoinUlubione($relationAlias = null) Adds a LEFT JOIN clause to the query using the Ulubione relation
+ * @method     ChildUzytkownikQuery rightJoinUlubione($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Ulubione relation
+ * @method     ChildUzytkownikQuery innerJoinUlubione($relationAlias = null) Adds a INNER JOIN clause to the query using the Ulubione relation
  *
- * @method     ChildUzytkownikQuery joinWithUZYTKOWNIK_login($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery joinWithUlubione($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Ulubione relation
  *
- * @method     ChildUzytkownikQuery leftJoinWithUZYTKOWNIK_login() Adds a LEFT JOIN clause and with to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery rightJoinWithUZYTKOWNIK_login() Adds a RIGHT JOIN clause and with to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery innerJoinWithUZYTKOWNIK_login() Adds a INNER JOIN clause and with to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery leftJoinWithUlubione() Adds a LEFT JOIN clause and with to the query using the Ulubione relation
+ * @method     ChildUzytkownikQuery rightJoinWithUlubione() Adds a RIGHT JOIN clause and with to the query using the Ulubione relation
+ * @method     ChildUzytkownikQuery innerJoinWithUlubione() Adds a INNER JOIN clause and with to the query using the Ulubione relation
  *
- * @method     ChildUzytkownikQuery leftJoinUZYTKOWNIK_login($relationAlias = null) Adds a LEFT JOIN clause to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery rightJoinUZYTKOWNIK_login($relationAlias = null) Adds a RIGHT JOIN clause to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery innerJoinUZYTKOWNIK_login($relationAlias = null) Adds a INNER JOIN clause to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery leftJoinLubie_to($relationAlias = null) Adds a LEFT JOIN clause to the query using the Lubie_to relation
+ * @method     ChildUzytkownikQuery rightJoinLubie_to($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Lubie_to relation
+ * @method     ChildUzytkownikQuery innerJoinLubie_to($relationAlias = null) Adds a INNER JOIN clause to the query using the Lubie_to relation
  *
- * @method     ChildUzytkownikQuery joinWithUZYTKOWNIK_login($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery joinWithLubie_to($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Lubie_to relation
  *
- * @method     ChildUzytkownikQuery leftJoinWithUZYTKOWNIK_login() Adds a LEFT JOIN clause and with to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery rightJoinWithUZYTKOWNIK_login() Adds a RIGHT JOIN clause and with to the query using the UZYTKOWNIK_login relation
- * @method     ChildUzytkownikQuery innerJoinWithUZYTKOWNIK_login() Adds a INNER JOIN clause and with to the query using the UZYTKOWNIK_login relation
+ * @method     ChildUzytkownikQuery leftJoinWithLubie_to() Adds a LEFT JOIN clause and with to the query using the Lubie_to relation
+ * @method     ChildUzytkownikQuery rightJoinWithLubie_to() Adds a RIGHT JOIN clause and with to the query using the Lubie_to relation
+ * @method     ChildUzytkownikQuery innerJoinWithLubie_to() Adds a INNER JOIN clause and with to the query using the Lubie_to relation
  *
  * @method     \PrzepisQuery|\UlubioneQuery|\Lubie_toQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
@@ -449,33 +449,33 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return ChildUzytkownikQuery The current query, for fluid interface
      */
-    public function filterByUZYTKOWNIK_login($przepis, $comparison = null)
+    public function filterByPrzepis($przepis, $comparison = null)
     {
         if ($przepis instanceof \Przepis) {
             return $this
                 ->addUsingAlias(UzytkownikTableMap::COL_LOGIN, $przepis->getUzytkownikLogin(), $comparison);
         } elseif ($przepis instanceof ObjectCollection) {
             return $this
-                ->useUZYTKOWNIK_loginQuery()
+                ->usePrzepisQuery()
                 ->filterByPrimaryKeys($przepis->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByUZYTKOWNIK_login() only accepts arguments of type \Przepis or Collection');
+            throw new PropelException('filterByPrzepis() only accepts arguments of type \Przepis or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the UZYTKOWNIK_login relation
+     * Adds a JOIN clause to the query using the Przepis relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildUzytkownikQuery The current query, for fluid interface
      */
-    public function joinUZYTKOWNIK_login($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinPrzepis($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('UZYTKOWNIK_login');
+        $relationMap = $tableMap->getRelation('Przepis');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -490,14 +490,14 @@ abstract class UzytkownikQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'UZYTKOWNIK_login');
+            $this->addJoinObject($join, 'Przepis');
         }
 
         return $this;
     }
 
     /**
-     * Use the UZYTKOWNIK_login relation Przepis object
+     * Use the Przepis relation Przepis object
      *
      * @see useQuery()
      *
@@ -507,15 +507,15 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return \PrzepisQuery A secondary query class using the current class as primary query
      */
-    public function useUZYTKOWNIK_loginQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function usePrzepisQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinUZYTKOWNIK_login($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'UZYTKOWNIK_login', '\PrzepisQuery');
+            ->joinPrzepis($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Przepis', '\PrzepisQuery');
     }
 
     /**
-     * Use the UZYTKOWNIK_login relation Przepis object
+     * Use the Przepis relation Przepis object
      *
      * @param callable(\PrzepisQuery):\PrzepisQuery $callable A function working on the related query
      *
@@ -525,12 +525,12 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withUZYTKOWNIK_loginQuery(
+    public function withPrzepisQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->useUZYTKOWNIK_loginQuery(
+        $relatedQuery = $this->usePrzepisQuery(
             $relationAlias,
             $joinType
         );
@@ -548,33 +548,33 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return ChildUzytkownikQuery The current query, for fluid interface
      */
-    public function filterByUZYTKOWNIK_login($ulubione, $comparison = null)
+    public function filterByUlubione($ulubione, $comparison = null)
     {
         if ($ulubione instanceof \Ulubione) {
             return $this
                 ->addUsingAlias(UzytkownikTableMap::COL_LOGIN, $ulubione->getUzytkownikLogin(), $comparison);
         } elseif ($ulubione instanceof ObjectCollection) {
             return $this
-                ->useUZYTKOWNIK_loginQuery()
+                ->useUlubioneQuery()
                 ->filterByPrimaryKeys($ulubione->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByUZYTKOWNIK_login() only accepts arguments of type \Ulubione or Collection');
+            throw new PropelException('filterByUlubione() only accepts arguments of type \Ulubione or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the UZYTKOWNIK_login relation
+     * Adds a JOIN clause to the query using the Ulubione relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildUzytkownikQuery The current query, for fluid interface
      */
-    public function joinUZYTKOWNIK_login($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinUlubione($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('UZYTKOWNIK_login');
+        $relationMap = $tableMap->getRelation('Ulubione');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -589,14 +589,14 @@ abstract class UzytkownikQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'UZYTKOWNIK_login');
+            $this->addJoinObject($join, 'Ulubione');
         }
 
         return $this;
     }
 
     /**
-     * Use the UZYTKOWNIK_login relation Ulubione object
+     * Use the Ulubione relation Ulubione object
      *
      * @see useQuery()
      *
@@ -606,15 +606,15 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return \UlubioneQuery A secondary query class using the current class as primary query
      */
-    public function useUZYTKOWNIK_loginQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useUlubioneQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinUZYTKOWNIK_login($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'UZYTKOWNIK_login', '\UlubioneQuery');
+            ->joinUlubione($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Ulubione', '\UlubioneQuery');
     }
 
     /**
-     * Use the UZYTKOWNIK_login relation Ulubione object
+     * Use the Ulubione relation Ulubione object
      *
      * @param callable(\UlubioneQuery):\UlubioneQuery $callable A function working on the related query
      *
@@ -624,12 +624,12 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withUZYTKOWNIK_loginQuery(
+    public function withUlubioneQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->useUZYTKOWNIK_loginQuery(
+        $relatedQuery = $this->useUlubioneQuery(
             $relationAlias,
             $joinType
         );
@@ -647,33 +647,33 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return ChildUzytkownikQuery The current query, for fluid interface
      */
-    public function filterByUZYTKOWNIK_login($lubie_to, $comparison = null)
+    public function filterByLubie_to($lubie_to, $comparison = null)
     {
         if ($lubie_to instanceof \Lubie_to) {
             return $this
                 ->addUsingAlias(UzytkownikTableMap::COL_LOGIN, $lubie_to->getUzytkownikLogin(), $comparison);
         } elseif ($lubie_to instanceof ObjectCollection) {
             return $this
-                ->useUZYTKOWNIK_loginQuery()
+                ->useLubie_toQuery()
                 ->filterByPrimaryKeys($lubie_to->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByUZYTKOWNIK_login() only accepts arguments of type \Lubie_to or Collection');
+            throw new PropelException('filterByLubie_to() only accepts arguments of type \Lubie_to or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the UZYTKOWNIK_login relation
+     * Adds a JOIN clause to the query using the Lubie_to relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildUzytkownikQuery The current query, for fluid interface
      */
-    public function joinUZYTKOWNIK_login($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinLubie_to($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('UZYTKOWNIK_login');
+        $relationMap = $tableMap->getRelation('Lubie_to');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -688,14 +688,14 @@ abstract class UzytkownikQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'UZYTKOWNIK_login');
+            $this->addJoinObject($join, 'Lubie_to');
         }
 
         return $this;
     }
 
     /**
-     * Use the UZYTKOWNIK_login relation Lubie_to object
+     * Use the Lubie_to relation Lubie_to object
      *
      * @see useQuery()
      *
@@ -705,15 +705,15 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return \Lubie_toQuery A secondary query class using the current class as primary query
      */
-    public function useUZYTKOWNIK_loginQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useLubie_toQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinUZYTKOWNIK_login($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'UZYTKOWNIK_login', '\Lubie_toQuery');
+            ->joinLubie_to($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Lubie_to', '\Lubie_toQuery');
     }
 
     /**
-     * Use the UZYTKOWNIK_login relation Lubie_to object
+     * Use the Lubie_to relation Lubie_to object
      *
      * @param callable(\Lubie_toQuery):\Lubie_toQuery $callable A function working on the related query
      *
@@ -723,12 +723,12 @@ abstract class UzytkownikQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withUZYTKOWNIK_loginQuery(
+    public function withLubie_toQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->useUZYTKOWNIK_loginQuery(
+        $relatedQuery = $this->useLubie_toQuery(
             $relationAlias,
             $joinType
         );

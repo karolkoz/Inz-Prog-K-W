@@ -34,15 +34,15 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildKategoriaQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildKategoriaQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
- * @method     ChildKategoriaQuery leftJoinKATEGORIA_nazwa($relationAlias = null) Adds a LEFT JOIN clause to the query using the KATEGORIA_nazwa relation
- * @method     ChildKategoriaQuery rightJoinKATEGORIA_nazwa($relationAlias = null) Adds a RIGHT JOIN clause to the query using the KATEGORIA_nazwa relation
- * @method     ChildKategoriaQuery innerJoinKATEGORIA_nazwa($relationAlias = null) Adds a INNER JOIN clause to the query using the KATEGORIA_nazwa relation
+ * @method     ChildKategoriaQuery leftJoinNalezy($relationAlias = null) Adds a LEFT JOIN clause to the query using the Nalezy relation
+ * @method     ChildKategoriaQuery rightJoinNalezy($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Nalezy relation
+ * @method     ChildKategoriaQuery innerJoinNalezy($relationAlias = null) Adds a INNER JOIN clause to the query using the Nalezy relation
  *
- * @method     ChildKategoriaQuery joinWithKATEGORIA_nazwa($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the KATEGORIA_nazwa relation
+ * @method     ChildKategoriaQuery joinWithNalezy($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Nalezy relation
  *
- * @method     ChildKategoriaQuery leftJoinWithKATEGORIA_nazwa() Adds a LEFT JOIN clause and with to the query using the KATEGORIA_nazwa relation
- * @method     ChildKategoriaQuery rightJoinWithKATEGORIA_nazwa() Adds a RIGHT JOIN clause and with to the query using the KATEGORIA_nazwa relation
- * @method     ChildKategoriaQuery innerJoinWithKATEGORIA_nazwa() Adds a INNER JOIN clause and with to the query using the KATEGORIA_nazwa relation
+ * @method     ChildKategoriaQuery leftJoinWithNalezy() Adds a LEFT JOIN clause and with to the query using the Nalezy relation
+ * @method     ChildKategoriaQuery rightJoinWithNalezy() Adds a RIGHT JOIN clause and with to the query using the Nalezy relation
+ * @method     ChildKategoriaQuery innerJoinWithNalezy() Adds a INNER JOIN clause and with to the query using the Nalezy relation
  *
  * @method     \NalezyQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
@@ -307,33 +307,33 @@ abstract class KategoriaQuery extends ModelCriteria
      *
      * @return ChildKategoriaQuery The current query, for fluid interface
      */
-    public function filterByKATEGORIA_nazwa($nalezy, $comparison = null)
+    public function filterByNalezy($nalezy, $comparison = null)
     {
         if ($nalezy instanceof \Nalezy) {
             return $this
                 ->addUsingAlias(KategoriaTableMap::COL_NAZWA, $nalezy->getKategoriaNazwa(), $comparison);
         } elseif ($nalezy instanceof ObjectCollection) {
             return $this
-                ->useKATEGORIA_nazwaQuery()
+                ->useNalezyQuery()
                 ->filterByPrimaryKeys($nalezy->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByKATEGORIA_nazwa() only accepts arguments of type \Nalezy or Collection');
+            throw new PropelException('filterByNalezy() only accepts arguments of type \Nalezy or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the KATEGORIA_nazwa relation
+     * Adds a JOIN clause to the query using the Nalezy relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildKategoriaQuery The current query, for fluid interface
      */
-    public function joinKATEGORIA_nazwa($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinNalezy($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('KATEGORIA_nazwa');
+        $relationMap = $tableMap->getRelation('Nalezy');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -348,14 +348,14 @@ abstract class KategoriaQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'KATEGORIA_nazwa');
+            $this->addJoinObject($join, 'Nalezy');
         }
 
         return $this;
     }
 
     /**
-     * Use the KATEGORIA_nazwa relation Nalezy object
+     * Use the Nalezy relation Nalezy object
      *
      * @see useQuery()
      *
@@ -365,15 +365,15 @@ abstract class KategoriaQuery extends ModelCriteria
      *
      * @return \NalezyQuery A secondary query class using the current class as primary query
      */
-    public function useKATEGORIA_nazwaQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useNalezyQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinKATEGORIA_nazwa($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'KATEGORIA_nazwa', '\NalezyQuery');
+            ->joinNalezy($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Nalezy', '\NalezyQuery');
     }
 
     /**
-     * Use the KATEGORIA_nazwa relation Nalezy object
+     * Use the Nalezy relation Nalezy object
      *
      * @param callable(\NalezyQuery):\NalezyQuery $callable A function working on the related query
      *
@@ -383,12 +383,12 @@ abstract class KategoriaQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withKATEGORIA_nazwaQuery(
+    public function withNalezyQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->useKATEGORIA_nazwaQuery(
+        $relatedQuery = $this->useNalezyQuery(
             $relationAlias,
             $joinType
         );

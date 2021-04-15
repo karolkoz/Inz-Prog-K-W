@@ -283,41 +283,41 @@ class PrzepisTableMap extends TableMap
     1 => ':login',
   ),
 ), null, null, null, false);
-        $this->addRelation('PRZEPIS_id_przepis', '\\Etap', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('Etap', '\\Etap', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':PRZEPIS_id_przepis',
     1 => ':id_przepis',
   ),
-), null, null, 'PRZEPIS_id_przepiss', false);
-        $this->addRelation('PRZEPIS_id_przepis', '\\Ulubione', RelationMap::ONE_TO_MANY, array (
+), null, null, 'Etaps', false);
+        $this->addRelation('Ulubione', '\\Ulubione', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':PRZEPIS_id_przepis',
     1 => ':id_przepis',
   ),
-), null, null, 'PRZEPIS_id_przepiss', false);
-        $this->addRelation('PRZEPIS_id_przepis', '\\Lubie_to', RelationMap::ONE_TO_MANY, array (
+), null, null, 'Ulubiones', false);
+        $this->addRelation('Lubie_to', '\\Lubie_to', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':PRZEPIS_id_przepis',
     1 => ':id_przepis',
   ),
-), null, null, 'PRZEPIS_id_przepiss', false);
-        $this->addRelation('PRZEPIS_id_przepis', '\\Nalezy', RelationMap::ONE_TO_MANY, array (
+), null, null, 'Lubie_tos', false);
+        $this->addRelation('Nalezy', '\\Nalezy', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':PRZEPIS_id_przepis',
     1 => ':id_przepis',
   ),
-), null, null, 'PRZEPIS_id_przepiss', false);
-        $this->addRelation('PRZEPIS_id_przepis', '\\Zawiera', RelationMap::ONE_TO_MANY, array (
+), null, null, 'Nalezies', false);
+        $this->addRelation('Zawiera', '\\Zawiera', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':PRZEPIS_id_przepis',
     1 => ':id_przepis',
   ),
-), null, null, 'PRZEPIS_id_przepiss', false);
+), null, null, 'Zawieras', false);
     } // buildRelations()
 
     /**

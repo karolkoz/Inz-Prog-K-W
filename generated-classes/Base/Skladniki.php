@@ -81,8 +81,8 @@ abstract class Skladniki implements ActiveRecordInterface
     /**
      * @var        ObjectCollection|ChildZawiera[] Collection to store aggregation of ChildZawiera objects.
      */
-    protected $collSKLADNIKI_id_skladniks;
-    protected $collSKLADNIKI_id_skladniksPartial;
+    protected $collZawieras;
+    protected $collZawierasPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -96,7 +96,7 @@ abstract class Skladniki implements ActiveRecordInterface
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildZawiera[]
      */
-    protected $sKLADNIKI_id_skladniksScheduledForDeletion = null;
+    protected $zawierasScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Skladniki object.
@@ -494,7 +494,7 @@ abstract class Skladniki implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->collSKLADNIKI_id_skladniks = null;
+            $this->collZawieras = null;
 
         } // if (deep)
     }
@@ -610,17 +610,17 @@ abstract class Skladniki implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->sKLADNIKI_id_skladniksScheduledForDeletion !== null) {
-                if (!$this->sKLADNIKI_id_skladniksScheduledForDeletion->isEmpty()) {
+            if ($this->zawierasScheduledForDeletion !== null) {
+                if (!$this->zawierasScheduledForDeletion->isEmpty()) {
                     \ZawieraQuery::create()
-                        ->filterByPrimaryKeys($this->sKLADNIKI_id_skladniksScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->zawierasScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->sKLADNIKI_id_skladniksScheduledForDeletion = null;
+                    $this->zawierasScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collSKLADNIKI_id_skladniks !== null) {
-                foreach ($this->collSKLADNIKI_id_skladniks as $referrerFK) {
+            if ($this->collZawieras !== null) {
+                foreach ($this->collZawieras as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -783,7 +783,7 @@ abstract class Skladniki implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->collSKLADNIKI_id_skladniks) {
+            if (null !== $this->collZawieras) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -793,10 +793,10 @@ abstract class Skladniki implements ActiveRecordInterface
                         $key = 'zawieras';
                         break;
                     default:
-                        $key = 'SKLADNIKI_id_skladniks';
+                        $key = 'Zawieras';
                 }
 
-                $result[$key] = $this->collSKLADNIKI_id_skladniks->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collZawieras->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1012,9 +1012,9 @@ abstract class Skladniki implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
-            foreach ($this->getSKLADNIKI_id_skladniks() as $relObj) {
+            foreach ($this->getZawieras() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addSKLADNIKI_id_skladnik($relObj->copy($deepCopy));
+                    $copyObj->addZawiera($relObj->copy($deepCopy));
                 }
             }
 
@@ -1059,38 +1059,38 @@ abstract class Skladniki implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
-        if ('SKLADNIKI_id_skladnik' === $relationName) {
-            $this->initSKLADNIKI_id_skladniks();
+        if ('Zawiera' === $relationName) {
+            $this->initZawieras();
             return;
         }
     }
 
     /**
-     * Clears out the collSKLADNIKI_id_skladniks collection
+     * Clears out the collZawieras collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addSKLADNIKI_id_skladniks()
+     * @see        addZawieras()
      */
-    public function clearSKLADNIKI_id_skladniks()
+    public function clearZawieras()
     {
-        $this->collSKLADNIKI_id_skladniks = null; // important to set this to NULL since that means it is uninitialized
+        $this->collZawieras = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collSKLADNIKI_id_skladniks collection loaded partially.
+     * Reset is the collZawieras collection loaded partially.
      */
-    public function resetPartialSKLADNIKI_id_skladniks($v = true)
+    public function resetPartialZawieras($v = true)
     {
-        $this->collSKLADNIKI_id_skladniksPartial = $v;
+        $this->collZawierasPartial = $v;
     }
 
     /**
-     * Initializes the collSKLADNIKI_id_skladniks collection.
+     * Initializes the collZawieras collection.
      *
-     * By default this just sets the collSKLADNIKI_id_skladniks collection to an empty array (like clearcollSKLADNIKI_id_skladniks());
+     * By default this just sets the collZawieras collection to an empty array (like clearcollZawieras());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1099,16 +1099,16 @@ abstract class Skladniki implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initSKLADNIKI_id_skladniks($overrideExisting = true)
+    public function initZawieras($overrideExisting = true)
     {
-        if (null !== $this->collSKLADNIKI_id_skladniks && !$overrideExisting) {
+        if (null !== $this->collZawieras && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = ZawieraTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collSKLADNIKI_id_skladniks = new $collectionClassName;
-        $this->collSKLADNIKI_id_skladniks->setModel('\Zawiera');
+        $this->collZawieras = new $collectionClassName;
+        $this->collZawieras->setModel('\Zawiera');
     }
 
     /**
@@ -1125,57 +1125,57 @@ abstract class Skladniki implements ActiveRecordInterface
      * @return ObjectCollection|ChildZawiera[] List of ChildZawiera objects
      * @throws PropelException
      */
-    public function getSKLADNIKI_id_skladniks(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getZawieras(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collSKLADNIKI_id_skladniksPartial && !$this->isNew();
-        if (null === $this->collSKLADNIKI_id_skladniks || null !== $criteria || $partial) {
+        $partial = $this->collZawierasPartial && !$this->isNew();
+        if (null === $this->collZawieras || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collSKLADNIKI_id_skladniks) {
-                    $this->initSKLADNIKI_id_skladniks();
+                if (null === $this->collZawieras) {
+                    $this->initZawieras();
                 } else {
                     $collectionClassName = ZawieraTableMap::getTableMap()->getCollectionClassName();
 
-                    $collSKLADNIKI_id_skladniks = new $collectionClassName;
-                    $collSKLADNIKI_id_skladniks->setModel('\Zawiera');
+                    $collZawieras = new $collectionClassName;
+                    $collZawieras->setModel('\Zawiera');
 
-                    return $collSKLADNIKI_id_skladniks;
+                    return $collZawieras;
                 }
             } else {
-                $collSKLADNIKI_id_skladniks = ChildZawieraQuery::create(null, $criteria)
+                $collZawieras = ChildZawieraQuery::create(null, $criteria)
                     ->filterBySkladniki($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collSKLADNIKI_id_skladniksPartial && count($collSKLADNIKI_id_skladniks)) {
-                        $this->initSKLADNIKI_id_skladniks(false);
+                    if (false !== $this->collZawierasPartial && count($collZawieras)) {
+                        $this->initZawieras(false);
 
-                        foreach ($collSKLADNIKI_id_skladniks as $obj) {
-                            if (false == $this->collSKLADNIKI_id_skladniks->contains($obj)) {
-                                $this->collSKLADNIKI_id_skladniks->append($obj);
+                        foreach ($collZawieras as $obj) {
+                            if (false == $this->collZawieras->contains($obj)) {
+                                $this->collZawieras->append($obj);
                             }
                         }
 
-                        $this->collSKLADNIKI_id_skladniksPartial = true;
+                        $this->collZawierasPartial = true;
                     }
 
-                    return $collSKLADNIKI_id_skladniks;
+                    return $collZawieras;
                 }
 
-                if ($partial && $this->collSKLADNIKI_id_skladniks) {
-                    foreach ($this->collSKLADNIKI_id_skladniks as $obj) {
+                if ($partial && $this->collZawieras) {
+                    foreach ($this->collZawieras as $obj) {
                         if ($obj->isNew()) {
-                            $collSKLADNIKI_id_skladniks[] = $obj;
+                            $collZawieras[] = $obj;
                         }
                     }
                 }
 
-                $this->collSKLADNIKI_id_skladniks = $collSKLADNIKI_id_skladniks;
-                $this->collSKLADNIKI_id_skladniksPartial = false;
+                $this->collZawieras = $collZawieras;
+                $this->collZawierasPartial = false;
             }
         }
 
-        return $this->collSKLADNIKI_id_skladniks;
+        return $this->collZawieras;
     }
 
     /**
@@ -1184,32 +1184,32 @@ abstract class Skladniki implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $sKLADNIKI_id_skladniks A Propel collection.
+     * @param      Collection $zawieras A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildSkladniki The current object (for fluent API support)
      */
-    public function setSKLADNIKI_id_skladniks(Collection $sKLADNIKI_id_skladniks, ConnectionInterface $con = null)
+    public function setZawieras(Collection $zawieras, ConnectionInterface $con = null)
     {
-        /** @var ChildZawiera[] $sKLADNIKI_id_skladniksToDelete */
-        $sKLADNIKI_id_skladniksToDelete = $this->getSKLADNIKI_id_skladniks(new Criteria(), $con)->diff($sKLADNIKI_id_skladniks);
+        /** @var ChildZawiera[] $zawierasToDelete */
+        $zawierasToDelete = $this->getZawieras(new Criteria(), $con)->diff($zawieras);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->sKLADNIKI_id_skladniksScheduledForDeletion = clone $sKLADNIKI_id_skladniksToDelete;
+        $this->zawierasScheduledForDeletion = clone $zawierasToDelete;
 
-        foreach ($sKLADNIKI_id_skladniksToDelete as $sKLADNIKI_id_skladnikRemoved) {
-            $sKLADNIKI_id_skladnikRemoved->setSkladniki(null);
+        foreach ($zawierasToDelete as $zawieraRemoved) {
+            $zawieraRemoved->setSkladniki(null);
         }
 
-        $this->collSKLADNIKI_id_skladniks = null;
-        foreach ($sKLADNIKI_id_skladniks as $sKLADNIKI_id_skladnik) {
-            $this->addSKLADNIKI_id_skladnik($sKLADNIKI_id_skladnik);
+        $this->collZawieras = null;
+        foreach ($zawieras as $zawiera) {
+            $this->addZawiera($zawiera);
         }
 
-        $this->collSKLADNIKI_id_skladniks = $sKLADNIKI_id_skladniks;
-        $this->collSKLADNIKI_id_skladniksPartial = false;
+        $this->collZawieras = $zawieras;
+        $this->collZawierasPartial = false;
 
         return $this;
     }
@@ -1223,16 +1223,16 @@ abstract class Skladniki implements ActiveRecordInterface
      * @return int             Count of related Zawiera objects.
      * @throws PropelException
      */
-    public function countSKLADNIKI_id_skladniks(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countZawieras(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collSKLADNIKI_id_skladniksPartial && !$this->isNew();
-        if (null === $this->collSKLADNIKI_id_skladniks || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collSKLADNIKI_id_skladniks) {
+        $partial = $this->collZawierasPartial && !$this->isNew();
+        if (null === $this->collZawieras || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collZawieras) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getSKLADNIKI_id_skladniks());
+                return count($this->getZawieras());
             }
 
             $query = ChildZawieraQuery::create(null, $criteria);
@@ -1245,7 +1245,7 @@ abstract class Skladniki implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collSKLADNIKI_id_skladniks);
+        return count($this->collZawieras);
     }
 
     /**
@@ -1255,18 +1255,18 @@ abstract class Skladniki implements ActiveRecordInterface
      * @param  ChildZawiera $l ChildZawiera
      * @return $this|\Skladniki The current object (for fluent API support)
      */
-    public function addSKLADNIKI_id_skladnik(ChildZawiera $l)
+    public function addZawiera(ChildZawiera $l)
     {
-        if ($this->collSKLADNIKI_id_skladniks === null) {
-            $this->initSKLADNIKI_id_skladniks();
-            $this->collSKLADNIKI_id_skladniksPartial = true;
+        if ($this->collZawieras === null) {
+            $this->initZawieras();
+            $this->collZawierasPartial = true;
         }
 
-        if (!$this->collSKLADNIKI_id_skladniks->contains($l)) {
-            $this->doAddSKLADNIKI_id_skladnik($l);
+        if (!$this->collZawieras->contains($l)) {
+            $this->doAddZawiera($l);
 
-            if ($this->sKLADNIKI_id_skladniksScheduledForDeletion and $this->sKLADNIKI_id_skladniksScheduledForDeletion->contains($l)) {
-                $this->sKLADNIKI_id_skladniksScheduledForDeletion->remove($this->sKLADNIKI_id_skladniksScheduledForDeletion->search($l));
+            if ($this->zawierasScheduledForDeletion and $this->zawierasScheduledForDeletion->contains($l)) {
+                $this->zawierasScheduledForDeletion->remove($this->zawierasScheduledForDeletion->search($l));
             }
         }
 
@@ -1274,29 +1274,29 @@ abstract class Skladniki implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildZawiera $sKLADNIKI_id_skladnik The ChildZawiera object to add.
+     * @param ChildZawiera $zawiera The ChildZawiera object to add.
      */
-    protected function doAddSKLADNIKI_id_skladnik(ChildZawiera $sKLADNIKI_id_skladnik)
+    protected function doAddZawiera(ChildZawiera $zawiera)
     {
-        $this->collSKLADNIKI_id_skladniks[]= $sKLADNIKI_id_skladnik;
-        $sKLADNIKI_id_skladnik->setSkladniki($this);
+        $this->collZawieras[]= $zawiera;
+        $zawiera->setSkladniki($this);
     }
 
     /**
-     * @param  ChildZawiera $sKLADNIKI_id_skladnik The ChildZawiera object to remove.
+     * @param  ChildZawiera $zawiera The ChildZawiera object to remove.
      * @return $this|ChildSkladniki The current object (for fluent API support)
      */
-    public function removeSKLADNIKI_id_skladnik(ChildZawiera $sKLADNIKI_id_skladnik)
+    public function removeZawiera(ChildZawiera $zawiera)
     {
-        if ($this->getSKLADNIKI_id_skladniks()->contains($sKLADNIKI_id_skladnik)) {
-            $pos = $this->collSKLADNIKI_id_skladniks->search($sKLADNIKI_id_skladnik);
-            $this->collSKLADNIKI_id_skladniks->remove($pos);
-            if (null === $this->sKLADNIKI_id_skladniksScheduledForDeletion) {
-                $this->sKLADNIKI_id_skladniksScheduledForDeletion = clone $this->collSKLADNIKI_id_skladniks;
-                $this->sKLADNIKI_id_skladniksScheduledForDeletion->clear();
+        if ($this->getZawieras()->contains($zawiera)) {
+            $pos = $this->collZawieras->search($zawiera);
+            $this->collZawieras->remove($pos);
+            if (null === $this->zawierasScheduledForDeletion) {
+                $this->zawierasScheduledForDeletion = clone $this->collZawieras;
+                $this->zawierasScheduledForDeletion->clear();
             }
-            $this->sKLADNIKI_id_skladniksScheduledForDeletion[]= clone $sKLADNIKI_id_skladnik;
-            $sKLADNIKI_id_skladnik->setSkladniki(null);
+            $this->zawierasScheduledForDeletion[]= clone $zawiera;
+            $zawiera->setSkladniki(null);
         }
 
         return $this;
@@ -1308,7 +1308,7 @@ abstract class Skladniki implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Skladniki is new, it will return
      * an empty collection; or if this Skladniki has previously
-     * been saved, it will retrieve related SKLADNIKI_id_skladniks from storage.
+     * been saved, it will retrieve related Zawieras from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -1319,12 +1319,12 @@ abstract class Skladniki implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildZawiera[] List of ChildZawiera objects
      */
-    public function getSKLADNIKI_id_skladniksJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getZawierasJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildZawieraQuery::create(null, $criteria);
         $query->joinWith('Przepis', $joinBehavior);
 
-        return $this->getSKLADNIKI_id_skladniks($query, $con);
+        return $this->getZawieras($query, $con);
     }
 
     /**
@@ -1354,14 +1354,14 @@ abstract class Skladniki implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collSKLADNIKI_id_skladniks) {
-                foreach ($this->collSKLADNIKI_id_skladniks as $o) {
+            if ($this->collZawieras) {
+                foreach ($this->collZawieras as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
         } // if ($deep)
 
-        $this->collSKLADNIKI_id_skladniks = null;
+        $this->collZawieras = null;
     }
 
     /**

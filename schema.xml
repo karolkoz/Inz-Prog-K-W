@@ -38,7 +38,7 @@
 
     <column name="UZYTKOWNIK_login" type="varchar" size="20" required="true" />
 
-    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik" refPhpName="UZYTKOWNIK_login">
+    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik">
  
         <reference local="UZYTKOWNIK_login" foreign="login" />
  
@@ -58,7 +58,7 @@
 
     <column name="PRZEPIS_id_przepis" type="integer" required="true" />
 
-    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+    <foreign-key foreignTable="przepis" phpName="Przepis">
  
         <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
  
@@ -91,13 +91,13 @@
  
     <column name="PRZEPIS_id_przepis" type="integer" required="true" primaryKey="true" /> 
 
-    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik" refPhpName="UZYTKOWNIK_login">
+    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik">
  
         <reference local="UZYTKOWNIK_login" foreign="login" />
  
     </foreign-key> 
 
-    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+    <foreign-key foreignTable="przepis" phpName="Przepis">
  
         <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
  
@@ -112,13 +112,13 @@
  
     <column name="PRZEPIS_id_przepis" type="integer" required="true" primaryKey="true" /> 
 
-    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik" refPhpName="UZYTKOWNIK_login">
+    <foreign-key foreignTable="uzytkownik" phpName="Uzytkownik">
  
         <reference local="UZYTKOWNIK_login" foreign="login" />
  
     </foreign-key> 
 
-    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+    <foreign-key foreignTable="przepis" phpName="Przepis">
  
         <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
  
@@ -133,13 +133,13 @@
 
     <column name="KATEGORIA_nazwa" type="varchar" size="40" required="true" primaryKey="true" />
 
-    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+    <foreign-key foreignTable="przepis" phpName="Przepis">
  
         <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
  
     </foreign-key> 
 
-    <foreign-key foreignTable="kategoria" phpName="Kategoria" refPhpName="KATEGORIA_nazwa">
+    <foreign-key foreignTable="kategoria" phpName="Kategoria">
  
         <reference local="KATEGORIA_nazwa" foreign="nazwa" />
  
@@ -157,13 +157,13 @@
 
     <column name="ilosc" type="varchar" size="20" />
 
-    <foreign-key foreignTable="przepis" phpName="Przepis" refPhpName="PRZEPIS_id_przepis">
+    <foreign-key foreignTable="przepis" phpName="Przepis">
  
         <reference local="PRZEPIS_id_przepis" foreign="id_przepis" />
  
     </foreign-key> 
 
-    <foreign-key foreignTable="skladniki" phpName="Skladniki" refPhpName="SKLADNIKI_id_skladnik">
+    <foreign-key foreignTable="skladniki" phpName="Skladniki">
  
         <reference local="SKLADNIKI_id_skladnik" foreign="id_skladnik" />
  

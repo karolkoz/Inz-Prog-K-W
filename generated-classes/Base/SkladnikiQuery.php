@@ -34,15 +34,15 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSkladnikiQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildSkladnikiQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
- * @method     ChildSkladnikiQuery leftJoinSKLADNIKI_id_skladnik($relationAlias = null) Adds a LEFT JOIN clause to the query using the SKLADNIKI_id_skladnik relation
- * @method     ChildSkladnikiQuery rightJoinSKLADNIKI_id_skladnik($relationAlias = null) Adds a RIGHT JOIN clause to the query using the SKLADNIKI_id_skladnik relation
- * @method     ChildSkladnikiQuery innerJoinSKLADNIKI_id_skladnik($relationAlias = null) Adds a INNER JOIN clause to the query using the SKLADNIKI_id_skladnik relation
+ * @method     ChildSkladnikiQuery leftJoinZawiera($relationAlias = null) Adds a LEFT JOIN clause to the query using the Zawiera relation
+ * @method     ChildSkladnikiQuery rightJoinZawiera($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Zawiera relation
+ * @method     ChildSkladnikiQuery innerJoinZawiera($relationAlias = null) Adds a INNER JOIN clause to the query using the Zawiera relation
  *
- * @method     ChildSkladnikiQuery joinWithSKLADNIKI_id_skladnik($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the SKLADNIKI_id_skladnik relation
+ * @method     ChildSkladnikiQuery joinWithZawiera($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Zawiera relation
  *
- * @method     ChildSkladnikiQuery leftJoinWithSKLADNIKI_id_skladnik() Adds a LEFT JOIN clause and with to the query using the SKLADNIKI_id_skladnik relation
- * @method     ChildSkladnikiQuery rightJoinWithSKLADNIKI_id_skladnik() Adds a RIGHT JOIN clause and with to the query using the SKLADNIKI_id_skladnik relation
- * @method     ChildSkladnikiQuery innerJoinWithSKLADNIKI_id_skladnik() Adds a INNER JOIN clause and with to the query using the SKLADNIKI_id_skladnik relation
+ * @method     ChildSkladnikiQuery leftJoinWithZawiera() Adds a LEFT JOIN clause and with to the query using the Zawiera relation
+ * @method     ChildSkladnikiQuery rightJoinWithZawiera() Adds a RIGHT JOIN clause and with to the query using the Zawiera relation
+ * @method     ChildSkladnikiQuery innerJoinWithZawiera() Adds a INNER JOIN clause and with to the query using the Zawiera relation
  *
  * @method     \ZawieraQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
@@ -323,33 +323,33 @@ abstract class SkladnikiQuery extends ModelCriteria
      *
      * @return ChildSkladnikiQuery The current query, for fluid interface
      */
-    public function filterBySKLADNIKI_id_skladnik($zawiera, $comparison = null)
+    public function filterByZawiera($zawiera, $comparison = null)
     {
         if ($zawiera instanceof \Zawiera) {
             return $this
                 ->addUsingAlias(SkladnikiTableMap::COL_ID_SKLADNIK, $zawiera->getSkladnikiIdSkladnik(), $comparison);
         } elseif ($zawiera instanceof ObjectCollection) {
             return $this
-                ->useSKLADNIKI_id_skladnikQuery()
+                ->useZawieraQuery()
                 ->filterByPrimaryKeys($zawiera->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterBySKLADNIKI_id_skladnik() only accepts arguments of type \Zawiera or Collection');
+            throw new PropelException('filterByZawiera() only accepts arguments of type \Zawiera or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the SKLADNIKI_id_skladnik relation
+     * Adds a JOIN clause to the query using the Zawiera relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildSkladnikiQuery The current query, for fluid interface
      */
-    public function joinSKLADNIKI_id_skladnik($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinZawiera($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('SKLADNIKI_id_skladnik');
+        $relationMap = $tableMap->getRelation('Zawiera');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -364,14 +364,14 @@ abstract class SkladnikiQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'SKLADNIKI_id_skladnik');
+            $this->addJoinObject($join, 'Zawiera');
         }
 
         return $this;
     }
 
     /**
-     * Use the SKLADNIKI_id_skladnik relation Zawiera object
+     * Use the Zawiera relation Zawiera object
      *
      * @see useQuery()
      *
@@ -381,15 +381,15 @@ abstract class SkladnikiQuery extends ModelCriteria
      *
      * @return \ZawieraQuery A secondary query class using the current class as primary query
      */
-    public function useSKLADNIKI_id_skladnikQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useZawieraQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinSKLADNIKI_id_skladnik($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'SKLADNIKI_id_skladnik', '\ZawieraQuery');
+            ->joinZawiera($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Zawiera', '\ZawieraQuery');
     }
 
     /**
-     * Use the SKLADNIKI_id_skladnik relation Zawiera object
+     * Use the Zawiera relation Zawiera object
      *
      * @param callable(\ZawieraQuery):\ZawieraQuery $callable A function working on the related query
      *
@@ -399,12 +399,12 @@ abstract class SkladnikiQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withSKLADNIKI_id_skladnikQuery(
+    public function withZawieraQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->useSKLADNIKI_id_skladnikQuery(
+        $relatedQuery = $this->useZawieraQuery(
             $relationAlias,
             $joinType
         );

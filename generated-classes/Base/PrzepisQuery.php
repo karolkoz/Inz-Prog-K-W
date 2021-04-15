@@ -60,55 +60,55 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPrzepisQuery rightJoinWithUzytkownik() Adds a RIGHT JOIN clause and with to the query using the Uzytkownik relation
  * @method     ChildPrzepisQuery innerJoinWithUzytkownik() Adds a INNER JOIN clause and with to the query using the Uzytkownik relation
  *
- * @method     ChildPrzepisQuery leftJoinPRZEPIS_id_przepis($relationAlias = null) Adds a LEFT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinPRZEPIS_id_przepis($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinPRZEPIS_id_przepis($relationAlias = null) Adds a INNER JOIN clause to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinEtap($relationAlias = null) Adds a LEFT JOIN clause to the query using the Etap relation
+ * @method     ChildPrzepisQuery rightJoinEtap($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Etap relation
+ * @method     ChildPrzepisQuery innerJoinEtap($relationAlias = null) Adds a INNER JOIN clause to the query using the Etap relation
  *
- * @method     ChildPrzepisQuery joinWithPRZEPIS_id_przepis($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery joinWithEtap($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Etap relation
  *
- * @method     ChildPrzepisQuery leftJoinWithPRZEPIS_id_przepis() Adds a LEFT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinWithPRZEPIS_id_przepis() Adds a RIGHT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinWithPRZEPIS_id_przepis() Adds a INNER JOIN clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinWithEtap() Adds a LEFT JOIN clause and with to the query using the Etap relation
+ * @method     ChildPrzepisQuery rightJoinWithEtap() Adds a RIGHT JOIN clause and with to the query using the Etap relation
+ * @method     ChildPrzepisQuery innerJoinWithEtap() Adds a INNER JOIN clause and with to the query using the Etap relation
  *
- * @method     ChildPrzepisQuery leftJoinPRZEPIS_id_przepis($relationAlias = null) Adds a LEFT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinPRZEPIS_id_przepis($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinPRZEPIS_id_przepis($relationAlias = null) Adds a INNER JOIN clause to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinUlubione($relationAlias = null) Adds a LEFT JOIN clause to the query using the Ulubione relation
+ * @method     ChildPrzepisQuery rightJoinUlubione($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Ulubione relation
+ * @method     ChildPrzepisQuery innerJoinUlubione($relationAlias = null) Adds a INNER JOIN clause to the query using the Ulubione relation
  *
- * @method     ChildPrzepisQuery joinWithPRZEPIS_id_przepis($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery joinWithUlubione($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Ulubione relation
  *
- * @method     ChildPrzepisQuery leftJoinWithPRZEPIS_id_przepis() Adds a LEFT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinWithPRZEPIS_id_przepis() Adds a RIGHT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinWithPRZEPIS_id_przepis() Adds a INNER JOIN clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinWithUlubione() Adds a LEFT JOIN clause and with to the query using the Ulubione relation
+ * @method     ChildPrzepisQuery rightJoinWithUlubione() Adds a RIGHT JOIN clause and with to the query using the Ulubione relation
+ * @method     ChildPrzepisQuery innerJoinWithUlubione() Adds a INNER JOIN clause and with to the query using the Ulubione relation
  *
- * @method     ChildPrzepisQuery leftJoinPRZEPIS_id_przepis($relationAlias = null) Adds a LEFT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinPRZEPIS_id_przepis($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinPRZEPIS_id_przepis($relationAlias = null) Adds a INNER JOIN clause to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinLubie_to($relationAlias = null) Adds a LEFT JOIN clause to the query using the Lubie_to relation
+ * @method     ChildPrzepisQuery rightJoinLubie_to($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Lubie_to relation
+ * @method     ChildPrzepisQuery innerJoinLubie_to($relationAlias = null) Adds a INNER JOIN clause to the query using the Lubie_to relation
  *
- * @method     ChildPrzepisQuery joinWithPRZEPIS_id_przepis($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery joinWithLubie_to($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Lubie_to relation
  *
- * @method     ChildPrzepisQuery leftJoinWithPRZEPIS_id_przepis() Adds a LEFT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinWithPRZEPIS_id_przepis() Adds a RIGHT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinWithPRZEPIS_id_przepis() Adds a INNER JOIN clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinWithLubie_to() Adds a LEFT JOIN clause and with to the query using the Lubie_to relation
+ * @method     ChildPrzepisQuery rightJoinWithLubie_to() Adds a RIGHT JOIN clause and with to the query using the Lubie_to relation
+ * @method     ChildPrzepisQuery innerJoinWithLubie_to() Adds a INNER JOIN clause and with to the query using the Lubie_to relation
  *
- * @method     ChildPrzepisQuery leftJoinPRZEPIS_id_przepis($relationAlias = null) Adds a LEFT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinPRZEPIS_id_przepis($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinPRZEPIS_id_przepis($relationAlias = null) Adds a INNER JOIN clause to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinNalezy($relationAlias = null) Adds a LEFT JOIN clause to the query using the Nalezy relation
+ * @method     ChildPrzepisQuery rightJoinNalezy($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Nalezy relation
+ * @method     ChildPrzepisQuery innerJoinNalezy($relationAlias = null) Adds a INNER JOIN clause to the query using the Nalezy relation
  *
- * @method     ChildPrzepisQuery joinWithPRZEPIS_id_przepis($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery joinWithNalezy($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Nalezy relation
  *
- * @method     ChildPrzepisQuery leftJoinWithPRZEPIS_id_przepis() Adds a LEFT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinWithPRZEPIS_id_przepis() Adds a RIGHT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinWithPRZEPIS_id_przepis() Adds a INNER JOIN clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinWithNalezy() Adds a LEFT JOIN clause and with to the query using the Nalezy relation
+ * @method     ChildPrzepisQuery rightJoinWithNalezy() Adds a RIGHT JOIN clause and with to the query using the Nalezy relation
+ * @method     ChildPrzepisQuery innerJoinWithNalezy() Adds a INNER JOIN clause and with to the query using the Nalezy relation
  *
- * @method     ChildPrzepisQuery leftJoinPRZEPIS_id_przepis($relationAlias = null) Adds a LEFT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinPRZEPIS_id_przepis($relationAlias = null) Adds a RIGHT JOIN clause to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinPRZEPIS_id_przepis($relationAlias = null) Adds a INNER JOIN clause to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinZawiera($relationAlias = null) Adds a LEFT JOIN clause to the query using the Zawiera relation
+ * @method     ChildPrzepisQuery rightJoinZawiera($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Zawiera relation
+ * @method     ChildPrzepisQuery innerJoinZawiera($relationAlias = null) Adds a INNER JOIN clause to the query using the Zawiera relation
  *
- * @method     ChildPrzepisQuery joinWithPRZEPIS_id_przepis($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery joinWithZawiera($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Zawiera relation
  *
- * @method     ChildPrzepisQuery leftJoinWithPRZEPIS_id_przepis() Adds a LEFT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery rightJoinWithPRZEPIS_id_przepis() Adds a RIGHT JOIN clause and with to the query using the PRZEPIS_id_przepis relation
- * @method     ChildPrzepisQuery innerJoinWithPRZEPIS_id_przepis() Adds a INNER JOIN clause and with to the query using the PRZEPIS_id_przepis relation
+ * @method     ChildPrzepisQuery leftJoinWithZawiera() Adds a LEFT JOIN clause and with to the query using the Zawiera relation
+ * @method     ChildPrzepisQuery rightJoinWithZawiera() Adds a RIGHT JOIN clause and with to the query using the Zawiera relation
+ * @method     ChildPrzepisQuery innerJoinWithZawiera() Adds a INNER JOIN clause and with to the query using the Zawiera relation
  *
  * @method     \UzytkownikQuery|\EtapQuery|\UlubioneQuery|\Lubie_toQuery|\NalezyQuery|\ZawieraQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
@@ -787,33 +787,33 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return ChildPrzepisQuery The current query, for fluid interface
      */
-    public function filterByPRZEPIS_id_przepis($etap, $comparison = null)
+    public function filterByEtap($etap, $comparison = null)
     {
         if ($etap instanceof \Etap) {
             return $this
                 ->addUsingAlias(PrzepisTableMap::COL_ID_PRZEPIS, $etap->getPrzepisIdPrzepis(), $comparison);
         } elseif ($etap instanceof ObjectCollection) {
             return $this
-                ->usePRZEPIS_id_przepisQuery()
+                ->useEtapQuery()
                 ->filterByPrimaryKeys($etap->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByPRZEPIS_id_przepis() only accepts arguments of type \Etap or Collection');
+            throw new PropelException('filterByEtap() only accepts arguments of type \Etap or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the PRZEPIS_id_przepis relation
+     * Adds a JOIN clause to the query using the Etap relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildPrzepisQuery The current query, for fluid interface
      */
-    public function joinPRZEPIS_id_przepis($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinEtap($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('PRZEPIS_id_przepis');
+        $relationMap = $tableMap->getRelation('Etap');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -828,14 +828,14 @@ abstract class PrzepisQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'PRZEPIS_id_przepis');
+            $this->addJoinObject($join, 'Etap');
         }
 
         return $this;
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Etap object
+     * Use the Etap relation Etap object
      *
      * @see useQuery()
      *
@@ -845,15 +845,15 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return \EtapQuery A secondary query class using the current class as primary query
      */
-    public function usePRZEPIS_id_przepisQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useEtapQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinPRZEPIS_id_przepis($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'PRZEPIS_id_przepis', '\EtapQuery');
+            ->joinEtap($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Etap', '\EtapQuery');
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Etap object
+     * Use the Etap relation Etap object
      *
      * @param callable(\EtapQuery):\EtapQuery $callable A function working on the related query
      *
@@ -863,12 +863,12 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withPRZEPIS_id_przepisQuery(
+    public function withEtapQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->usePRZEPIS_id_przepisQuery(
+        $relatedQuery = $this->useEtapQuery(
             $relationAlias,
             $joinType
         );
@@ -886,33 +886,33 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return ChildPrzepisQuery The current query, for fluid interface
      */
-    public function filterByPRZEPIS_id_przepis($ulubione, $comparison = null)
+    public function filterByUlubione($ulubione, $comparison = null)
     {
         if ($ulubione instanceof \Ulubione) {
             return $this
                 ->addUsingAlias(PrzepisTableMap::COL_ID_PRZEPIS, $ulubione->getPrzepisIdPrzepis(), $comparison);
         } elseif ($ulubione instanceof ObjectCollection) {
             return $this
-                ->usePRZEPIS_id_przepisQuery()
+                ->useUlubioneQuery()
                 ->filterByPrimaryKeys($ulubione->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByPRZEPIS_id_przepis() only accepts arguments of type \Ulubione or Collection');
+            throw new PropelException('filterByUlubione() only accepts arguments of type \Ulubione or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the PRZEPIS_id_przepis relation
+     * Adds a JOIN clause to the query using the Ulubione relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildPrzepisQuery The current query, for fluid interface
      */
-    public function joinPRZEPIS_id_przepis($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinUlubione($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('PRZEPIS_id_przepis');
+        $relationMap = $tableMap->getRelation('Ulubione');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -927,14 +927,14 @@ abstract class PrzepisQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'PRZEPIS_id_przepis');
+            $this->addJoinObject($join, 'Ulubione');
         }
 
         return $this;
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Ulubione object
+     * Use the Ulubione relation Ulubione object
      *
      * @see useQuery()
      *
@@ -944,15 +944,15 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return \UlubioneQuery A secondary query class using the current class as primary query
      */
-    public function usePRZEPIS_id_przepisQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useUlubioneQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinPRZEPIS_id_przepis($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'PRZEPIS_id_przepis', '\UlubioneQuery');
+            ->joinUlubione($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Ulubione', '\UlubioneQuery');
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Ulubione object
+     * Use the Ulubione relation Ulubione object
      *
      * @param callable(\UlubioneQuery):\UlubioneQuery $callable A function working on the related query
      *
@@ -962,12 +962,12 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withPRZEPIS_id_przepisQuery(
+    public function withUlubioneQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->usePRZEPIS_id_przepisQuery(
+        $relatedQuery = $this->useUlubioneQuery(
             $relationAlias,
             $joinType
         );
@@ -985,33 +985,33 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return ChildPrzepisQuery The current query, for fluid interface
      */
-    public function filterByPRZEPIS_id_przepis($lubie_to, $comparison = null)
+    public function filterByLubie_to($lubie_to, $comparison = null)
     {
         if ($lubie_to instanceof \Lubie_to) {
             return $this
                 ->addUsingAlias(PrzepisTableMap::COL_ID_PRZEPIS, $lubie_to->getPrzepisIdPrzepis(), $comparison);
         } elseif ($lubie_to instanceof ObjectCollection) {
             return $this
-                ->usePRZEPIS_id_przepisQuery()
+                ->useLubie_toQuery()
                 ->filterByPrimaryKeys($lubie_to->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByPRZEPIS_id_przepis() only accepts arguments of type \Lubie_to or Collection');
+            throw new PropelException('filterByLubie_to() only accepts arguments of type \Lubie_to or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the PRZEPIS_id_przepis relation
+     * Adds a JOIN clause to the query using the Lubie_to relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildPrzepisQuery The current query, for fluid interface
      */
-    public function joinPRZEPIS_id_przepis($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinLubie_to($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('PRZEPIS_id_przepis');
+        $relationMap = $tableMap->getRelation('Lubie_to');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -1026,14 +1026,14 @@ abstract class PrzepisQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'PRZEPIS_id_przepis');
+            $this->addJoinObject($join, 'Lubie_to');
         }
 
         return $this;
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Lubie_to object
+     * Use the Lubie_to relation Lubie_to object
      *
      * @see useQuery()
      *
@@ -1043,15 +1043,15 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return \Lubie_toQuery A secondary query class using the current class as primary query
      */
-    public function usePRZEPIS_id_przepisQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useLubie_toQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinPRZEPIS_id_przepis($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'PRZEPIS_id_przepis', '\Lubie_toQuery');
+            ->joinLubie_to($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Lubie_to', '\Lubie_toQuery');
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Lubie_to object
+     * Use the Lubie_to relation Lubie_to object
      *
      * @param callable(\Lubie_toQuery):\Lubie_toQuery $callable A function working on the related query
      *
@@ -1061,12 +1061,12 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withPRZEPIS_id_przepisQuery(
+    public function withLubie_toQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->usePRZEPIS_id_przepisQuery(
+        $relatedQuery = $this->useLubie_toQuery(
             $relationAlias,
             $joinType
         );
@@ -1084,33 +1084,33 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return ChildPrzepisQuery The current query, for fluid interface
      */
-    public function filterByPRZEPIS_id_przepis($nalezy, $comparison = null)
+    public function filterByNalezy($nalezy, $comparison = null)
     {
         if ($nalezy instanceof \Nalezy) {
             return $this
                 ->addUsingAlias(PrzepisTableMap::COL_ID_PRZEPIS, $nalezy->getPrzepisIdPrzepis(), $comparison);
         } elseif ($nalezy instanceof ObjectCollection) {
             return $this
-                ->usePRZEPIS_id_przepisQuery()
+                ->useNalezyQuery()
                 ->filterByPrimaryKeys($nalezy->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByPRZEPIS_id_przepis() only accepts arguments of type \Nalezy or Collection');
+            throw new PropelException('filterByNalezy() only accepts arguments of type \Nalezy or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the PRZEPIS_id_przepis relation
+     * Adds a JOIN clause to the query using the Nalezy relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildPrzepisQuery The current query, for fluid interface
      */
-    public function joinPRZEPIS_id_przepis($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinNalezy($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('PRZEPIS_id_przepis');
+        $relationMap = $tableMap->getRelation('Nalezy');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -1125,14 +1125,14 @@ abstract class PrzepisQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'PRZEPIS_id_przepis');
+            $this->addJoinObject($join, 'Nalezy');
         }
 
         return $this;
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Nalezy object
+     * Use the Nalezy relation Nalezy object
      *
      * @see useQuery()
      *
@@ -1142,15 +1142,15 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return \NalezyQuery A secondary query class using the current class as primary query
      */
-    public function usePRZEPIS_id_przepisQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useNalezyQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinPRZEPIS_id_przepis($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'PRZEPIS_id_przepis', '\NalezyQuery');
+            ->joinNalezy($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Nalezy', '\NalezyQuery');
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Nalezy object
+     * Use the Nalezy relation Nalezy object
      *
      * @param callable(\NalezyQuery):\NalezyQuery $callable A function working on the related query
      *
@@ -1160,12 +1160,12 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withPRZEPIS_id_przepisQuery(
+    public function withNalezyQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->usePRZEPIS_id_przepisQuery(
+        $relatedQuery = $this->useNalezyQuery(
             $relationAlias,
             $joinType
         );
@@ -1183,33 +1183,33 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return ChildPrzepisQuery The current query, for fluid interface
      */
-    public function filterByPRZEPIS_id_przepis($zawiera, $comparison = null)
+    public function filterByZawiera($zawiera, $comparison = null)
     {
         if ($zawiera instanceof \Zawiera) {
             return $this
                 ->addUsingAlias(PrzepisTableMap::COL_ID_PRZEPIS, $zawiera->getPrzepisIdPrzepis(), $comparison);
         } elseif ($zawiera instanceof ObjectCollection) {
             return $this
-                ->usePRZEPIS_id_przepisQuery()
+                ->useZawieraQuery()
                 ->filterByPrimaryKeys($zawiera->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByPRZEPIS_id_przepis() only accepts arguments of type \Zawiera or Collection');
+            throw new PropelException('filterByZawiera() only accepts arguments of type \Zawiera or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the PRZEPIS_id_przepis relation
+     * Adds a JOIN clause to the query using the Zawiera relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildPrzepisQuery The current query, for fluid interface
      */
-    public function joinPRZEPIS_id_przepis($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinZawiera($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('PRZEPIS_id_przepis');
+        $relationMap = $tableMap->getRelation('Zawiera');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -1224,14 +1224,14 @@ abstract class PrzepisQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'PRZEPIS_id_przepis');
+            $this->addJoinObject($join, 'Zawiera');
         }
 
         return $this;
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Zawiera object
+     * Use the Zawiera relation Zawiera object
      *
      * @see useQuery()
      *
@@ -1241,15 +1241,15 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return \ZawieraQuery A secondary query class using the current class as primary query
      */
-    public function usePRZEPIS_id_przepisQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useZawieraQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinPRZEPIS_id_przepis($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'PRZEPIS_id_przepis', '\ZawieraQuery');
+            ->joinZawiera($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Zawiera', '\ZawieraQuery');
     }
 
     /**
-     * Use the PRZEPIS_id_przepis relation Zawiera object
+     * Use the Zawiera relation Zawiera object
      *
      * @param callable(\ZawieraQuery):\ZawieraQuery $callable A function working on the related query
      *
@@ -1259,12 +1259,12 @@ abstract class PrzepisQuery extends ModelCriteria
      *
      * @return $this
      */
-    public function withPRZEPIS_id_przepisQuery(
+    public function withZawieraQuery(
         callable $callable,
         string $relationAlias = null,
         ?string $joinType = Criteria::INNER_JOIN
     ) {
-        $relatedQuery = $this->usePRZEPIS_id_przepisQuery(
+        $relatedQuery = $this->useZawieraQuery(
             $relationAlias,
             $joinType
         );

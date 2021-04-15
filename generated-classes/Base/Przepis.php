@@ -158,32 +158,32 @@ abstract class Przepis implements ActiveRecordInterface
     /**
      * @var        ObjectCollection|ChildEtap[] Collection to store aggregation of ChildEtap objects.
      */
-    protected $collPRZEPIS_id_przepiss;
-    protected $collPRZEPIS_id_przepissPartial;
+    protected $collEtaps;
+    protected $collEtapsPartial;
 
     /**
      * @var        ObjectCollection|ChildUlubione[] Collection to store aggregation of ChildUlubione objects.
      */
-    protected $collPRZEPIS_id_przepiss;
-    protected $collPRZEPIS_id_przepissPartial;
+    protected $collUlubiones;
+    protected $collUlubionesPartial;
 
     /**
      * @var        ObjectCollection|ChildLubie_to[] Collection to store aggregation of ChildLubie_to objects.
      */
-    protected $collPRZEPIS_id_przepiss;
-    protected $collPRZEPIS_id_przepissPartial;
+    protected $collLubie_tos;
+    protected $collLubie_tosPartial;
 
     /**
      * @var        ObjectCollection|ChildNalezy[] Collection to store aggregation of ChildNalezy objects.
      */
-    protected $collPRZEPIS_id_przepiss;
-    protected $collPRZEPIS_id_przepissPartial;
+    protected $collNalezies;
+    protected $collNaleziesPartial;
 
     /**
      * @var        ObjectCollection|ChildZawiera[] Collection to store aggregation of ChildZawiera objects.
      */
-    protected $collPRZEPIS_id_przepiss;
-    protected $collPRZEPIS_id_przepissPartial;
+    protected $collZawieras;
+    protected $collZawierasPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -197,31 +197,31 @@ abstract class Przepis implements ActiveRecordInterface
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildEtap[]
      */
-    protected $pRZEPIS_id_przepissScheduledForDeletion = null;
+    protected $etapsScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildUlubione[]
      */
-    protected $pRZEPIS_id_przepissScheduledForDeletion = null;
+    protected $ulubionesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildLubie_to[]
      */
-    protected $pRZEPIS_id_przepissScheduledForDeletion = null;
+    protected $lubie_tosScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildNalezy[]
      */
-    protected $pRZEPIS_id_przepissScheduledForDeletion = null;
+    protected $naleziesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildZawiera[]
      */
-    protected $pRZEPIS_id_przepissScheduledForDeletion = null;
+    protected $zawierasScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Przepis object.
@@ -915,15 +915,15 @@ abstract class Przepis implements ActiveRecordInterface
         if ($deep) {  // also de-associate any related objects?
 
             $this->aUzytkownik = null;
-            $this->collPRZEPIS_id_przepiss = null;
+            $this->collEtaps = null;
 
-            $this->collPRZEPIS_id_przepiss = null;
+            $this->collUlubiones = null;
 
-            $this->collPRZEPIS_id_przepiss = null;
+            $this->collLubie_tos = null;
 
-            $this->collPRZEPIS_id_przepiss = null;
+            $this->collNalezies = null;
 
-            $this->collPRZEPIS_id_przepiss = null;
+            $this->collZawieras = null;
 
         } // if (deep)
     }
@@ -1056,85 +1056,85 @@ abstract class Przepis implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion !== null) {
-                if (!$this->pRZEPIS_id_przepissScheduledForDeletion->isEmpty()) {
+            if ($this->etapsScheduledForDeletion !== null) {
+                if (!$this->etapsScheduledForDeletion->isEmpty()) {
                     \EtapQuery::create()
-                        ->filterByPrimaryKeys($this->pRZEPIS_id_przepissScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->etapsScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->pRZEPIS_id_przepissScheduledForDeletion = null;
+                    $this->etapsScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collPRZEPIS_id_przepiss !== null) {
-                foreach ($this->collPRZEPIS_id_przepiss as $referrerFK) {
+            if ($this->collEtaps !== null) {
+                foreach ($this->collEtaps as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion !== null) {
-                if (!$this->pRZEPIS_id_przepissScheduledForDeletion->isEmpty()) {
+            if ($this->ulubionesScheduledForDeletion !== null) {
+                if (!$this->ulubionesScheduledForDeletion->isEmpty()) {
                     \UlubioneQuery::create()
-                        ->filterByPrimaryKeys($this->pRZEPIS_id_przepissScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->ulubionesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->pRZEPIS_id_przepissScheduledForDeletion = null;
+                    $this->ulubionesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collPRZEPIS_id_przepiss !== null) {
-                foreach ($this->collPRZEPIS_id_przepiss as $referrerFK) {
+            if ($this->collUlubiones !== null) {
+                foreach ($this->collUlubiones as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion !== null) {
-                if (!$this->pRZEPIS_id_przepissScheduledForDeletion->isEmpty()) {
+            if ($this->lubie_tosScheduledForDeletion !== null) {
+                if (!$this->lubie_tosScheduledForDeletion->isEmpty()) {
                     \Lubie_toQuery::create()
-                        ->filterByPrimaryKeys($this->pRZEPIS_id_przepissScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->lubie_tosScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->pRZEPIS_id_przepissScheduledForDeletion = null;
+                    $this->lubie_tosScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collPRZEPIS_id_przepiss !== null) {
-                foreach ($this->collPRZEPIS_id_przepiss as $referrerFK) {
+            if ($this->collLubie_tos !== null) {
+                foreach ($this->collLubie_tos as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion !== null) {
-                if (!$this->pRZEPIS_id_przepissScheduledForDeletion->isEmpty()) {
+            if ($this->naleziesScheduledForDeletion !== null) {
+                if (!$this->naleziesScheduledForDeletion->isEmpty()) {
                     \NalezyQuery::create()
-                        ->filterByPrimaryKeys($this->pRZEPIS_id_przepissScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->naleziesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->pRZEPIS_id_przepissScheduledForDeletion = null;
+                    $this->naleziesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collPRZEPIS_id_przepiss !== null) {
-                foreach ($this->collPRZEPIS_id_przepiss as $referrerFK) {
+            if ($this->collNalezies !== null) {
+                foreach ($this->collNalezies as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion !== null) {
-                if (!$this->pRZEPIS_id_przepissScheduledForDeletion->isEmpty()) {
+            if ($this->zawierasScheduledForDeletion !== null) {
+                if (!$this->zawierasScheduledForDeletion->isEmpty()) {
                     \ZawieraQuery::create()
-                        ->filterByPrimaryKeys($this->pRZEPIS_id_przepissScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->zawierasScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->pRZEPIS_id_przepissScheduledForDeletion = null;
+                    $this->zawierasScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collPRZEPIS_id_przepiss !== null) {
-                foreach ($this->collPRZEPIS_id_przepiss as $referrerFK) {
+            if ($this->collZawieras !== null) {
+                foreach ($this->collZawieras as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -1399,7 +1399,7 @@ abstract class Przepis implements ActiveRecordInterface
 
                 $result[$key] = $this->aUzytkownik->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
-            if (null !== $this->collPRZEPIS_id_przepiss) {
+            if (null !== $this->collEtaps) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1409,12 +1409,12 @@ abstract class Przepis implements ActiveRecordInterface
                         $key = 'etaps';
                         break;
                     default:
-                        $key = 'PRZEPIS_id_przepiss';
+                        $key = 'Etaps';
                 }
 
-                $result[$key] = $this->collPRZEPIS_id_przepiss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collEtaps->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collPRZEPIS_id_przepiss) {
+            if (null !== $this->collUlubiones) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1424,12 +1424,12 @@ abstract class Przepis implements ActiveRecordInterface
                         $key = 'ulubiones';
                         break;
                     default:
-                        $key = 'PRZEPIS_id_przepiss';
+                        $key = 'Ulubiones';
                 }
 
-                $result[$key] = $this->collPRZEPIS_id_przepiss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collUlubiones->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collPRZEPIS_id_przepiss) {
+            if (null !== $this->collLubie_tos) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1439,12 +1439,12 @@ abstract class Przepis implements ActiveRecordInterface
                         $key = 'lubie_tos';
                         break;
                     default:
-                        $key = 'PRZEPIS_id_przepiss';
+                        $key = 'Lubie_tos';
                 }
 
-                $result[$key] = $this->collPRZEPIS_id_przepiss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collLubie_tos->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collPRZEPIS_id_przepiss) {
+            if (null !== $this->collNalezies) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1454,12 +1454,12 @@ abstract class Przepis implements ActiveRecordInterface
                         $key = 'nalezies';
                         break;
                     default:
-                        $key = 'PRZEPIS_id_przepiss';
+                        $key = 'Nalezies';
                 }
 
-                $result[$key] = $this->collPRZEPIS_id_przepiss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collNalezies->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collPRZEPIS_id_przepiss) {
+            if (null !== $this->collZawieras) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1469,10 +1469,10 @@ abstract class Przepis implements ActiveRecordInterface
                         $key = 'zawieras';
                         break;
                     default:
-                        $key = 'PRZEPIS_id_przepiss';
+                        $key = 'Zawieras';
                 }
 
-                $result[$key] = $this->collPRZEPIS_id_przepiss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collZawieras->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1768,33 +1768,33 @@ abstract class Przepis implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
-            foreach ($this->getPRZEPIS_id_przepiss() as $relObj) {
+            foreach ($this->getEtaps() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addPRZEPIS_id_przepis($relObj->copy($deepCopy));
+                    $copyObj->addEtap($relObj->copy($deepCopy));
                 }
             }
 
-            foreach ($this->getPRZEPIS_id_przepiss() as $relObj) {
+            foreach ($this->getUlubiones() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addPRZEPIS_id_przepis($relObj->copy($deepCopy));
+                    $copyObj->addUlubione($relObj->copy($deepCopy));
                 }
             }
 
-            foreach ($this->getPRZEPIS_id_przepiss() as $relObj) {
+            foreach ($this->getLubie_tos() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addPRZEPIS_id_przepis($relObj->copy($deepCopy));
+                    $copyObj->addLubie_to($relObj->copy($deepCopy));
                 }
             }
 
-            foreach ($this->getPRZEPIS_id_przepiss() as $relObj) {
+            foreach ($this->getNalezies() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addPRZEPIS_id_przepis($relObj->copy($deepCopy));
+                    $copyObj->addNalezy($relObj->copy($deepCopy));
                 }
             }
 
-            foreach ($this->getPRZEPIS_id_przepiss() as $relObj) {
+            foreach ($this->getZawieras() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addPRZEPIS_id_przepis($relObj->copy($deepCopy));
+                    $copyObj->addZawiera($relObj->copy($deepCopy));
                 }
             }
 
@@ -1848,7 +1848,7 @@ abstract class Przepis implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildUzytkownik object, it will not be re-added.
         if ($v !== null) {
-            $v->addUZYTKOWNIK_login($this);
+            $v->addPrzepis($this);
         }
 
 
@@ -1872,7 +1872,7 @@ abstract class Przepis implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aUzytkownik->addUZYTKOWNIK_logins($this);
+                $this->aUzytkownik->addPrzepiss($this);
              */
         }
 
@@ -1890,54 +1890,54 @@ abstract class Przepis implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
-        if ('PRZEPIS_id_przepis' === $relationName) {
-            $this->initPRZEPIS_id_przepiss();
+        if ('Etap' === $relationName) {
+            $this->initEtaps();
             return;
         }
-        if ('PRZEPIS_id_przepis' === $relationName) {
-            $this->initPRZEPIS_id_przepiss();
+        if ('Ulubione' === $relationName) {
+            $this->initUlubiones();
             return;
         }
-        if ('PRZEPIS_id_przepis' === $relationName) {
-            $this->initPRZEPIS_id_przepiss();
+        if ('Lubie_to' === $relationName) {
+            $this->initLubie_tos();
             return;
         }
-        if ('PRZEPIS_id_przepis' === $relationName) {
-            $this->initPRZEPIS_id_przepiss();
+        if ('Nalezy' === $relationName) {
+            $this->initNalezies();
             return;
         }
-        if ('PRZEPIS_id_przepis' === $relationName) {
-            $this->initPRZEPIS_id_przepiss();
+        if ('Zawiera' === $relationName) {
+            $this->initZawieras();
             return;
         }
     }
 
     /**
-     * Clears out the collPRZEPIS_id_przepiss collection
+     * Clears out the collEtaps collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addPRZEPIS_id_przepiss()
+     * @see        addEtaps()
      */
-    public function clearPRZEPIS_id_przepiss()
+    public function clearEtaps()
     {
-        $this->collPRZEPIS_id_przepiss = null; // important to set this to NULL since that means it is uninitialized
+        $this->collEtaps = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collPRZEPIS_id_przepiss collection loaded partially.
+     * Reset is the collEtaps collection loaded partially.
      */
-    public function resetPartialPRZEPIS_id_przepiss($v = true)
+    public function resetPartialEtaps($v = true)
     {
-        $this->collPRZEPIS_id_przepissPartial = $v;
+        $this->collEtapsPartial = $v;
     }
 
     /**
-     * Initializes the collPRZEPIS_id_przepiss collection.
+     * Initializes the collEtaps collection.
      *
-     * By default this just sets the collPRZEPIS_id_przepiss collection to an empty array (like clearcollPRZEPIS_id_przepiss());
+     * By default this just sets the collEtaps collection to an empty array (like clearcollEtaps());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1946,16 +1946,16 @@ abstract class Przepis implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initPRZEPIS_id_przepiss($overrideExisting = true)
+    public function initEtaps($overrideExisting = true)
     {
-        if (null !== $this->collPRZEPIS_id_przepiss && !$overrideExisting) {
+        if (null !== $this->collEtaps && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = EtapTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collPRZEPIS_id_przepiss = new $collectionClassName;
-        $this->collPRZEPIS_id_przepiss->setModel('\Etap');
+        $this->collEtaps = new $collectionClassName;
+        $this->collEtaps->setModel('\Etap');
     }
 
     /**
@@ -1972,57 +1972,57 @@ abstract class Przepis implements ActiveRecordInterface
      * @return ObjectCollection|ChildEtap[] List of ChildEtap objects
      * @throws PropelException
      */
-    public function getPRZEPIS_id_przepiss(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getEtaps(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
+        $partial = $this->collEtapsPartial && !$this->isNew();
+        if (null === $this->collEtaps || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collPRZEPIS_id_przepiss) {
-                    $this->initPRZEPIS_id_przepiss();
+                if (null === $this->collEtaps) {
+                    $this->initEtaps();
                 } else {
                     $collectionClassName = EtapTableMap::getTableMap()->getCollectionClassName();
 
-                    $collPRZEPIS_id_przepiss = new $collectionClassName;
-                    $collPRZEPIS_id_przepiss->setModel('\Etap');
+                    $collEtaps = new $collectionClassName;
+                    $collEtaps->setModel('\Etap');
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collEtaps;
                 }
             } else {
-                $collPRZEPIS_id_przepiss = ChildEtapQuery::create(null, $criteria)
+                $collEtaps = ChildEtapQuery::create(null, $criteria)
                     ->filterByPrzepis($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collPRZEPIS_id_przepissPartial && count($collPRZEPIS_id_przepiss)) {
-                        $this->initPRZEPIS_id_przepiss(false);
+                    if (false !== $this->collEtapsPartial && count($collEtaps)) {
+                        $this->initEtaps(false);
 
-                        foreach ($collPRZEPIS_id_przepiss as $obj) {
-                            if (false == $this->collPRZEPIS_id_przepiss->contains($obj)) {
-                                $this->collPRZEPIS_id_przepiss->append($obj);
+                        foreach ($collEtaps as $obj) {
+                            if (false == $this->collEtaps->contains($obj)) {
+                                $this->collEtaps->append($obj);
                             }
                         }
 
-                        $this->collPRZEPIS_id_przepissPartial = true;
+                        $this->collEtapsPartial = true;
                     }
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collEtaps;
                 }
 
-                if ($partial && $this->collPRZEPIS_id_przepiss) {
-                    foreach ($this->collPRZEPIS_id_przepiss as $obj) {
+                if ($partial && $this->collEtaps) {
+                    foreach ($this->collEtaps as $obj) {
                         if ($obj->isNew()) {
-                            $collPRZEPIS_id_przepiss[] = $obj;
+                            $collEtaps[] = $obj;
                         }
                     }
                 }
 
-                $this->collPRZEPIS_id_przepiss = $collPRZEPIS_id_przepiss;
-                $this->collPRZEPIS_id_przepissPartial = false;
+                $this->collEtaps = $collEtaps;
+                $this->collEtapsPartial = false;
             }
         }
 
-        return $this->collPRZEPIS_id_przepiss;
+        return $this->collEtaps;
     }
 
     /**
@@ -2031,29 +2031,29 @@ abstract class Przepis implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $pRZEPIS_id_przepiss A Propel collection.
+     * @param      Collection $etaps A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function setPRZEPIS_id_przepiss(Collection $pRZEPIS_id_przepiss, ConnectionInterface $con = null)
+    public function setEtaps(Collection $etaps, ConnectionInterface $con = null)
     {
-        /** @var ChildEtap[] $pRZEPIS_id_przepissToDelete */
-        $pRZEPIS_id_przepissToDelete = $this->getPRZEPIS_id_przepiss(new Criteria(), $con)->diff($pRZEPIS_id_przepiss);
+        /** @var ChildEtap[] $etapsToDelete */
+        $etapsToDelete = $this->getEtaps(new Criteria(), $con)->diff($etaps);
 
 
-        $this->pRZEPIS_id_przepissScheduledForDeletion = $pRZEPIS_id_przepissToDelete;
+        $this->etapsScheduledForDeletion = $etapsToDelete;
 
-        foreach ($pRZEPIS_id_przepissToDelete as $pRZEPIS_id_przepisRemoved) {
-            $pRZEPIS_id_przepisRemoved->setPrzepis(null);
+        foreach ($etapsToDelete as $etapRemoved) {
+            $etapRemoved->setPrzepis(null);
         }
 
-        $this->collPRZEPIS_id_przepiss = null;
-        foreach ($pRZEPIS_id_przepiss as $pRZEPIS_id_przepis) {
-            $this->addPRZEPIS_id_przepis($pRZEPIS_id_przepis);
+        $this->collEtaps = null;
+        foreach ($etaps as $etap) {
+            $this->addEtap($etap);
         }
 
-        $this->collPRZEPIS_id_przepiss = $pRZEPIS_id_przepiss;
-        $this->collPRZEPIS_id_przepissPartial = false;
+        $this->collEtaps = $etaps;
+        $this->collEtapsPartial = false;
 
         return $this;
     }
@@ -2067,16 +2067,16 @@ abstract class Przepis implements ActiveRecordInterface
      * @return int             Count of related Etap objects.
      * @throws PropelException
      */
-    public function countPRZEPIS_id_przepiss(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countEtaps(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collPRZEPIS_id_przepiss) {
+        $partial = $this->collEtapsPartial && !$this->isNew();
+        if (null === $this->collEtaps || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collEtaps) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getPRZEPIS_id_przepiss());
+                return count($this->getEtaps());
             }
 
             $query = ChildEtapQuery::create(null, $criteria);
@@ -2089,7 +2089,7 @@ abstract class Przepis implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collPRZEPIS_id_przepiss);
+        return count($this->collEtaps);
     }
 
     /**
@@ -2099,18 +2099,18 @@ abstract class Przepis implements ActiveRecordInterface
      * @param  ChildEtap $l ChildEtap
      * @return $this|\Przepis The current object (for fluent API support)
      */
-    public function addPRZEPIS_id_przepis(ChildEtap $l)
+    public function addEtap(ChildEtap $l)
     {
-        if ($this->collPRZEPIS_id_przepiss === null) {
-            $this->initPRZEPIS_id_przepiss();
-            $this->collPRZEPIS_id_przepissPartial = true;
+        if ($this->collEtaps === null) {
+            $this->initEtaps();
+            $this->collEtapsPartial = true;
         }
 
-        if (!$this->collPRZEPIS_id_przepiss->contains($l)) {
-            $this->doAddPRZEPIS_id_przepis($l);
+        if (!$this->collEtaps->contains($l)) {
+            $this->doAddEtap($l);
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion and $this->pRZEPIS_id_przepissScheduledForDeletion->contains($l)) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion->remove($this->pRZEPIS_id_przepissScheduledForDeletion->search($l));
+            if ($this->etapsScheduledForDeletion and $this->etapsScheduledForDeletion->contains($l)) {
+                $this->etapsScheduledForDeletion->remove($this->etapsScheduledForDeletion->search($l));
             }
         }
 
@@ -2118,60 +2118,60 @@ abstract class Przepis implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildEtap $pRZEPIS_id_przepis The ChildEtap object to add.
+     * @param ChildEtap $etap The ChildEtap object to add.
      */
-    protected function doAddPRZEPIS_id_przepis(ChildEtap $pRZEPIS_id_przepis)
+    protected function doAddEtap(ChildEtap $etap)
     {
-        $this->collPRZEPIS_id_przepiss[]= $pRZEPIS_id_przepis;
-        $pRZEPIS_id_przepis->setPrzepis($this);
+        $this->collEtaps[]= $etap;
+        $etap->setPrzepis($this);
     }
 
     /**
-     * @param  ChildEtap $pRZEPIS_id_przepis The ChildEtap object to remove.
+     * @param  ChildEtap $etap The ChildEtap object to remove.
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function removePRZEPIS_id_przepis(ChildEtap $pRZEPIS_id_przepis)
+    public function removeEtap(ChildEtap $etap)
     {
-        if ($this->getPRZEPIS_id_przepiss()->contains($pRZEPIS_id_przepis)) {
-            $pos = $this->collPRZEPIS_id_przepiss->search($pRZEPIS_id_przepis);
-            $this->collPRZEPIS_id_przepiss->remove($pos);
-            if (null === $this->pRZEPIS_id_przepissScheduledForDeletion) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion = clone $this->collPRZEPIS_id_przepiss;
-                $this->pRZEPIS_id_przepissScheduledForDeletion->clear();
+        if ($this->getEtaps()->contains($etap)) {
+            $pos = $this->collEtaps->search($etap);
+            $this->collEtaps->remove($pos);
+            if (null === $this->etapsScheduledForDeletion) {
+                $this->etapsScheduledForDeletion = clone $this->collEtaps;
+                $this->etapsScheduledForDeletion->clear();
             }
-            $this->pRZEPIS_id_przepissScheduledForDeletion[]= clone $pRZEPIS_id_przepis;
-            $pRZEPIS_id_przepis->setPrzepis(null);
+            $this->etapsScheduledForDeletion[]= clone $etap;
+            $etap->setPrzepis(null);
         }
 
         return $this;
     }
 
     /**
-     * Clears out the collPRZEPIS_id_przepiss collection
+     * Clears out the collUlubiones collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addPRZEPIS_id_przepiss()
+     * @see        addUlubiones()
      */
-    public function clearPRZEPIS_id_przepiss()
+    public function clearUlubiones()
     {
-        $this->collPRZEPIS_id_przepiss = null; // important to set this to NULL since that means it is uninitialized
+        $this->collUlubiones = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collPRZEPIS_id_przepiss collection loaded partially.
+     * Reset is the collUlubiones collection loaded partially.
      */
-    public function resetPartialPRZEPIS_id_przepiss($v = true)
+    public function resetPartialUlubiones($v = true)
     {
-        $this->collPRZEPIS_id_przepissPartial = $v;
+        $this->collUlubionesPartial = $v;
     }
 
     /**
-     * Initializes the collPRZEPIS_id_przepiss collection.
+     * Initializes the collUlubiones collection.
      *
-     * By default this just sets the collPRZEPIS_id_przepiss collection to an empty array (like clearcollPRZEPIS_id_przepiss());
+     * By default this just sets the collUlubiones collection to an empty array (like clearcollUlubiones());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -2180,16 +2180,16 @@ abstract class Przepis implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initPRZEPIS_id_przepiss($overrideExisting = true)
+    public function initUlubiones($overrideExisting = true)
     {
-        if (null !== $this->collPRZEPIS_id_przepiss && !$overrideExisting) {
+        if (null !== $this->collUlubiones && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = UlubioneTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collPRZEPIS_id_przepiss = new $collectionClassName;
-        $this->collPRZEPIS_id_przepiss->setModel('\Ulubione');
+        $this->collUlubiones = new $collectionClassName;
+        $this->collUlubiones->setModel('\Ulubione');
     }
 
     /**
@@ -2206,57 +2206,57 @@ abstract class Przepis implements ActiveRecordInterface
      * @return ObjectCollection|ChildUlubione[] List of ChildUlubione objects
      * @throws PropelException
      */
-    public function getPRZEPIS_id_przepiss(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getUlubiones(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
+        $partial = $this->collUlubionesPartial && !$this->isNew();
+        if (null === $this->collUlubiones || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collPRZEPIS_id_przepiss) {
-                    $this->initPRZEPIS_id_przepiss();
+                if (null === $this->collUlubiones) {
+                    $this->initUlubiones();
                 } else {
                     $collectionClassName = UlubioneTableMap::getTableMap()->getCollectionClassName();
 
-                    $collPRZEPIS_id_przepiss = new $collectionClassName;
-                    $collPRZEPIS_id_przepiss->setModel('\Ulubione');
+                    $collUlubiones = new $collectionClassName;
+                    $collUlubiones->setModel('\Ulubione');
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collUlubiones;
                 }
             } else {
-                $collPRZEPIS_id_przepiss = ChildUlubioneQuery::create(null, $criteria)
+                $collUlubiones = ChildUlubioneQuery::create(null, $criteria)
                     ->filterByPrzepis($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collPRZEPIS_id_przepissPartial && count($collPRZEPIS_id_przepiss)) {
-                        $this->initPRZEPIS_id_przepiss(false);
+                    if (false !== $this->collUlubionesPartial && count($collUlubiones)) {
+                        $this->initUlubiones(false);
 
-                        foreach ($collPRZEPIS_id_przepiss as $obj) {
-                            if (false == $this->collPRZEPIS_id_przepiss->contains($obj)) {
-                                $this->collPRZEPIS_id_przepiss->append($obj);
+                        foreach ($collUlubiones as $obj) {
+                            if (false == $this->collUlubiones->contains($obj)) {
+                                $this->collUlubiones->append($obj);
                             }
                         }
 
-                        $this->collPRZEPIS_id_przepissPartial = true;
+                        $this->collUlubionesPartial = true;
                     }
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collUlubiones;
                 }
 
-                if ($partial && $this->collPRZEPIS_id_przepiss) {
-                    foreach ($this->collPRZEPIS_id_przepiss as $obj) {
+                if ($partial && $this->collUlubiones) {
+                    foreach ($this->collUlubiones as $obj) {
                         if ($obj->isNew()) {
-                            $collPRZEPIS_id_przepiss[] = $obj;
+                            $collUlubiones[] = $obj;
                         }
                     }
                 }
 
-                $this->collPRZEPIS_id_przepiss = $collPRZEPIS_id_przepiss;
-                $this->collPRZEPIS_id_przepissPartial = false;
+                $this->collUlubiones = $collUlubiones;
+                $this->collUlubionesPartial = false;
             }
         }
 
-        return $this->collPRZEPIS_id_przepiss;
+        return $this->collUlubiones;
     }
 
     /**
@@ -2265,32 +2265,32 @@ abstract class Przepis implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $pRZEPIS_id_przepiss A Propel collection.
+     * @param      Collection $ulubiones A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function setPRZEPIS_id_przepiss(Collection $pRZEPIS_id_przepiss, ConnectionInterface $con = null)
+    public function setUlubiones(Collection $ulubiones, ConnectionInterface $con = null)
     {
-        /** @var ChildUlubione[] $pRZEPIS_id_przepissToDelete */
-        $pRZEPIS_id_przepissToDelete = $this->getPRZEPIS_id_przepiss(new Criteria(), $con)->diff($pRZEPIS_id_przepiss);
+        /** @var ChildUlubione[] $ulubionesToDelete */
+        $ulubionesToDelete = $this->getUlubiones(new Criteria(), $con)->diff($ulubiones);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->pRZEPIS_id_przepissScheduledForDeletion = clone $pRZEPIS_id_przepissToDelete;
+        $this->ulubionesScheduledForDeletion = clone $ulubionesToDelete;
 
-        foreach ($pRZEPIS_id_przepissToDelete as $pRZEPIS_id_przepisRemoved) {
-            $pRZEPIS_id_przepisRemoved->setPrzepis(null);
+        foreach ($ulubionesToDelete as $ulubioneRemoved) {
+            $ulubioneRemoved->setPrzepis(null);
         }
 
-        $this->collPRZEPIS_id_przepiss = null;
-        foreach ($pRZEPIS_id_przepiss as $pRZEPIS_id_przepis) {
-            $this->addPRZEPIS_id_przepis($pRZEPIS_id_przepis);
+        $this->collUlubiones = null;
+        foreach ($ulubiones as $ulubione) {
+            $this->addUlubione($ulubione);
         }
 
-        $this->collPRZEPIS_id_przepiss = $pRZEPIS_id_przepiss;
-        $this->collPRZEPIS_id_przepissPartial = false;
+        $this->collUlubiones = $ulubiones;
+        $this->collUlubionesPartial = false;
 
         return $this;
     }
@@ -2304,16 +2304,16 @@ abstract class Przepis implements ActiveRecordInterface
      * @return int             Count of related Ulubione objects.
      * @throws PropelException
      */
-    public function countPRZEPIS_id_przepiss(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countUlubiones(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collPRZEPIS_id_przepiss) {
+        $partial = $this->collUlubionesPartial && !$this->isNew();
+        if (null === $this->collUlubiones || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collUlubiones) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getPRZEPIS_id_przepiss());
+                return count($this->getUlubiones());
             }
 
             $query = ChildUlubioneQuery::create(null, $criteria);
@@ -2326,7 +2326,7 @@ abstract class Przepis implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collPRZEPIS_id_przepiss);
+        return count($this->collUlubiones);
     }
 
     /**
@@ -2336,18 +2336,18 @@ abstract class Przepis implements ActiveRecordInterface
      * @param  ChildUlubione $l ChildUlubione
      * @return $this|\Przepis The current object (for fluent API support)
      */
-    public function addPRZEPIS_id_przepis(ChildUlubione $l)
+    public function addUlubione(ChildUlubione $l)
     {
-        if ($this->collPRZEPIS_id_przepiss === null) {
-            $this->initPRZEPIS_id_przepiss();
-            $this->collPRZEPIS_id_przepissPartial = true;
+        if ($this->collUlubiones === null) {
+            $this->initUlubiones();
+            $this->collUlubionesPartial = true;
         }
 
-        if (!$this->collPRZEPIS_id_przepiss->contains($l)) {
-            $this->doAddPRZEPIS_id_przepis($l);
+        if (!$this->collUlubiones->contains($l)) {
+            $this->doAddUlubione($l);
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion and $this->pRZEPIS_id_przepissScheduledForDeletion->contains($l)) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion->remove($this->pRZEPIS_id_przepissScheduledForDeletion->search($l));
+            if ($this->ulubionesScheduledForDeletion and $this->ulubionesScheduledForDeletion->contains($l)) {
+                $this->ulubionesScheduledForDeletion->remove($this->ulubionesScheduledForDeletion->search($l));
             }
         }
 
@@ -2355,29 +2355,29 @@ abstract class Przepis implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildUlubione $pRZEPIS_id_przepis The ChildUlubione object to add.
+     * @param ChildUlubione $ulubione The ChildUlubione object to add.
      */
-    protected function doAddPRZEPIS_id_przepis(ChildUlubione $pRZEPIS_id_przepis)
+    protected function doAddUlubione(ChildUlubione $ulubione)
     {
-        $this->collPRZEPIS_id_przepiss[]= $pRZEPIS_id_przepis;
-        $pRZEPIS_id_przepis->setPrzepis($this);
+        $this->collUlubiones[]= $ulubione;
+        $ulubione->setPrzepis($this);
     }
 
     /**
-     * @param  ChildUlubione $pRZEPIS_id_przepis The ChildUlubione object to remove.
+     * @param  ChildUlubione $ulubione The ChildUlubione object to remove.
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function removePRZEPIS_id_przepis(ChildUlubione $pRZEPIS_id_przepis)
+    public function removeUlubione(ChildUlubione $ulubione)
     {
-        if ($this->getPRZEPIS_id_przepiss()->contains($pRZEPIS_id_przepis)) {
-            $pos = $this->collPRZEPIS_id_przepiss->search($pRZEPIS_id_przepis);
-            $this->collPRZEPIS_id_przepiss->remove($pos);
-            if (null === $this->pRZEPIS_id_przepissScheduledForDeletion) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion = clone $this->collPRZEPIS_id_przepiss;
-                $this->pRZEPIS_id_przepissScheduledForDeletion->clear();
+        if ($this->getUlubiones()->contains($ulubione)) {
+            $pos = $this->collUlubiones->search($ulubione);
+            $this->collUlubiones->remove($pos);
+            if (null === $this->ulubionesScheduledForDeletion) {
+                $this->ulubionesScheduledForDeletion = clone $this->collUlubiones;
+                $this->ulubionesScheduledForDeletion->clear();
             }
-            $this->pRZEPIS_id_przepissScheduledForDeletion[]= clone $pRZEPIS_id_przepis;
-            $pRZEPIS_id_przepis->setPrzepis(null);
+            $this->ulubionesScheduledForDeletion[]= clone $ulubione;
+            $ulubione->setPrzepis(null);
         }
 
         return $this;
@@ -2389,7 +2389,7 @@ abstract class Przepis implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Przepis is new, it will return
      * an empty collection; or if this Przepis has previously
-     * been saved, it will retrieve related PRZEPIS_id_przepiss from storage.
+     * been saved, it will retrieve related Ulubiones from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -2400,40 +2400,40 @@ abstract class Przepis implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildUlubione[] List of ChildUlubione objects
      */
-    public function getPRZEPIS_id_przepissJoinUzytkownik(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getUlubionesJoinUzytkownik(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildUlubioneQuery::create(null, $criteria);
         $query->joinWith('Uzytkownik', $joinBehavior);
 
-        return $this->getPRZEPIS_id_przepiss($query, $con);
+        return $this->getUlubiones($query, $con);
     }
 
     /**
-     * Clears out the collPRZEPIS_id_przepiss collection
+     * Clears out the collLubie_tos collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addPRZEPIS_id_przepiss()
+     * @see        addLubie_tos()
      */
-    public function clearPRZEPIS_id_przepiss()
+    public function clearLubie_tos()
     {
-        $this->collPRZEPIS_id_przepiss = null; // important to set this to NULL since that means it is uninitialized
+        $this->collLubie_tos = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collPRZEPIS_id_przepiss collection loaded partially.
+     * Reset is the collLubie_tos collection loaded partially.
      */
-    public function resetPartialPRZEPIS_id_przepiss($v = true)
+    public function resetPartialLubie_tos($v = true)
     {
-        $this->collPRZEPIS_id_przepissPartial = $v;
+        $this->collLubie_tosPartial = $v;
     }
 
     /**
-     * Initializes the collPRZEPIS_id_przepiss collection.
+     * Initializes the collLubie_tos collection.
      *
-     * By default this just sets the collPRZEPIS_id_przepiss collection to an empty array (like clearcollPRZEPIS_id_przepiss());
+     * By default this just sets the collLubie_tos collection to an empty array (like clearcollLubie_tos());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -2442,16 +2442,16 @@ abstract class Przepis implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initPRZEPIS_id_przepiss($overrideExisting = true)
+    public function initLubie_tos($overrideExisting = true)
     {
-        if (null !== $this->collPRZEPIS_id_przepiss && !$overrideExisting) {
+        if (null !== $this->collLubie_tos && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = Lubie_toTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collPRZEPIS_id_przepiss = new $collectionClassName;
-        $this->collPRZEPIS_id_przepiss->setModel('\Lubie_to');
+        $this->collLubie_tos = new $collectionClassName;
+        $this->collLubie_tos->setModel('\Lubie_to');
     }
 
     /**
@@ -2468,57 +2468,57 @@ abstract class Przepis implements ActiveRecordInterface
      * @return ObjectCollection|ChildLubie_to[] List of ChildLubie_to objects
      * @throws PropelException
      */
-    public function getPRZEPIS_id_przepiss(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getLubie_tos(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
+        $partial = $this->collLubie_tosPartial && !$this->isNew();
+        if (null === $this->collLubie_tos || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collPRZEPIS_id_przepiss) {
-                    $this->initPRZEPIS_id_przepiss();
+                if (null === $this->collLubie_tos) {
+                    $this->initLubie_tos();
                 } else {
                     $collectionClassName = Lubie_toTableMap::getTableMap()->getCollectionClassName();
 
-                    $collPRZEPIS_id_przepiss = new $collectionClassName;
-                    $collPRZEPIS_id_przepiss->setModel('\Lubie_to');
+                    $collLubie_tos = new $collectionClassName;
+                    $collLubie_tos->setModel('\Lubie_to');
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collLubie_tos;
                 }
             } else {
-                $collPRZEPIS_id_przepiss = ChildLubie_toQuery::create(null, $criteria)
+                $collLubie_tos = ChildLubie_toQuery::create(null, $criteria)
                     ->filterByPrzepis($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collPRZEPIS_id_przepissPartial && count($collPRZEPIS_id_przepiss)) {
-                        $this->initPRZEPIS_id_przepiss(false);
+                    if (false !== $this->collLubie_tosPartial && count($collLubie_tos)) {
+                        $this->initLubie_tos(false);
 
-                        foreach ($collPRZEPIS_id_przepiss as $obj) {
-                            if (false == $this->collPRZEPIS_id_przepiss->contains($obj)) {
-                                $this->collPRZEPIS_id_przepiss->append($obj);
+                        foreach ($collLubie_tos as $obj) {
+                            if (false == $this->collLubie_tos->contains($obj)) {
+                                $this->collLubie_tos->append($obj);
                             }
                         }
 
-                        $this->collPRZEPIS_id_przepissPartial = true;
+                        $this->collLubie_tosPartial = true;
                     }
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collLubie_tos;
                 }
 
-                if ($partial && $this->collPRZEPIS_id_przepiss) {
-                    foreach ($this->collPRZEPIS_id_przepiss as $obj) {
+                if ($partial && $this->collLubie_tos) {
+                    foreach ($this->collLubie_tos as $obj) {
                         if ($obj->isNew()) {
-                            $collPRZEPIS_id_przepiss[] = $obj;
+                            $collLubie_tos[] = $obj;
                         }
                     }
                 }
 
-                $this->collPRZEPIS_id_przepiss = $collPRZEPIS_id_przepiss;
-                $this->collPRZEPIS_id_przepissPartial = false;
+                $this->collLubie_tos = $collLubie_tos;
+                $this->collLubie_tosPartial = false;
             }
         }
 
-        return $this->collPRZEPIS_id_przepiss;
+        return $this->collLubie_tos;
     }
 
     /**
@@ -2527,32 +2527,32 @@ abstract class Przepis implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $pRZEPIS_id_przepiss A Propel collection.
+     * @param      Collection $lubie_tos A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function setPRZEPIS_id_przepiss(Collection $pRZEPIS_id_przepiss, ConnectionInterface $con = null)
+    public function setLubie_tos(Collection $lubie_tos, ConnectionInterface $con = null)
     {
-        /** @var ChildLubie_to[] $pRZEPIS_id_przepissToDelete */
-        $pRZEPIS_id_przepissToDelete = $this->getPRZEPIS_id_przepiss(new Criteria(), $con)->diff($pRZEPIS_id_przepiss);
+        /** @var ChildLubie_to[] $lubie_tosToDelete */
+        $lubie_tosToDelete = $this->getLubie_tos(new Criteria(), $con)->diff($lubie_tos);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->pRZEPIS_id_przepissScheduledForDeletion = clone $pRZEPIS_id_przepissToDelete;
+        $this->lubie_tosScheduledForDeletion = clone $lubie_tosToDelete;
 
-        foreach ($pRZEPIS_id_przepissToDelete as $pRZEPIS_id_przepisRemoved) {
-            $pRZEPIS_id_przepisRemoved->setPrzepis(null);
+        foreach ($lubie_tosToDelete as $lubie_toRemoved) {
+            $lubie_toRemoved->setPrzepis(null);
         }
 
-        $this->collPRZEPIS_id_przepiss = null;
-        foreach ($pRZEPIS_id_przepiss as $pRZEPIS_id_przepis) {
-            $this->addPRZEPIS_id_przepis($pRZEPIS_id_przepis);
+        $this->collLubie_tos = null;
+        foreach ($lubie_tos as $lubie_to) {
+            $this->addLubie_to($lubie_to);
         }
 
-        $this->collPRZEPIS_id_przepiss = $pRZEPIS_id_przepiss;
-        $this->collPRZEPIS_id_przepissPartial = false;
+        $this->collLubie_tos = $lubie_tos;
+        $this->collLubie_tosPartial = false;
 
         return $this;
     }
@@ -2566,16 +2566,16 @@ abstract class Przepis implements ActiveRecordInterface
      * @return int             Count of related Lubie_to objects.
      * @throws PropelException
      */
-    public function countPRZEPIS_id_przepiss(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countLubie_tos(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collPRZEPIS_id_przepiss) {
+        $partial = $this->collLubie_tosPartial && !$this->isNew();
+        if (null === $this->collLubie_tos || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collLubie_tos) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getPRZEPIS_id_przepiss());
+                return count($this->getLubie_tos());
             }
 
             $query = ChildLubie_toQuery::create(null, $criteria);
@@ -2588,7 +2588,7 @@ abstract class Przepis implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collPRZEPIS_id_przepiss);
+        return count($this->collLubie_tos);
     }
 
     /**
@@ -2598,18 +2598,18 @@ abstract class Przepis implements ActiveRecordInterface
      * @param  ChildLubie_to $l ChildLubie_to
      * @return $this|\Przepis The current object (for fluent API support)
      */
-    public function addPRZEPIS_id_przepis(ChildLubie_to $l)
+    public function addLubie_to(ChildLubie_to $l)
     {
-        if ($this->collPRZEPIS_id_przepiss === null) {
-            $this->initPRZEPIS_id_przepiss();
-            $this->collPRZEPIS_id_przepissPartial = true;
+        if ($this->collLubie_tos === null) {
+            $this->initLubie_tos();
+            $this->collLubie_tosPartial = true;
         }
 
-        if (!$this->collPRZEPIS_id_przepiss->contains($l)) {
-            $this->doAddPRZEPIS_id_przepis($l);
+        if (!$this->collLubie_tos->contains($l)) {
+            $this->doAddLubie_to($l);
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion and $this->pRZEPIS_id_przepissScheduledForDeletion->contains($l)) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion->remove($this->pRZEPIS_id_przepissScheduledForDeletion->search($l));
+            if ($this->lubie_tosScheduledForDeletion and $this->lubie_tosScheduledForDeletion->contains($l)) {
+                $this->lubie_tosScheduledForDeletion->remove($this->lubie_tosScheduledForDeletion->search($l));
             }
         }
 
@@ -2617,29 +2617,29 @@ abstract class Przepis implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildLubie_to $pRZEPIS_id_przepis The ChildLubie_to object to add.
+     * @param ChildLubie_to $lubie_to The ChildLubie_to object to add.
      */
-    protected function doAddPRZEPIS_id_przepis(ChildLubie_to $pRZEPIS_id_przepis)
+    protected function doAddLubie_to(ChildLubie_to $lubie_to)
     {
-        $this->collPRZEPIS_id_przepiss[]= $pRZEPIS_id_przepis;
-        $pRZEPIS_id_przepis->setPrzepis($this);
+        $this->collLubie_tos[]= $lubie_to;
+        $lubie_to->setPrzepis($this);
     }
 
     /**
-     * @param  ChildLubie_to $pRZEPIS_id_przepis The ChildLubie_to object to remove.
+     * @param  ChildLubie_to $lubie_to The ChildLubie_to object to remove.
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function removePRZEPIS_id_przepis(ChildLubie_to $pRZEPIS_id_przepis)
+    public function removeLubie_to(ChildLubie_to $lubie_to)
     {
-        if ($this->getPRZEPIS_id_przepiss()->contains($pRZEPIS_id_przepis)) {
-            $pos = $this->collPRZEPIS_id_przepiss->search($pRZEPIS_id_przepis);
-            $this->collPRZEPIS_id_przepiss->remove($pos);
-            if (null === $this->pRZEPIS_id_przepissScheduledForDeletion) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion = clone $this->collPRZEPIS_id_przepiss;
-                $this->pRZEPIS_id_przepissScheduledForDeletion->clear();
+        if ($this->getLubie_tos()->contains($lubie_to)) {
+            $pos = $this->collLubie_tos->search($lubie_to);
+            $this->collLubie_tos->remove($pos);
+            if (null === $this->lubie_tosScheduledForDeletion) {
+                $this->lubie_tosScheduledForDeletion = clone $this->collLubie_tos;
+                $this->lubie_tosScheduledForDeletion->clear();
             }
-            $this->pRZEPIS_id_przepissScheduledForDeletion[]= clone $pRZEPIS_id_przepis;
-            $pRZEPIS_id_przepis->setPrzepis(null);
+            $this->lubie_tosScheduledForDeletion[]= clone $lubie_to;
+            $lubie_to->setPrzepis(null);
         }
 
         return $this;
@@ -2651,7 +2651,7 @@ abstract class Przepis implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Przepis is new, it will return
      * an empty collection; or if this Przepis has previously
-     * been saved, it will retrieve related PRZEPIS_id_przepiss from storage.
+     * been saved, it will retrieve related Lubie_tos from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -2662,40 +2662,40 @@ abstract class Przepis implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildLubie_to[] List of ChildLubie_to objects
      */
-    public function getPRZEPIS_id_przepissJoinUzytkownik(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getLubie_tosJoinUzytkownik(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildLubie_toQuery::create(null, $criteria);
         $query->joinWith('Uzytkownik', $joinBehavior);
 
-        return $this->getPRZEPIS_id_przepiss($query, $con);
+        return $this->getLubie_tos($query, $con);
     }
 
     /**
-     * Clears out the collPRZEPIS_id_przepiss collection
+     * Clears out the collNalezies collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addPRZEPIS_id_przepiss()
+     * @see        addNalezies()
      */
-    public function clearPRZEPIS_id_przepiss()
+    public function clearNalezies()
     {
-        $this->collPRZEPIS_id_przepiss = null; // important to set this to NULL since that means it is uninitialized
+        $this->collNalezies = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collPRZEPIS_id_przepiss collection loaded partially.
+     * Reset is the collNalezies collection loaded partially.
      */
-    public function resetPartialPRZEPIS_id_przepiss($v = true)
+    public function resetPartialNalezies($v = true)
     {
-        $this->collPRZEPIS_id_przepissPartial = $v;
+        $this->collNaleziesPartial = $v;
     }
 
     /**
-     * Initializes the collPRZEPIS_id_przepiss collection.
+     * Initializes the collNalezies collection.
      *
-     * By default this just sets the collPRZEPIS_id_przepiss collection to an empty array (like clearcollPRZEPIS_id_przepiss());
+     * By default this just sets the collNalezies collection to an empty array (like clearcollNalezies());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -2704,16 +2704,16 @@ abstract class Przepis implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initPRZEPIS_id_przepiss($overrideExisting = true)
+    public function initNalezies($overrideExisting = true)
     {
-        if (null !== $this->collPRZEPIS_id_przepiss && !$overrideExisting) {
+        if (null !== $this->collNalezies && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = NalezyTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collPRZEPIS_id_przepiss = new $collectionClassName;
-        $this->collPRZEPIS_id_przepiss->setModel('\Nalezy');
+        $this->collNalezies = new $collectionClassName;
+        $this->collNalezies->setModel('\Nalezy');
     }
 
     /**
@@ -2730,57 +2730,57 @@ abstract class Przepis implements ActiveRecordInterface
      * @return ObjectCollection|ChildNalezy[] List of ChildNalezy objects
      * @throws PropelException
      */
-    public function getPRZEPIS_id_przepiss(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getNalezies(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
+        $partial = $this->collNaleziesPartial && !$this->isNew();
+        if (null === $this->collNalezies || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collPRZEPIS_id_przepiss) {
-                    $this->initPRZEPIS_id_przepiss();
+                if (null === $this->collNalezies) {
+                    $this->initNalezies();
                 } else {
                     $collectionClassName = NalezyTableMap::getTableMap()->getCollectionClassName();
 
-                    $collPRZEPIS_id_przepiss = new $collectionClassName;
-                    $collPRZEPIS_id_przepiss->setModel('\Nalezy');
+                    $collNalezies = new $collectionClassName;
+                    $collNalezies->setModel('\Nalezy');
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collNalezies;
                 }
             } else {
-                $collPRZEPIS_id_przepiss = ChildNalezyQuery::create(null, $criteria)
+                $collNalezies = ChildNalezyQuery::create(null, $criteria)
                     ->filterByPrzepis($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collPRZEPIS_id_przepissPartial && count($collPRZEPIS_id_przepiss)) {
-                        $this->initPRZEPIS_id_przepiss(false);
+                    if (false !== $this->collNaleziesPartial && count($collNalezies)) {
+                        $this->initNalezies(false);
 
-                        foreach ($collPRZEPIS_id_przepiss as $obj) {
-                            if (false == $this->collPRZEPIS_id_przepiss->contains($obj)) {
-                                $this->collPRZEPIS_id_przepiss->append($obj);
+                        foreach ($collNalezies as $obj) {
+                            if (false == $this->collNalezies->contains($obj)) {
+                                $this->collNalezies->append($obj);
                             }
                         }
 
-                        $this->collPRZEPIS_id_przepissPartial = true;
+                        $this->collNaleziesPartial = true;
                     }
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collNalezies;
                 }
 
-                if ($partial && $this->collPRZEPIS_id_przepiss) {
-                    foreach ($this->collPRZEPIS_id_przepiss as $obj) {
+                if ($partial && $this->collNalezies) {
+                    foreach ($this->collNalezies as $obj) {
                         if ($obj->isNew()) {
-                            $collPRZEPIS_id_przepiss[] = $obj;
+                            $collNalezies[] = $obj;
                         }
                     }
                 }
 
-                $this->collPRZEPIS_id_przepiss = $collPRZEPIS_id_przepiss;
-                $this->collPRZEPIS_id_przepissPartial = false;
+                $this->collNalezies = $collNalezies;
+                $this->collNaleziesPartial = false;
             }
         }
 
-        return $this->collPRZEPIS_id_przepiss;
+        return $this->collNalezies;
     }
 
     /**
@@ -2789,32 +2789,32 @@ abstract class Przepis implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $pRZEPIS_id_przepiss A Propel collection.
+     * @param      Collection $nalezies A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function setPRZEPIS_id_przepiss(Collection $pRZEPIS_id_przepiss, ConnectionInterface $con = null)
+    public function setNalezies(Collection $nalezies, ConnectionInterface $con = null)
     {
-        /** @var ChildNalezy[] $pRZEPIS_id_przepissToDelete */
-        $pRZEPIS_id_przepissToDelete = $this->getPRZEPIS_id_przepiss(new Criteria(), $con)->diff($pRZEPIS_id_przepiss);
+        /** @var ChildNalezy[] $naleziesToDelete */
+        $naleziesToDelete = $this->getNalezies(new Criteria(), $con)->diff($nalezies);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->pRZEPIS_id_przepissScheduledForDeletion = clone $pRZEPIS_id_przepissToDelete;
+        $this->naleziesScheduledForDeletion = clone $naleziesToDelete;
 
-        foreach ($pRZEPIS_id_przepissToDelete as $pRZEPIS_id_przepisRemoved) {
-            $pRZEPIS_id_przepisRemoved->setPrzepis(null);
+        foreach ($naleziesToDelete as $nalezyRemoved) {
+            $nalezyRemoved->setPrzepis(null);
         }
 
-        $this->collPRZEPIS_id_przepiss = null;
-        foreach ($pRZEPIS_id_przepiss as $pRZEPIS_id_przepis) {
-            $this->addPRZEPIS_id_przepis($pRZEPIS_id_przepis);
+        $this->collNalezies = null;
+        foreach ($nalezies as $nalezy) {
+            $this->addNalezy($nalezy);
         }
 
-        $this->collPRZEPIS_id_przepiss = $pRZEPIS_id_przepiss;
-        $this->collPRZEPIS_id_przepissPartial = false;
+        $this->collNalezies = $nalezies;
+        $this->collNaleziesPartial = false;
 
         return $this;
     }
@@ -2828,16 +2828,16 @@ abstract class Przepis implements ActiveRecordInterface
      * @return int             Count of related Nalezy objects.
      * @throws PropelException
      */
-    public function countPRZEPIS_id_przepiss(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countNalezies(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collPRZEPIS_id_przepiss) {
+        $partial = $this->collNaleziesPartial && !$this->isNew();
+        if (null === $this->collNalezies || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collNalezies) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getPRZEPIS_id_przepiss());
+                return count($this->getNalezies());
             }
 
             $query = ChildNalezyQuery::create(null, $criteria);
@@ -2850,7 +2850,7 @@ abstract class Przepis implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collPRZEPIS_id_przepiss);
+        return count($this->collNalezies);
     }
 
     /**
@@ -2860,18 +2860,18 @@ abstract class Przepis implements ActiveRecordInterface
      * @param  ChildNalezy $l ChildNalezy
      * @return $this|\Przepis The current object (for fluent API support)
      */
-    public function addPRZEPIS_id_przepis(ChildNalezy $l)
+    public function addNalezy(ChildNalezy $l)
     {
-        if ($this->collPRZEPIS_id_przepiss === null) {
-            $this->initPRZEPIS_id_przepiss();
-            $this->collPRZEPIS_id_przepissPartial = true;
+        if ($this->collNalezies === null) {
+            $this->initNalezies();
+            $this->collNaleziesPartial = true;
         }
 
-        if (!$this->collPRZEPIS_id_przepiss->contains($l)) {
-            $this->doAddPRZEPIS_id_przepis($l);
+        if (!$this->collNalezies->contains($l)) {
+            $this->doAddNalezy($l);
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion and $this->pRZEPIS_id_przepissScheduledForDeletion->contains($l)) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion->remove($this->pRZEPIS_id_przepissScheduledForDeletion->search($l));
+            if ($this->naleziesScheduledForDeletion and $this->naleziesScheduledForDeletion->contains($l)) {
+                $this->naleziesScheduledForDeletion->remove($this->naleziesScheduledForDeletion->search($l));
             }
         }
 
@@ -2879,29 +2879,29 @@ abstract class Przepis implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildNalezy $pRZEPIS_id_przepis The ChildNalezy object to add.
+     * @param ChildNalezy $nalezy The ChildNalezy object to add.
      */
-    protected function doAddPRZEPIS_id_przepis(ChildNalezy $pRZEPIS_id_przepis)
+    protected function doAddNalezy(ChildNalezy $nalezy)
     {
-        $this->collPRZEPIS_id_przepiss[]= $pRZEPIS_id_przepis;
-        $pRZEPIS_id_przepis->setPrzepis($this);
+        $this->collNalezies[]= $nalezy;
+        $nalezy->setPrzepis($this);
     }
 
     /**
-     * @param  ChildNalezy $pRZEPIS_id_przepis The ChildNalezy object to remove.
+     * @param  ChildNalezy $nalezy The ChildNalezy object to remove.
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function removePRZEPIS_id_przepis(ChildNalezy $pRZEPIS_id_przepis)
+    public function removeNalezy(ChildNalezy $nalezy)
     {
-        if ($this->getPRZEPIS_id_przepiss()->contains($pRZEPIS_id_przepis)) {
-            $pos = $this->collPRZEPIS_id_przepiss->search($pRZEPIS_id_przepis);
-            $this->collPRZEPIS_id_przepiss->remove($pos);
-            if (null === $this->pRZEPIS_id_przepissScheduledForDeletion) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion = clone $this->collPRZEPIS_id_przepiss;
-                $this->pRZEPIS_id_przepissScheduledForDeletion->clear();
+        if ($this->getNalezies()->contains($nalezy)) {
+            $pos = $this->collNalezies->search($nalezy);
+            $this->collNalezies->remove($pos);
+            if (null === $this->naleziesScheduledForDeletion) {
+                $this->naleziesScheduledForDeletion = clone $this->collNalezies;
+                $this->naleziesScheduledForDeletion->clear();
             }
-            $this->pRZEPIS_id_przepissScheduledForDeletion[]= clone $pRZEPIS_id_przepis;
-            $pRZEPIS_id_przepis->setPrzepis(null);
+            $this->naleziesScheduledForDeletion[]= clone $nalezy;
+            $nalezy->setPrzepis(null);
         }
 
         return $this;
@@ -2913,7 +2913,7 @@ abstract class Przepis implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Przepis is new, it will return
      * an empty collection; or if this Przepis has previously
-     * been saved, it will retrieve related PRZEPIS_id_przepiss from storage.
+     * been saved, it will retrieve related Nalezies from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -2924,40 +2924,40 @@ abstract class Przepis implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildNalezy[] List of ChildNalezy objects
      */
-    public function getPRZEPIS_id_przepissJoinKategoria(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getNaleziesJoinKategoria(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildNalezyQuery::create(null, $criteria);
         $query->joinWith('Kategoria', $joinBehavior);
 
-        return $this->getPRZEPIS_id_przepiss($query, $con);
+        return $this->getNalezies($query, $con);
     }
 
     /**
-     * Clears out the collPRZEPIS_id_przepiss collection
+     * Clears out the collZawieras collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addPRZEPIS_id_przepiss()
+     * @see        addZawieras()
      */
-    public function clearPRZEPIS_id_przepiss()
+    public function clearZawieras()
     {
-        $this->collPRZEPIS_id_przepiss = null; // important to set this to NULL since that means it is uninitialized
+        $this->collZawieras = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collPRZEPIS_id_przepiss collection loaded partially.
+     * Reset is the collZawieras collection loaded partially.
      */
-    public function resetPartialPRZEPIS_id_przepiss($v = true)
+    public function resetPartialZawieras($v = true)
     {
-        $this->collPRZEPIS_id_przepissPartial = $v;
+        $this->collZawierasPartial = $v;
     }
 
     /**
-     * Initializes the collPRZEPIS_id_przepiss collection.
+     * Initializes the collZawieras collection.
      *
-     * By default this just sets the collPRZEPIS_id_przepiss collection to an empty array (like clearcollPRZEPIS_id_przepiss());
+     * By default this just sets the collZawieras collection to an empty array (like clearcollZawieras());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -2966,16 +2966,16 @@ abstract class Przepis implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initPRZEPIS_id_przepiss($overrideExisting = true)
+    public function initZawieras($overrideExisting = true)
     {
-        if (null !== $this->collPRZEPIS_id_przepiss && !$overrideExisting) {
+        if (null !== $this->collZawieras && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = ZawieraTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collPRZEPIS_id_przepiss = new $collectionClassName;
-        $this->collPRZEPIS_id_przepiss->setModel('\Zawiera');
+        $this->collZawieras = new $collectionClassName;
+        $this->collZawieras->setModel('\Zawiera');
     }
 
     /**
@@ -2992,57 +2992,57 @@ abstract class Przepis implements ActiveRecordInterface
      * @return ObjectCollection|ChildZawiera[] List of ChildZawiera objects
      * @throws PropelException
      */
-    public function getPRZEPIS_id_przepiss(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getZawieras(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
+        $partial = $this->collZawierasPartial && !$this->isNew();
+        if (null === $this->collZawieras || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collPRZEPIS_id_przepiss) {
-                    $this->initPRZEPIS_id_przepiss();
+                if (null === $this->collZawieras) {
+                    $this->initZawieras();
                 } else {
                     $collectionClassName = ZawieraTableMap::getTableMap()->getCollectionClassName();
 
-                    $collPRZEPIS_id_przepiss = new $collectionClassName;
-                    $collPRZEPIS_id_przepiss->setModel('\Zawiera');
+                    $collZawieras = new $collectionClassName;
+                    $collZawieras->setModel('\Zawiera');
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collZawieras;
                 }
             } else {
-                $collPRZEPIS_id_przepiss = ChildZawieraQuery::create(null, $criteria)
+                $collZawieras = ChildZawieraQuery::create(null, $criteria)
                     ->filterByPrzepis($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collPRZEPIS_id_przepissPartial && count($collPRZEPIS_id_przepiss)) {
-                        $this->initPRZEPIS_id_przepiss(false);
+                    if (false !== $this->collZawierasPartial && count($collZawieras)) {
+                        $this->initZawieras(false);
 
-                        foreach ($collPRZEPIS_id_przepiss as $obj) {
-                            if (false == $this->collPRZEPIS_id_przepiss->contains($obj)) {
-                                $this->collPRZEPIS_id_przepiss->append($obj);
+                        foreach ($collZawieras as $obj) {
+                            if (false == $this->collZawieras->contains($obj)) {
+                                $this->collZawieras->append($obj);
                             }
                         }
 
-                        $this->collPRZEPIS_id_przepissPartial = true;
+                        $this->collZawierasPartial = true;
                     }
 
-                    return $collPRZEPIS_id_przepiss;
+                    return $collZawieras;
                 }
 
-                if ($partial && $this->collPRZEPIS_id_przepiss) {
-                    foreach ($this->collPRZEPIS_id_przepiss as $obj) {
+                if ($partial && $this->collZawieras) {
+                    foreach ($this->collZawieras as $obj) {
                         if ($obj->isNew()) {
-                            $collPRZEPIS_id_przepiss[] = $obj;
+                            $collZawieras[] = $obj;
                         }
                     }
                 }
 
-                $this->collPRZEPIS_id_przepiss = $collPRZEPIS_id_przepiss;
-                $this->collPRZEPIS_id_przepissPartial = false;
+                $this->collZawieras = $collZawieras;
+                $this->collZawierasPartial = false;
             }
         }
 
-        return $this->collPRZEPIS_id_przepiss;
+        return $this->collZawieras;
     }
 
     /**
@@ -3051,32 +3051,32 @@ abstract class Przepis implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $pRZEPIS_id_przepiss A Propel collection.
+     * @param      Collection $zawieras A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function setPRZEPIS_id_przepiss(Collection $pRZEPIS_id_przepiss, ConnectionInterface $con = null)
+    public function setZawieras(Collection $zawieras, ConnectionInterface $con = null)
     {
-        /** @var ChildZawiera[] $pRZEPIS_id_przepissToDelete */
-        $pRZEPIS_id_przepissToDelete = $this->getPRZEPIS_id_przepiss(new Criteria(), $con)->diff($pRZEPIS_id_przepiss);
+        /** @var ChildZawiera[] $zawierasToDelete */
+        $zawierasToDelete = $this->getZawieras(new Criteria(), $con)->diff($zawieras);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->pRZEPIS_id_przepissScheduledForDeletion = clone $pRZEPIS_id_przepissToDelete;
+        $this->zawierasScheduledForDeletion = clone $zawierasToDelete;
 
-        foreach ($pRZEPIS_id_przepissToDelete as $pRZEPIS_id_przepisRemoved) {
-            $pRZEPIS_id_przepisRemoved->setPrzepis(null);
+        foreach ($zawierasToDelete as $zawieraRemoved) {
+            $zawieraRemoved->setPrzepis(null);
         }
 
-        $this->collPRZEPIS_id_przepiss = null;
-        foreach ($pRZEPIS_id_przepiss as $pRZEPIS_id_przepis) {
-            $this->addPRZEPIS_id_przepis($pRZEPIS_id_przepis);
+        $this->collZawieras = null;
+        foreach ($zawieras as $zawiera) {
+            $this->addZawiera($zawiera);
         }
 
-        $this->collPRZEPIS_id_przepiss = $pRZEPIS_id_przepiss;
-        $this->collPRZEPIS_id_przepissPartial = false;
+        $this->collZawieras = $zawieras;
+        $this->collZawierasPartial = false;
 
         return $this;
     }
@@ -3090,16 +3090,16 @@ abstract class Przepis implements ActiveRecordInterface
      * @return int             Count of related Zawiera objects.
      * @throws PropelException
      */
-    public function countPRZEPIS_id_przepiss(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countZawieras(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collPRZEPIS_id_przepissPartial && !$this->isNew();
-        if (null === $this->collPRZEPIS_id_przepiss || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collPRZEPIS_id_przepiss) {
+        $partial = $this->collZawierasPartial && !$this->isNew();
+        if (null === $this->collZawieras || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collZawieras) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getPRZEPIS_id_przepiss());
+                return count($this->getZawieras());
             }
 
             $query = ChildZawieraQuery::create(null, $criteria);
@@ -3112,7 +3112,7 @@ abstract class Przepis implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collPRZEPIS_id_przepiss);
+        return count($this->collZawieras);
     }
 
     /**
@@ -3122,18 +3122,18 @@ abstract class Przepis implements ActiveRecordInterface
      * @param  ChildZawiera $l ChildZawiera
      * @return $this|\Przepis The current object (for fluent API support)
      */
-    public function addPRZEPIS_id_przepis(ChildZawiera $l)
+    public function addZawiera(ChildZawiera $l)
     {
-        if ($this->collPRZEPIS_id_przepiss === null) {
-            $this->initPRZEPIS_id_przepiss();
-            $this->collPRZEPIS_id_przepissPartial = true;
+        if ($this->collZawieras === null) {
+            $this->initZawieras();
+            $this->collZawierasPartial = true;
         }
 
-        if (!$this->collPRZEPIS_id_przepiss->contains($l)) {
-            $this->doAddPRZEPIS_id_przepis($l);
+        if (!$this->collZawieras->contains($l)) {
+            $this->doAddZawiera($l);
 
-            if ($this->pRZEPIS_id_przepissScheduledForDeletion and $this->pRZEPIS_id_przepissScheduledForDeletion->contains($l)) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion->remove($this->pRZEPIS_id_przepissScheduledForDeletion->search($l));
+            if ($this->zawierasScheduledForDeletion and $this->zawierasScheduledForDeletion->contains($l)) {
+                $this->zawierasScheduledForDeletion->remove($this->zawierasScheduledForDeletion->search($l));
             }
         }
 
@@ -3141,29 +3141,29 @@ abstract class Przepis implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildZawiera $pRZEPIS_id_przepis The ChildZawiera object to add.
+     * @param ChildZawiera $zawiera The ChildZawiera object to add.
      */
-    protected function doAddPRZEPIS_id_przepis(ChildZawiera $pRZEPIS_id_przepis)
+    protected function doAddZawiera(ChildZawiera $zawiera)
     {
-        $this->collPRZEPIS_id_przepiss[]= $pRZEPIS_id_przepis;
-        $pRZEPIS_id_przepis->setPrzepis($this);
+        $this->collZawieras[]= $zawiera;
+        $zawiera->setPrzepis($this);
     }
 
     /**
-     * @param  ChildZawiera $pRZEPIS_id_przepis The ChildZawiera object to remove.
+     * @param  ChildZawiera $zawiera The ChildZawiera object to remove.
      * @return $this|ChildPrzepis The current object (for fluent API support)
      */
-    public function removePRZEPIS_id_przepis(ChildZawiera $pRZEPIS_id_przepis)
+    public function removeZawiera(ChildZawiera $zawiera)
     {
-        if ($this->getPRZEPIS_id_przepiss()->contains($pRZEPIS_id_przepis)) {
-            $pos = $this->collPRZEPIS_id_przepiss->search($pRZEPIS_id_przepis);
-            $this->collPRZEPIS_id_przepiss->remove($pos);
-            if (null === $this->pRZEPIS_id_przepissScheduledForDeletion) {
-                $this->pRZEPIS_id_przepissScheduledForDeletion = clone $this->collPRZEPIS_id_przepiss;
-                $this->pRZEPIS_id_przepissScheduledForDeletion->clear();
+        if ($this->getZawieras()->contains($zawiera)) {
+            $pos = $this->collZawieras->search($zawiera);
+            $this->collZawieras->remove($pos);
+            if (null === $this->zawierasScheduledForDeletion) {
+                $this->zawierasScheduledForDeletion = clone $this->collZawieras;
+                $this->zawierasScheduledForDeletion->clear();
             }
-            $this->pRZEPIS_id_przepissScheduledForDeletion[]= clone $pRZEPIS_id_przepis;
-            $pRZEPIS_id_przepis->setPrzepis(null);
+            $this->zawierasScheduledForDeletion[]= clone $zawiera;
+            $zawiera->setPrzepis(null);
         }
 
         return $this;
@@ -3175,7 +3175,7 @@ abstract class Przepis implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Przepis is new, it will return
      * an empty collection; or if this Przepis has previously
-     * been saved, it will retrieve related PRZEPIS_id_przepiss from storage.
+     * been saved, it will retrieve related Zawieras from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -3186,12 +3186,12 @@ abstract class Przepis implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildZawiera[] List of ChildZawiera objects
      */
-    public function getPRZEPIS_id_przepissJoinSkladniki(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getZawierasJoinSkladniki(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildZawieraQuery::create(null, $criteria);
         $query->joinWith('Skladniki', $joinBehavior);
 
-        return $this->getPRZEPIS_id_przepiss($query, $con);
+        return $this->getZawieras($query, $con);
     }
 
     /**
@@ -3202,7 +3202,7 @@ abstract class Przepis implements ActiveRecordInterface
     public function clear()
     {
         if (null !== $this->aUzytkownik) {
-            $this->aUzytkownik->removeUZYTKOWNIK_login($this);
+            $this->aUzytkownik->removePrzepis($this);
         }
         $this->id_przepis = null;
         $this->nazwa = null;
@@ -3232,38 +3232,38 @@ abstract class Przepis implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collPRZEPIS_id_przepiss) {
-                foreach ($this->collPRZEPIS_id_przepiss as $o) {
+            if ($this->collEtaps) {
+                foreach ($this->collEtaps as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collPRZEPIS_id_przepiss) {
-                foreach ($this->collPRZEPIS_id_przepiss as $o) {
+            if ($this->collUlubiones) {
+                foreach ($this->collUlubiones as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collPRZEPIS_id_przepiss) {
-                foreach ($this->collPRZEPIS_id_przepiss as $o) {
+            if ($this->collLubie_tos) {
+                foreach ($this->collLubie_tos as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collPRZEPIS_id_przepiss) {
-                foreach ($this->collPRZEPIS_id_przepiss as $o) {
+            if ($this->collNalezies) {
+                foreach ($this->collNalezies as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collPRZEPIS_id_przepiss) {
-                foreach ($this->collPRZEPIS_id_przepiss as $o) {
+            if ($this->collZawieras) {
+                foreach ($this->collZawieras as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
         } // if ($deep)
 
-        $this->collPRZEPIS_id_przepiss = null;
-        $this->collPRZEPIS_id_przepiss = null;
-        $this->collPRZEPIS_id_przepiss = null;
-        $this->collPRZEPIS_id_przepiss = null;
-        $this->collPRZEPIS_id_przepiss = null;
+        $this->collEtaps = null;
+        $this->collUlubiones = null;
+        $this->collLubie_tos = null;
+        $this->collNalezies = null;
+        $this->collZawieras = null;
         $this->aUzytkownik = null;
     }
 

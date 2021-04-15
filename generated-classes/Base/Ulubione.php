@@ -1093,7 +1093,7 @@ abstract class Ulubione implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildUzytkownik object, it will not be re-added.
         if ($v !== null) {
-            $v->addUZYTKOWNIK_login($this);
+            $v->addUlubione($this);
         }
 
 
@@ -1117,7 +1117,7 @@ abstract class Ulubione implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aUzytkownik->addUZYTKOWNIK_logins($this);
+                $this->aUzytkownik->addUlubiones($this);
              */
         }
 
@@ -1144,7 +1144,7 @@ abstract class Ulubione implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildPrzepis object, it will not be re-added.
         if ($v !== null) {
-            $v->addPRZEPIS_id_przepis($this);
+            $v->addUlubione($this);
         }
 
 
@@ -1168,7 +1168,7 @@ abstract class Ulubione implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aPrzepis->addPRZEPIS_id_przepiss($this);
+                $this->aPrzepis->addUlubiones($this);
              */
         }
 
@@ -1183,10 +1183,10 @@ abstract class Ulubione implements ActiveRecordInterface
     public function clear()
     {
         if (null !== $this->aUzytkownik) {
-            $this->aUzytkownik->removeUZYTKOWNIK_login($this);
+            $this->aUzytkownik->removeUlubione($this);
         }
         if (null !== $this->aPrzepis) {
-            $this->aPrzepis->removePRZEPIS_id_przepis($this);
+            $this->aPrzepis->removeUlubione($this);
         }
         $this->uzytkownik_login = null;
         $this->przepis_id_przepis = null;

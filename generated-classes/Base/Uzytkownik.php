@@ -108,20 +108,20 @@ abstract class Uzytkownik implements ActiveRecordInterface
     /**
      * @var        ObjectCollection|ChildPrzepis[] Collection to store aggregation of ChildPrzepis objects.
      */
-    protected $collUZYTKOWNIK_logins;
-    protected $collUZYTKOWNIK_loginsPartial;
+    protected $collPrzepiss;
+    protected $collPrzepissPartial;
 
     /**
      * @var        ObjectCollection|ChildUlubione[] Collection to store aggregation of ChildUlubione objects.
      */
-    protected $collUZYTKOWNIK_logins;
-    protected $collUZYTKOWNIK_loginsPartial;
+    protected $collUlubiones;
+    protected $collUlubionesPartial;
 
     /**
      * @var        ObjectCollection|ChildLubie_to[] Collection to store aggregation of ChildLubie_to objects.
      */
-    protected $collUZYTKOWNIK_logins;
-    protected $collUZYTKOWNIK_loginsPartial;
+    protected $collLubie_tos;
+    protected $collLubie_tosPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -135,19 +135,19 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildPrzepis[]
      */
-    protected $uZYTKOWNIK_loginsScheduledForDeletion = null;
+    protected $przepissScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildUlubione[]
      */
-    protected $uZYTKOWNIK_loginsScheduledForDeletion = null;
+    protected $ulubionesScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildLubie_to[]
      */
-    protected $uZYTKOWNIK_loginsScheduledForDeletion = null;
+    protected $lubie_tosScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Uzytkownik object.
@@ -644,11 +644,11 @@ abstract class Uzytkownik implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->collUZYTKOWNIK_logins = null;
+            $this->collPrzepiss = null;
 
-            $this->collUZYTKOWNIK_logins = null;
+            $this->collUlubiones = null;
 
-            $this->collUZYTKOWNIK_logins = null;
+            $this->collLubie_tos = null;
 
         } // if (deep)
     }
@@ -764,51 +764,51 @@ abstract class Uzytkownik implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->uZYTKOWNIK_loginsScheduledForDeletion !== null) {
-                if (!$this->uZYTKOWNIK_loginsScheduledForDeletion->isEmpty()) {
+            if ($this->przepissScheduledForDeletion !== null) {
+                if (!$this->przepissScheduledForDeletion->isEmpty()) {
                     \PrzepisQuery::create()
-                        ->filterByPrimaryKeys($this->uZYTKOWNIK_loginsScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->przepissScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->uZYTKOWNIK_loginsScheduledForDeletion = null;
+                    $this->przepissScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collUZYTKOWNIK_logins !== null) {
-                foreach ($this->collUZYTKOWNIK_logins as $referrerFK) {
+            if ($this->collPrzepiss !== null) {
+                foreach ($this->collPrzepiss as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->uZYTKOWNIK_loginsScheduledForDeletion !== null) {
-                if (!$this->uZYTKOWNIK_loginsScheduledForDeletion->isEmpty()) {
+            if ($this->ulubionesScheduledForDeletion !== null) {
+                if (!$this->ulubionesScheduledForDeletion->isEmpty()) {
                     \UlubioneQuery::create()
-                        ->filterByPrimaryKeys($this->uZYTKOWNIK_loginsScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->ulubionesScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->uZYTKOWNIK_loginsScheduledForDeletion = null;
+                    $this->ulubionesScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collUZYTKOWNIK_logins !== null) {
-                foreach ($this->collUZYTKOWNIK_logins as $referrerFK) {
+            if ($this->collUlubiones !== null) {
+                foreach ($this->collUlubiones as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
                 }
             }
 
-            if ($this->uZYTKOWNIK_loginsScheduledForDeletion !== null) {
-                if (!$this->uZYTKOWNIK_loginsScheduledForDeletion->isEmpty()) {
+            if ($this->lubie_tosScheduledForDeletion !== null) {
+                if (!$this->lubie_tosScheduledForDeletion->isEmpty()) {
                     \Lubie_toQuery::create()
-                        ->filterByPrimaryKeys($this->uZYTKOWNIK_loginsScheduledForDeletion->getPrimaryKeys(false))
+                        ->filterByPrimaryKeys($this->lubie_tosScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->uZYTKOWNIK_loginsScheduledForDeletion = null;
+                    $this->lubie_tosScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collUZYTKOWNIK_logins !== null) {
-                foreach ($this->collUZYTKOWNIK_logins as $referrerFK) {
+            if ($this->collLubie_tos !== null) {
+                foreach ($this->collLubie_tos as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -990,7 +990,7 @@ abstract class Uzytkownik implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->collUZYTKOWNIK_logins) {
+            if (null !== $this->collPrzepiss) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1000,12 +1000,12 @@ abstract class Uzytkownik implements ActiveRecordInterface
                         $key = 'przepiss';
                         break;
                     default:
-                        $key = 'UZYTKOWNIK_logins';
+                        $key = 'Przepiss';
                 }
 
-                $result[$key] = $this->collUZYTKOWNIK_logins->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collPrzepiss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collUZYTKOWNIK_logins) {
+            if (null !== $this->collUlubiones) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1015,12 +1015,12 @@ abstract class Uzytkownik implements ActiveRecordInterface
                         $key = 'ulubiones';
                         break;
                     default:
-                        $key = 'UZYTKOWNIK_logins';
+                        $key = 'Ulubiones';
                 }
 
-                $result[$key] = $this->collUZYTKOWNIK_logins->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collUlubiones->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
-            if (null !== $this->collUZYTKOWNIK_logins) {
+            if (null !== $this->collLubie_tos) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
@@ -1030,10 +1030,10 @@ abstract class Uzytkownik implements ActiveRecordInterface
                         $key = 'lubie_tos';
                         break;
                     default:
-                        $key = 'UZYTKOWNIK_logins';
+                        $key = 'Lubie_tos';
                 }
 
-                $result[$key] = $this->collUZYTKOWNIK_logins->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collLubie_tos->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1280,21 +1280,21 @@ abstract class Uzytkownik implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
-            foreach ($this->getUZYTKOWNIK_logins() as $relObj) {
+            foreach ($this->getPrzepiss() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addUZYTKOWNIK_login($relObj->copy($deepCopy));
+                    $copyObj->addPrzepis($relObj->copy($deepCopy));
                 }
             }
 
-            foreach ($this->getUZYTKOWNIK_logins() as $relObj) {
+            foreach ($this->getUlubiones() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addUZYTKOWNIK_login($relObj->copy($deepCopy));
+                    $copyObj->addUlubione($relObj->copy($deepCopy));
                 }
             }
 
-            foreach ($this->getUZYTKOWNIK_logins() as $relObj) {
+            foreach ($this->getLubie_tos() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addUZYTKOWNIK_login($relObj->copy($deepCopy));
+                    $copyObj->addLubie_to($relObj->copy($deepCopy));
                 }
             }
 
@@ -1338,46 +1338,46 @@ abstract class Uzytkownik implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
-        if ('UZYTKOWNIK_login' === $relationName) {
-            $this->initUZYTKOWNIK_logins();
+        if ('Przepis' === $relationName) {
+            $this->initPrzepiss();
             return;
         }
-        if ('UZYTKOWNIK_login' === $relationName) {
-            $this->initUZYTKOWNIK_logins();
+        if ('Ulubione' === $relationName) {
+            $this->initUlubiones();
             return;
         }
-        if ('UZYTKOWNIK_login' === $relationName) {
-            $this->initUZYTKOWNIK_logins();
+        if ('Lubie_to' === $relationName) {
+            $this->initLubie_tos();
             return;
         }
     }
 
     /**
-     * Clears out the collUZYTKOWNIK_logins collection
+     * Clears out the collPrzepiss collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addUZYTKOWNIK_logins()
+     * @see        addPrzepiss()
      */
-    public function clearUZYTKOWNIK_logins()
+    public function clearPrzepiss()
     {
-        $this->collUZYTKOWNIK_logins = null; // important to set this to NULL since that means it is uninitialized
+        $this->collPrzepiss = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collUZYTKOWNIK_logins collection loaded partially.
+     * Reset is the collPrzepiss collection loaded partially.
      */
-    public function resetPartialUZYTKOWNIK_logins($v = true)
+    public function resetPartialPrzepiss($v = true)
     {
-        $this->collUZYTKOWNIK_loginsPartial = $v;
+        $this->collPrzepissPartial = $v;
     }
 
     /**
-     * Initializes the collUZYTKOWNIK_logins collection.
+     * Initializes the collPrzepiss collection.
      *
-     * By default this just sets the collUZYTKOWNIK_logins collection to an empty array (like clearcollUZYTKOWNIK_logins());
+     * By default this just sets the collPrzepiss collection to an empty array (like clearcollPrzepiss());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1386,16 +1386,16 @@ abstract class Uzytkownik implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initUZYTKOWNIK_logins($overrideExisting = true)
+    public function initPrzepiss($overrideExisting = true)
     {
-        if (null !== $this->collUZYTKOWNIK_logins && !$overrideExisting) {
+        if (null !== $this->collPrzepiss && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = PrzepisTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collUZYTKOWNIK_logins = new $collectionClassName;
-        $this->collUZYTKOWNIK_logins->setModel('\Przepis');
+        $this->collPrzepiss = new $collectionClassName;
+        $this->collPrzepiss->setModel('\Przepis');
     }
 
     /**
@@ -1412,57 +1412,57 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @return ObjectCollection|ChildPrzepis[] List of ChildPrzepis objects
      * @throws PropelException
      */
-    public function getUZYTKOWNIK_logins(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getPrzepiss(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collUZYTKOWNIK_loginsPartial && !$this->isNew();
-        if (null === $this->collUZYTKOWNIK_logins || null !== $criteria || $partial) {
+        $partial = $this->collPrzepissPartial && !$this->isNew();
+        if (null === $this->collPrzepiss || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collUZYTKOWNIK_logins) {
-                    $this->initUZYTKOWNIK_logins();
+                if (null === $this->collPrzepiss) {
+                    $this->initPrzepiss();
                 } else {
                     $collectionClassName = PrzepisTableMap::getTableMap()->getCollectionClassName();
 
-                    $collUZYTKOWNIK_logins = new $collectionClassName;
-                    $collUZYTKOWNIK_logins->setModel('\Przepis');
+                    $collPrzepiss = new $collectionClassName;
+                    $collPrzepiss->setModel('\Przepis');
 
-                    return $collUZYTKOWNIK_logins;
+                    return $collPrzepiss;
                 }
             } else {
-                $collUZYTKOWNIK_logins = ChildPrzepisQuery::create(null, $criteria)
+                $collPrzepiss = ChildPrzepisQuery::create(null, $criteria)
                     ->filterByUzytkownik($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collUZYTKOWNIK_loginsPartial && count($collUZYTKOWNIK_logins)) {
-                        $this->initUZYTKOWNIK_logins(false);
+                    if (false !== $this->collPrzepissPartial && count($collPrzepiss)) {
+                        $this->initPrzepiss(false);
 
-                        foreach ($collUZYTKOWNIK_logins as $obj) {
-                            if (false == $this->collUZYTKOWNIK_logins->contains($obj)) {
-                                $this->collUZYTKOWNIK_logins->append($obj);
+                        foreach ($collPrzepiss as $obj) {
+                            if (false == $this->collPrzepiss->contains($obj)) {
+                                $this->collPrzepiss->append($obj);
                             }
                         }
 
-                        $this->collUZYTKOWNIK_loginsPartial = true;
+                        $this->collPrzepissPartial = true;
                     }
 
-                    return $collUZYTKOWNIK_logins;
+                    return $collPrzepiss;
                 }
 
-                if ($partial && $this->collUZYTKOWNIK_logins) {
-                    foreach ($this->collUZYTKOWNIK_logins as $obj) {
+                if ($partial && $this->collPrzepiss) {
+                    foreach ($this->collPrzepiss as $obj) {
                         if ($obj->isNew()) {
-                            $collUZYTKOWNIK_logins[] = $obj;
+                            $collPrzepiss[] = $obj;
                         }
                     }
                 }
 
-                $this->collUZYTKOWNIK_logins = $collUZYTKOWNIK_logins;
-                $this->collUZYTKOWNIK_loginsPartial = false;
+                $this->collPrzepiss = $collPrzepiss;
+                $this->collPrzepissPartial = false;
             }
         }
 
-        return $this->collUZYTKOWNIK_logins;
+        return $this->collPrzepiss;
     }
 
     /**
@@ -1471,29 +1471,29 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $uZYTKOWNIK_logins A Propel collection.
+     * @param      Collection $przepiss A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildUzytkownik The current object (for fluent API support)
      */
-    public function setUZYTKOWNIK_logins(Collection $uZYTKOWNIK_logins, ConnectionInterface $con = null)
+    public function setPrzepiss(Collection $przepiss, ConnectionInterface $con = null)
     {
-        /** @var ChildPrzepis[] $uZYTKOWNIK_loginsToDelete */
-        $uZYTKOWNIK_loginsToDelete = $this->getUZYTKOWNIK_logins(new Criteria(), $con)->diff($uZYTKOWNIK_logins);
+        /** @var ChildPrzepis[] $przepissToDelete */
+        $przepissToDelete = $this->getPrzepiss(new Criteria(), $con)->diff($przepiss);
 
 
-        $this->uZYTKOWNIK_loginsScheduledForDeletion = $uZYTKOWNIK_loginsToDelete;
+        $this->przepissScheduledForDeletion = $przepissToDelete;
 
-        foreach ($uZYTKOWNIK_loginsToDelete as $uZYTKOWNIK_loginRemoved) {
-            $uZYTKOWNIK_loginRemoved->setUzytkownik(null);
+        foreach ($przepissToDelete as $przepisRemoved) {
+            $przepisRemoved->setUzytkownik(null);
         }
 
-        $this->collUZYTKOWNIK_logins = null;
-        foreach ($uZYTKOWNIK_logins as $uZYTKOWNIK_login) {
-            $this->addUZYTKOWNIK_login($uZYTKOWNIK_login);
+        $this->collPrzepiss = null;
+        foreach ($przepiss as $przepis) {
+            $this->addPrzepis($przepis);
         }
 
-        $this->collUZYTKOWNIK_logins = $uZYTKOWNIK_logins;
-        $this->collUZYTKOWNIK_loginsPartial = false;
+        $this->collPrzepiss = $przepiss;
+        $this->collPrzepissPartial = false;
 
         return $this;
     }
@@ -1507,16 +1507,16 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @return int             Count of related Przepis objects.
      * @throws PropelException
      */
-    public function countUZYTKOWNIK_logins(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countPrzepiss(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collUZYTKOWNIK_loginsPartial && !$this->isNew();
-        if (null === $this->collUZYTKOWNIK_logins || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collUZYTKOWNIK_logins) {
+        $partial = $this->collPrzepissPartial && !$this->isNew();
+        if (null === $this->collPrzepiss || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collPrzepiss) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getUZYTKOWNIK_logins());
+                return count($this->getPrzepiss());
             }
 
             $query = ChildPrzepisQuery::create(null, $criteria);
@@ -1529,7 +1529,7 @@ abstract class Uzytkownik implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collUZYTKOWNIK_logins);
+        return count($this->collPrzepiss);
     }
 
     /**
@@ -1539,18 +1539,18 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @param  ChildPrzepis $l ChildPrzepis
      * @return $this|\Uzytkownik The current object (for fluent API support)
      */
-    public function addUZYTKOWNIK_login(ChildPrzepis $l)
+    public function addPrzepis(ChildPrzepis $l)
     {
-        if ($this->collUZYTKOWNIK_logins === null) {
-            $this->initUZYTKOWNIK_logins();
-            $this->collUZYTKOWNIK_loginsPartial = true;
+        if ($this->collPrzepiss === null) {
+            $this->initPrzepiss();
+            $this->collPrzepissPartial = true;
         }
 
-        if (!$this->collUZYTKOWNIK_logins->contains($l)) {
-            $this->doAddUZYTKOWNIK_login($l);
+        if (!$this->collPrzepiss->contains($l)) {
+            $this->doAddPrzepis($l);
 
-            if ($this->uZYTKOWNIK_loginsScheduledForDeletion and $this->uZYTKOWNIK_loginsScheduledForDeletion->contains($l)) {
-                $this->uZYTKOWNIK_loginsScheduledForDeletion->remove($this->uZYTKOWNIK_loginsScheduledForDeletion->search($l));
+            if ($this->przepissScheduledForDeletion and $this->przepissScheduledForDeletion->contains($l)) {
+                $this->przepissScheduledForDeletion->remove($this->przepissScheduledForDeletion->search($l));
             }
         }
 
@@ -1558,60 +1558,60 @@ abstract class Uzytkownik implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildPrzepis $uZYTKOWNIK_login The ChildPrzepis object to add.
+     * @param ChildPrzepis $przepis The ChildPrzepis object to add.
      */
-    protected function doAddUZYTKOWNIK_login(ChildPrzepis $uZYTKOWNIK_login)
+    protected function doAddPrzepis(ChildPrzepis $przepis)
     {
-        $this->collUZYTKOWNIK_logins[]= $uZYTKOWNIK_login;
-        $uZYTKOWNIK_login->setUzytkownik($this);
+        $this->collPrzepiss[]= $przepis;
+        $przepis->setUzytkownik($this);
     }
 
     /**
-     * @param  ChildPrzepis $uZYTKOWNIK_login The ChildPrzepis object to remove.
+     * @param  ChildPrzepis $przepis The ChildPrzepis object to remove.
      * @return $this|ChildUzytkownik The current object (for fluent API support)
      */
-    public function removeUZYTKOWNIK_login(ChildPrzepis $uZYTKOWNIK_login)
+    public function removePrzepis(ChildPrzepis $przepis)
     {
-        if ($this->getUZYTKOWNIK_logins()->contains($uZYTKOWNIK_login)) {
-            $pos = $this->collUZYTKOWNIK_logins->search($uZYTKOWNIK_login);
-            $this->collUZYTKOWNIK_logins->remove($pos);
-            if (null === $this->uZYTKOWNIK_loginsScheduledForDeletion) {
-                $this->uZYTKOWNIK_loginsScheduledForDeletion = clone $this->collUZYTKOWNIK_logins;
-                $this->uZYTKOWNIK_loginsScheduledForDeletion->clear();
+        if ($this->getPrzepiss()->contains($przepis)) {
+            $pos = $this->collPrzepiss->search($przepis);
+            $this->collPrzepiss->remove($pos);
+            if (null === $this->przepissScheduledForDeletion) {
+                $this->przepissScheduledForDeletion = clone $this->collPrzepiss;
+                $this->przepissScheduledForDeletion->clear();
             }
-            $this->uZYTKOWNIK_loginsScheduledForDeletion[]= clone $uZYTKOWNIK_login;
-            $uZYTKOWNIK_login->setUzytkownik(null);
+            $this->przepissScheduledForDeletion[]= clone $przepis;
+            $przepis->setUzytkownik(null);
         }
 
         return $this;
     }
 
     /**
-     * Clears out the collUZYTKOWNIK_logins collection
+     * Clears out the collUlubiones collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addUZYTKOWNIK_logins()
+     * @see        addUlubiones()
      */
-    public function clearUZYTKOWNIK_logins()
+    public function clearUlubiones()
     {
-        $this->collUZYTKOWNIK_logins = null; // important to set this to NULL since that means it is uninitialized
+        $this->collUlubiones = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collUZYTKOWNIK_logins collection loaded partially.
+     * Reset is the collUlubiones collection loaded partially.
      */
-    public function resetPartialUZYTKOWNIK_logins($v = true)
+    public function resetPartialUlubiones($v = true)
     {
-        $this->collUZYTKOWNIK_loginsPartial = $v;
+        $this->collUlubionesPartial = $v;
     }
 
     /**
-     * Initializes the collUZYTKOWNIK_logins collection.
+     * Initializes the collUlubiones collection.
      *
-     * By default this just sets the collUZYTKOWNIK_logins collection to an empty array (like clearcollUZYTKOWNIK_logins());
+     * By default this just sets the collUlubiones collection to an empty array (like clearcollUlubiones());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1620,16 +1620,16 @@ abstract class Uzytkownik implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initUZYTKOWNIK_logins($overrideExisting = true)
+    public function initUlubiones($overrideExisting = true)
     {
-        if (null !== $this->collUZYTKOWNIK_logins && !$overrideExisting) {
+        if (null !== $this->collUlubiones && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = UlubioneTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collUZYTKOWNIK_logins = new $collectionClassName;
-        $this->collUZYTKOWNIK_logins->setModel('\Ulubione');
+        $this->collUlubiones = new $collectionClassName;
+        $this->collUlubiones->setModel('\Ulubione');
     }
 
     /**
@@ -1646,57 +1646,57 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @return ObjectCollection|ChildUlubione[] List of ChildUlubione objects
      * @throws PropelException
      */
-    public function getUZYTKOWNIK_logins(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getUlubiones(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collUZYTKOWNIK_loginsPartial && !$this->isNew();
-        if (null === $this->collUZYTKOWNIK_logins || null !== $criteria || $partial) {
+        $partial = $this->collUlubionesPartial && !$this->isNew();
+        if (null === $this->collUlubiones || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collUZYTKOWNIK_logins) {
-                    $this->initUZYTKOWNIK_logins();
+                if (null === $this->collUlubiones) {
+                    $this->initUlubiones();
                 } else {
                     $collectionClassName = UlubioneTableMap::getTableMap()->getCollectionClassName();
 
-                    $collUZYTKOWNIK_logins = new $collectionClassName;
-                    $collUZYTKOWNIK_logins->setModel('\Ulubione');
+                    $collUlubiones = new $collectionClassName;
+                    $collUlubiones->setModel('\Ulubione');
 
-                    return $collUZYTKOWNIK_logins;
+                    return $collUlubiones;
                 }
             } else {
-                $collUZYTKOWNIK_logins = ChildUlubioneQuery::create(null, $criteria)
+                $collUlubiones = ChildUlubioneQuery::create(null, $criteria)
                     ->filterByUzytkownik($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collUZYTKOWNIK_loginsPartial && count($collUZYTKOWNIK_logins)) {
-                        $this->initUZYTKOWNIK_logins(false);
+                    if (false !== $this->collUlubionesPartial && count($collUlubiones)) {
+                        $this->initUlubiones(false);
 
-                        foreach ($collUZYTKOWNIK_logins as $obj) {
-                            if (false == $this->collUZYTKOWNIK_logins->contains($obj)) {
-                                $this->collUZYTKOWNIK_logins->append($obj);
+                        foreach ($collUlubiones as $obj) {
+                            if (false == $this->collUlubiones->contains($obj)) {
+                                $this->collUlubiones->append($obj);
                             }
                         }
 
-                        $this->collUZYTKOWNIK_loginsPartial = true;
+                        $this->collUlubionesPartial = true;
                     }
 
-                    return $collUZYTKOWNIK_logins;
+                    return $collUlubiones;
                 }
 
-                if ($partial && $this->collUZYTKOWNIK_logins) {
-                    foreach ($this->collUZYTKOWNIK_logins as $obj) {
+                if ($partial && $this->collUlubiones) {
+                    foreach ($this->collUlubiones as $obj) {
                         if ($obj->isNew()) {
-                            $collUZYTKOWNIK_logins[] = $obj;
+                            $collUlubiones[] = $obj;
                         }
                     }
                 }
 
-                $this->collUZYTKOWNIK_logins = $collUZYTKOWNIK_logins;
-                $this->collUZYTKOWNIK_loginsPartial = false;
+                $this->collUlubiones = $collUlubiones;
+                $this->collUlubionesPartial = false;
             }
         }
 
-        return $this->collUZYTKOWNIK_logins;
+        return $this->collUlubiones;
     }
 
     /**
@@ -1705,32 +1705,32 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $uZYTKOWNIK_logins A Propel collection.
+     * @param      Collection $ulubiones A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildUzytkownik The current object (for fluent API support)
      */
-    public function setUZYTKOWNIK_logins(Collection $uZYTKOWNIK_logins, ConnectionInterface $con = null)
+    public function setUlubiones(Collection $ulubiones, ConnectionInterface $con = null)
     {
-        /** @var ChildUlubione[] $uZYTKOWNIK_loginsToDelete */
-        $uZYTKOWNIK_loginsToDelete = $this->getUZYTKOWNIK_logins(new Criteria(), $con)->diff($uZYTKOWNIK_logins);
+        /** @var ChildUlubione[] $ulubionesToDelete */
+        $ulubionesToDelete = $this->getUlubiones(new Criteria(), $con)->diff($ulubiones);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->uZYTKOWNIK_loginsScheduledForDeletion = clone $uZYTKOWNIK_loginsToDelete;
+        $this->ulubionesScheduledForDeletion = clone $ulubionesToDelete;
 
-        foreach ($uZYTKOWNIK_loginsToDelete as $uZYTKOWNIK_loginRemoved) {
-            $uZYTKOWNIK_loginRemoved->setUzytkownik(null);
+        foreach ($ulubionesToDelete as $ulubioneRemoved) {
+            $ulubioneRemoved->setUzytkownik(null);
         }
 
-        $this->collUZYTKOWNIK_logins = null;
-        foreach ($uZYTKOWNIK_logins as $uZYTKOWNIK_login) {
-            $this->addUZYTKOWNIK_login($uZYTKOWNIK_login);
+        $this->collUlubiones = null;
+        foreach ($ulubiones as $ulubione) {
+            $this->addUlubione($ulubione);
         }
 
-        $this->collUZYTKOWNIK_logins = $uZYTKOWNIK_logins;
-        $this->collUZYTKOWNIK_loginsPartial = false;
+        $this->collUlubiones = $ulubiones;
+        $this->collUlubionesPartial = false;
 
         return $this;
     }
@@ -1744,16 +1744,16 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @return int             Count of related Ulubione objects.
      * @throws PropelException
      */
-    public function countUZYTKOWNIK_logins(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countUlubiones(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collUZYTKOWNIK_loginsPartial && !$this->isNew();
-        if (null === $this->collUZYTKOWNIK_logins || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collUZYTKOWNIK_logins) {
+        $partial = $this->collUlubionesPartial && !$this->isNew();
+        if (null === $this->collUlubiones || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collUlubiones) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getUZYTKOWNIK_logins());
+                return count($this->getUlubiones());
             }
 
             $query = ChildUlubioneQuery::create(null, $criteria);
@@ -1766,7 +1766,7 @@ abstract class Uzytkownik implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collUZYTKOWNIK_logins);
+        return count($this->collUlubiones);
     }
 
     /**
@@ -1776,18 +1776,18 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @param  ChildUlubione $l ChildUlubione
      * @return $this|\Uzytkownik The current object (for fluent API support)
      */
-    public function addUZYTKOWNIK_login(ChildUlubione $l)
+    public function addUlubione(ChildUlubione $l)
     {
-        if ($this->collUZYTKOWNIK_logins === null) {
-            $this->initUZYTKOWNIK_logins();
-            $this->collUZYTKOWNIK_loginsPartial = true;
+        if ($this->collUlubiones === null) {
+            $this->initUlubiones();
+            $this->collUlubionesPartial = true;
         }
 
-        if (!$this->collUZYTKOWNIK_logins->contains($l)) {
-            $this->doAddUZYTKOWNIK_login($l);
+        if (!$this->collUlubiones->contains($l)) {
+            $this->doAddUlubione($l);
 
-            if ($this->uZYTKOWNIK_loginsScheduledForDeletion and $this->uZYTKOWNIK_loginsScheduledForDeletion->contains($l)) {
-                $this->uZYTKOWNIK_loginsScheduledForDeletion->remove($this->uZYTKOWNIK_loginsScheduledForDeletion->search($l));
+            if ($this->ulubionesScheduledForDeletion and $this->ulubionesScheduledForDeletion->contains($l)) {
+                $this->ulubionesScheduledForDeletion->remove($this->ulubionesScheduledForDeletion->search($l));
             }
         }
 
@@ -1795,29 +1795,29 @@ abstract class Uzytkownik implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildUlubione $uZYTKOWNIK_login The ChildUlubione object to add.
+     * @param ChildUlubione $ulubione The ChildUlubione object to add.
      */
-    protected function doAddUZYTKOWNIK_login(ChildUlubione $uZYTKOWNIK_login)
+    protected function doAddUlubione(ChildUlubione $ulubione)
     {
-        $this->collUZYTKOWNIK_logins[]= $uZYTKOWNIK_login;
-        $uZYTKOWNIK_login->setUzytkownik($this);
+        $this->collUlubiones[]= $ulubione;
+        $ulubione->setUzytkownik($this);
     }
 
     /**
-     * @param  ChildUlubione $uZYTKOWNIK_login The ChildUlubione object to remove.
+     * @param  ChildUlubione $ulubione The ChildUlubione object to remove.
      * @return $this|ChildUzytkownik The current object (for fluent API support)
      */
-    public function removeUZYTKOWNIK_login(ChildUlubione $uZYTKOWNIK_login)
+    public function removeUlubione(ChildUlubione $ulubione)
     {
-        if ($this->getUZYTKOWNIK_logins()->contains($uZYTKOWNIK_login)) {
-            $pos = $this->collUZYTKOWNIK_logins->search($uZYTKOWNIK_login);
-            $this->collUZYTKOWNIK_logins->remove($pos);
-            if (null === $this->uZYTKOWNIK_loginsScheduledForDeletion) {
-                $this->uZYTKOWNIK_loginsScheduledForDeletion = clone $this->collUZYTKOWNIK_logins;
-                $this->uZYTKOWNIK_loginsScheduledForDeletion->clear();
+        if ($this->getUlubiones()->contains($ulubione)) {
+            $pos = $this->collUlubiones->search($ulubione);
+            $this->collUlubiones->remove($pos);
+            if (null === $this->ulubionesScheduledForDeletion) {
+                $this->ulubionesScheduledForDeletion = clone $this->collUlubiones;
+                $this->ulubionesScheduledForDeletion->clear();
             }
-            $this->uZYTKOWNIK_loginsScheduledForDeletion[]= clone $uZYTKOWNIK_login;
-            $uZYTKOWNIK_login->setUzytkownik(null);
+            $this->ulubionesScheduledForDeletion[]= clone $ulubione;
+            $ulubione->setUzytkownik(null);
         }
 
         return $this;
@@ -1829,7 +1829,7 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Uzytkownik is new, it will return
      * an empty collection; or if this Uzytkownik has previously
-     * been saved, it will retrieve related UZYTKOWNIK_logins from storage.
+     * been saved, it will retrieve related Ulubiones from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -1840,40 +1840,40 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildUlubione[] List of ChildUlubione objects
      */
-    public function getUZYTKOWNIK_loginsJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getUlubionesJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildUlubioneQuery::create(null, $criteria);
         $query->joinWith('Przepis', $joinBehavior);
 
-        return $this->getUZYTKOWNIK_logins($query, $con);
+        return $this->getUlubiones($query, $con);
     }
 
     /**
-     * Clears out the collUZYTKOWNIK_logins collection
+     * Clears out the collLubie_tos collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addUZYTKOWNIK_logins()
+     * @see        addLubie_tos()
      */
-    public function clearUZYTKOWNIK_logins()
+    public function clearLubie_tos()
     {
-        $this->collUZYTKOWNIK_logins = null; // important to set this to NULL since that means it is uninitialized
+        $this->collLubie_tos = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collUZYTKOWNIK_logins collection loaded partially.
+     * Reset is the collLubie_tos collection loaded partially.
      */
-    public function resetPartialUZYTKOWNIK_logins($v = true)
+    public function resetPartialLubie_tos($v = true)
     {
-        $this->collUZYTKOWNIK_loginsPartial = $v;
+        $this->collLubie_tosPartial = $v;
     }
 
     /**
-     * Initializes the collUZYTKOWNIK_logins collection.
+     * Initializes the collLubie_tos collection.
      *
-     * By default this just sets the collUZYTKOWNIK_logins collection to an empty array (like clearcollUZYTKOWNIK_logins());
+     * By default this just sets the collLubie_tos collection to an empty array (like clearcollLubie_tos());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1882,16 +1882,16 @@ abstract class Uzytkownik implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initUZYTKOWNIK_logins($overrideExisting = true)
+    public function initLubie_tos($overrideExisting = true)
     {
-        if (null !== $this->collUZYTKOWNIK_logins && !$overrideExisting) {
+        if (null !== $this->collLubie_tos && !$overrideExisting) {
             return;
         }
 
         $collectionClassName = Lubie_toTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collUZYTKOWNIK_logins = new $collectionClassName;
-        $this->collUZYTKOWNIK_logins->setModel('\Lubie_to');
+        $this->collLubie_tos = new $collectionClassName;
+        $this->collLubie_tos->setModel('\Lubie_to');
     }
 
     /**
@@ -1908,57 +1908,57 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @return ObjectCollection|ChildLubie_to[] List of ChildLubie_to objects
      * @throws PropelException
      */
-    public function getUZYTKOWNIK_logins(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getLubie_tos(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collUZYTKOWNIK_loginsPartial && !$this->isNew();
-        if (null === $this->collUZYTKOWNIK_logins || null !== $criteria || $partial) {
+        $partial = $this->collLubie_tosPartial && !$this->isNew();
+        if (null === $this->collLubie_tos || null !== $criteria || $partial) {
             if ($this->isNew()) {
                 // return empty collection
-                if (null === $this->collUZYTKOWNIK_logins) {
-                    $this->initUZYTKOWNIK_logins();
+                if (null === $this->collLubie_tos) {
+                    $this->initLubie_tos();
                 } else {
                     $collectionClassName = Lubie_toTableMap::getTableMap()->getCollectionClassName();
 
-                    $collUZYTKOWNIK_logins = new $collectionClassName;
-                    $collUZYTKOWNIK_logins->setModel('\Lubie_to');
+                    $collLubie_tos = new $collectionClassName;
+                    $collLubie_tos->setModel('\Lubie_to');
 
-                    return $collUZYTKOWNIK_logins;
+                    return $collLubie_tos;
                 }
             } else {
-                $collUZYTKOWNIK_logins = ChildLubie_toQuery::create(null, $criteria)
+                $collLubie_tos = ChildLubie_toQuery::create(null, $criteria)
                     ->filterByUzytkownik($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collUZYTKOWNIK_loginsPartial && count($collUZYTKOWNIK_logins)) {
-                        $this->initUZYTKOWNIK_logins(false);
+                    if (false !== $this->collLubie_tosPartial && count($collLubie_tos)) {
+                        $this->initLubie_tos(false);
 
-                        foreach ($collUZYTKOWNIK_logins as $obj) {
-                            if (false == $this->collUZYTKOWNIK_logins->contains($obj)) {
-                                $this->collUZYTKOWNIK_logins->append($obj);
+                        foreach ($collLubie_tos as $obj) {
+                            if (false == $this->collLubie_tos->contains($obj)) {
+                                $this->collLubie_tos->append($obj);
                             }
                         }
 
-                        $this->collUZYTKOWNIK_loginsPartial = true;
+                        $this->collLubie_tosPartial = true;
                     }
 
-                    return $collUZYTKOWNIK_logins;
+                    return $collLubie_tos;
                 }
 
-                if ($partial && $this->collUZYTKOWNIK_logins) {
-                    foreach ($this->collUZYTKOWNIK_logins as $obj) {
+                if ($partial && $this->collLubie_tos) {
+                    foreach ($this->collLubie_tos as $obj) {
                         if ($obj->isNew()) {
-                            $collUZYTKOWNIK_logins[] = $obj;
+                            $collLubie_tos[] = $obj;
                         }
                     }
                 }
 
-                $this->collUZYTKOWNIK_logins = $collUZYTKOWNIK_logins;
-                $this->collUZYTKOWNIK_loginsPartial = false;
+                $this->collLubie_tos = $collLubie_tos;
+                $this->collLubie_tosPartial = false;
             }
         }
 
-        return $this->collUZYTKOWNIK_logins;
+        return $this->collLubie_tos;
     }
 
     /**
@@ -1967,32 +1967,32 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $uZYTKOWNIK_logins A Propel collection.
+     * @param      Collection $lubie_tos A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildUzytkownik The current object (for fluent API support)
      */
-    public function setUZYTKOWNIK_logins(Collection $uZYTKOWNIK_logins, ConnectionInterface $con = null)
+    public function setLubie_tos(Collection $lubie_tos, ConnectionInterface $con = null)
     {
-        /** @var ChildLubie_to[] $uZYTKOWNIK_loginsToDelete */
-        $uZYTKOWNIK_loginsToDelete = $this->getUZYTKOWNIK_logins(new Criteria(), $con)->diff($uZYTKOWNIK_logins);
+        /** @var ChildLubie_to[] $lubie_tosToDelete */
+        $lubie_tosToDelete = $this->getLubie_tos(new Criteria(), $con)->diff($lubie_tos);
 
 
         //since at least one column in the foreign key is at the same time a PK
         //we can not just set a PK to NULL in the lines below. We have to store
         //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->uZYTKOWNIK_loginsScheduledForDeletion = clone $uZYTKOWNIK_loginsToDelete;
+        $this->lubie_tosScheduledForDeletion = clone $lubie_tosToDelete;
 
-        foreach ($uZYTKOWNIK_loginsToDelete as $uZYTKOWNIK_loginRemoved) {
-            $uZYTKOWNIK_loginRemoved->setUzytkownik(null);
+        foreach ($lubie_tosToDelete as $lubie_toRemoved) {
+            $lubie_toRemoved->setUzytkownik(null);
         }
 
-        $this->collUZYTKOWNIK_logins = null;
-        foreach ($uZYTKOWNIK_logins as $uZYTKOWNIK_login) {
-            $this->addUZYTKOWNIK_login($uZYTKOWNIK_login);
+        $this->collLubie_tos = null;
+        foreach ($lubie_tos as $lubie_to) {
+            $this->addLubie_to($lubie_to);
         }
 
-        $this->collUZYTKOWNIK_logins = $uZYTKOWNIK_logins;
-        $this->collUZYTKOWNIK_loginsPartial = false;
+        $this->collLubie_tos = $lubie_tos;
+        $this->collLubie_tosPartial = false;
 
         return $this;
     }
@@ -2006,16 +2006,16 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @return int             Count of related Lubie_to objects.
      * @throws PropelException
      */
-    public function countUZYTKOWNIK_logins(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countLubie_tos(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collUZYTKOWNIK_loginsPartial && !$this->isNew();
-        if (null === $this->collUZYTKOWNIK_logins || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collUZYTKOWNIK_logins) {
+        $partial = $this->collLubie_tosPartial && !$this->isNew();
+        if (null === $this->collLubie_tos || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collLubie_tos) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getUZYTKOWNIK_logins());
+                return count($this->getLubie_tos());
             }
 
             $query = ChildLubie_toQuery::create(null, $criteria);
@@ -2028,7 +2028,7 @@ abstract class Uzytkownik implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collUZYTKOWNIK_logins);
+        return count($this->collLubie_tos);
     }
 
     /**
@@ -2038,18 +2038,18 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @param  ChildLubie_to $l ChildLubie_to
      * @return $this|\Uzytkownik The current object (for fluent API support)
      */
-    public function addUZYTKOWNIK_login(ChildLubie_to $l)
+    public function addLubie_to(ChildLubie_to $l)
     {
-        if ($this->collUZYTKOWNIK_logins === null) {
-            $this->initUZYTKOWNIK_logins();
-            $this->collUZYTKOWNIK_loginsPartial = true;
+        if ($this->collLubie_tos === null) {
+            $this->initLubie_tos();
+            $this->collLubie_tosPartial = true;
         }
 
-        if (!$this->collUZYTKOWNIK_logins->contains($l)) {
-            $this->doAddUZYTKOWNIK_login($l);
+        if (!$this->collLubie_tos->contains($l)) {
+            $this->doAddLubie_to($l);
 
-            if ($this->uZYTKOWNIK_loginsScheduledForDeletion and $this->uZYTKOWNIK_loginsScheduledForDeletion->contains($l)) {
-                $this->uZYTKOWNIK_loginsScheduledForDeletion->remove($this->uZYTKOWNIK_loginsScheduledForDeletion->search($l));
+            if ($this->lubie_tosScheduledForDeletion and $this->lubie_tosScheduledForDeletion->contains($l)) {
+                $this->lubie_tosScheduledForDeletion->remove($this->lubie_tosScheduledForDeletion->search($l));
             }
         }
 
@@ -2057,29 +2057,29 @@ abstract class Uzytkownik implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildLubie_to $uZYTKOWNIK_login The ChildLubie_to object to add.
+     * @param ChildLubie_to $lubie_to The ChildLubie_to object to add.
      */
-    protected function doAddUZYTKOWNIK_login(ChildLubie_to $uZYTKOWNIK_login)
+    protected function doAddLubie_to(ChildLubie_to $lubie_to)
     {
-        $this->collUZYTKOWNIK_logins[]= $uZYTKOWNIK_login;
-        $uZYTKOWNIK_login->setUzytkownik($this);
+        $this->collLubie_tos[]= $lubie_to;
+        $lubie_to->setUzytkownik($this);
     }
 
     /**
-     * @param  ChildLubie_to $uZYTKOWNIK_login The ChildLubie_to object to remove.
+     * @param  ChildLubie_to $lubie_to The ChildLubie_to object to remove.
      * @return $this|ChildUzytkownik The current object (for fluent API support)
      */
-    public function removeUZYTKOWNIK_login(ChildLubie_to $uZYTKOWNIK_login)
+    public function removeLubie_to(ChildLubie_to $lubie_to)
     {
-        if ($this->getUZYTKOWNIK_logins()->contains($uZYTKOWNIK_login)) {
-            $pos = $this->collUZYTKOWNIK_logins->search($uZYTKOWNIK_login);
-            $this->collUZYTKOWNIK_logins->remove($pos);
-            if (null === $this->uZYTKOWNIK_loginsScheduledForDeletion) {
-                $this->uZYTKOWNIK_loginsScheduledForDeletion = clone $this->collUZYTKOWNIK_logins;
-                $this->uZYTKOWNIK_loginsScheduledForDeletion->clear();
+        if ($this->getLubie_tos()->contains($lubie_to)) {
+            $pos = $this->collLubie_tos->search($lubie_to);
+            $this->collLubie_tos->remove($pos);
+            if (null === $this->lubie_tosScheduledForDeletion) {
+                $this->lubie_tosScheduledForDeletion = clone $this->collLubie_tos;
+                $this->lubie_tosScheduledForDeletion->clear();
             }
-            $this->uZYTKOWNIK_loginsScheduledForDeletion[]= clone $uZYTKOWNIK_login;
-            $uZYTKOWNIK_login->setUzytkownik(null);
+            $this->lubie_tosScheduledForDeletion[]= clone $lubie_to;
+            $lubie_to->setUzytkownik(null);
         }
 
         return $this;
@@ -2091,7 +2091,7 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * an identical criteria, it returns the collection.
      * Otherwise if this Uzytkownik is new, it will return
      * an empty collection; or if this Uzytkownik has previously
-     * been saved, it will retrieve related UZYTKOWNIK_logins from storage.
+     * been saved, it will retrieve related Lubie_tos from storage.
      *
      * This method is protected by default in order to keep the public
      * api reasonable.  You can provide public methods for those you
@@ -2102,12 +2102,12 @@ abstract class Uzytkownik implements ActiveRecordInterface
      * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
      * @return ObjectCollection|ChildLubie_to[] List of ChildLubie_to objects
      */
-    public function getUZYTKOWNIK_loginsJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
+    public function getLubie_tosJoinPrzepis(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
     {
         $query = ChildLubie_toQuery::create(null, $criteria);
         $query->joinWith('Przepis', $joinBehavior);
 
-        return $this->getUZYTKOWNIK_logins($query, $con);
+        return $this->getLubie_tos($query, $con);
     }
 
     /**
@@ -2140,26 +2140,26 @@ abstract class Uzytkownik implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collUZYTKOWNIK_logins) {
-                foreach ($this->collUZYTKOWNIK_logins as $o) {
+            if ($this->collPrzepiss) {
+                foreach ($this->collPrzepiss as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collUZYTKOWNIK_logins) {
-                foreach ($this->collUZYTKOWNIK_logins as $o) {
+            if ($this->collUlubiones) {
+                foreach ($this->collUlubiones as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collUZYTKOWNIK_logins) {
-                foreach ($this->collUZYTKOWNIK_logins as $o) {
+            if ($this->collLubie_tos) {
+                foreach ($this->collLubie_tos as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
         } // if ($deep)
 
-        $this->collUZYTKOWNIK_logins = null;
-        $this->collUZYTKOWNIK_logins = null;
-        $this->collUZYTKOWNIK_logins = null;
+        $this->collPrzepiss = null;
+        $this->collUlubiones = null;
+        $this->collLubie_tos = null;
     }
 
     /**

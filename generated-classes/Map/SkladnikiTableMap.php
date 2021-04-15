@@ -164,13 +164,13 @@ class SkladnikiTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('SKLADNIKI_id_skladnik', '\\Zawiera', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('Zawiera', '\\Zawiera', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':SKLADNIKI_id_skladnik',
     1 => ':id_skladnik',
   ),
-), null, null, 'SKLADNIKI_id_skladniks', false);
+), null, null, 'Zawieras', false);
     } // buildRelations()
 
     /**

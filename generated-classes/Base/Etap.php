@@ -1242,7 +1242,7 @@ abstract class Etap implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildPrzepis object, it will not be re-added.
         if ($v !== null) {
-            $v->addPRZEPIS_id_przepis($this);
+            $v->addEtap($this);
         }
 
 
@@ -1266,7 +1266,7 @@ abstract class Etap implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aPrzepis->addPRZEPIS_id_przepiss($this);
+                $this->aPrzepis->addEtaps($this);
              */
         }
 
@@ -1281,7 +1281,7 @@ abstract class Etap implements ActiveRecordInterface
     public function clear()
     {
         if (null !== $this->aPrzepis) {
-            $this->aPrzepis->removePRZEPIS_id_przepis($this);
+            $this->aPrzepis->removeEtap($this);
         }
         $this->id_etap = null;
         $this->nr_etapu = null;

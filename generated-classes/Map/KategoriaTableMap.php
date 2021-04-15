@@ -164,13 +164,13 @@ class KategoriaTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('KATEGORIA_nazwa', '\\Nalezy', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('Nalezy', '\\Nalezy', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':KATEGORIA_nazwa',
     1 => ':nazwa',
   ),
-), null, null, 'KATEGORIA_nazwas', false);
+), null, null, 'Nalezies', false);
     } // buildRelations()
 
     /**

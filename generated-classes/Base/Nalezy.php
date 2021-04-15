@@ -1093,7 +1093,7 @@ abstract class Nalezy implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildPrzepis object, it will not be re-added.
         if ($v !== null) {
-            $v->addPRZEPIS_id_przepis($this);
+            $v->addNalezy($this);
         }
 
 
@@ -1117,7 +1117,7 @@ abstract class Nalezy implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aPrzepis->addPRZEPIS_id_przepiss($this);
+                $this->aPrzepis->addNalezies($this);
              */
         }
 
@@ -1144,7 +1144,7 @@ abstract class Nalezy implements ActiveRecordInterface
         // Add binding for other direction of this n:n relationship.
         // If this object has already been added to the ChildKategoria object, it will not be re-added.
         if ($v !== null) {
-            $v->addKATEGORIA_nazwa($this);
+            $v->addNalezy($this);
         }
 
 
@@ -1168,7 +1168,7 @@ abstract class Nalezy implements ActiveRecordInterface
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aKategoria->addKATEGORIA_nazwas($this);
+                $this->aKategoria->addNalezies($this);
              */
         }
 
@@ -1183,10 +1183,10 @@ abstract class Nalezy implements ActiveRecordInterface
     public function clear()
     {
         if (null !== $this->aPrzepis) {
-            $this->aPrzepis->removePRZEPIS_id_przepis($this);
+            $this->aPrzepis->removeNalezy($this);
         }
         if (null !== $this->aKategoria) {
-            $this->aKategoria->removeKATEGORIA_nazwa($this);
+            $this->aKategoria->removeNalezy($this);
         }
         $this->przepis_id_przepis = null;
         $this->kategoria_nazwa = null;

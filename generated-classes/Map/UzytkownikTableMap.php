@@ -206,27 +206,27 @@ class UzytkownikTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('UZYTKOWNIK_login', '\\Przepis', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('Przepis', '\\Przepis', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':UZYTKOWNIK_login',
     1 => ':login',
   ),
-), null, null, 'UZYTKOWNIK_logins', false);
-        $this->addRelation('UZYTKOWNIK_login', '\\Ulubione', RelationMap::ONE_TO_MANY, array (
+), null, null, 'Przepiss', false);
+        $this->addRelation('Ulubione', '\\Ulubione', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':UZYTKOWNIK_login',
     1 => ':login',
   ),
-), null, null, 'UZYTKOWNIK_logins', false);
-        $this->addRelation('UZYTKOWNIK_login', '\\Lubie_to', RelationMap::ONE_TO_MANY, array (
+), null, null, 'Ulubiones', false);
+        $this->addRelation('Lubie_to', '\\Lubie_to', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':UZYTKOWNIK_login',
     1 => ':login',
   ),
-), null, null, 'UZYTKOWNIK_logins', false);
+), null, null, 'Lubie_tos', false);
     } // buildRelations()
 
     /**
