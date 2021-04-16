@@ -94,7 +94,7 @@
           </div>
 
           <div id="categoryButtonDiv" class="content__form__button">
-            <button id="categoryButton" type="button" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
+            <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
           </div>
         </div>
 
@@ -131,7 +131,8 @@
 
       </form>
 
-      <script src="script.js"></script>
+      <script src="script-DodawaniePrzepisu.js"></script>
+      <script src="script - Categories.js"></script>
     </section>
 
 

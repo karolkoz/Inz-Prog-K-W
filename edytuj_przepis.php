@@ -81,44 +81,7 @@
 
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
-          <script>
-          var ileKategorii = 1;
-          function addCategory() {
-            ileKategorii = ileKategorii + 1;
-            var numer = ileKategorii;
-            var clone = document.getElementById("category_1").cloneNode(true);
-            clone.id = "category_" + numer;
-
-            var new_buttonRem = document.createElement("button");
-            new_buttonRem.setAttribute("type", "button");
-            new_buttonRem.classList.add("content__form__removeButton");
-            new_buttonRem.addEventListener("click", function() {
-              removeCategory(this.parentNode.id)
-            }, false);
-
-            var imgRem = document.createElement("img");
-            imgRem.setAttribute("src", "img/x icon.png");
-            new_buttonRem.appendChild(imgRem);
-            clone.appendChild(new_buttonRem);
-
-            var button = document.getElementById("categoryButtonDiv");
-            document.getElementById("categories").appendChild(clone);
-            document.getElementById("categories").appendChild(button);
-          }
-          function removeCategory(x) {
-            document.getElementById(x).remove();
-            ileKategorii--;
-          }
-          /* Tutaj jest funkcja do wybierania kategorii.
-          i to numer kategorii na stronie,
-          j to numer na liście (licz zgodnie z wyświetlaną listą, czyli "Fit" jest pod 0, "Kolacja" pod 1 itd.) */
-          function CategorySelect(i, j) {
-            var categoryID = "category_"+i;
-            var category = document.getElementById(categoryID).getElementsByTagName("select");
-            category[0].options[j+1].selected = 'selected';
-          }
-          </script>
-          <!-- /////////////////////////////////////////////// -->
+          <script type="text/javascript" src="script - Categories.js"></script>
           <div class="content__form__category" id="category_1">
             <select name="categories[]">
               <option value=""disabled selected>Kategoria</option>
@@ -140,11 +103,13 @@
           Po prostu je wywołuj w pętli dodając nowe Kategorie i zaznaczaj odpowiednie opcje -->
           <?php
           echo '<script type="text/javascript">addCategory()</script>';
+          //Pierwszy parametr to numer kategorii na stronie, drugi to numer opcji do zaznaczenia
+          //na liście. Numeruj zgodnie z kolejnościa wyświetlania na liście czyli Fit=0, Kolacja=1 itd.
           echo '<script type="text/javascript">CategorySelect(2, 1)</script>';
           ?>
 
           <div id="categoryButtonDiv" class="content__form__button">
-            <button id="categoryButton" type="button" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
+            <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
           </div>
         </div>
 
@@ -178,11 +143,10 @@
         <div class="content__form__button content__form__button--submit">
           <button type="submit"> Dodaj przepis</button>
         </div>
-        <script src="script.js"></script>
+        <script type="text/javascript" src="script-DodawaniePrzepisu.js"></script>
         <!-- PHP musi wywoływać funkcje po wcześniejszym
         załączeniu tego mojego skryptu "script.js", bo inaczej
         nie będzie ich widzieć.
-        
         -->
         <?php
         $tresc = 'tresc';

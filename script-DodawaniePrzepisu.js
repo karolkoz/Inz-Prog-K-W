@@ -1,9 +1,10 @@
 //document.getElementById("button").addEventListener("click", addStage, false);
 //document.getElementById("ingredientButton").addEventListener("click", addIngredient, false);
-document.getElementById("categoryButton").addEventListener("click", addCategory, false);
+//document.getElementById("categoryButton").addEventListener("click", addCategory, false);
 var stageArray = [];
 var ileEtapow = 1;
 var ileSkladnikow = 1;
+
 
 function addIngredient(name, amount) {
   ileSkladnikow = ileSkladnikow + 1;
