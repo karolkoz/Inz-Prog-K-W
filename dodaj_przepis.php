@@ -105,7 +105,7 @@
             <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
           </div>
           <div id="ingredientButtonDiv" class="content__form__button">
-            <button id="ingredientButton" type="button" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
+            <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
           </div>
 
         </div>
@@ -122,7 +122,7 @@
             </div>
           </div>
           <div id="buttonDiv" class="content__form__button">
-            <button id="button" type="button" > <img src="img/plus icon.png" /> Dodaj nowy etap</button>
+            <button id="button" type="button" onClick="addStage()"> <img src="img/plus icon.png" /> Dodaj nowy etap</button>
           </div>
         </div>
         <div class="content__form__button content__form__button--submit">
