@@ -31,6 +31,12 @@
         <div class="content__form__input">
           <img src="img/difficulty icon.png" />
           <div class="content__form__rating">
+            <!--Wyświetl te inputy i labele za pomocą php
+            w takiej kolejności jak tutaj jest (tzn od 10 do 1)
+            Przy opcji, która jest wybrana w przepisie dodaj
+            słowo "checked"
+            np.: <input type="radio" id="trudnosc7" name="trudnosc" value="7" checked />
+            -->
             <input type="radio" id="trudnosc10" name="trudnosc" value="10" />
             <label for="trudnosc10"></label>
             <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
@@ -75,6 +81,7 @@
 
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
+          <script type="text/javascript" src="script - Categories.js"></script>
           <div class="content__form__category" id="category_1">
             <select name="categories[]">
               <option value=""disabled selected>Kategoria</option>
@@ -84,17 +91,25 @@
               require_once __DIR__.'/generated-conf/config.php';
 
               $kategorie = KategoriaQuery::create()->find();
-                foreach($kategorie as $kat) {
-                  echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
+                foreach ($kategorie as $kat) {
+                    echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
                 }
 
               ?>
 
             </select>
           </div>
+          <!--Tutaj masz przykład użycia tych funkcji.
+          Po prostu je wywołuj w pętli dodając nowe Kategorie i zaznaczaj odpowiednie opcje -->
+          <?php
+          echo '<script type="text/javascript">addCategory()</script>';
+          //Pierwszy parametr to numer kategorii na stronie, drugi to numer opcji do zaznaczenia
+          //na liście. Numeruj zgodnie z kolejnościa wyświetlania na liście czyli Fit=0, Kolacja=1 itd.
+          echo '<script type="text/javascript">CategorySelect(2, 1)</script>';
+          ?>
 
           <div id="categoryButtonDiv" class="content__form__button">
-            <button id="categoryButton" type="button" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
+            <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
           </div>
         </div>
 
@@ -105,7 +120,7 @@
             <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
           </div>
           <div id="ingredientButtonDiv" class="content__form__button">
-            <button id="ingredientButton" type="button" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
+            <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
           </div>
 
         </div>
@@ -122,16 +137,25 @@
             </div>
           </div>
           <div id="buttonDiv" class="content__form__button">
-            <button id="button" type="button" > <img src="img/plus icon.png" /> Dodaj nowy etap</button>
+            <button id="button" type="button" onClick="addStage()" > <img src="img/plus icon.png" /> Dodaj nowy etap</button>
           </div>
         </div>
         <div class="content__form__button content__form__button--submit">
           <button type="submit"> Dodaj przepis</button>
         </div>
-
+        <script type="text/javascript" src="script-DodawaniePrzepisu.js"></script>
+        <!-- PHP musi wywoływać funkcje po wcześniejszym
+        załączeniu tego mojego skryptu "script.js", bo inaczej
+        nie będzie ich widzieć.
+        -->
+        <?php
+        $tresc = 'tresc';
+        echo '<script type="text/javascript">addStage("'.$tresc.'");</script>';
+        $skladnik = 'skladnik';
+        $ilosc = 'ile';
+        echo '<script type="text/javascript">addIngredient("'.$skladnik.'", "'.$ilosc.'");</script>';
+        ?>
       </form>
-
-      <script src="script.js"></script>
     </section>
 
 

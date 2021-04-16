@@ -1,41 +1,12 @@
-document.getElementById("button").addEventListener("click", addStage, false);
-document.getElementById("ingredientButton").addEventListener("click", addIngredient, false);
-document.getElementById("categoryButton").addEventListener("click", addCategory, false);
+//document.getElementById("button").addEventListener("click", addStage, false);
+//document.getElementById("ingredientButton").addEventListener("click", addIngredient, false);
+//document.getElementById("categoryButton").addEventListener("click", addCategory, false);
 var stageArray = [];
 var ileEtapow = 1;
 var ileSkladnikow = 1;
-var ileKategorii = 1;
 
-function addCategory() {
-  ileKategorii = ileKategorii + 1;
-  var numer = ileKategorii;
-  var clone = document.getElementById("category_1").cloneNode(true);
-  clone.id = "category_" + numer;
 
-  var new_buttonRem = document.createElement("button");
-  new_buttonRem.setAttribute("type", "button");
-  new_buttonRem.classList.add("content__form__removeButton");
-  new_buttonRem.addEventListener("click", function() {
-    removeCategory(this.parentNode.id)
-  }, false);
-
-  var imgRem = document.createElement("img");
-  imgRem.setAttribute("src", "img/x icon.png");
-  new_buttonRem.appendChild(imgRem);
-  clone.appendChild(new_buttonRem);
-
-  var button = document.getElementById("categoryButtonDiv");
-  document.getElementById("categories").appendChild(clone);
-  document.getElementById("categories").appendChild(button);
-
-}
-
-function removeCategory(x) {
-  document.getElementById(x).remove();
-  ileKategorii--;
-}
-
-function addIngredient() {
+function addIngredient(name, amount) {
   ileSkladnikow = ileSkladnikow + 1;
   var numer = ileSkladnikow;
   var new_ingredient = document.createElement("div");
@@ -58,12 +29,18 @@ function addIngredient() {
   new_input.setAttribute("type", "text");
   new_input.setAttribute("name", "skladnik_nazwa[]");
   new_input.setAttribute("placeholder", "Nazwa składnika");
+  if(typeof name !== 'undefined') {
+    new_input.setAttribute("value", name);
+  }
   new_ingredient.appendChild(new_input);
 
   new_input = document.createElement("input");
   new_input.setAttribute("type", "text");
   new_input.setAttribute("name", "skladnik_ilosc[]");
   new_input.setAttribute("placeholder", "Ilość (np.: 2 kg)");
+  if(typeof amount !== 'undefined') {
+    new_input.setAttribute("value", amount);
+  }
   new_ingredient.appendChild(new_input);
 
   var button = document.getElementById("ingredientButtonDiv");
@@ -77,8 +54,7 @@ function removeIngredient(x) {
   ileSkladnikow--;
 }
 
-
-function addStage() {
+function addStage(content) {
   ileEtapow = ileEtapow + 1;
   var numer = ileEtapow;
   var new_stage = document.createElement("div");
@@ -110,6 +86,9 @@ function addStage() {
   textarea.setAttribute("name", "etap[]");
   textarea.setAttribute("placeholder", "Opis etapu");
   textarea.setAttribute("id", "textarea_etap_" + numer);
+  if(typeof content !== 'undefined') {
+    textarea.appendChild(document.createTextNode(content));
+  }
   content_form_inputs.appendChild(textarea);
 
   var new_label = document.createElement("label");
