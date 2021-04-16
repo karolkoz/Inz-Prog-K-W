@@ -20,6 +20,7 @@ $przepis->setNazwa($nazwa);
 $przepis->setStopienTrudnosci($trudnosc);
 $przepis->setCzasPrzygotowania($czas_przygotowania);
 $przepis->setDlaIluOsob($ile_osob);
+$przepis->setOpis($opis);
 $przepis->setDataDodania($data);
 $przepis->setStatus($status);
 $przepis->setUzytkownikLogin($UZYTKOWNIK_login);

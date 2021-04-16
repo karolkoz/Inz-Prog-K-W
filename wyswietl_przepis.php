@@ -34,31 +34,17 @@
         </div>
         <div class="content__recipe__row">
           <div class="content__recipe__element">
+
             <?php
-            require_once "connect.php";
+            require_once __DIR__.'/vendor/autoload.php';
+            require_once __DIR__.'/generated-conf/config.php';
 
-            $link = new mysqli($host, $db_user, $db_password, $db_name);
-            $link->query("SET NAMES 'utf8'");
-            if ($link->connect_errno!=0) {
-                echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-            } else {
-                $zapytanie = mysqli_query($link, "SELECT nazwa FROM przepis WHERE id_przepis=10");
-                $zapytanie2 = mysqli_query($link, "SELECT u.login FROM uzytkownik u JOIN przepis p ON u.login=p.UZYTKOWNIK_login WHERE p.id_przepis=10");
-
-                while ($option = mysqli_fetch_assoc($zapytanie)) {
-                    echo '<h1 class="content__recipe__title">'.$option['nazwa'].'</h1>';
-                }
-
-                while ($option2 = mysqli_fetch_assoc($zapytanie2)) {
-                    echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$option2['login'].'</i></h2>';
-                }
-
-
-                $link->close();
-            }
-
+            $przepis = PrzepisQuery::create()->findPk(1);
+            echo '<h1 class="content__recipe__title">'.$przepis->getNazwa().'</h1>'; //wyswietla nazwe przepisu o id=24
+            echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$przepis->getUzytkownikLogin().'</i></h2>'; //wyswietla login autora przepisu o id=24
 
             ?>
+
           </div>
         </div>
 
@@ -71,91 +57,64 @@
             </div>
           </div>
           <div class="content__recipe__element">
+
             <?php
-            require_once "connect.php";
+            require_once __DIR__.'/vendor/autoload.php';
+            require_once __DIR__.'/generated-conf/config.php';
 
-            $link = new mysqli($host, $db_user, $db_password, $db_name);
-            $link->query("SET NAMES 'utf8'");
-            if ($link->connect_errno!=0) {
-                echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-            } else {
-                $zapytanie = mysqli_query($link, "SELECT opis FROM przepis WHERE id_przepis=10");
+            $przepis = PrzepisQuery::create()->findPk(1);
+            echo '<p class="content__recipe__element__desc">'.$przepis->getOpis().'</p>'; //wyswietla opis przepisu o id=24
 
-                while ($option = mysqli_fetch_assoc($zapytanie)) {
-                    echo '<p class="content__recipe__element__desc">'.$option['opis'].'</p>';
-                }
-
-                $link->close();
-            }
             ?>
+
             <div class="content__recipe__stats">
               <div class="content__recipe__stats__element">
                 <img src="img/people icon.png" />
+
                 <?php
-                require_once "connect.php";
+                require_once __DIR__.'/vendor/autoload.php';
+                require_once __DIR__.'/generated-conf/config.php';
 
-                $link = new mysqli($host, $db_user, $db_password, $db_name);
-                $link->query("SET NAMES 'utf8'");
-                if ($link->connect_errno!=0) {
-                    echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-                } else {
-                    $zapytanie = mysqli_query($link, "SELECT dla_ilu_osob FROM przepis WHERE id_przepis=10");
+                $przepis = PrzepisQuery::create()->findPk(1);
+                echo '<span>'.$przepis->getDlaIluOsob().'</span>';
 
-                    while ($option = mysqli_fetch_assoc($zapytanie)) {
-                        echo '<span>'.$option['dla_ilu_osob'].'</span>';
-                    }
-
-                    $link->close();
-                }
                 ?>
+
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/clock icon.png" />
+
                 <?php
-                require_once "connect.php";
+                require_once __DIR__.'/vendor/autoload.php';
+                require_once __DIR__.'/generated-conf/config.php';
 
-                $link = new mysqli($host, $db_user, $db_password, $db_name);
-                $link->query("SET NAMES 'utf8'");
-                if ($link->connect_errno!=0) {
-                    echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-                } else {
-                    $zapytanie = mysqli_query($link, "SELECT czas_przygotowania FROM przepis WHERE id_przepis=10");
+                $przepis = PrzepisQuery::create()->findPk(1);
+                echo '<span>'.$przepis->getCzasPrzygotowania().' min.'.'</span>';
 
-                    while ($option = mysqli_fetch_assoc($zapytanie)) {
-                        echo '<span>'.$option['czas_przygotowania'].' min.'.'</span>';
-                    }
-
-                    $link->close();
-                }
                 ?>
+
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/difficulty icon.png" />
+
                 <?php
-                require_once "connect.php";
+                require_once __DIR__.'/vendor/autoload.php';
+                require_once __DIR__.'/generated-conf/config.php';
 
-                $link = new mysqli($host, $db_user, $db_password, $db_name);
-                $link->query("SET NAMES 'utf8'");
-                if ($link->connect_errno!=0) {
-                    echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-                } else {
-                    $zapytanie = mysqli_query($link, "SELECT stopien_trudnosci FROM przepis WHERE id_przepis=10");
+                $przepis = PrzepisQuery::create()->findPk(1);
 
-                    while ($option = mysqli_fetch_assoc($zapytanie)) {
-                        if ($option['stopien_trudnosci']>0 && $option['stopien_trudnosci']<4) {
-                            echo '<span>'.'łatwy'.'</span>';
-                        }
-                        if ($option['stopien_trudnosci']>=4 && $option['stopien_trudnosci']<8) {
-                            echo '<span>'.'średni'.'</span>';
-                        }
-                        if ($option['stopien_trudnosci']>=8 && $option['stopien_trudnosci']<=10) {
-                            echo '<span>'.'trudny'.'</span>';
-                        }
-                    }
-
-                    $link->close();
+                if ($przepis->getStopienTrudnosci()>0 && $przepis->getStopienTrudnosci()<4) {
+                    echo '<span>'.'łatwy'.'</span>';
                 }
+                if ($przepis->getStopienTrudnosci()>=4 && $przepis->getStopienTrudnosci()<8) {
+                    echo '<span>'.'średni'.'</span>';
+                }
+                if ($przepis->getStopienTrudnosci()>=8 && $przepis->getStopienTrudnosci()<=10) {
+                    echo '<span>'.'trudny'.'</span>';
+                }
+
                 ?>
+
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/like green.png" />
@@ -168,48 +127,71 @@
           <div class="content__recipe__element">
             <h2 class="content__recipe__h2">Lista Składników</h2>
             <table class="content__recipe__ingredientsTable">
+<!-- //////////////////////////////////////////////////////////////////////////////wyswietlanie skladnikow i ilosci//////////////////////////////// -->
               <?php
-              require_once "connect.php";
+              require_once __DIR__.'/vendor/autoload.php';
+              require_once __DIR__.'/generated-conf/config.php';
 
-              $link = new mysqli($host, $db_user, $db_password, $db_name);
-              $link->query("SET NAMES 'utf8'");
-              if ($link->connect_errno!=0) {
-                  echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-              } else {
-                  $zapytanie = mysqli_query($link, "SELECT s.nazwa, z.ilosc FROM przepis p JOIN zawiera z ON p.id_przepis=z.PRZEPIS_id_przepis JOIN skladniki s ON s.id_skladnik=z.SKLADNIKI_id_skladnik WHERE p.id_przepis=10");
+              $zawieraNazwa = ZawieraQuery::create()
+                      ->join('Przepis')
+                      ->join('Skladniki')
+                      ->where('Przepis.IdPrzepis = ?', 1)
+                      ->select(array('Skladniki.Nazwa'))
+                      ->find();
 
-                  while ($option = mysqli_fetch_assoc($zapytanie)) {
-                      echo '<tr><td>'.$option['nazwa'].'</td><td>'.$option['ilosc'].'</td></tr>';
-                  }
+              $num = count($zawieraNazwa);  //zlicza ilosc skladnikow dla przepisu o zadanym id w warunku where
 
-                  $link->close();
+              $zawieraIlosc = ZawieraQuery::create()
+                      ->join('Przepis')
+                      ->join('Skladniki')
+                      ->where('Przepis.IdPrzepis = ?', 1)
+                      ->select(array('Ilosc'))
+                      ->find();
+///sprawdzic ile jest skladnikow dla danego przepisu i stworzyc zmienna ktora bedzie przechowywac ta ilosc
+//utworzyc petle for zaczynajac od 0 do wartosci tej zmiennej powyzej i podstawiac odpowiednio pod ->get(numer z petli for)
+//get indeksuje od 0 (get(0)-pierwszy skladnik)
+
+              $i;
+              for($i=0; $i<$num; $i++){
+              echo '<tr><td>'.$zawieraNazwa->get($i).'</td><td>'.$zawieraIlosc->get($i).'</td></tr>';
               }
-            ?>
+
+              ?>
+
             </table>
 
           </div>
           <div class="content__recipe__element">
             <h2 class="content__recipe__h2">Przygotowanie</h2>
-              <?php
-              require_once "connect.php";
 
-              $link = new mysqli($host, $db_user, $db_password, $db_name);
-              $link->query("SET NAMES 'utf8'");
-              if ($link->connect_errno!=0) {
-                  echo "Error: ".$link->connect_errno." Opis: ".$link->connect_error;
-              } else {
-                  $zapytanie = mysqli_query($link, "SELECT e.nr_etapu, e.opis FROM przepis p JOIN etap e ON p.id_przepis=e.PRZEPIS_id_przepis WHERE p.id_przepis=10");
+            <?php
+            require_once __DIR__.'/vendor/autoload.php';
+            require_once __DIR__.'/generated-conf/config.php';
 
-                  while ($option = mysqli_fetch_assoc($zapytanie)) {
-                      echo '<div class="content__recipe__stage">';
-                      echo '<h2>Etap '.$option['nr_etapu'].'</h2>';
-                      echo '<div class="content__recipe__stage__data"><p>'.$option['opis'].'</p><img src="img/placeholder icon.png" /></div>';
-                      echo '</div>';
-                  }
+            $etapyNr = EtapQuery::create()
+                    ->join('Przepis')
+                    ->where('Przepis.IdPrzepis = ?', 1)
+                    ->select(array('NrEtapu'))
+                    ->find();
 
-                  $link->close();
-              }
-              ?>
+            $num2 = count($etapyNr);  //zlicza ilosc etapow dla przepisu o zadanym id w warunku where
+
+            $etapyOpis = EtapQuery::create()
+                    ->join('Przepis')
+                    ->where('Przepis.IdPrzepis = ?', 1)
+                    ->select(array('Opis'))
+                    ->find();
+
+            $j;
+            for($j=0; $j<$num2; $j++){
+              echo '<div class="content__recipe__stage">';
+              echo '<h2>Etap '.$etapyNr->get($j).'</h2>';
+              echo '<div class="content__recipe__stage__data"><p>'.$etapyOpis->get($j).'</p><img src="img/placeholder icon.png" /></div>';
+              echo '</div>';
+            }
+
+            ?>
+
           </div>
         </div>
       </div>
