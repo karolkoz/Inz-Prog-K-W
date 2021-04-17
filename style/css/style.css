@@ -437,8 +437,20 @@ nav {
   background-color: #0cc608; }
 
 .content__form__uploadedMainImage {
-  width: 80%;
-  height: 80%; }
+  width: 50%;
+  height: 400px;
+  display: none; }
+
+#removeMainImage {
+  display: none; }
+
+.content__form__inputImage {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%; }
+  .content__form__inputImage button {
+    display: none; }
 
 .content__form__button {
   position: relative;

@@ -105,12 +105,32 @@ function addStage(content) {
   new_input.setAttribute("name", "etap_image[]");
   new_input.setAttribute("id", "etap_" + numer + "_image");
   new_input.addEventListener("change", function() {
-    loadStageImage("label_etap_" + numer)
+    loadStageImage(event)
   }, false);
   new_label.appendChild(new_input);
   content_form_inputs.appendChild(new_label);
 
+  var new_div = document.createElement("div");
+  new_div.classList.add("content__form__inputImage");
+  img = document.createElement("img");
+  img.setAttribute("id", "etap_" + numer + "_image_uploaded");
+  img.classList.add("content__form__uploadedMainImage");
+  new_div.appendChild(img);
+  new_buttonRem = document.createElement("button");
+  new_buttonRem.setAttribute("type", "button");
+  new_buttonRem.setAttribute("id", "etap_" + numer + "_image_remove");
+  new_buttonRem.classList.add("content__form__removeButton");
+  new_buttonRem.addEventListener("click", function() {
+    deleteStageImage("etap_" + numer + "_image")
+  }, false);
+  imgRem = document.createElement("img");
+  imgRem.setAttribute("src", "img/x icon.png");
+  new_buttonRem.appendChild(imgRem);
+  new_div.appendChild(new_buttonRem);
+
+
   new_stage.appendChild(content_form_inputs);
+  new_stage.appendChild(new_div);
 
   var button = document.getElementById("buttonDiv");
   document.getElementById("stages").appendChild(new_stage);
@@ -123,7 +143,9 @@ function addStage(content) {
     title: "h2_etap_" + numer,
     text: "textarea_etap_" + numer,
     input: "etap_" + numer + "_image",
-    label: "label_etap_" + numer
+    label: "label_etap_" + numer,
+    imageRemoveButton: "etap_" + numer + "_image_remove",
+    imageUploaded: "etap_" + numer + "_image_uploaded"
   });
 }
 
@@ -165,6 +187,12 @@ function removeStage(x) {
     document.getElementById(stageArray[i].label).htmlFor = "etap_" + numer + "_image";
     document.getElementById(stageArray[i].label).id = "label_etap_" + numer;
     stageArray[i].label = "label_etap_" + numer;
+
+    document.getElementById(stageArray[i].imageRemoveButton).id = "etap_" + numer + "_image_remove";
+    stageArray[i].imageRemoveButton = "etap_" + numer + "_image_remove";
+
+    document.getElementById(stageArray[i].imageUploaded).id = "etap_" + numer + "_image_uploaded";
+    stageArray[i].imageUploaded = "etap_" + numer + "_image_uploaded";
     //console.log("+label = " + stageArray[i].label);
     //console.log("-StageNum = " + stageArray[i].StageNum);
     stageArray[i].StageNum = numer;
@@ -178,15 +206,38 @@ function removeStage(x) {
   ileEtapow--;
 }
 
-function loadStageImage(x) {
-  console.log(x);
-  document.getElementById(x).classList.add("form__label__stage--uploaded");
-}
 
 var loadMainImage = function(event) {
   var output = document.getElementById('uploadedMainImage');
   output.src = URL.createObjectURL(event.target.files[0]);
   output.onload = function() {
     URL.revokeObjectURL(output.src)
+    document.getElementById("removeMainImage").style.display = "flex";
   }
+  output.style.display = "block";
 };
+
+function deleteMainImage() {
+  document.getElementById("image").value = '';
+  var output = document.getElementById('uploadedMainImage');
+  output.style.display = "none";
+  document.getElementById("removeMainImage").style.display = "none";
+}
+
+var loadStageImage = function(event) {
+  var x = event.currentTarget.id;
+  var output = document.getElementById(x + "_uploaded");
+  output.src = URL.createObjectURL(event.target.files[0]);
+  output.onload = function() {
+    URL.revokeObjectURL(output.src)
+    document.getElementById(x+"_remove").style.display = "flex";
+  }
+  output.style.display = "block";
+};
+
+function deleteStageImage(x) {
+  document.getElementById(x).value = '';
+  var output = document.getElementById(x+"_uploaded");
+  output.style.display = "none";
+  document.getElementById(x+"_remove").style.display = "none";
+}
