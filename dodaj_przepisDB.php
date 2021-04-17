@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/generated-conf/config.php';
+// use Propel\Runtime\ActiveQuery\Criteria;
 
 $nazwa = $_POST['nazwa'];
 $trudnosc = $_POST['trudnosc'];
@@ -44,22 +45,31 @@ foreach($_POST['skladnik_ilosc'] as $val)
 } //mam tablice tab o elementach z tablicy $_POST['skladnik_ilosc']
 
 
-  $j=0;
-  foreach ($_POST['skladnik_nazwa'] as $value)
-  {
-    $skladnik = new Skladniki();
-    $skladnik->setNazwa($value);
-    $skladnik->save();
+//warunkowe wstawianie do tabeli 'SKLADNIKI':
+$j=0;
+foreach ($_POST['skladnik_nazwa'] as $value)
+{
+  $skladniki = SkladnikiQuery::create()
+  ->filterByNazwa($value)
+  ->find();
 
-    $zawiera = new Zawiera();
-    $zawiera->setPrzepis($przepis);
-    $zawiera->setSkladniki($skladnik);
-    $zawiera->setIlosc($tab[$j]);
-    $zawiera->save();
+  if (count($skladniki) == 0) {
+   $skladnik = new Skladniki();
+   $skladnik->setNazwa($value);
+   $skladnik->save();
+   } elseif (count($skladniki) == 1) {
+       $skladnik = $skladniki[0];
+    }
 
-    $j++;
-    // echo " Wstawiono do tabaeli zawiera! ";
-  }
+  $zawiera = new Zawiera();
+  $zawiera->setPrzepis($przepis);
+  $zawiera->setSkladniki($skladnik);
+  $zawiera->setIlosc($tab[$j]);
+  $zawiera->save();
+
+  $j++;
+  // echo " Wstawiono do tabaeli zawiera! ";
+}
 
 
 
