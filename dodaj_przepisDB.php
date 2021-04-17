@@ -23,6 +23,7 @@ $przepis->setDlaIluOsob($ile_osob);
 $przepis->setOpis($opis);
 $przepis->setDataDodania($data);
 $przepis->setStatus($status);
+// $przepis->setZdjecieOgolne(file_get_contents("C:\xampp\htdocs\Inz-Prog-K-W\golabki_danie.png"));//dodawanie obrazka ogolnego////////////////
 $przepis->setUzytkownikLogin($UZYTKOWNIK_login);
 
 if($przepis->save())
@@ -30,6 +31,8 @@ if($przepis->save())
     echo 'Dodano przepis o id: '.$przepis->getIdPrzepis();
     $idPrzepisu=$przepis->getIdPrzepis();
 }
+
+
 
 /////////////////////dodawanie do tabeli skladniki i zawiera ////////////////////////////
 $tab=[];

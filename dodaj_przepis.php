@@ -64,6 +64,7 @@
         <div class="content__form__input">
           <textarea name="opis" id="opis" placeholder="Opis przepisu"></textarea>
         </div>
+        
         <div class="content__form__input">
           <label class="form__label__forImage" for="image">
             <img src="img/image icon.png" />
