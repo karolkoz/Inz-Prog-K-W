@@ -20,6 +20,7 @@
           <a href="#" class="nav__list__button nav__list__button--user"></a>
         </div>
       </div>
+      
     </nav>
 
     <section class="content">

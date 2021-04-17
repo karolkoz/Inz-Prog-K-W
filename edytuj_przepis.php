@@ -129,7 +129,6 @@
           <div id="ingredientButtonDiv" class="content__form__button">
             <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
           </div>
-
         </div>
 
         <div class="content__form__dynamicInputs" id="stages">

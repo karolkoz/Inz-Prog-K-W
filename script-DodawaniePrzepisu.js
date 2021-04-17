@@ -154,6 +154,7 @@ function removeStage(x) {
   var n = parseInt(id.substr(5), 10);
   var target = document.getElementById(id);
   var numer;
+  
   //console.log("Usuwany etap = "+id);
   for (i = n - 1; i < stageArray.length; i++) {
     numer = parseInt(stageArray[i].StageNum - 1);
