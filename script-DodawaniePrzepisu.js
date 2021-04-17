@@ -189,8 +189,10 @@ function removeStage(x) {
     stageArray[i].label = "label_etap_" + numer;
 
     document.getElementById(stageArray[i].imageRemoveButton).id = "etap_" + numer + "_image_remove";
+    stageArray[i].imageRemoveButton = "etap_" + numer + "_image_remove";
 
     document.getElementById(stageArray[i].imageUploaded).id = "etap_" + numer + "_image_uploaded";
+    stageArray[i].imageUploaded = "etap_" + numer + "_image_uploaded";
     //console.log("+label = " + stageArray[i].label);
     //console.log("-StageNum = " + stageArray[i].StageNum);
     stageArray[i].StageNum = numer;
