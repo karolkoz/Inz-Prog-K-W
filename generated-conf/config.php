@@ -5,7 +5,7 @@ $serviceContainer->setAdapterClass('kulinaria', 'mysql');
 $manager = new \Propel\Runtime\Connection\ConnectionManagerSingle();
 $manager->setConfiguration(array (
   'classname' => 'Propel\\Runtime\\Connection\\ConnectionWrapper',
-  'dsn' => 'mysql:host=localhost;dbname=kulinaria',
+  'dsn' => 'mysql:host=localhost;dbname=kulinaria;charset=UTF8',
   'user' => 'root',
   'password' => 'INEZ$a$$11',
   'attributes' =>

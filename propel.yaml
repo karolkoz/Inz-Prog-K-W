@@ -12,7 +12,7 @@ propel:
  
               classname: Propel\Runtime\Connection\ConnectionWrapper
  
-              dsn: "mysql:host=localhost;dbname=kulinaria"
+              dsn: "mysql:host=localhost;dbname=kulinaria;charset=UTF8"
  
               user: root
  
