@@ -119,6 +119,4 @@ foreach($_POST['skladnik_ilosc'] as $val)
     // echo "  dodano kategorię ";
   }
 
-
-
 ?>

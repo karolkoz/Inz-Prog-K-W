@@ -64,6 +64,14 @@
         <div class="content__form__input">
           <textarea name="opis" id="opis" placeholder="Opis przepisu"></textarea>
         </div>
+
+        <div class="content__form__inputImage">
+          <img class="content__form__uploadedMainImage" id="uploadedMainImage" src="img/placeholder icon.png"/>
+          <button id="removeMainImage" type="button" class="content__form__removeButton" onClick="deleteMainImage()">
+            <img src="img/x icon.png">
+          </button>
+        </div>
+
         <div class="content__form__input">
           <label class="form__label__forImage" for="image">
             <img src="img/image icon.png" />
@@ -71,10 +79,10 @@
             <input type="file" name="image" id="image" onchange="loadMainImage(event)" />
           </label>
         </div>
-        <img class="content__form__uploadedMainImage" id="uploadedMainImage"/>
 
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
+          <script type="text/javascript" src="script - Categories.js"></script>
           <div class="content__form__category" id="category_1">
             <select name="categories[]">
               <option value=""disabled selected>Kategoria</option>
@@ -84,8 +92,8 @@
               require_once __DIR__.'/generated-conf/config.php';
 
               $kategorie = KategoriaQuery::create()->find();
-                foreach($kategorie as $kat) {
-                  echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
+                foreach ($kategorie as $kat) {
+                    echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
                 }
 
               ?>
@@ -117,22 +125,25 @@
               <textarea name="etap[]" placeholder="Opis etapu"></textarea>
               <label class="form__label__stage" for="etap_1_image" id="label_etap_1">
                 <img src="img/image icon.png" />
-                <input type="file" id="etap_1_image" name="etap[]" onchange="loadStageImage(label_etap_1)" />
+                <input type="file" id="etap_1_image" name="etap[]" onchange="loadStageImage(event)" />
               </label>
+            </div>
+            <div class="content__form__inputImage">
+              <img class="content__form__uploadedMainImage" id="etap_1_image_uploaded" src="img/placeholder icon.png"/>
+              <button id="etap_1_image_remove" type="button" class="content__form__removeButton" onClick="deleteStageImage('etap_1_image')">
+                <img src="img/x icon.png">
+              </button>
             </div>
           </div>
           <div id="buttonDiv" class="content__form__button">
-            <button id="button" type="button" onClick="addStage()"> <img src="img/plus icon.png" /> Dodaj nowy etap</button>
+            <button id="button" type="button" onClick="addStage()" > <img src="img/plus icon.png" /> Dodaj nowy etap</button>
           </div>
         </div>
         <div class="content__form__button content__form__button--submit">
           <button type="submit"> Dodaj przepis</button>
         </div>
-
+        <script type="text/javascript" src="script-DodawaniePrzepisu.js"></script>
       </form>
-
-      <script src="script-DodawaniePrzepisu.js"></script>
-      <script src="script - Categories.js"></script>
     </section>
 
 
