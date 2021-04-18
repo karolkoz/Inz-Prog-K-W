@@ -16,6 +16,7 @@ $UZYTKOWNIK_login = "dummy123";
 /////////////////dodawanie do tabeli przepis/////////////////////////////
 $przepis = new Przepis();
 
+$nazwa_zdjecie = $_POST['image'];
 
 $przepis->setNazwa($nazwa);
 $przepis->setStopienTrudnosci($trudnosc);
@@ -24,7 +25,7 @@ $przepis->setDlaIluOsob($ile_osob);
 $przepis->setOpis($opis);
 $przepis->setDataDodania($data);
 $przepis->setStatus($status);
-// $przepis->setZdjecieOgolne(file_get_contents("C:\xampp\htdocs\Inz-Prog-K-W\golabki_danie.png"));//dodawanie obrazka ogolnego////////////////
+$przepis->setZdjecieOgolne(".\$nazwa_zdjecie");//dodawanie obrazka ogolnego////////////////
 $przepis->setUzytkownikLogin($UZYTKOWNIK_login);
 
 if($przepis->save())
@@ -87,12 +88,20 @@ foreach ($_POST['skladnik_nazwa'] as $value)
   }//mam tablice tab2 o elementach z tablicy $_POST['etap'] czyli opis etapu
   //np. dla 3 etapow tablica ma 4 elementy
 
+$tab3=[];
+$j=0;
+foreach($_POST['etap'] as $val_zdj)
+{
+  $tab3[$j]=$val_zdj;
+  $j++;
+}
 
   if($num==2)
   {
     $etap = new Etap();
     $etap->setNrEtapu($nr_etap);
     $etap->setOpis($tab2[0]);
+    $etap->setZdjecie(".\$tab3[0]");
     $etap->setPrzepis($przepis);
     $etap->save();
 
@@ -104,6 +113,7 @@ foreach ($_POST['skladnik_nazwa'] as $value)
     $etap = new Etap();
     $etap->setNrEtapu($nr_etap);
     $etap->setOpis($tab2[0]);
+    $etap->setZdjecie(".\$tab3[0]");
     $etap->setPrzepis($przepis);
     $etap->save();
 
@@ -113,6 +123,7 @@ foreach ($_POST['skladnik_nazwa'] as $value)
       $etap = new Etap();
       $etap->setNrEtapu($nr_etap);
       $etap->setOpis($tab2[$n]);
+      $etap->setZdjecie(".\$tab3[$n]");
       $etap->setPrzepis($przepis);
       $etap->save();
       $n++;

@@ -50,7 +50,31 @@
 
         <div class="content__recipe__row">
           <div class="content__recipe__element">
-            <img class="content__recipe__image" src="img/placeholder icon.png" />
+            <?php
+            require_once __DIR__.'/vendor/autoload.php';
+            require_once __DIR__.'/generated-conf/config.php';
+
+            $przepis = PrzepisQuery::create()->findPk(13);
+            $fp = $przepis->getZdjecieOgolne();
+            if ($fp !== null) {
+              echo '<img class="content__recipe__image" src="img/placeholder stream_get_contents($fp)" />';
+
+              // echo '<img class="content__recipe__image" src="stream_get_contents($fp)" />';
+              // echo stream_get_contents($fp);
+            }
+            else{
+              echo '<img class="content__recipe__image" src="img/placeholder icon.png" />';
+            }
+
+
+
+            // $przepis = PrzepisQuery::create()->findPk(12);
+            // $fp = $przepis->getZdjecieOgolne();
+            // if ($fp !== null) {
+            //   echo stream_get_contents($fp);
+            // }
+
+            ?>
             <div class="content__recipe__buttons">
               <button class="content__recipe__button--favourite"><span>Ulubione </span> <img src="img/star black icon.png" /></button>
               <button class="content__recipe__button--like"><span>Lubię to!</span><img src="img/like white.png" /></button>
