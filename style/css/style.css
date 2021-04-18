@@ -32,11 +32,15 @@ nav {
 
 .nav__menu {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  position: relative; }
 
 .nav__list {
-  display: flex;
-  flex-direction: row; }
+  display: none;
+  flex-direction: row;
+  position: absolute;
+  z-index: 1;
+  right: 0; }
 
 .nav__list__button {
   background-color: #058B63;
@@ -59,6 +63,9 @@ nav {
   background-color: white;
   background-image: url("../../img/star icon.png"); }
 
+.nav__list__button--menu {
+  background-image: url("../../img/menu icon.png"); }
+
 .search-section {
   display: flex;
   flex-direction: column;
@@ -70,7 +77,8 @@ nav {
 .search__form {
   display: flex;
   flex-direction: column;
-  padding: 20px 0; }
+  padding: 20px 0;
+  width: 80%; }
   .search__form .search__form__select {
     padding: 5px 0; }
   .search__form select {
@@ -342,7 +350,8 @@ nav {
 .content__recipe__stage__data {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  justify-content: space-between; }
   .content__recipe__stage__data img {
     width: 300px;
     height: 300px; }

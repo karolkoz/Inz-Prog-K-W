@@ -9,20 +9,8 @@
 
 <body>
   <main>
-    <nav>
-      <div class="nav__name">
-        <a href="index.php"> Pyszniutkie.pl</a>
-      </div>
-      <div class="nav__menu">
-        <div class="nav__list">
-          <a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>
-          <a href="#" class="nav__list__button nav__list__button--fav"></a>
-          <a href="#" class="nav__list__button nav__list__button--user"></a>
-        </div>
-      </div>
-      
-    </nav>
-
+    <?php include 'nav.php' ?>
+    
     <section class="content">
       <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post">
         <h1>Formularz dodawania przepisu</h1>
@@ -77,7 +65,7 @@
           <label class="form__label__forImage" for="image">
             <img src="img/image icon.png" />
             Dodaj obrazek do przepisu!
-            <input type="file" name="image" id="image" onchange="loadMainImage(event)" />
+            <input type="file" name="image" id="image" accept="image/png, image/jpeg" onchange="loadMainImage(event)" />
           </label>
         </div>
 
@@ -126,7 +114,7 @@
               <textarea name="etap[]" placeholder="Opis etapu"></textarea>
               <label class="form__label__stage" for="etap_1_image" id="label_etap_1">
                 <img src="img/image icon.png" />
-                <input type="file" id="etap_1_image" name="etap[]" onchange="loadStageImage(event)" />
+                <input type="file" id="etap_1_image" name="etap[]" accept="image/png, image/jpeg" onchange="loadStageImage(event)" />
               </label>
             </div>
             <div class="content__form__inputImage">

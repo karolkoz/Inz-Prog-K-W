@@ -102,6 +102,7 @@ function addStage(content) {
 
   var new_input = document.createElement("input");
   new_input.setAttribute("type", "file");
+  new_input.setAttribute("accept", "image/png, image/jpeg");
   new_input.setAttribute("name", "etap_image[]");
   new_input.setAttribute("id", "etap_" + numer + "_image");
   new_input.addEventListener("change", function() {
@@ -154,7 +155,7 @@ function removeStage(x) {
   var n = parseInt(id.substr(5), 10);
   var target = document.getElementById(id);
   var numer;
-  
+
   //console.log("Usuwany etap = "+id);
   for (i = n - 1; i < stageArray.length; i++) {
     numer = parseInt(stageArray[i].StageNum - 1);

@@ -9,19 +9,7 @@
 
 <body>
   <main>
-    <nav>
-      <div class="nav__name">
-        <a href="index.php"> Pyszniutkie.pl</a>
-      </div>
-      <div class="nav__menu">
-        <div class="nav__list">
-          <a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>
-          <a href="#" class="nav__list__button nav__list__button--fav"></a>
-          <a href="#" class="nav__list__button nav__list__button--user"></a>
-        </div>
-      </div>
-    </nav>
-
+    <?php include 'nav.php' ?>
 
     <section class="search-section">
       <form class="search__form" action="search.php" method="post">
