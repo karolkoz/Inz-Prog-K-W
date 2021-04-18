@@ -19,7 +19,7 @@ function addCategory() {
 
   var button = document.getElementById("categoryButtonDiv");
   document.getElementById("categories").appendChild(clone);
-  document.getElementById("categories").appendChild(button);
+  document.getElementById("categories").appendChild(document.getElementById("categoryButtonDiv"));
 }
 function removeCategory(x) {
   document.getElementById(x).remove();

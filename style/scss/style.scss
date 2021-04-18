@@ -62,11 +62,16 @@ nav {
 .nav__menu {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
+
 .nav__list {
-  display: flex;
+  display: none;
   flex-direction: row;
+  position: absolute;
+  z-index: 1;
+  right: 0;
 }
 
 .nav__list__button {
@@ -93,6 +98,10 @@ nav {
   background-color: white;
   background-image: url("../../img/star icon.png");
 }
+
+.nav__list__button--menu {
+  background-image: url("../../img/menu icon.png");
+}
 ////////////////////////////////////////////////////SEARCH FORM//////////////////////////////////////////////////
 
 .search-section {
@@ -108,7 +117,7 @@ nav {
   display: flex;
   flex-direction: column;
   padding: 20px 0;
-
+  width: 80%;
   .search__form__select {
     padding: 5px 0;
   }
@@ -446,7 +455,7 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
-
+  justify-content: space-between;
   img {
     width: 300px;
     height: 300px;
