@@ -20,7 +20,7 @@
           <a href="#" class="nav__list__button nav__list__button--user"></a>
         </div>
       </div>
-      
+
     </nav>
 
     <section class="content">
@@ -126,7 +126,7 @@
               <textarea name="etap[]" placeholder="Opis etapu"></textarea>
               <label class="form__label__stage" for="etap_1_image" id="label_etap_1">
                 <img src="img/image icon.png" />
-                <input type="file" id="etap_1_image" name="etap[]" onchange="loadStageImage(event)" />
+                <input type="file" id="etap_1_image" name="etap_image[]" onchange="loadStageImage(event)" />
               </label>
             </div>
             <div class="content__form__inputImage">
