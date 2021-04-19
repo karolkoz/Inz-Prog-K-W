@@ -28,7 +28,7 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-            $przepis = PrzepisQuery::create()->findPk(43);
+            $przepis = PrzepisQuery::create()->findPk(147);
             echo '<h1 class="content__recipe__title">'.$przepis->getNazwa().'</h1>'; //wyswietla nazwe przepisu o id=24
             echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$przepis->getUzytkownikLogin().'</i></h2>'; //wyswietla login autora przepisu o id=24
 
@@ -43,10 +43,11 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-            $przepis = PrzepisQuery::create()->findPk(43);
+            $przepis = PrzepisQuery::create()->findPk(64);
             $fp = $przepis->getZdjecieOgolne();
             if ($fp !== null) {
-              echo '<img class="content__recipe__image" src="'.stream_get_contents($fp).'" />';
+              // echo '<img class="content__recipe__image" src="'.stream_get_contents($fp).'" />';
+              echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp)).'" />';
             }
             else{
               echo '<img class="content__recipe__image" src="img/placeholder icon.png" />';
@@ -64,7 +65,7 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-            $przepis = PrzepisQuery::create()->findPk(43);
+            $przepis = PrzepisQuery::create()->findPk(147);
             echo '<p class="content__recipe__element__desc">'.$przepis->getOpis().'</p>'; //wyswietla opis przepisu o id=24
 
             ?>
@@ -77,7 +78,7 @@
                 require_once __DIR__.'/vendor/autoload.php';
                 require_once __DIR__.'/generated-conf/config.php';
 
-                $przepis = PrzepisQuery::create()->findPk(43);
+                $przepis = PrzepisQuery::create()->findPk(147);
                 echo '<span>'.$przepis->getDlaIluOsob().'</span>';
 
                 ?>
@@ -90,7 +91,7 @@
                 require_once __DIR__.'/vendor/autoload.php';
                 require_once __DIR__.'/generated-conf/config.php';
 
-                $przepis = PrzepisQuery::create()->findPk(43);
+                $przepis = PrzepisQuery::create()->findPk(147);
                 echo '<span>'.$przepis->getCzasPrzygotowania().' min.'.'</span>';
 
                 ?>
@@ -103,7 +104,7 @@
                 require_once __DIR__.'/vendor/autoload.php';
                 require_once __DIR__.'/generated-conf/config.php';
 
-                $przepis = PrzepisQuery::create()->findPk(43);
+                $przepis = PrzepisQuery::create()->findPk(147);
 
                 if ($przepis->getStopienTrudnosci()>0 && $przepis->getStopienTrudnosci()<4) {
                     echo '<span>'.'łatwy'.'</span>';
@@ -137,7 +138,7 @@
               $zawieraNazwa = ZawieraQuery::create()
                       ->join('Przepis')
                       ->join('Skladniki')
-                      ->where('Przepis.IdPrzepis = ?', 43)
+                      ->where('Przepis.IdPrzepis = ?', 147)
                       ->select(array('Skladniki.Nazwa'))
                       ->find();
 
@@ -146,7 +147,7 @@
               $zawieraIlosc = ZawieraQuery::create()
                       ->join('Przepis')
                       ->join('Skladniki')
-                      ->where('Przepis.IdPrzepis = ?', 43)
+                      ->where('Przepis.IdPrzepis = ?', 147)
                       ->select(array('Ilosc'))
                       ->find();
 ///sprawdzic ile jest skladnikow dla danego przepisu i stworzyc zmienna ktora bedzie przechowywac ta ilosc
@@ -172,7 +173,7 @@
 
                         $etapyNr = EtapQuery::create()
                                 ->join('Przepis')
-                                ->where('Przepis.IdPrzepis = ?', 43)
+                                ->where('Przepis.IdPrzepis = ?', 147)
                                 ->select(array('NrEtapu'))
                                 ->find();
 
@@ -180,12 +181,12 @@
 
                         $etapyOpis = EtapQuery::create()
                                 ->join('Przepis')
-                                ->where('Przepis.IdPrzepis = ?', 43)
+                                ->where('Przepis.IdPrzepis = ?', 147)
                                 ->select(array('Opis'))
                                 ->find();
 
                         $etap = EtapQuery::create()
-                                ->filterByPrzepisIdPrzepis(43)
+                                ->filterByPrzepisIdPrzepis(147)
                                 ->select(array('Zdjecie'))
                                 ->find();
 
@@ -196,7 +197,12 @@
                             $e=$etap->get($x);
                             echo '<div class="content__recipe__stage">';
                             echo '<h2>Etap '.$etapyNr->get($x).'</h2>';
-                          echo '<div class="content__recipe__stage__data"><p>'.$etapyOpis->get($x).'</p><img src="'.$e.'" /></div>';
+                          // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($e)).'" />';
+                          // echo '<div class="content__recipe__stage__data"><p>'.$etapyOpis->get($x).'</p><img src="'.$e.'" /></div>';
+                          echo '<div class="content__recipe__stage__data"><p>'.$etapyOpis->get($x).'</p><img src="data:image/jpg;charset=utf8;base64,'.base64_encode($e).'" /></div>';
+
+
+
                           echo '</div>';
                           }
                           else{

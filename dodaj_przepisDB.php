@@ -16,10 +16,9 @@ $UZYTKOWNIK_login = "dummy123";
 /////////////////dodawanie do tabeli przepis/////////////////////////////
 $przepis = new Przepis();
 
-$nazwa_zdjecie = $_POST['image'];
 
-echo 'NAZWA ZDJ OGOLNE:  '.$nazwa_zdjecie;
-print gettype($nazwa_zdjecie);
+$image = $_FILES['image']['tmp_name'];
+$img = file_get_contents($image);
 
 $przepis->setNazwa($nazwa);
 $przepis->setStopienTrudnosci($trudnosc);
@@ -28,15 +27,18 @@ $przepis->setDlaIluOsob($ile_osob);
 $przepis->setOpis($opis);
 $przepis->setDataDodania($data);
 $przepis->setStatus($status);
-$przepis->setZdjecieOgolne($nazwa_zdjecie);
+// $przepis->setZdjecieOgolne($nazwa_zdjecie);
+$przepis->setZdjecieOgolne($img);
 $przepis->setUzytkownikLogin($UZYTKOWNIK_login);
 
 if($przepis->save())
 {
-    echo 'Dodano przepis o id: '.$przepis->getIdPrzepis();
+    echo ' Dodano przepis o id: '.$przepis->getIdPrzepis().'</br>';
     $idPrzepisu=$przepis->getIdPrzepis();
 }
-
+// $fp= $przepis->getZdjecieOgolne();
+// echo ' przeslane zdjecie to: </br>';
+// echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp)).'" />';
 
 
 /////////////////////dodawanie do tabeli skladniki i zawiera ////////////////////////////
@@ -77,8 +79,11 @@ foreach ($_POST['skladnik_nazwa'] as $value)
 
 
 
-  ///////////////////////////////////////dodawanie etapów////////////////////////
+  ///////////////////////////////////////dodawanie etapów
+
+
   $num = count($_POST['etap']); //ilosc dodanych opisow etapow
+echo ' ILOSC ETAPOW: '.$num.'</br>';
 
   $nr_etap=1; //zaczynamy od etapu nr 1, bedziemy zwiekszac $nr_etap++ przy dodawaniu kolejnych etapow
 
@@ -88,36 +93,107 @@ foreach ($_POST['skladnik_nazwa'] as $value)
   foreach($_POST['etap'] as $val_opis)
   {
     $tab2[$k]=$val_opis;
+    // echo $val_opis.'</br>';
     $k++;
-    echo $val_opis.'</br>';
   }//mam tablice tab2 o elementach z tablicy $_POST['etap'] czyli opis etapu
   //np. dla 3 etapow tablica ma 4 elementy
 
-$tab3=[];
+
+// print gettype($_FILES['etap_image']['tmp_name']);
+// $tab3=[];
+
+// $ile = count($_FILES['etap_image']);
+// echo ' ile = '.$ile;
+
+// $zmianna[] = convert_upload_file_array($_FILES['etap_image']['tmp_name']);
+
+// $etap_image = array();
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// if (isset($_FILES['etap_image'])) {
+// $arquivo = array();
+// foreach ($_FILES['etap_image']["tmp_name"] as $file=>$key) {
+//
+//                     // the empty input files create an array index too, so we need to
+//                     // check if the name exits. It means the file exists.
+//         if (!empty($_FILES['etap_image']["tmp_name"][$file])) {
+//
+//           $arquivo ["name"] = $_FILES['etap_image']["name"][$file];
+//           echo $arquivo ["name"];
+//           $arquivo ["tmp_name"] = $_FILES['etap_image']["tmp_name"][$file];
+//           $etap = new Etap();
+//           if ($etap -> upload($arquivo)) { // if its uploaded than save
+//             $etap -> save();
+//
+//             $fp2 = $etap->getZdjecie();
+//             if ($fp2 !== null) {
+//               // echo '<img class="content__recipe__image" src="'.stream_get_contents($fp).'" />';
+//               echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+//             }
+//             else{
+//               echo '<img class="content__recipe__image" src="img/placeholder icon.png" />';
+//             }
+//             }
+//         }
+//         // $p++;
+// }
+// }
+
+
+// print gettype($_FILES['etap_image']);
+
+$tab4=[];
 $p=0;
-foreach($_POST['etap_image'] as $val_zdj)
+// if (isset($_FILES['etap_image'])) {
+//   echo ' TEST ';
+foreach($_FILES['etap']['tmp_name'] as $key)
 {
-  $tab3[$p]=$val_zdj;
+
+//   $file_tmp =$_FILES['etap_image']['tmp_name'][$key];
+// print gettype($file_tmp);
+  $tab4[$p]=file_get_contents($key);
   $p++;
-  // echo 'PRZESLANE ZDJECIA ETAPOW: '.$val_zdj.'</br>';
-  // print gettype($val_zdj);
 }
+// }
 
 
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// $ilezdj=count($_FILES['etap']['tmp_name']);
+// echo ' ilosc wyslanych zdjec: '.$ilezdj;
+
+// print gettype($_FILES['etap_image']['tmp_name'][0]);
+//
+// $IMAGE = $_FILES['etap_image']['tmp_name'][0];
+// $IMG = file_get_contents($IMAGE);
 
   $m=0;
   for($m=0; $m<$num; $m++)
   {
     $etap = new Etap();
     $etap->setNrEtapu($nr_etap);
-    // echo $etap->getNrEtapu().'</br>';
     $etap->setOpis($tab2[$m]);
-    // echo $etap->getOpis().'</br>';
-    $etap->setZdjecie($tab3[$m]);
-    // echo $etap->getZdjecie().'</br>';
+    $etap->setZdjecie($tab4[$m]);
+
+
+    // $etap->setZdjecie($IMG);
+
+
     $etap->setPrzepis($przepis);
-    // echo $etap->getPrzepis().'</br>';
-    $etap->save();
+    if($etap->save()){
+      echo ' Dodano etap ';
+      echo $etap->getOpis().'</br>';
+      echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
+      $fp2 = $etap->getZdjecie();
+      echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+    }
 
     $nr_etap++;
   }

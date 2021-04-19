@@ -103,7 +103,7 @@ function addStage(content) {
   var new_input = document.createElement("input");
   new_input.setAttribute("type", "file");
   new_input.setAttribute("accept", "image/png, image/jpeg");
-  new_input.setAttribute("name", "etap_image[]");
+  new_input.setAttribute("name", "etap[]");
   new_input.setAttribute("id", "etap_" + numer + "_image");
   new_input.addEventListener("change", function() {
     loadStageImage(event)
