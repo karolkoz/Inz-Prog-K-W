@@ -10,7 +10,7 @@
 <body>
   <main>
     <?php include 'nav.php' ?>
-    
+
     <section class="content">
       <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post">
         <h1>Formularz dodawania przepisu</h1>
