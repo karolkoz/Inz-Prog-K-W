@@ -12,7 +12,7 @@
     <?php include 'nav.php' ?>
 
     <section class="content">
-      <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post">
+      <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post" enctype="multipart/form-data">
         <h1>Formularz dodawania przepisu</h1>
         <div class="content__form__input">
           <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" />
