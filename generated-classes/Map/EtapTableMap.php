@@ -197,7 +197,7 @@ class EtapTableMap extends TableMap
         $this->addPrimaryKey('id_etap', 'IdEtap', 'INTEGER', true, null, null);
         $this->addColumn('nr_etapu', 'NrEtapu', 'INTEGER', true, null, null);
         $this->addColumn('opis', 'Opis', 'VARCHAR', true, 10000, null);
-        $this->addColumn('zdjecie', 'Zdjecie', 'BLOB', false, null, null);
+        $this->addColumn('zdjecie', 'Zdjecie', 'VARBINARY', false, null, null);
         $this->addForeignKey('PRZEPIS_id_przepis', 'PrzepisIdPrzepis', 'INTEGER', 'przepis', 'id_przepis', true, null, null);
     } // initialize()
 

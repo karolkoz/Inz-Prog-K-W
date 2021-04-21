@@ -85,7 +85,7 @@ abstract class Etap implements ActiveRecordInterface
     /**
      * The value for the zdjecie field.
      *
-     * @var        resource|null
+     * @var        string|null
      */
     protected $zdjecie;
 
@@ -368,7 +368,7 @@ abstract class Etap implements ActiveRecordInterface
     /**
      * Get the [zdjecie] column value.
      *
-     * @return resource|null
+     * @return string|null
      */
     public function getZdjecie()
     {
@@ -448,7 +448,7 @@ abstract class Etap implements ActiveRecordInterface
     /**
      * Set the value of [zdjecie] column.
      *
-     * @param resource|null $v New value
+     * @param string|null $v New value
      * @return $this|\Etap The current object (for fluent API support)
      */
     public function setZdjecie($v)

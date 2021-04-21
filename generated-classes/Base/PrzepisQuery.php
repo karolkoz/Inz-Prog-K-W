@@ -123,7 +123,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPrzepis|null findOneByOpis(string $opis) Return the first ChildPrzepis filtered by the opis column
  * @method     ChildPrzepis|null findOneByDataDodania(string $data_dodania) Return the first ChildPrzepis filtered by the data_dodania column
  * @method     ChildPrzepis|null findOneByStatus(int $status) Return the first ChildPrzepis filtered by the status column
- * @method     ChildPrzepis|null findOneByZdjecieOgolne(resource $zdjecie_ogolne) Return the first ChildPrzepis filtered by the zdjecie_ogolne column
+ * @method     ChildPrzepis|null findOneByZdjecieOgolne(string $zdjecie_ogolne) Return the first ChildPrzepis filtered by the zdjecie_ogolne column
  * @method     ChildPrzepis|null findOneByUzytkownikLogin(string $UZYTKOWNIK_login) Return the first ChildPrzepis filtered by the UZYTKOWNIK_login column *
 
  * @method     ChildPrzepis requirePk($key, ConnectionInterface $con = null) Return the ChildPrzepis by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -137,7 +137,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPrzepis requireOneByOpis(string $opis) Return the first ChildPrzepis filtered by the opis column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPrzepis requireOneByDataDodania(string $data_dodania) Return the first ChildPrzepis filtered by the data_dodania column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPrzepis requireOneByStatus(int $status) Return the first ChildPrzepis filtered by the status column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildPrzepis requireOneByZdjecieOgolne(resource $zdjecie_ogolne) Return the first ChildPrzepis filtered by the zdjecie_ogolne column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildPrzepis requireOneByZdjecieOgolne(string $zdjecie_ogolne) Return the first ChildPrzepis filtered by the zdjecie_ogolne column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPrzepis requireOneByUzytkownikLogin(string $UZYTKOWNIK_login) Return the first ChildPrzepis filtered by the UZYTKOWNIK_login column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildPrzepis[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildPrzepis objects based on current ModelCriteria
@@ -149,7 +149,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPrzepis[]|ObjectCollection findByOpis(string $opis) Return ChildPrzepis objects filtered by the opis column
  * @method     ChildPrzepis[]|ObjectCollection findByDataDodania(string $data_dodania) Return ChildPrzepis objects filtered by the data_dodania column
  * @method     ChildPrzepis[]|ObjectCollection findByStatus(int $status) Return ChildPrzepis objects filtered by the status column
- * @method     ChildPrzepis[]|ObjectCollection findByZdjecieOgolne(resource $zdjecie_ogolne) Return ChildPrzepis objects filtered by the zdjecie_ogolne column
+ * @method     ChildPrzepis[]|ObjectCollection findByZdjecieOgolne(string $zdjecie_ogolne) Return ChildPrzepis objects filtered by the zdjecie_ogolne column
  * @method     ChildPrzepis[]|ObjectCollection findByUzytkownikLogin(string $UZYTKOWNIK_login) Return ChildPrzepis objects filtered by the UZYTKOWNIK_login column
  * @method     ChildPrzepis[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
