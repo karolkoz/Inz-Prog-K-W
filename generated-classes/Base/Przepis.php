@@ -139,7 +139,7 @@ abstract class Przepis implements ActiveRecordInterface
     /**
      * The value for the zdjecie_ogolne field.
      *
-     * @var        resource|null
+     * @var        string|null
      */
     protected $zdjecie_ogolne;
 
@@ -544,7 +544,7 @@ abstract class Przepis implements ActiveRecordInterface
     /**
      * Get the [zdjecie_ogolne] column value.
      *
-     * @return resource|null
+     * @return string|null
      */
     public function getZdjecieOgolne()
     {
@@ -724,7 +724,7 @@ abstract class Przepis implements ActiveRecordInterface
     /**
      * Set the value of [zdjecie_ogolne] column.
      *
-     * @param resource|null $v New value
+     * @param string|null $v New value
      * @return $this|\Przepis The current object (for fluent API support)
      */
     public function setZdjecieOgolne($v)

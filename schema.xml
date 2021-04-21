@@ -34,7 +34,7 @@
 
     <column name="status" type="integer" required="true" />
 
-    <column name="zdjecie_ogolne" type="blob" />
+    <column name="zdjecie_ogolne" type="varbinary" />
 
     <column name="UZYTKOWNIK_login" type="varchar" size="20" required="true" />
 
@@ -54,7 +54,7 @@
 
     <column name="opis" type="varchar" size="10000" required="true" /> 
 
-    <column name="zdjecie" type="blob" />
+    <column name="zdjecie" type="varbinary" />
 
     <column name="PRZEPIS_id_przepis" type="integer" required="true" />
 

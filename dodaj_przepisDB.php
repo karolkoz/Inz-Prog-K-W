@@ -18,7 +18,8 @@ $przepis = new Przepis();
 
 
 $image = $_FILES['image']['tmp_name'];
-$img = file_get_contents($image);
+$image_length = strlen($image);
+// $img = file_get_contents($image);
 
 $przepis->setNazwa($nazwa);
 $przepis->setStopienTrudnosci($trudnosc);
@@ -27,8 +28,17 @@ $przepis->setDlaIluOsob($ile_osob);
 $przepis->setOpis($opis);
 $przepis->setDataDodania($data);
 $przepis->setStatus($status);
-// $przepis->setZdjecieOgolne($nazwa_zdjecie);
-$przepis->setZdjecieOgolne($img);
+
+// $przepis->setZdjecieOgolne($img);
+
+if ($image_length!==0){
+  $img = file_get_contents($image);
+  $przepis->setZdjecieOgolne($img);
+}
+else{
+  $przepis->setZdjecieOgolne(null);
+}
+
 $przepis->setUzytkownikLogin($UZYTKOWNIK_login);
 
 if($przepis->save())
@@ -99,80 +109,32 @@ echo ' ILOSC ETAPOW: '.$num.'</br>';
   //np. dla 3 etapow tablica ma 4 elementy
 
 
-// print gettype($_FILES['etap_image']['tmp_name']);
-// $tab3=[];
 
-// $ile = count($_FILES['etap_image']);
-// echo ' ile = '.$ile;
-
-// $zmianna[] = convert_upload_file_array($_FILES['etap_image']['tmp_name']);
-
-// $etap_image = array();
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// if (isset($_FILES['etap_image'])) {
-// $arquivo = array();
-// foreach ($_FILES['etap_image']["tmp_name"] as $file=>$key) {
-//
-//                     // the empty input files create an array index too, so we need to
-//                     // check if the name exits. It means the file exists.
-//         if (!empty($_FILES['etap_image']["tmp_name"][$file])) {
-//
-//           $arquivo ["name"] = $_FILES['etap_image']["name"][$file];
-//           echo $arquivo ["name"];
-//           $arquivo ["tmp_name"] = $_FILES['etap_image']["tmp_name"][$file];
-//           $etap = new Etap();
-//           if ($etap -> upload($arquivo)) { // if its uploaded than save
-//             $etap -> save();
-//
-//             $fp2 = $etap->getZdjecie();
-//             if ($fp2 !== null) {
-//               // echo '<img class="content__recipe__image" src="'.stream_get_contents($fp).'" />';
-//               echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
-//             }
-//             else{
-//               echo '<img class="content__recipe__image" src="img/placeholder icon.png" />';
-//             }
-//             }
-//         }
-//         // $p++;
-// }
-// }
-
-
-// print gettype($_FILES['etap_image']);
 
 $tab4=[];
 $p=0;
-// if (isset($_FILES['etap_image'])) {
-//   echo ' TEST ';
+// if (isset($_FILES['etap']))
+
 foreach($_FILES['etap']['tmp_name'] as $key)
 {
+  $key_length=strlen($key); //dlugosc nazwy pliku zdjecia
 
-//   $file_tmp =$_FILES['etap_image']['tmp_name'][$key];
-// print gettype($file_tmp);
-  $tab4[$p]=file_get_contents($key);
+//jesli przekazywany plik ma nazwe > 0 (czyli istnieje) to dodajemy do bazy ten plik
+//gdy dl nazwy == 0 to znak, ze pliku brak, wiec do bazy wstawiamy null
+
+  if ($key_length!==0){
+    $tab4[$p]=file_get_contents($key);
+    // $p++;
+  }
+  else{
+      $tab4[$p]=null;
+  }
   $p++;
 }
-// }
-
-
-
-
-
-
 
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// $ilezdj=count($_FILES['etap']['tmp_name']);
-// echo ' ilosc wyslanych zdjec: '.$ilezdj;
-
-// print gettype($_FILES['etap_image']['tmp_name'][0]);
-//
-// $IMAGE = $_FILES['etap_image']['tmp_name'][0];
-// $IMG = file_get_contents($IMAGE);
 
   $m=0;
   for($m=0; $m<$num; $m++)
@@ -183,16 +145,13 @@ foreach($_FILES['etap']['tmp_name'] as $key)
     $etap->setZdjecie($tab4[$m]);
 
 
-    // $etap->setZdjecie($IMG);
-
-
     $etap->setPrzepis($przepis);
     if($etap->save()){
       echo ' Dodano etap ';
       echo $etap->getOpis().'</br>';
       echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
-      $fp2 = $etap->getZdjecie();
-      echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+      // $fp2 = $etap->getZdjecie();
+      // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
     }
 
     $nr_etap++;

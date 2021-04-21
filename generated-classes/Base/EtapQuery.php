@@ -58,7 +58,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildEtap|null findOneByIdEtap(int $id_etap) Return the first ChildEtap filtered by the id_etap column
  * @method     ChildEtap|null findOneByNrEtapu(int $nr_etapu) Return the first ChildEtap filtered by the nr_etapu column
  * @method     ChildEtap|null findOneByOpis(string $opis) Return the first ChildEtap filtered by the opis column
- * @method     ChildEtap|null findOneByZdjecie(resource $zdjecie) Return the first ChildEtap filtered by the zdjecie column
+ * @method     ChildEtap|null findOneByZdjecie(string $zdjecie) Return the first ChildEtap filtered by the zdjecie column
  * @method     ChildEtap|null findOneByPrzepisIdPrzepis(int $PRZEPIS_id_przepis) Return the first ChildEtap filtered by the PRZEPIS_id_przepis column *
 
  * @method     ChildEtap requirePk($key, ConnectionInterface $con = null) Return the ChildEtap by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -67,14 +67,14 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildEtap requireOneByIdEtap(int $id_etap) Return the first ChildEtap filtered by the id_etap column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildEtap requireOneByNrEtapu(int $nr_etapu) Return the first ChildEtap filtered by the nr_etapu column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildEtap requireOneByOpis(string $opis) Return the first ChildEtap filtered by the opis column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildEtap requireOneByZdjecie(resource $zdjecie) Return the first ChildEtap filtered by the zdjecie column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildEtap requireOneByZdjecie(string $zdjecie) Return the first ChildEtap filtered by the zdjecie column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildEtap requireOneByPrzepisIdPrzepis(int $PRZEPIS_id_przepis) Return the first ChildEtap filtered by the PRZEPIS_id_przepis column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildEtap[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildEtap objects based on current ModelCriteria
  * @method     ChildEtap[]|ObjectCollection findByIdEtap(int $id_etap) Return ChildEtap objects filtered by the id_etap column
  * @method     ChildEtap[]|ObjectCollection findByNrEtapu(int $nr_etapu) Return ChildEtap objects filtered by the nr_etapu column
  * @method     ChildEtap[]|ObjectCollection findByOpis(string $opis) Return ChildEtap objects filtered by the opis column
- * @method     ChildEtap[]|ObjectCollection findByZdjecie(resource $zdjecie) Return ChildEtap objects filtered by the zdjecie column
+ * @method     ChildEtap[]|ObjectCollection findByZdjecie(string $zdjecie) Return ChildEtap objects filtered by the zdjecie column
  * @method     ChildEtap[]|ObjectCollection findByPrzepisIdPrzepis(int $PRZEPIS_id_przepis) Return ChildEtap objects filtered by the PRZEPIS_id_przepis column
  * @method     ChildEtap[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *

@@ -267,7 +267,7 @@ class PrzepisTableMap extends TableMap
         $this->addColumn('opis', 'Opis', 'VARCHAR', true, 10000, null);
         $this->addColumn('data_dodania', 'DataDodania', 'DATE', true, null, null);
         $this->addColumn('status', 'Status', 'INTEGER', true, null, null);
-        $this->addColumn('zdjecie_ogolne', 'ZdjecieOgolne', 'BLOB', false, null, null);
+        $this->addColumn('zdjecie_ogolne', 'ZdjecieOgolne', 'VARBINARY', false, null, null);
         $this->addForeignKey('UZYTKOWNIK_login', 'UzytkownikLogin', 'VARCHAR', 'uzytkownik', 'login', true, 20, null);
     } // initialize()
 

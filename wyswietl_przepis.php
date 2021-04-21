@@ -28,7 +28,7 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-$id_przepis = 149;
+$id_przepis = 11;
 
             $przepis = PrzepisQuery::create()->findPk($id_przepis);
             echo '<h1 class="content__recipe__title">'.$przepis->getNazwa().'</h1>'; //wyswietla nazwe przepisu o id=24
@@ -211,6 +211,7 @@ $id_przepis = 149;
                             echo '<div class="content__recipe__stage">';
                             echo '<h2>Etap '.$etapyNr->get($x).'</h2>';
                             echo '<div class="content__recipe__stage__data"><p>'.$etapyOpis->get($x).'</p><img src="img/placeholder icon.png" /></div>';
+                            echo '</div>';
                           }
                           $x++;
                         }
