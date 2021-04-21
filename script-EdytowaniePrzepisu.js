@@ -2,8 +2,10 @@
 //document.getElementById("ingredientButton").addEventListener("click", addIngredient, false);
 //document.getElementById("categoryButton").addEventListener("click", addCategory, false);
 var stageArray = [];
-var ileEtapow = 1;
-var ileSkladnikow = 1;
+var ileEtapow = 0;
+var ileSkladnikow = 0;
+var mainImage = 0;
+var stageImages = [];
 
 
 function addIngredient(name, amount) {
@@ -13,17 +15,19 @@ function addIngredient(name, amount) {
   new_ingredient.classList.add("content__form__ingredient");
   new_ingredient.setAttribute("id", "skladnik_" + numer);
 
-  var new_buttonRem = document.createElement("button");
-  new_buttonRem.setAttribute("type", "button");
-  new_buttonRem.classList.add("content__form__removeButton");
-  new_buttonRem.addEventListener("click", function() {
-    removeIngredient(this.parentNode.id)
-  }, false);
+  if(numer !== 1) {
+    var new_buttonRem = document.createElement("button");
+    new_buttonRem.setAttribute("type", "button");
+    new_buttonRem.classList.add("content__form__removeButton");
+    new_buttonRem.addEventListener("click", function() {
+      removeIngredient(this.parentNode.id)
+    }, false);
 
-  var imgRem = document.createElement("img");
-  imgRem.setAttribute("src", "img/x icon.png");
-  new_buttonRem.appendChild(imgRem);
-  new_ingredient.appendChild(new_buttonRem);
+    var imgRem = document.createElement("img");
+    imgRem.setAttribute("src", "img/x icon.png");
+    new_buttonRem.appendChild(imgRem);
+    new_ingredient.appendChild(new_buttonRem);
+  }
 
   var new_input = document.createElement("input");
   new_input.setAttribute("type", "text");
@@ -54,7 +58,7 @@ function removeIngredient(x) {
   ileSkladnikow--;
 }
 
-function addStage(content) {
+function addStage(content, stageImage) {
   ileEtapow = ileEtapow + 1;
   var numer = ileEtapow;
   var new_stage = document.createElement("div");
@@ -69,18 +73,19 @@ function addStage(content) {
   var content_form_inputs = document.createElement("div");
   content_form_inputs.classList.add("content__form__stage__inputs");
 
-  var new_buttonRem = document.createElement("button");
-  new_buttonRem.setAttribute("type", "button");
-  new_buttonRem.setAttribute("id", "buttonRem_etap_" + numer);
-  new_buttonRem.classList.add("content__form__removeButton");
-  new_buttonRem.addEventListener("click", function() {
-    removeStage(this.id)
-  }, false);
-
-  var imgRem = document.createElement("img");
-  imgRem.setAttribute("src", "img/x icon.png");
-  new_buttonRem.appendChild(imgRem);
-  content_form_inputs.appendChild(new_buttonRem);
+  if(numer!==1) {
+    var new_buttonRem = document.createElement("button");
+    new_buttonRem.setAttribute("type", "button");
+    new_buttonRem.setAttribute("id", "buttonRem_etap_" + numer);
+    new_buttonRem.classList.add("content__form__removeButton");
+    new_buttonRem.addEventListener("click", function() {
+      removeStage(this.id)
+    }, false);
+    var imgRem = document.createElement("img");
+    imgRem.setAttribute("src", "img/x icon.png");
+    new_buttonRem.appendChild(imgRem);
+    content_form_inputs.appendChild(new_buttonRem);
+  }
 
   var textarea = document.createElement("textarea");
   textarea.setAttribute("name", "etap[]");
@@ -129,13 +134,25 @@ function addStage(content) {
   new_buttonRem.appendChild(imgRem);
   new_div.appendChild(new_buttonRem);
 
-
   new_stage.appendChild(content_form_inputs);
   new_stage.appendChild(new_div);
 
   var button = document.getElementById("buttonDiv");
   document.getElementById("stages").appendChild(new_stage);
   document.getElementById("stages").appendChild(button);
+
+  if(stageImage) {
+    stageImages.push({
+      ifDB: 1,
+      start: numer
+    });
+    loadStageImageDB(numer, stageImage);
+  } else {
+    stageImages.push({
+      ifDB: 0,
+      start: numer
+    });
+  }
 
   stageArray.push({
     StageNum: numer,
@@ -180,7 +197,7 @@ function removeStage(x) {
     //console.log("+text = " + stageArray[i].text);
 
     //console.log("-input = " + stageArray[i].input);
-    document.getElementById(stageArray[i].input).name = "etap_image[]";
+    document.getElementById(stageArray[i].input).name = "etap[]";
     document.getElementById(stageArray[i].input).id = "etap_" + numer + "_image";
     stageArray[i].input = "etap_" + numer + "_image";
     //console.log("+input = " + stageArray[i].input);
@@ -203,6 +220,7 @@ function removeStage(x) {
   }
   //console.log("Usuwany index tablicy = "+parseInt(n-2));
   stageArray.splice(n - 2, 1);
+  stageImages.splice(n-1, 1);
   //console.log(stageArray);
   target.remove();
   ileEtapow--;
@@ -217,17 +235,30 @@ var loadMainImage = function(event) {
     document.getElementById("removeMainImage").style.display = "flex";
   }
   output.style.display = "block";
+  mainImage = 2;
 };
+
+function loadMainImageDB (img) {
+  var output = document.getElementById('uploadedMainImage');
+  output.src = "data:image/jpg;charset=utf8;base64,"+img;
+  document.getElementById("removeMainImage").style.display = "flex";
+  output.style.display = "block";
+  mainImage = 1;
+}
 
 function deleteMainImage() {
   document.getElementById("image").value = '';
   var output = document.getElementById('uploadedMainImage');
   output.style.display = "none";
   document.getElementById("removeMainImage").style.display = "none";
+  mainImage = 0;
 }
 
 var loadStageImage = function(event) {
   var x = event.currentTarget.id;
+  let endpos = x.search("_image");
+  let number = x.substr(5, endpos-5);
+  stageImages[number-1].ifDB = 0;
   var output = document.getElementById(x + "_uploaded");
   output.src = URL.createObjectURL(event.target.files[0]);
   output.onload = function() {
@@ -237,12 +268,33 @@ var loadStageImage = function(event) {
   output.style.display = "block";
 };
 
+function loadStageImageDB(x, img) {
+  var output = document.getElementById("etap_" + x + "_image_uploaded");
+  output.src = "data:image/jpg;charset=utf8;base64,"+img;
+  document.getElementById("etap_" + x +"_image_remove").style.display = "flex";
+  output.style.display = "block";
+}
 
 function deleteStageImage(x) {
   let endpos = x.search("_image");
   let number = x.substr(5, endpos-5);
+  stageImages[number-1].ifDB = 0;
   document.getElementById("etap_"+number+"_image").value = '';
   var output = document.getElementById("etap_"+number+"_image_uploaded");
   output.style.display = "none";
   document.getElementById("etap_"+number+"_image_remove").style.display = "none";
+}
+
+function checkImages() {
+  console.log(stageArray);
+  console.log(stageImages);
+  /*console.log("ileEtapow = "+ileEtapow);
+  for(i=1; i<=ileEtapow; i++) {
+    let id = "etap_"+i+"_image";
+    if(document.getElementById(id).value.length > 0) {
+      console.log(id+"   -  obrazek dodany przez usera");
+    } else if(document.getElementById(id+"_uploaded").src.length > 0) {
+      console.log(id+"   -  obrazek pobrany z bazy");
+    }
+  }*/
 }

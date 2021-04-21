@@ -119,7 +119,7 @@
             </div>
             <div class="content__form__inputImage">
               <img class="content__form__uploadedMainImage" id="etap_1_image_uploaded" src="img/placeholder icon.png"/>
-              <button id="etap_1_image_remove" type="button" class="content__form__removeButton" onClick="deleteStageImage('etap_1_image')">
+              <button id="etap_image_remove_1" type="button" class="content__form__removeButton" onClick="deleteStageImage('etap_image_remove_1')">
                 <img src="img/x icon.png">
               </button>
             </div>

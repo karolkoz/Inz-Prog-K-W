@@ -15,7 +15,10 @@
       <form class="content__form" id="form" action="edytuj_przepisDB.php" method="post">
         <h1>Formularz edytowania przepisu</h1>
         <div class="content__form__input">
-          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" />
+          <?php
+          $nazwa = "Jakas nazwa";
+          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$nazwa.'" />'
+          ?>
         </div>
         <div class="content__form__input">
           <img src="img/difficulty icon.png" />
@@ -34,7 +37,7 @@
             <label for="trudnosc8"></label>
             <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
             <label for="trudnosc7"></label>
-            <input type="radio" id="trudnosc6" name="trudnosc" value="6" />
+            <input type="radio" id="trudnosc6" name="trudnosc" value="6" checked />
             <label for="trudnosc6"></label>
             <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
             <label for="trudnosc5"></label>
@@ -50,7 +53,11 @@
         </div>
         <div class="content__form__input">
           <img src="img/people icon.png" />
-          <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" />
+          <?php
+          $osoby = 4;
+          echo '<input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" value="'.$osoby.'" />'
+          ?>
+
         </div>
         <div class="content__form__input">
           <img src="img/clock icon.png" />
@@ -96,7 +103,10 @@
             </select>
           </div>
           <!--Tutaj masz przykład użycia tych funkcji.
-          Po prostu je wywołuj w pętli dodając nowe Kategorie i zaznaczaj odpowiednie opcje -->
+          Po prostu je wywołuj w pętli dodając nowe Kategorie i zaznaczaj odpowiednie opcje/
+
+          Pierwszą kategorię zawsze powinnaś robić "ręcznie" jak wyżej, ale pozostałe
+          już musisz dodawać funkcją tak jak poniżej. Wybieranie również powinnaś funkcjami robić -->
           <?php
           echo '<script type="text/javascript">addCategory()</script>';
           //Pierwszy parametr to numer kategorii na stronie, drugi to numer opcji do zaznaczenia
@@ -111,32 +121,12 @@
 
         <div class="content__form__dynamicInputs" id="ingredients">
           <h2>Lista Składników</h2>
-          <div class="content__form__ingredient" id="skladnik_1">
-            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" />
-            <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
-          </div>
           <div id="ingredientButtonDiv" class="content__form__button">
             <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
           </div>
         </div>
 
         <div class="content__form__dynamicInputs" id="stages">
-          <div class="content__form__stage" id="etap_1">
-            <h2>Etap 1</h2>
-            <div class="content__form__stage__inputs">
-              <textarea name="etap[]" placeholder="Opis etapu"></textarea>
-              <label class="form__label__stage" for="etap_1_image" id="label_etap_1">
-                <img src="img/image icon.png" />
-                <input type="file" id="etap_1_image" name="etap[]" accept="image/png, image/jpeg" onchange="loadStageImage(event)" />
-              </label>
-            </div>
-            <div class="content__form__inputImage">
-              <img class="content__form__uploadedMainImage" id="etap_1_image_uploaded" src="img/placeholder icon.png"/>
-              <button id="etap_1_image_remove" type="button" class="content__form__removeButton" onClick="deleteStageImage('etap_1_image')">
-                <img src="img/x icon.png">
-              </button>
-            </div>
-          </div>
           <div id="buttonDiv" class="content__form__button">
             <button id="button" type="button" onClick="addStage()" > <img src="img/plus icon.png" /> Dodaj nowy etap</button>
           </div>
@@ -144,14 +134,38 @@
         <div class="content__form__button content__form__button--submit">
           <button type="submit"> Dodaj przepis</button>
         </div>
-        <script type="text/javascript" src="script-DodawaniePrzepisu.js"></script>
+        <button type="button" onClick="checkImages()">Sprawdz</button>
+        <script type="text/javascript" src="script-EdytowaniePrzepisu.js"></script>
         <!-- PHP musi wywoływać funkcje po wcześniejszym
-        załączeniu tego mojego skryptu "script.js", bo inaczej
+        załączeniu tego mojego skryptu JS, bo inaczej
         nie będzie ich widzieć.
+
+        Wszystkie etapy można dodać funkcją z javascripta, więc etapu 1 nie musisz robić ręcznie.
+        Składniki tak samo.
         -->
         <?php
-        $tresc = 'tresc';
-        echo '<script type="text/javascript">addStage("'.$tresc.'");</script>';
+        require_once __DIR__.'/vendor/autoload.php';
+        require_once __DIR__.'/generated-conf/config.php';
+
+        $przepis = PrzepisQuery::create()->findPk(3);
+        $fp = $przepis->getZdjecieOgolne();
+        if ($fp !== null) {
+          echo '<script type="text/javascript">loadMainImageDB("'.base64_encode(stream_get_contents($fp)).'");</script>';
+        }
+
+        $etap = EtapQuery::create()
+                ->filterByPrzepisIdPrzepis(3)
+                ->select(array('Zdjecie'))
+                ->find();
+        $e=$etap->get(2);
+        $tresc = 'Etap z obrazkiem';
+        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
+        $tresc = 'Etap bez obrazka';
+        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.null.'");</script>';
+        $tresc = 'Etap z obrazkiem';
+        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
+        $tresc = 'Etap z obrazkiem';
+        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
         $skladnik = 'skladnik';
         $ilosc = 'ile';
         echo '<script type="text/javascript">addIngredient("'.$skladnik.'", "'.$ilosc.'");</script>';

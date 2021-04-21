@@ -33,8 +33,6 @@
             ?>
 
           </select>
-
-
         </div>
         <div class="search__form__select">
           <select id="czas" name="czas">
@@ -107,6 +105,20 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="content__search-counter">
+        <div class="content__search-counter__element">
+          <a href="search.php?currentPage=1">1</a>
+        </div>
+        <div class="content__search-counter__element">
+          <a href="search.php?currentPage=2">2</a>
+        </div>
+        <div class="content__search-counter__element">
+          <a href="search.php?currentPage=3">3</a>
+        </div>
+        <div class="content__search-counter__element">
+          <a href="search.php?currentPage=4">4</a>
         </div>
       </div>
     </section>
