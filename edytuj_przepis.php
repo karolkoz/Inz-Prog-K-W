@@ -13,6 +13,9 @@
 
     <section class="content">
       <form class="content__form" id="form" action="edytuj_przepisDB.php" method="post">
+        <div id="formImagesInfo">
+
+        </div>
         <h1>Formularz edytowania przepisu</h1>
         <div class="content__form__input">
           <?php
@@ -132,9 +135,8 @@
           </div>
         </div>
         <div class="content__form__button content__form__button--submit">
-          <button type="submit"> Dodaj przepis</button>
+          <button type="submit" onmouseover="checkImages()"> Zmień przepis</button>
         </div>
-        <button type="button" onClick="checkImages()">Sprawdz</button>
         <script type="text/javascript" src="script-EdytowaniePrzepisu.js"></script>
         <!-- PHP musi wywoływać funkcje po wcześniejszym
         załączeniu tego mojego skryptu JS, bo inaczej

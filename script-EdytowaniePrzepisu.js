@@ -258,7 +258,8 @@ var loadStageImage = function(event) {
   var x = event.currentTarget.id;
   let endpos = x.search("_image");
   let number = x.substr(5, endpos-5);
-  stageImages[number-1].ifDB = 0;
+  stageImages[number-1].ifDB = 2;
+  checkImages();
   var output = document.getElementById(x + "_uploaded");
   output.src = URL.createObjectURL(event.target.files[0]);
   output.onload = function() {
@@ -279,6 +280,7 @@ function deleteStageImage(x) {
   let endpos = x.search("_image");
   let number = x.substr(5, endpos-5);
   stageImages[number-1].ifDB = 0;
+  checkImages();
   document.getElementById("etap_"+number+"_image").value = '';
   var output = document.getElementById("etap_"+number+"_image_uploaded");
   output.style.display = "none";
@@ -286,15 +288,24 @@ function deleteStageImage(x) {
 }
 
 function checkImages() {
-  console.log(stageArray);
   console.log(stageImages);
-  /*console.log("ileEtapow = "+ileEtapow);
-  for(i=1; i<=ileEtapow; i++) {
-    let id = "etap_"+i+"_image";
-    if(document.getElementById(id).value.length > 0) {
-      console.log(id+"   -  obrazek dodany przez usera");
-    } else if(document.getElementById(id+"_uploaded").src.length > 0) {
-      console.log(id+"   -  obrazek pobrany z bazy");
-    }
-  }*/
+  let form = document.getElementById("formImagesInfo");
+  form.innerHTML = '';
+  let output = document.createElement("input");
+  output.setAttribute("name", "mainImageStatus");
+  output.setAttribute("value", mainImage);
+  output.style.visibility = "hidden";
+  form.appendChild(output);
+  for(i=0; i<ileEtapow; i++) {
+    output = document.createElement("input");
+    output.setAttribute("name", "stageImagesStart[]");
+    output.setAttribute("value", stageImages[i].start);
+    output.style.visibility = "hidden";
+    form.appendChild(output);
+    output = document.createElement("input");
+    output.setAttribute("name", "stageImagesIfDB[]");
+    output.setAttribute("value", stageImages[i].ifDB);
+    output.style.visibility = "hidden";
+    form.appendChild(output);
+  }
 }
