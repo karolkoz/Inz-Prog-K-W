@@ -17,6 +17,7 @@
 }
 $header_color: #36CFAB;
 $search_color: #40B196;
+$search_color_light: #84DEB8;
 $button_color: #058B63;
 $button_color_light: #03ab79;
 $remove_color: #a80909;
@@ -31,7 +32,6 @@ $button_like_color_dark: #2ba13e;
 $button_fav_color: #FAFF05;
 $button_fav_color_dark: #d8dd06;
 $content_element_color: #AFE7DD;
-$search_arrow_color: #84DEB8;
 
 body {
   margin: 0;
@@ -120,28 +120,39 @@ nav {
   padding: 20px 0;
   width: 80%;
   .search__form__select {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 120px;
     padding: 5px 0;
-  }
-
-  select {
-    width: 100%;
-    background-color: white;
-    border: none;
-    border-radius: 4px;
-    display: inline-block;
-    font: inherit;
-    font-size: 3em;
-    padding: 0.2em 3.2em 0.2em 0.5em;
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-  }
-  select:focus {
-    outline: none;
-  }
+    select {
+      position: relative;
+      width: 80%;
+      background-color: white;
+      border: none;
+      border-radius: 4px;
+      //border-bottom: solid 3px $button_color;
+      display: inline-block;
+      font: inherit;
+      font-size: 3em;
+      padding: 0.2em 0 0.2em 0.5em;
+      margin: 0;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    option:nth-child(2) {
+      color: blue;
+    }
+    option:nth-child(2):checked {
+      color: blue;
+    }
+    select:active {
+      background-color: $search_color_light;
+    }
+}
 
   .search__form__searchbar {
     display: flex;
@@ -166,6 +177,24 @@ nav {
       background-color: $button_color;
       color: white;
       border: 0;
+    }
+  }
+
+  .search__form__categories {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 10px;
+    border: solid 2px $search_color_light;
+    border-radius: 20px;
+    margin: 10px 0 10px 0;
+    > .content__form__button {
+      width: 100%;
+    }
+    > .search__form__select {
+      > select {
+        width: 100%;
+      }
     }
   }
 }
@@ -637,7 +666,8 @@ nav {
   > button {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    //border: 1px solid #ccc;
+    border: none;
     background-color: $button_color;
     color: white;
     font-weight: bold;
