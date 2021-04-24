@@ -31,12 +31,9 @@ function CategorySelect(id, j) {
   var category = document.getElementById(categoryID).getElementsByTagName("select");
   //category[0].options[j+1].selected = 'selected';
   var children = category[0].children;
-  console.log(j);
   for (var i = 0; i < children.length; i++) {
     var tableChild = children[i];
-    console.log(tableChild.text);
-    if(tableChild.text == j) {
-      console.log(tableChild.text+' == '+j);
+    if(tableChild.text == j || tableChild.value == j) {
       category[0].options[i].selected = 'selected';
     }
   }
