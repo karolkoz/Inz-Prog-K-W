@@ -359,14 +359,14 @@
           Pierwszą kategorię zawsze powinnaś robić "ręcznie" jak wyżej, ale pozostałe
           już musisz dodawać funkcją tak jak poniżej. Wybieranie również powinnaś funkcjami robić -->
           <?php
-          echo '<script type="text/javascript">addCategory()</script>';
+          //echo '<script type="text/javascript">addCategory()</script>';
           //Pierwszy parametr to numer kategorii na stronie, drugi to numer opcji do zaznaczenia
           //na liście. Numeruj zgodnie z kolejnościa wyświetlania na liście czyli Fit=0, Kolacja=1 itd.
-          echo '<script type="text/javascript">CategorySelect(2, "Fit")</script>';
+          //echo '<script type="text/javascript">CategorySelect(2, "Fit")</script>';
           ?>
 
 
-          <!-- <?php
+          <?php
           require_once __DIR__.'/vendor/autoload.php';
           require_once __DIR__.'/generated-conf/config.php';
 
@@ -381,14 +381,17 @@
 
           // echo '<script type="text/javascript">addCategory()</script>';
           $i;
-          $j=0;
-          for($i=0; $i<$num; $i++){
+          $j=1;
+
+          echo '<script type="text/javascript" charset="utf-8">CategorySelect('.$j.', "'.$nalezyNazwa->get(0).'")</script>';
+          for($i=1; $i<$num; $i++){
+            $poz = $i+1;
           echo '<script type="text/javascript">addCategory()</script>';
-          echo '<script type="text/javascript">CategorySelect(2, $nalezyNazwa->get($i))</script>';
-          echo ' dodano '.$nalezyNazwa->get($i);
+          echo '<script type="text/javascript">CategorySelect('.$poz.', "'.$nalezyNazwa->get($i).'")</script>';
+          //echo ' dodano '.$nalezyNazwa->get($i);
           $j++;
           }
-          ?> -->
+          ?>
 
 
 

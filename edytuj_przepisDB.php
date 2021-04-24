@@ -41,4 +41,7 @@ switch($_POST['mainImageStatus']) {
     break;
 }
 
+foreach($_POST['categories'] as $val) {
+  echo $val;
+}
  ?>
