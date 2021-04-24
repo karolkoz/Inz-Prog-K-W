@@ -29,7 +29,7 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-            $id_przepis = 11;
+            $id_przepis = 13;
 
             $przepis = PrzepisQuery::create()->findPk($id_przepis);
             echo '<h1 class="content__recipe__title">'.$przepis->getNazwa().'</h1>'; //wyswietla nazwe przepisu o id=24

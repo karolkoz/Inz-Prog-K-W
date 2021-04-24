@@ -22,7 +22,7 @@
           <?php
           require_once __DIR__.'/vendor/autoload.php';
           require_once __DIR__.'/generated-conf/config.php';
-          $id_przepis = 11;
+          $id_przepis = 13;
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
           echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" />'
@@ -377,7 +377,7 @@
                   ->select(array('Kategoria.Nazwa'))
                   ->find();
           $num = count($nalezyNazwa);
-          echo 'Przepis te nalezy do '.$num.' kategorii.';
+          //echo 'Przepis te nalezy do '.$num.' kategorii.';
 
           // echo '<script type="text/javascript">addCategory()</script>';
           $i;
@@ -428,7 +428,7 @@
         require_once __DIR__.'/vendor/autoload.php';
         require_once __DIR__.'/generated-conf/config.php';
 
-        $przepis = PrzepisQuery::create()->findPk(2);
+        $przepis = PrzepisQuery::create()->findPk($id_przepis);
         $fp = $przepis->getZdjecieOgolne();
         if ($fp !== null) {
           echo '<script type="text/javascript">loadMainImageDB("'.base64_encode(stream_get_contents($fp)).'");</script>';
