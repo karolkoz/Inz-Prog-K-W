@@ -26,8 +26,15 @@ function removeCategory(x) {
   ileKategorii--;
 }
 
-function CategorySelect(i, j) {
-  var categoryID = "category_"+i;
+function CategorySelect(id, j) {
+  var categoryID = "category_"+id;
   var category = document.getElementById(categoryID).getElementsByTagName("select");
-  category[0].options[j+1].selected = 'selected';
+  //category[0].options[j+1].selected = 'selected';
+  var children = category[0].children;
+  for (var i = 0; i < children.length; i++) {
+    var tableChild = children[i];
+    if(tableChild.text == j) {
+      category[0].options[i].selected = 'selected';
+    }
+  }
 }
