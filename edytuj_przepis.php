@@ -20,8 +20,15 @@
         <h1>Formularz edytowania przepisu</h1>
         <div class="content__form__input">
           <?php
-          $nazwa = "Jakas nazwa";
-          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$nazwa.'" />'
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+          $id_przepis = 11;
+          $przepis = PrzepisQuery::create()->findPk($id_przepis);
+
+          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" />'
+
+          // $nazwa = "Jakas nazwa";
+          // echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$nazwa.'" />'
           ?>
         </div>
         <div class="content__form__input">
@@ -33,42 +40,283 @@
             słowo "checked"
             np.: <input type="radio" id="trudnosc7" name="trudnosc" value="7" checked />
             -->
-            <input type="radio" id="trudnosc10" name="trudnosc" value="10" />
-            <label for="trudnosc10"></label>
-            <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
-            <label for="trudnosc9"></label>
-            <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
-            <label for="trudnosc8"></label>
-            <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
-            <label for="trudnosc7"></label>
-            <input type="radio" id="trudnosc6" name="trudnosc" value="6" checked />
-            <label for="trudnosc6"></label>
-            <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
-            <label for="trudnosc5"></label>
-            <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
-            <label for="trudnosc4"></label>
-            <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
-            <label for="trudnosc3"></label>
-            <input type="radio" id="trudnosc2" name="trudnosc" value="2" />
-            <label for="trudnosc2"></label>
-            <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
-            <label for="trudnosc1"></label>
+            <?php
+            require_once __DIR__.'/vendor/autoload.php';
+            require_once __DIR__.'/generated-conf/config.php';
+
+            $przepis = PrzepisQuery::create()->findPk($id_przepis);
+            //echo $przepis->getStopienTrudnosci();
+
+            if($przepis->getStopienTrudnosci()==1){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2" />
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" checked  />
+              <label for="trudnosc1"></label>';
+            }
+
+            if($przepis->getStopienTrudnosci()==2){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2" checked />
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+
+
+            if($przepis->getStopienTrudnosci()==3){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3"  checked />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+            if($przepis->getStopienTrudnosci()==4){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" checked />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+            if($przepis->getStopienTrudnosci()==5){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" checked />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+            if($przepis->getStopienTrudnosci()==6){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6" checked  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+            if($przepis->getStopienTrudnosci()==7){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" checked />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+            if($przepis->getStopienTrudnosci()==8){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" checked />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+
+            if($przepis->getStopienTrudnosci()==9){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" checked />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+
+            if($przepis->getStopienTrudnosci()==10){
+              echo '<input type="radio" id="trudnosc10" name="trudnosc" value="10" checked />
+              <label for="trudnosc10"></label>
+              <input type="radio" id="trudnosc9" name="trudnosc" value="9" />
+              <label for="trudnosc9"></label>
+              <input type="radio" id="trudnosc8" name="trudnosc" value="8" />
+              <label for="trudnosc8"></label>
+              <input type="radio" id="trudnosc7" name="trudnosc" value="7" />
+              <label for="trudnosc7"></label>
+              <input type="radio" id="trudnosc6" name="trudnosc" value="6"  />
+              <label for="trudnosc6"></label>
+              <input type="radio" id="trudnosc5" name="trudnosc" value="5" />
+              <label for="trudnosc5"></label>
+              <input type="radio" id="trudnosc4" name="trudnosc" value="4" />
+              <label for="trudnosc4"></label>
+              <input type="radio" id="trudnosc3" name="trudnosc" value="3" />
+              <label for="trudnosc3"></label>
+              <input type="radio" id="trudnosc2" name="trudnosc" value="2"/>
+              <label for="trudnosc2"></label>
+              <input type="radio" id="trudnosc1" name="trudnosc" value="1" />
+              <label for="trudnosc1"></label>';
+            }
+
+            ?>
           </div>
         </div>
         <div class="content__form__input">
           <img src="img/people icon.png" />
           <?php
-          $osoby = 4;
-          echo '<input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" value="'.$osoby.'" />'
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+          // $id_przepis = 11;
+          $przepis = PrzepisQuery::create()->findPk($id_przepis);
+
+          echo '<input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" value="'.$przepis->getDlaIluOsob().'" />'
+
           ?>
 
         </div>
         <div class="content__form__input">
           <img src="img/clock icon.png" />
-          <input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" />
+          <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+          $przepis = PrzepisQuery::create()->findPk($id_przepis);
+
+          echo '<input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" value="'.$przepis->getCzasPrzygotowania().'" />'
+          ?>
         </div>
         <div class="content__form__input">
-          <textarea name="opis" id="opis" placeholder="Opis przepisu"></textarea>
+          <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+          // echo '<textarea name="opis" id="opis" placeholder="Opis przepisu"></textarea>';
+
+          $przepis = PrzepisQuery::create()->findPk($id_przepis);
+
+          echo '<textarea name="opis" id="opis" placeholder="Opis przepisu" >'.$przepis->getOpis().'</textarea>';
+          ?>
         </div>
 
         <div class="content__form__inputImage">
@@ -111,11 +359,33 @@
 
           Pierwszą kategorię zawsze powinnaś robić "ręcznie" jak wyżej, ale pozostałe
           już musisz dodawać funkcją tak jak poniżej. Wybieranie również powinnaś funkcjami robić -->
-          <?php
+          <!-- <?php
           echo '<script type="text/javascript">addCategory()</script>';
           //Pierwszy parametr to numer kategorii na stronie, drugi to numer opcji do zaznaczenia
           //na liście. Numeruj zgodnie z kolejnościa wyświetlania na liście czyli Fit=0, Kolacja=1 itd.
           echo '<script type="text/javascript">CategorySelect(2, 1)</script>';
+          ?> -->
+
+          <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+
+          $nalezyNazwa = NalezyQuery::create()
+                  ->join('Przepis')
+                  ->join('Kategoria')
+                  ->where('Przepis.IdPrzepis = ?', $id_przepis)
+                  ->select(array('Kategoria.Nazwa'))
+                  ->find();
+          $num = count($nalezyNazwa);
+          echo 'Przepis te nalezy do '.$num.' kategorii.';
+
+          // echo '<script type="text/javascript">addCategory()</script>';
+          $i;
+          for($i=0; $i<$num; $i++){
+          echo '<script type="text/javascript">addCategory()</script>';
+          //echo '<script type="text/javascript">CategorySelect(2, 1)</script>';
+          echo ' dodano '.$nalezyNazwa->get($i);
+          }
           ?>
 
           <div id="categoryButtonDiv" class="content__form__button">
@@ -150,28 +420,88 @@
         require_once __DIR__.'/vendor/autoload.php';
         require_once __DIR__.'/generated-conf/config.php';
 
-        $przepis = PrzepisQuery::create()->findPk(3);
+        $przepis = PrzepisQuery::create()->findPk(2);
         $fp = $przepis->getZdjecieOgolne();
         if ($fp !== null) {
           echo '<script type="text/javascript">loadMainImageDB("'.base64_encode(stream_get_contents($fp)).'");</script>';
         }
 
+
+
+        ///////////////////////////////////////////////////////////////wyswietlaja sie odpowiednie etapy (z bazy dla danego przepisu)
+        $etapyOpis = EtapQuery::create()
+                ->join('Przepis')
+                ->where('Przepis.IdPrzepis = ?', $id_przepis)
+                ->select(array('Opis'))
+                ->find();
+
+        $num4 = count($etapyOpis);
+
         $etap = EtapQuery::create()
-                ->filterByPrzepisIdPrzepis(3)
+                ->filterByPrzepisIdPrzepis($id_przepis)
                 ->select(array('Zdjecie'))
                 ->find();
-        $e=$etap->get(2);
-        $tresc = 'Etap z obrazkiem';
-        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
-        $tresc = 'Etap bez obrazka';
-        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.null.'");</script>';
-        $tresc = 'Etap z obrazkiem';
-        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
-        $tresc = 'Etap z obrazkiem';
-        echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
-        $skladnik = 'skladnik';
-        $ilosc = 'ile';
-        echo '<script type="text/javascript">addIngredient("'.$skladnik.'", "'.$ilosc.'");</script>';
+
+                $x=0;
+
+                  foreach($etap as $et){
+                  if($et !== null){
+                    $e=$etap->get($x);
+                    echo '<script type="text/javascript">addStage("'.$etapyOpis->get($x).'", "'.base64_encode($e).'");</script>';
+                  }
+                  else{
+                    echo '<script type="text/javascript">addStage("'.$etapyOpis->get($x).'", "'.null.'");</script>';
+                  }
+                  $x++;
+                }
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // $etap = EtapQuery::create()
+        //         ->filterByPrzepisIdPrzepis(2)
+        //         ->select(array('Zdjecie'))
+        //         ->find();
+        // $e=$etap->get(2);
+        // $tresc = 'Etap z obrazkiem';
+        // echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
+        // $tresc = 'Etap bez obrazka';
+        // echo '<script type="text/javascript">addStage("'.$tresc.'", "'.null.'");</script>';
+        // $tresc = 'Etap z obrazkiem';
+        // echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
+        // $tresc = 'Etap z obrazkiem';
+        // echo '<script type="text/javascript">addStage("'.$tresc.'", "'.base64_encode($e).'");</script>';
+
+        ///////////////////////////////////////////////wyswietlaja sie odpowiednie skladniki z iloscia (z bazy dla danego przepisu)
+        $zawieraNazwa = ZawieraQuery::create()
+                ->join('Przepis')
+                ->join('Skladniki')
+                ->where('Przepis.IdPrzepis = ?', $id_przepis)
+                ->select(array('Skladniki.Nazwa'))
+                ->find();
+
+        $num3 = count($zawieraNazwa);  //zlicza ilosc skladnikow dla przepisu o zadanym id w warunku where
+
+        $zawieraIlosc = ZawieraQuery::create()
+                ->join('Przepis')
+                ->join('Skladniki')
+                ->where('Przepis.IdPrzepis = ?', $id_przepis)
+                ->select(array('Ilosc'))
+                ->find();
+
+                $ii;
+                for($ii=0; $ii<$num3; $ii++){
+                  echo '<script type="text/javascript">addIngredient("'.$zawieraNazwa->get($ii).'", "'.$zawieraIlosc->get($ii).'");</script>';
+                // echo '<tr><td>'.$zawieraNazwa->get($ii).'</td><td>'.$zawieraIlosc->get($ii).'</td></tr>';
+                }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        // $skladnik = 'skladnik';
+        // $ilosc = 'ile';
+        // echo '<script type="text/javascript">addIngredient("'.$skladnik.'", "'.$ilosc.'");</script>';
+
         ?>
       </form>
     </section>
