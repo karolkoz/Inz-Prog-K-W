@@ -115,7 +115,7 @@
           echo '<script type="text/javascript">addCategory()</script>';
           //Pierwszy parametr to numer kategorii na stronie, drugi to numer opcji do zaznaczenia
           //na liście. Numeruj zgodnie z kolejnościa wyświetlania na liście czyli Fit=0, Kolacja=1 itd.
-          echo '<script type="text/javascript">CategorySelect(2, 1)</script>';
+          echo '<script type="text/javascript">CategorySelect(2, "Fit")</script>';
           ?>
 
           <div id="categoryButtonDiv" class="content__form__button">
