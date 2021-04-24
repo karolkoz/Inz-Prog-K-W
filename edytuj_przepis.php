@@ -365,6 +365,34 @@
           echo '<script type="text/javascript">CategorySelect(2, "Fit")</script>';
           ?>
 
+
+          <!-- <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+
+          $nalezyNazwa = NalezyQuery::create()
+                  ->join('Przepis')
+                  ->join('Kategoria')
+                  ->where('Przepis.IdPrzepis = ?', $id_przepis)
+                  ->select(array('Kategoria.Nazwa'))
+                  ->find();
+          $num = count($nalezyNazwa);
+          echo 'Przepis te nalezy do '.$num.' kategorii.';
+
+          // echo '<script type="text/javascript">addCategory()</script>';
+          $i;
+          $j=0;
+          for($i=0; $i<$num; $i++){
+          echo '<script type="text/javascript">addCategory()</script>';
+          echo '<script type="text/javascript">CategorySelect(2, $nalezyNazwa->get($i))</script>';
+          echo ' dodano '.$nalezyNazwa->get($i);
+          $j++;
+          }
+          ?> -->
+
+
+
+
           <div id="categoryButtonDiv" class="content__form__button">
             <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
           </div>
