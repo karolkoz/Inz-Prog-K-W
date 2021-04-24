@@ -5,6 +5,7 @@
     crossorigin="anonymous"> -->
   <link rel="Stylesheet" type="text/css" href="style/css/style.css" />
   <meta charset="utf-8" />
+  <title>Pyszniutkie.pl</title>
 </head>
 
 <body>
@@ -176,9 +177,7 @@
     </section>
 
 
-    <footer>
-      footer
-    </footer>
+    <?php include 'footer.php' ?>
 
   </main>
 

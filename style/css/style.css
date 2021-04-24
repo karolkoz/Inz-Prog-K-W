@@ -128,6 +128,8 @@ nav {
       background-color: #058B63;
       color: white;
       border: 0; }
+    .search__form .search__form__searchbar input[type=submit]:hover {
+      background-color: #03ab79; }
   .search__form .search__form__categories {
     display: flex;
     flex-direction: column;
@@ -628,6 +630,18 @@ nav {
     outline: none; }
 
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   background-color: #36CFAB; }
+
+.footer__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  padding: 20px; }
 
 /*# sourceMappingURL=style.css.map */

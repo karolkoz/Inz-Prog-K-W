@@ -178,6 +178,9 @@ nav {
       color: white;
       border: 0;
     }
+    & input[type=submit]:hover {
+      background-color: $button_color_light;
+    }
   }
 
   .search__form__categories {
@@ -825,5 +828,18 @@ nav {
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   background-color: $header_color;
+}
+
+.footer__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  padding: 20px;
 }

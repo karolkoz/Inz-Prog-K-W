@@ -5,6 +5,7 @@
     crossorigin="anonymous"> -->
   <link rel="Stylesheet" type="text/css" href="style/css/style.css" />
   <meta charset="utf-8" />
+  <title>Pyszniutkie.pl</title>
 </head>
 
 <body>
@@ -12,7 +13,7 @@
     <?php include 'nav.php' ?>
 
     <section class="search-section">
-      <form class="search__form" action="search.php" method="post">
+      <form class="search__form" action="searchDB.php?currentPage=1" method="post">
         <div class="search__form__searchbar">
           <input type="text" name="przepis" placeholder="Szukaj przepisu...">
           <input type="submit" value="">
@@ -118,25 +119,21 @@
       </div>
       <div class="content__search-counter">
         <div class="content__search-counter__element">
-          <a href="search.php?currentPage=1">1</a>
+          <a href="searchDB.php?currentPage=1">1</a>
         </div>
         <div class="content__search-counter__element">
-          <a href="search.php?currentPage=2">2</a>
+          <a href="searchDB.php?currentPage=2">2</a>
         </div>
         <div class="content__search-counter__element">
-          <a href="search.php?currentPage=3">3</a>
+          <a href="searchDB.php?currentPage=3">3</a>
         </div>
         <div class="content__search-counter__element">
-          <a href="search.php?currentPage=4">4</a>
+          <a href="searchDB.php?currentPage=4">4</a>
         </div>
       </div>
     </section>
 
-
-    <footer>
-      footer
-    </footer>
-
+    <?php include 'footer.php' ?>
   </main>
 
 
