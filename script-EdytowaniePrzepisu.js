@@ -108,7 +108,7 @@ function addStage(content, stageImage) {
   var new_input = document.createElement("input");
   new_input.setAttribute("type", "file");
   new_input.setAttribute("accept", "image/png, image/jpeg");
-  new_input.setAttribute("name", "etap[]");
+  new_input.setAttribute("name", "etap_image[]");
   new_input.setAttribute("id", "etap_" + numer + "_image");
   new_input.addEventListener("change", function() {
     loadStageImage(event)
@@ -197,7 +197,7 @@ function removeStage(x) {
     //console.log("+text = " + stageArray[i].text);
 
     //console.log("-input = " + stageArray[i].input);
-    document.getElementById(stageArray[i].input).name = "etap[]";
+    document.getElementById(stageArray[i].input).name = "etap_image[]";
     document.getElementById(stageArray[i].input).id = "etap_" + numer + "_image";
     stageArray[i].input = "etap_" + numer + "_image";
     //console.log("+input = " + stageArray[i].input);

@@ -209,7 +209,7 @@ $p=0;
 
 
 
-foreach($_FILES['etap']['tmp_name'] as $key)
+foreach($_FILES['etap_image']['tmp_name'] as $key)
 {
 $key_length=strlen($key); //dlugosc nazwy pliku zdjecia
 
