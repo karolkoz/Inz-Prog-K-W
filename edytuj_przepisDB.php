@@ -118,4 +118,153 @@ if($przepis->save())
 }
 
 
+///////////////////////////////////////////////edycja skladnikow dla przepisu///////////////////////////
+
+$zawiera = ZawieraQuery::create()
+                ->filterByPrzepis($przepis)
+                ->delete();
+echo ' Usunieto wpis w tabeli ZAWIERA dla przepisu o ID: '.$przepis->getIdPrzepis().'</br>';
+
+
+$tab=[];
+$i=0;
+foreach($_POST['skladnik_ilosc'] as $val)
+{
+  $tab[$i]=$val;
+  $i++;
+} //mam tablice tab o elementach z tablicy $_POST['skladnik_ilosc']
+
+
+//warunkowe wstawianie do tabeli 'SKLADNIKI':
+$j=0;
+foreach ($_POST['skladnik_nazwa'] as $value)
+{
+  $skladniki = SkladnikiQuery::create()
+  ->filterByNazwa($value)
+  ->find();
+
+  if (count($skladniki) == 0) {
+   $skladnik = new Skladniki();
+   $skladnik->setNazwa($value);
+   $skladnik->save();
+   } elseif (count($skladniki) == 1) {
+       $skladnik = $skladniki[0];
+    }
+
+  $zawiera = new Zawiera();
+  $zawiera->setPrzepis($przepis);
+  $zawiera->setSkladniki($skladnik);
+  $zawiera->setIlosc($tab[$j]);
+  $zawiera->save();
+
+  $j++;
+  echo " Zaktualizowano skladnik dla przepisu!</br>";
+}
+
+////////////////////////////////////////////////////////////edycja kategorii///////////////////////////////
+$nalezy = NalezyQuery::create()
+                ->filterByPrzepis($przepis)
+                ->delete();
+echo ' Usunieto wpis w tabeli NALEZY dla przepisu o ID: '.$przepis->getIdPrzepis().'</br>';
+
+foreach ($_POST['categories'] as $name_categories)
+{
+  $nalez = new Nalezy();
+  $nalez->setPrzepis($przepis);
+  $nalez->setKategoriaNazwa($name_categories);
+  $nalez->save();
+  echo "  zaktualizowano kategorię dla przepisu! </br> ";
+}
+
+/////////////////////////////edycja etapow/////////////////////////
+$etap = EtapQuery::create()
+                ->filterByPrzepis($przepis)
+                ->delete();
+echo ' Usunieto wpis w tabeli ETAP dla przepisu o ID: '.$przepis->getIdPrzepis().'</br>';
+
+
+
+$num = count($_POST['etap']); //ilosc dodanych opisow etapow
+echo ' ILOSC ETAPOW: '.$num.'</br>';
+
+$nr_etap=1; //zaczynamy od etapu nr 1, bedziemy zwiekszac $nr_etap++ przy dodawaniu kolejnych etapow
+
+
+$tab2=[];
+$k=0;
+foreach($_POST['etap'] as $val_opis)
+{
+  $tab2[$k]=$val_opis;
+  // echo $val_opis.'</br>';
+  $k++;
+}//mam tablice tab2 o elementach z tablicy $_POST['etap'] czyli opis etapu
+//np. dla 3 etapow tablica ma 4 elementy
+
+
+
+
+$tab4=[];
+$p=0;
+// if (isset($_FILES['etap']))
+
+foreach($_FILES['etap']['tmp_name'] as $key)
+{
+$key_length=strlen($key); //dlugosc nazwy pliku zdjecia
+
+//jesli przekazywany plik ma nazwe > 0 (czyli istnieje) to dodajemy do bazy ten plik
+//gdy dl nazwy == 0 to znak, ze pliku brak, wiec do bazy wstawiamy null
+
+if ($key_length!==0){
+  $tab4[$p]=file_get_contents($key);
+  // $p++;
+}
+else{
+    $tab4[$p]=null;
+}
+$p++;
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$m=0;
+for($m=0; $m<$num; $m++)
+{
+  $etap = new Etap();
+  $etap->setNrEtapu($nr_etap);
+  $etap->setOpis($tab2[$m]);
+  $etap->setZdjecie($tab4[$m]);
+
+
+  $etap->setPrzepis($przepis);
+  if($etap->save()){
+    echo ' Dodano etap ';
+    echo $etap->getOpis().'</br>';
+    echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
+    // $fp2 = $etap->getZdjecie();
+    // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+  }
+
+  $nr_etap++;
+}
+
+
+
+
+
+
+
+
+// $etap = EtapQuery::create()
+//                 ->filterByPrzepis($przepis)
+//                 ->delete();
+// echo ' Usunieto wpis w tabeli ETAP dla przepisu o ID: '.$przepis->getIdPrzepis();
+//
+// $nalezy = NalezyQuery::create()
+//                 ->filterByPrzepis($przepis)
+//                 ->delete();
+// echo ' Usunieto wpis w tabeli NALEZY dla przepisu o ID: '.$przepis->getIdPrzepis();
+
+
  ?>
