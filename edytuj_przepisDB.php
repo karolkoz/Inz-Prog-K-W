@@ -63,7 +63,7 @@ $data=date("Y-m-d");
 // $image_length = strlen($image);
 
 
-$id_przepis = 13;
+$id_przepis = 14;
 $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
 $przepis->setNazwa($nazwa);
@@ -195,7 +195,7 @@ $k=0;
 foreach($_POST['etap'] as $val_opis)
 {
   $tab2[$k]=$val_opis;
-  // echo $val_opis.'</br>';
+  echo '</br>wstawiam do tab2: '.$tab2[$k].' pod indeks: '.$k.'</br>';
   $k++;
 }//mam tablice tab2 o elementach z tablicy $_POST['etap'] czyli opis etapu
 //np. dla 3 etapow tablica ma 4 elementy
@@ -206,6 +206,8 @@ foreach($_POST['etap'] as $val_opis)
 $tab4=[];
 $p=0;
 // if (isset($_FILES['etap']))
+
+
 
 foreach($_FILES['etap']['tmp_name'] as $key)
 {
@@ -223,48 +225,32 @@ else{
 }
 $p++;
 }
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-$m=0;
-for($m=0; $m<$num; $m++)
-{
-  $etap = new Etap();
-  $etap->setNrEtapu($nr_etap);
-  $etap->setOpis($tab2[$m]);
-  $etap->setZdjecie($tab4[$m]);
-
-
-  $etap->setPrzepis($przepis);
-  if($etap->save()){
-    echo ' Dodano etap ';
-    echo $etap->getOpis().'</br>';
-    echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
-    // $fp2 = $etap->getZdjecie();
-    // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
-  }
-
-  $nr_etap++;
-}
-
-
-
-
-
-
-
-
-// $etap = EtapQuery::create()
-//                 ->filterByPrzepis($przepis)
-//                 ->delete();
-// echo ' Usunieto wpis w tabeli ETAP dla przepisu o ID: '.$przepis->getIdPrzepis();
 //
-// $nalezy = NalezyQuery::create()
-//                 ->filterByPrzepis($przepis)
-//                 ->delete();
-// echo ' Usunieto wpis w tabeli NALEZY dla przepisu o ID: '.$przepis->getIdPrzepis();
+//
+//
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+// $m=0;
+// while($m<$num)
+// {
+//   $etap = new Etap();
+//   $etap->setNrEtapu($nr_etap);
+//   $etap->setOpis($tab2[$m]);
+//   //$etap->setZdjecie($tab4[$m]);
+//
+//
+//   $etap->setPrzepis($przepis);
+//   if($etap->save()){
+//     echo ' Dodano etap nr'.$etap->getNrEtapu($nr_etap).'</br>';
+//     echo $etap->getOpis().'</br>';
+//     echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
+//     // $fp2 = $etap->getZdjecie();
+//     // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+//   }
+//   $m++;
+//   $m++;
+//   $nr_etap++;
+// }
 
  ?>

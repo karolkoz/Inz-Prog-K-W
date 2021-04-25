@@ -22,7 +22,7 @@
           <?php
           require_once __DIR__.'/vendor/autoload.php';
           require_once __DIR__.'/generated-conf/config.php';
-          $id_przepis = 13;
+          $id_przepis = 14;
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
           echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" />'
