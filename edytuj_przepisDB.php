@@ -60,7 +60,7 @@ $opis = $_POST['opis'];
 $data=date("Y-m-d");
 
 
-$id_przepis = 14;
+$id_przepis = 12;
 $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
 $przepis->setNazwa($nazwa);
@@ -157,11 +157,25 @@ foreach ($_POST['categories'] as $name_categories)
 
 /////////////////////////////edycja etapow/////////////////////////
 $etap = EtapQuery::create()
+        ->filterByPrzepisIdPrzepis($id_przepis)
+        ->select(array('Zdjecie'))
+        ->find();
+$etapKopia = [];
+$num = count($_POST['etap']); //ilosc dodanych opisow etapow
+$i=0;
+foreach($etap as $et){
+  if($et !== null){
+    $e=$etap->get($i);
+    $etapKopia[$i] = $e;
+  } else {
+    $etapKopia[$i] = null;
+  }
+  $i++;
+}
+$etap = EtapQuery::create()
                 ->filterByPrzepis($przepis)
                 ->delete();
 echo ' Usunieto wpis w tabeli ETAP dla przepisu o ID: '.$przepis->getIdPrzepis().'</br>';
-
-
 
 $num = count($_POST['etap']); //ilosc dodanych opisow etapow
 echo ' ILOSC ETAPOW: '.$num.'</br>';
@@ -179,25 +193,56 @@ foreach($_POST['etap'] as $val_opis)
 }
 
 
+$stageImagesStart=[];
+ $i=0;
+ foreach($_POST['stageImagesStart'] as $val) {
+   echo 'stageImagesStart['.$i.'] = '.$val.'<br />';
+  $stageImagesStart[$i]=$val;
+  $i++;
+}
+$i=0;
+$stageImagesIfDB=[];
+ foreach($_POST['stageImagesIfDB'] as $val) {
+   echo 'stageImageIfDB['.$i.'] = '.$val.'<br />';
+   $stageImagesIfDB[$i]=$val;
+   $i++;
+ }
+ $ileEtapow=$i;
+ $i=0;
+ for($i=0; $i<$ileEtapow; $i++) {
+   $pozycjaEtapu = $i + 1;
+   switch($stageImagesIfDB[$i]) {
+    case 0:
+      echo 'Etap '.$pozycjaEtapu.' nie ma obrazka</br>';
+      break;
+    case 1:
+      echo 'Etap '.$pozycjaEtapu.' ma obrazek, który w przepisie był przy etapie '.$stageImagesStart[$i].' </br>';
+      break;
+    case 2:
+      echo 'Etap '.$pozycjaEtapu.' ma obrazek w inpucie </br>';
+      break;
+  }
+}
+
 
 
 $tab4=[];
 $p=0;
-foreach($_FILES['etap_image']['tmp_name'] as $key)
-{
-$key_length=strlen($key); //dlugosc nazwy pliku zdjecia
-
-//jesli przekazywany plik ma nazwe > 0 (czyli istnieje) to dodajemy do bazy ten plik
-//gdy dl nazwy == 0 to znak, ze pliku brak, wiec do bazy wstawiamy null
-
-if ($key_length!==0){
-  $tab4[$p]=file_get_contents($key);
-  // $p++;
-}
-else{
-    $tab4[$p]=null;
-}
-$p++;
+foreach($_FILES['etap_image']['tmp_name'] as $key) {
+  switch($stageImagesIfDB[$p]) {
+    case 0:
+      $tab4[$p]=null;
+      $p++;
+      break;
+    case 1:
+      $tab4[$p]=$etapKopia[$stageImagesStart[$p]-1];
+      $p++;
+    break;
+    case 2:
+      $tab4[$p]=file_get_contents($key);
+      $p++;
+      break;
+  }
 }
 
 
@@ -205,11 +250,12 @@ $p++;
 $m=0;
 for($m=0; $m<$num; $m++)
 {
+  $nr_etap = $m+1;
   $etap = new Etap();
   $etap->setNrEtapu($nr_etap);
   $etap->setOpis($tab2[$m]);
-  $etap->setZdjecie($tab4[$m]);
 
+  $etap->setZdjecie($tab4[$m]);
 
   $etap->setPrzepis($przepis);
   if($etap->save()){
