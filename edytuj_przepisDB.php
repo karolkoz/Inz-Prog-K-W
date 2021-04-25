@@ -60,7 +60,7 @@ $opis = $_POST['opis'];
 $data=date("Y-m-d");
 
 
-$id_przepis = 12;
+$id_przepis = $_GET['przepisID'];
 $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
 $przepis->setNazwa($nazwa);

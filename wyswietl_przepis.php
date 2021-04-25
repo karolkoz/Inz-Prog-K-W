@@ -15,10 +15,10 @@
     <section class="content">
       <div class="content__recipe">
         <div class="content__recipe__row">
-          <form class="content__recipe__element content__recipe__form" method="post" action="usun_przepis.php">
+          <form class="content__recipe__element content__recipe__form" method="post" action="usun_przepis.php?przepisID=<?php echo $_GET['przepisID'] ?>">
               <button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>
           </form>
-            <form class="content__recipe__element content__recipe__form" method="post" action="edytuj_przepis.php">
+            <form class="content__recipe__element content__recipe__form" method="post" action="edytuj_przepis.php?przepisID=<?php echo $_GET['przepisID'] ?>">
                 <button class="content__recipe__button" type="submit" name="przepis" value="10"><img src="img/edit icon.png" />Edycja przepisu</button>
             </form>
         </div>
@@ -29,7 +29,7 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-            $id_przepis = 12;
+            $id_przepis = $_GET['przepisID'];
 
             $przepis = PrzepisQuery::create()->findPk($id_przepis);
             echo '<h1 class="content__recipe__title">'.$przepis->getNazwa().'</h1>'; //wyswietla nazwe przepisu o id=24

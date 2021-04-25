@@ -13,7 +13,7 @@
     <?php include 'nav.php' ?>
 
     <section class="content">
-      <form class="content__form" id="form" action="edytuj_przepisDB.php" method="post" enctype="multipart/form-data">
+      <form class="content__form" id="form" action="edytuj_przepisDB.php?przepisID=<?php echo $_GET['przepisID'] ?>" method="post" enctype="multipart/form-data">
         <div id="formImagesInfo">
 
         </div>
@@ -22,7 +22,7 @@
           <?php
           require_once __DIR__.'/vendor/autoload.php';
           require_once __DIR__.'/generated-conf/config.php';
-          $id_przepis = 12;
+          $id_przepis = $_GET['przepisID'];
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
           echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" />'

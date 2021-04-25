@@ -73,7 +73,7 @@
             <img src="img/placeholder icon.png" />
           </div>
           <div class="content__element__right">
-            <a href="wyswietl_przepis.php" class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</a>
+            <a href="wyswietl_przepis.php?przepisID=12" class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</a>
             <div class="content__element__right__data">
               <div class="content__element__right__data__part">
                 <img src="img/like green.png" /> 325
