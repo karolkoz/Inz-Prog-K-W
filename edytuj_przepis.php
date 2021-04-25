@@ -13,7 +13,7 @@
     <?php include 'nav.php' ?>
 
     <section class="content">
-      <form class="content__form" id="form" action="edytuj_przepisDB.php" method="post">
+      <form class="content__form" id="form" action="edytuj_przepisDB.php" method="post" enctype="multipart/form-data">
         <div id="formImagesInfo">
 
         </div>

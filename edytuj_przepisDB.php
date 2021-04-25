@@ -59,9 +59,6 @@ $ile_osob = $_POST['ile_osob'];
 $opis = $_POST['opis'];
 $data=date("Y-m-d");
 
-// $image = $_FILES['image']['tmp_name'];
-// $image_length = strlen($image);
-
 
 $id_przepis = 14;
 $przepis = PrzepisQuery::create()->findPk($id_przepis);
@@ -87,29 +84,11 @@ switch($_POST['mainImageStatus']) {
     echo 'Obrazek Główny jest w inpucie </br>';
 
     $image = $_FILES['image']['tmp_name'];
-//  $image = $_FILES['image'];
     $img = file_get_contents($image);
     $przepis->setZdjecieOgolne($img);
-
-
-    // if ($image_length!==0){
-    //   $img = file_get_contents($image);
-    //   $przepis->setZdjecieOgolne($img);
-    // }
-    // else{
-    //   $przepis->setZdjecieOgolne(null);
-    // }
     break;
 }
-
-
-// if ($image_length!==0){
-//   $img = file_get_contents($image);
-//   $przepis->setZdjecieOgolne($img);
-// }
-// else{
-//   $przepis->setZdjecieOgolne(null);
-// }
+$przepis->save();
 
 
 if($przepis->save())
@@ -195,20 +174,15 @@ $k=0;
 foreach($_POST['etap'] as $val_opis)
 {
   $tab2[$k]=$val_opis;
-  echo '</br>wstawiam do tab2: '.$tab2[$k].' pod indeks: '.$k.'</br>';
+  // echo $val_opis.'</br>';
   $k++;
-}//mam tablice tab2 o elementach z tablicy $_POST['etap'] czyli opis etapu
-//np. dla 3 etapow tablica ma 4 elementy
+}
 
 
 
 
 $tab4=[];
 $p=0;
-// if (isset($_FILES['etap']))
-
-
-
 foreach($_FILES['etap_image']['tmp_name'] as $key)
 {
 $key_length=strlen($key); //dlugosc nazwy pliku zdjecia
@@ -225,32 +199,103 @@ else{
 }
 $p++;
 }
-//
-//
-//
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// $m=0;
-// while($m<$num)
+
+$m=0;
+for($m=0; $m<$num; $m++)
+{
+  $etap = new Etap();
+  $etap->setNrEtapu($nr_etap);
+  $etap->setOpis($tab2[$m]);
+  $etap->setZdjecie($tab4[$m]);
+
+
+  $etap->setPrzepis($przepis);
+  if($etap->save()){
+    echo ' Dodano etap nr'.$etap->getNrEtapu($nr_etap).'</br>';
+    echo $etap->getOpis().'</br>';
+    echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
+
+    // echo ' Dodano etap ';
+    // echo $etap->getOpis().'</br>';
+    // echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
+    // $fp2 = $etap->getZdjecie();
+    // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+  }
+  $nr_etap++;
+}
+
+
+
+
+
+
+// $num = count($_POST['etap']); //ilosc dodanych opisow etapow
+// echo ' ILOSC ETAPOW: '.$num.'</br>';
+//
+// $nr_etap=1; //zaczynamy od etapu nr 1, bedziemy zwiekszac $nr_etap++ przy dodawaniu kolejnych etapow
+//
+//
+// $tab2=[];
+// $k=0;
+// foreach($_POST['etap'] as $val_opis)
 // {
-//   $etap = new Etap();
-//   $etap->setNrEtapu($nr_etap);
-//   $etap->setOpis($tab2[$m]);
-//   //$etap->setZdjecie($tab4[$m]);
+//   $tab2[$k]=$val_opis;
+//   echo '</br>wstawiam do tab2: '.$tab2[$k].' pod indeks: '.$k.'</br>';
+//   $k++;
+// }//mam tablice tab2 o elementach z tablicy $_POST['etap'] czyli opis etapu
+// //np. dla 3 etapow tablica ma 4 elementy
 //
 //
-//   $etap->setPrzepis($przepis);
-//   if($etap->save()){
-//     echo ' Dodano etap nr'.$etap->getNrEtapu($nr_etap).'</br>';
-//     echo $etap->getOpis().'</br>';
-//     echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
-//     // $fp2 = $etap->getZdjecie();
-//     // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
-//   }
-//   $m++;
-//   $m++;
-//   $nr_etap++;
+//
+//
+// $tab4=[];
+// $p=0;
+// // if (isset($_FILES['etap']))
+//
+//
+//
+// foreach($_FILES['etap_image']['tmp_name'] as $key)
+// {
+// $key_length=strlen($key); //dlugosc nazwy pliku zdjecia
+//
+// //jesli przekazywany plik ma nazwe > 0 (czyli istnieje) to dodajemy do bazy ten plik
+// //gdy dl nazwy == 0 to znak, ze pliku brak, wiec do bazy wstawiamy null
+//
+// if ($key_length!==0){
+//   $tab4[$p]=file_get_contents($key);
+//   // $p++;
 // }
+// else{
+//     $tab4[$p]=null;
+// }
+// $p++;
+// }
+//
+// // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+// // $m=0;
+// // while($m<$num)
+// // {
+// //   $etap = new Etap();
+// //   $etap->setNrEtapu($nr_etap);
+// //   $etap->setOpis($tab2[$m]);
+// //   //$etap->setZdjecie($tab4[$m]);
+// //
+// //
+// //   $etap->setPrzepis($przepis);
+// //   if($etap->save()){
+// //     echo ' Dodano etap nr'.$etap->getNrEtapu($nr_etap).'</br>';
+// //     echo $etap->getOpis().'</br>';
+// //     echo ' ZDJECIE do etapu nr: '.$etap->getNrEtapu($nr_etap).'</br>';
+// //     // $fp2 = $etap->getZdjecie();
+// //     // echo '<img class="content__recipe__image" src="data:image/jpg;charset=utf8;base64,'.base64_encode(stream_get_contents($fp2)).'" />';
+// //   }
+// //   $m++;
+// //   $m++;
+// //   $nr_etap++;
+// // }
 
  ?>
