@@ -67,7 +67,7 @@
 
 
     <section class="content">
-      <div class="content__elements">
+      <div class="content__elements" id="search-results">
         <div class="content__element">
           <div class="content__element__left">
             <img src="img/placeholder icon.png" />
@@ -92,6 +92,7 @@
             </div>
           </div>
         </div>
+
         <div class="content__element">
           <div class="content__element__left">
             <img src="img/placeholder icon.png" />
@@ -116,6 +117,7 @@
             </div>
           </div>
         </div>
+
       </div>
       <div class="content__search-counter">
         <div class="content__search-counter__element">
@@ -131,6 +133,11 @@
           <a href="searchDB.php?currentPage=4">4</a>
         </div>
       </div>
+      <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>
+      <?php
+      //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
+      echo '<script>addContentElement(12, "MniamMniam", 3, 30, 4, 5);</script>';
+      ?>
     </section>
 
     <?php include 'footer.php' ?>
