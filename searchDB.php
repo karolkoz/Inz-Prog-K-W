@@ -92,45 +92,36 @@
             </div>
           </div>
         </div> -->
-
-      </div>
-      <div class="content__search-counter" id="search-counter">
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=1">1</a>
-        </div>
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=2">2</a>
-        </div>
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=3">3</a>
-        </div>
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=4">4</a>
-        </div>
-      </div>
-      <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>
-      <?php
-      //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
-      require_once __DIR__.'/vendor/autoload.php';
-      require_once __DIR__.'/generated-conf/config.php';
+        <?php
+        require_once __DIR__.'/vendor/autoload.php';
+        require_once __DIR__.'/generated-conf/config.php';
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//////-------OD TEGO MIEJSCA WYSWIETLANIE (stronnicowane) PRZEPISOW Z BAZY DANYCH---------------////
-////////////////////////////////////////////////////////////////////////////////////////////////////
+        $pageNumber = $_GET['currentPage'];
+
+        $pID = PrzepisQuery::create()
+          ->select(array('IdPrzepis'))
+          ->find();
+
+        $ileID = count($pID); //ilosc wszystkich przepisow w bazie
+        $rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
+        $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
 
-$pageNumber = $_GET['currentPage'];
 
-$pID = PrzepisQuery::create()
-        ->select(array('IdPrzepis'))
-        ->find();
 
-$ileID = count($pID); //ilosc wszystkich przepisow w bazie
-$rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
-$totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
+      echo '</div>
+      <div class="content__search-counter" id="search-counter">';
+        $num=1;
+        for($num; $num<=$totalPages; $num++)
+        {
+          echo '<div class="content__search-counter__element"><a href="searchDB.php?currentPage='.$num.'">'.$num.'</a></div>';
+        }
+      echo '</div>
+      <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
 
-///test wyswietlania ilosci przepisow na stronie///
+
+
 $y=1;
 for($y; $y<=$totalPages; $y++)
 {
@@ -139,7 +130,7 @@ if($pageNumber==$y)
   $przepisyID = PrzepisQuery::create()
           ->select(array('IdPrzepis'))
           ->paginate($page = $y, $rowsPerPage = 5);
-          //->find();
+
 
   foreach($przepisyID as $ID)
   {

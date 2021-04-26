@@ -92,44 +92,42 @@
             </div>
           </div>
         </div> -->
+      </div>
 
-      </div>
-      <div class="content__search-counter" id="search-counter">
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=1">1</a>
-        </div>
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=2">2</a>
-        </div>
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=3">3</a>
-        </div>
-        <div class="content__search-counter__element">
-          <a href="searchDB.php?currentPage=4">4</a>
-        </div>
-      </div>
-      <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>
       <?php
       //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
       require_once __DIR__.'/vendor/autoload.php';
       require_once __DIR__.'/generated-conf/config.php';
 
-      //przyklad wstawiony z ręki, bez odzwierciedlenia w bazie danych
-      // $przepis = PrzepisQuery::create()->findPk(12);
-      // $fp = $przepis->getZdjecieOgolne();
-      // echo '<script>addContentElement(12, "MniamMniam", 3, 30, 4, 5, "'.base64_encode(stream_get_contents($fp)).'");</script>';
+      $pID = PrzepisQuery::create()
+        ->select(array('IdPrzepis'))
+        ->find();
+
+      $ileID = count($pID); //ilosc wszystkich przepisow w bazie
+      $rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
+      $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
+
+
+
+    echo '</div>
+    <div class="content__search-counter" id="search-counter">';
+      $num=1;
+      for($num; $num<=$totalPages; $num++)
+      {
+        echo '<div class="content__search-counter__element"><a href="searchDB.php?currentPage='.$num.'">'.$num.'</a></div>';
+      }
+    echo '</div>
+    <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//////-----------OD EGO MIEJSCA WYSWIETLANIE WSZSYTKICH PRZEPISOW Z BAZY DANYCH-----------------////
+//////----------OD TEGO MIEJSCA WYSWIETLANIE WSZSYTKICH PRZEPISOW Z BAZY DANYCH-----------------////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
       $przepisyID = PrzepisQuery::create()
               ->select(array('IdPrzepis'))
               ->paginate($page = 1, $rowsPerPage = 5);
-              //->find();
 
-      $ileID = count($przepisyID); //ilosc wszystkich przepisow w bazie
-      //$rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
-      $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
       foreach($przepisyID as $ID)
       {
