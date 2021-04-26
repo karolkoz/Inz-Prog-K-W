@@ -124,10 +124,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
       $przepisyID = PrzepisQuery::create()
               ->select(array('IdPrzepis'))
-              ->find();
+              ->paginate($page = 1, $rowsPerPage = 5);
+              //->find();
 
-      $ileID = count($przepisyID);
-      //echo '</br> W bazie mamy '.$ileID.' przepisów!</br>';
+      $ileID = count($przepisyID); //ilosc wszystkich przepisow w bazie
+      //$rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
+      $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
       foreach($przepisyID as $ID)
       {
