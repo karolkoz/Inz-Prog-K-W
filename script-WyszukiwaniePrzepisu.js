@@ -74,3 +74,14 @@ function addContentElement(recipeID, name, likes, time, people, difficulty, imag
   new_element.appendChild(right_div);
   document.getElementById("search-results").appendChild(new_element);
 }
+
+function addPageButton(x) {
+  var new_element = document.createElement("div");
+  new_element.classList.add("content__search-counter__element");
+  var link = document.createElement("a");
+  link.classList.add("content__element__right__title")
+  link.href = "searchDB.php?currentPage="+x;
+  link.appendChild(document.createTextNode(x));
+  new_element.appendChild(link);
+  document.getElementById("search-counter").appendChild(new_element);
+}

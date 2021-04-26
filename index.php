@@ -94,7 +94,7 @@
         </div> -->
 
       </div>
-      <div class="content__search-counter">
+      <div class="content__search-counter" id="search-counter">
         <div class="content__search-counter__element">
           <a href="searchDB.php?currentPage=1">1</a>
         </div>
