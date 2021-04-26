@@ -68,12 +68,12 @@
 
     <section class="content">
       <div class="content__elements" id="search-results">
-        <div class="content__element">
+        <!-- <div class="content__element">
           <div class="content__element__left">
             <img src="img/placeholder icon.png" />
           </div>
           <div class="content__element__right">
-            <a href="wyswietl_przepis.php?przepisID=12" class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</a>
+            <a href="wyswietl_przepis.php?przepisID=14" class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</a>
             <div class="content__element__right__data">
               <div class="content__element__right__data__part">
                 <img src="img/like green.png" /> 325
@@ -91,32 +91,7 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="content__element">
-          <div class="content__element__left">
-            <img src="img/placeholder icon.png" />
-          </div>
-          <div class="content__element__right">
-            <h2 class="content__element__right__title">Dzika Świnia po kaszubsku w panierce ziołowej</h2>
-            <div class="content__element__right__data">
-              <div class="content__element__right__data__part">
-                <img src="img/like green.png" /> 353
-              </div>
-              <div class="content__element__right__data__part">
-                <img src="img/clock icon.png" /> 30 min.
-              </div>
-            </div>
-            <div class="content__element__right__data">
-              <div class="content__element__right__data__part">
-                <img src="img/people icon.png" /> 4
-              </div>
-              <div class="content__element__right__data__part">
-                <img src="img/difficulty icon.png" /> Łatwe
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> -->
 
       </div>
       <div class="content__search-counter">
@@ -136,7 +111,37 @@
       <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>
       <?php
       //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
-      echo '<script>addContentElement(12, "MniamMniam", 3, 30, 4, 5);</script>';
+      require_once __DIR__.'/vendor/autoload.php';
+      require_once __DIR__.'/generated-conf/config.php';
+
+      //przyklad wstawiony z ręki, bez odzwierciedlenia w bazie danych
+      // $przepis = PrzepisQuery::create()->findPk(12);
+      // $fp = $przepis->getZdjecieOgolne();
+      // echo '<script>addContentElement(12, "MniamMniam", 3, 30, 4, 5, "'.base64_encode(stream_get_contents($fp)).'");</script>';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//////-----------OD EGO MIEJSCA WYSWIETLANIE WSZSYTKICH PRZEPISOW Z BAZY DANYCH-----------------////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+      $przepisyID = PrzepisQuery::create()
+              ->select(array('IdPrzepis'))
+              ->find();
+
+      $ileID = count($przepisyID);
+      //echo '</br> W bazie mamy '.$ileID.' przepisów!</br>';
+
+      foreach($przepisyID as $ID)
+      {
+        $pDane = PrzepisQuery::create()->findPk($ID);
+        $zdj = $pDane->getZdjecieOgolne();
+        if ($zdj !== null) {
+          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+        }
+        else{
+          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+        }
+      }
+
+
       ?>
     </section>
 
