@@ -13,7 +13,7 @@
     <?php include 'nav.php' ?>
 
     <section class="search-section">
-      <form class="search__form" action="searchDB.php" method="post">
+      <form class="search__form" action="searchDB.php?currentPage=1" method="post">
         <div class="search__form__searchbar">
           <input type="text" name="przepis" placeholder="Szukaj przepisu...">
           <input type="submit" value="">
@@ -96,8 +96,12 @@
         require_once __DIR__.'/vendor/autoload.php';
         require_once __DIR__.'/generated-conf/config.php';
 
-
+        //$pageNumber=1;
         $pageNumber = $_GET['currentPage'];
+        // if(isset($_GET['currentPage']))
+        // {
+        //     $pageNumber = $_GET['currentPage'];
+        // }
 
         $pID = PrzepisQuery::create()
           ->select(array('IdPrzepis'))
