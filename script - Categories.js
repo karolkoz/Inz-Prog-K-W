@@ -19,11 +19,15 @@ function addCategory() {
 
   var button = document.getElementById("categoryButtonDiv");
   document.getElementById("categories").appendChild(clone);
+  var select = clone.getElementsByTagName("select")[0];
+  clone.addEventListener("change", category_validation, false);
   document.getElementById("categories").appendChild(document.getElementById("categoryButtonDiv"));
 }
+
 function removeCategory(x) {
   document.getElementById(x).remove();
   ileKategorii--;
+  category_validation();
 }
 
 function CategorySelect(id, j) {
@@ -37,4 +41,24 @@ function CategorySelect(id, j) {
       category[0].options[i].selected = 'selected';
     }
   }
+}
+
+function category_validation() {
+  var categories = document.forms["form"].getElementsByTagName("select");
+  var i=0;
+  for(i=0; i<ileKategorii; i++) {
+    categories[i].style.backgroundColor = "#FFFFFF";
+  }
+  var isValid = true;
+  var j;
+  for(i=0; i<ileKategorii; i++) {
+    for(j=i+1; j<ileKategorii; j++) {
+      if(categories[i].value == categories[j].value && categories[i].value.length > 0) {
+        categories[i].style.backgroundColor = "#e0d101";
+        categories[j].style.backgroundColor = "#e0d101";
+        isValid = false;
+      }
+    }
+  }
+  return isValid;
 }

@@ -13,7 +13,7 @@
     <?php include 'nav.php' ?>
 
     <section class="content">
-      <form class="content__form" id="form" action="edytuj_przepisDB.php?przepisID=<?php echo $_GET['przepisID'] ?>" method="post" enctype="multipart/form-data">
+      <form class="content__form" id="form" onsubmit="return form_validation()" action="edytuj_przepisDB.php?przepisID=<?php echo $_GET['przepisID'] ?>" method="post" enctype="multipart/form-data">
         <div id="formImagesInfo">
 
         </div>
@@ -25,7 +25,7 @@
           $id_przepis = $_GET['przepisID'];
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
-          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" />'
+          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" required />'
 
           // $nazwa = "Jakas nazwa";
           // echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$nazwa.'" />'
@@ -292,7 +292,7 @@
           // $id_przepis = 11;
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
-          echo '<input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" value="'.$przepis->getDlaIluOsob().'" />'
+          echo '<input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" value="'.$przepis->getDlaIluOsob().'" required />'
 
           ?>
 
@@ -303,7 +303,7 @@
           require_once __DIR__.'/generated-conf/config.php';
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
-          echo '<input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" value="'.$przepis->getCzasPrzygotowania().'" />'
+          echo '<input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" value="'.$przepis->getCzasPrzygotowania().'" required />'
           ?>
         </div>
         <div class="content__form__input">
@@ -314,7 +314,7 @@
 
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
-          echo '<textarea name="opis" id="opis" placeholder="Opis przepisu" >'.$przepis->getOpis().'</textarea>';
+          echo '<textarea name="opis" id="opis" placeholder="Opis przepisu" required >'.$przepis->getOpis().'</textarea>';
           ?>
         </div>
 
@@ -337,7 +337,7 @@
           <h2>Kategorie</h2>
           <script type="text/javascript" src="script - Categories.js"></script>
           <div class="content__form__category" id="category_1">
-            <select name="categories[]">
+            <select name="categories[]" onchange="category_validation()" required>
               <option value=""disabled selected>Kategoria</option>
 
               <?php

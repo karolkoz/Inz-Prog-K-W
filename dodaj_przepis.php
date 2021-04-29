@@ -13,10 +13,10 @@
     <?php include 'nav.php' ?>
 
     <section class="content">
-      <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post" enctype="multipart/form-data">
+      <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post" enctype="multipart/form-data" onsubmit="return form_validation()">
         <h1>Formularz dodawania przepisu</h1>
         <div class="content__form__input">
-          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" />
+          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" required />
         </div>
         <div class="content__form__input">
           <img src="img/difficulty icon.png" />
@@ -45,14 +45,14 @@
         </div>
         <div class="content__form__input">
           <img src="img/people icon.png" />
-          <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" />
+          <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" required />
         </div>
         <div class="content__form__input">
           <img src="img/clock icon.png" />
-          <input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" />
+          <input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" required />
         </div>
         <div class="content__form__input">
-          <textarea name="opis" id="opis" placeholder="Opis przepisu"></textarea>
+          <textarea name="opis" id="opis" placeholder="Opis przepisu" required></textarea>
         </div>
 
         <div class="content__form__inputImage">
@@ -74,7 +74,7 @@
           <h2>Kategorie</h2>
           <script type="text/javascript" src="script - Categories.js"></script>
           <div class="content__form__category" id="category_1">
-            <select name="categories[]">
+            <select name="categories[]" onchange="category_validation()" required>
               <option value=""disabled selected>Kategoria</option>
 
               <?php
@@ -99,7 +99,7 @@
         <div class="content__form__dynamicInputs" id="ingredients">
           <h2>Lista Składników</h2>
           <div class="content__form__ingredient" id="skladnik_1">
-            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" />
+            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" required />
             <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
           </div>
           <div id="ingredientButtonDiv" class="content__form__button">
@@ -112,7 +112,7 @@
           <div class="content__form__stage" id="etap_1">
             <h2>Etap 1</h2>
             <div class="content__form__stage__inputs">
-              <textarea name="etap[]" placeholder="Opis etapu"></textarea>
+              <textarea name="etap[]" placeholder="Opis etapu" required></textarea>
               <label class="form__label__stage" for="etap_1_image" id="label_etap_1">
                 <img src="img/image icon.png" />
                 <input type="file" id="etap_1_image" name="etap[]" accept="image/png, image/jpeg" onchange="loadStageImage(event)" />

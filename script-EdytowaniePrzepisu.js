@@ -7,6 +7,16 @@ var ileSkladnikow = 0;
 var mainImage = 0;
 var stageImages = [];
 
+function form_validation() {
+
+  if(category_validation()) {
+    console.log("Kategorie działają");
+  } else {
+    return false;
+  }
+
+  return true;
+}
 
 function addIngredient(name, amount) {
   ileSkladnikow = ileSkladnikow + 1;
@@ -33,6 +43,7 @@ function addIngredient(name, amount) {
   new_input.setAttribute("type", "text");
   new_input.setAttribute("name", "skladnik_nazwa[]");
   new_input.setAttribute("placeholder", "Nazwa składnika");
+  new_input.setAttribute("required", "");
   if(typeof name !== 'undefined') {
     new_input.setAttribute("value", name);
   }
@@ -91,6 +102,7 @@ function addStage(content, stageImage) {
   textarea.setAttribute("name", "etap[]");
   textarea.setAttribute("placeholder", "Opis etapu");
   textarea.setAttribute("id", "textarea_etap_" + numer);
+  textarea.setAttribute("required", "");
   if(typeof content !== 'undefined') {
     textarea.appendChild(document.createTextNode(content));
   }
