@@ -272,7 +272,9 @@ for($m=0; $m<$num; $m++)
   $nr_etap++;
 }
 
-
+echo '<script type="text/javascript">
+  window.location = "wyswietl_przepis.php?przepisID='.$id_przepis.'";
+</script>'
 
 
 

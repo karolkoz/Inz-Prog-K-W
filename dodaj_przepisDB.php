@@ -169,4 +169,8 @@ foreach($_FILES['etap']['tmp_name'] as $key)
     // echo "  dodano kategorię ";
   }
 
+  echo '<script type="text/javascript">
+    window.location = "wyswietl_przepis.php?przepisID='.$idPrzepisu.'";
+</script>'
+
 ?>
