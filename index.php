@@ -1,3 +1,15 @@
+<!-- <?php
+if(isset($_POST['sort']))
+{
+  $cookie_value = $_POST['sort'];
+  setcookie("sortowanie", $cookie_value);
+  echo '</br> Ustawiono: '.$_COOKIE["sortowanie"].'</br>';
+}
+// else{
+//   setcookie("sortowanie", "brak");
+// }
+
+?> -->
 <html>
 
 <head>
@@ -68,33 +80,19 @@
 
     <section class="content">
       <div class="content__elements" id="search-results">
-        <!-- <div class="content__element">
-          <div class="content__element__left">
-            <img src="img/placeholder icon.png" />
-          </div>
-          <div class="content__element__right">
-            <a href="wyswietl_przepis.php?przepisID=14" class="content__element__right__title">Dzika Kaczka po kaszubsku w panierce ziołowej z kartoflami</a>
-            <div class="content__element__right__data">
-              <div class="content__element__right__data__part">
-                <img src="img/like green.png" /> 325
-              </div>
-              <div class="content__element__right__data__part">
-                <img src="img/clock icon.png" /> 50 min.
-              </div>
-            </div>
-            <div class="content__element__right__data">
-              <div class="content__element__right__data__part">
-                <img src="img/people icon.png" /> 4
-              </div>
-              <div class="content__element__right__data__part">
-                <img src="img/difficulty icon.png" /> Trudne
-              </div>
-            </div>
-          </div>
-        </div> -->
+
       </div>
 
-      <?php
+<?php
+echo ' </br> Witaj na stronie Pyszniutkie.pl !!! </br>';
+echo ' </br> Tysiące pomysłów na dania, każdy znajdzie coś dla siebie! </br>';
+?>
+
+
+
+
+
+      <!-- <?php
       //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
       require_once __DIR__.'/vendor/autoload.php';
       require_once __DIR__.'/generated-conf/config.php';
@@ -144,7 +142,7 @@
 
 
 
-      ?>
+      ?> -->
     </section>
 
     <?php include 'footer.php' ?>
