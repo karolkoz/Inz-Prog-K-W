@@ -16,7 +16,7 @@
       <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post" enctype="multipart/form-data" onsubmit="return form_validation()">
         <h1>Formularz dodawania przepisu</h1>
         <div class="content__form__input">
-          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" required />
+          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" onchange="name_validation()" required />
         </div>
         <div class="content__form__input">
           <img src="img/difficulty icon.png" />
@@ -99,7 +99,7 @@
         <div class="content__form__dynamicInputs" id="ingredients">
           <h2>Lista Składników</h2>
           <div class="content__form__ingredient" id="skladnik_1">
-            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" required />
+            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" onchange="ingredients_validation()" required />
             <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
           </div>
           <div id="ingredientButtonDiv" class="content__form__button">

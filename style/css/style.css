@@ -291,7 +291,8 @@ nav {
 .content__recipe__element__desc {
   margin: 0;
   font-size: 2em;
-  padding: 15px 0; }
+  padding: 15px 0;
+  align-self: flex-start; }
 
 .content__recipe__title {
   margin: 0;

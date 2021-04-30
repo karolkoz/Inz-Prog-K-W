@@ -25,7 +25,7 @@
           $id_przepis = $_GET['przepisID'];
           $przepis = PrzepisQuery::create()->findPk($id_przepis);
 
-          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" required />'
+          echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$przepis->getNazwa().'" onchange="name_validation()" required />'
 
           // $nazwa = "Jakas nazwa";
           // echo '<input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" value="'.$nazwa.'" />'

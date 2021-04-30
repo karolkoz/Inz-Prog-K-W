@@ -5,7 +5,44 @@ var stageArray = [];
 var ileEtapow = 1;
 var ileSkladnikow = 1;
 
+function ingredients_validation() {
+  var ingredients = document.getElementsByName("skladnik_nazwa[]");
+  var i;
+  for(i=0; i<ileSkladnikow; i++) {
+    ingredients[i].style.backgroundColor = "#FFFFFF";
+  }
+  var isValid = true;
+  var j;
+  for(i=0; i<ileSkladnikow; i++) {
+    for(j=i+1; j<ileSkladnikow; j++) {
+      if(ingredients[i].value == ingredients[j].value && ingredients[i].value.length > 0) {
+        ingredients[i].style.backgroundColor = "#e0d101";
+        ingredients[j].style.backgroundColor = "#e0d101";
+        isValid = false;
+      }
+    }
+  }
+  return isValid;
+}
+
+function name_validation() {
+  var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|<>\/?~]/;
+  var name = document.getElementById("nazwa");
+  name.style.backgroundColor = "#FFFFFF";
+  if(format.test(name.value)) {
+    console.log("Nazwa zawiera niedozwolone znaki!");
+    name.style.backgroundColor = "#e0d101";
+    return false
+  }
+  return true;
+}
+
 function form_validation() {
+  if(name_validation()) {
+    console.log("Nazwa w porządku");
+  } else {
+    return false;
+  }
 
   if(category_validation()) {
     console.log("Kategorie działają");
@@ -13,8 +50,15 @@ function form_validation() {
     return false;
   }
 
+  if(ingredients_validation()) {
+    console.log("Składniki działają");
+  } else {
+    return false;
+  }
+
   return true;
 }
+
 
 function addIngredient(name, amount) {
   ileSkladnikow = ileSkladnikow + 1;
@@ -40,6 +84,7 @@ function addIngredient(name, amount) {
   new_input.setAttribute("name", "skladnik_nazwa[]");
   new_input.setAttribute("placeholder", "Nazwa składnika");
   new_input.setAttribute("required", "");
+  new_input.addEventListener("change", ingredients_validation, false);
   if(typeof name !== 'undefined') {
     new_input.setAttribute("value", name);
   }
@@ -63,6 +108,7 @@ function addIngredient(name, amount) {
 function removeIngredient(x) {
   document.getElementById(x).remove();
   ileSkladnikow--;
+  ingredients_validation();
 }
 
 function addStage(content) {
