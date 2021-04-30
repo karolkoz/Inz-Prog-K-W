@@ -26,7 +26,7 @@ function ingredients_validation() {
 }
 
 function name_validation() {
-  var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|<>\/?~]/;
+  var format = /[`!@#$%^&*()+\-=\[\]{};':"\\|<>\/?~]/;
   var name = document.getElementById("nazwa");
   name.style.backgroundColor = "#FFFFFF";
   if(format.test(name.value)) {

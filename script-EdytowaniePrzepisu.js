@@ -28,7 +28,7 @@ function ingredients_validation() {
 }
 
 function name_validation() {
-  var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|<>\/?~]/;
+  var format = /[`!@#$%^&*()+\-=\[\]{};':"\\|<>\/?~]/;
   var name = document.getElementById("nazwa");
   name.style.backgroundColor = "#FFFFFF";
   if(format.test(name.value)) {
@@ -51,7 +51,7 @@ function form_validation() {
   } else {
     return false;
   }
-  
+
   if(ingredients_validation()) {
     console.log("Składniki działają");
   } else {
