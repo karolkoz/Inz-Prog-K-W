@@ -1,15 +1,8 @@
-<!-- <?php
-if(isset($_POST['sort']))
-{
-  $cookie_value = $_POST['sort'];
-  setcookie("sortowanie", $cookie_value);
-  echo '</br> Ustawiono: '.$_COOKIE["sortowanie"].'</br>';
+ <?php
+ if (isset($_COOKIE['sortowanie'])) {
+  setcookie("sortowanie", null);
 }
-// else{
-//   setcookie("sortowanie", "brak");
-// }
-
-?> -->
+?>
 <html>
 
 <head>
