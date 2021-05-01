@@ -1,15 +1,21 @@
 <?php
 if (isset($_POST['sort'])) {
-    // $cookie_value = $_POST['sort'];
-    // setcookie("sortowanie", $cookie_value);
-    //$cookie_value = $_POST['sort'];
     setcookie("sortowanie", $_POST['sort']);
     header("Refresh:0");
 } else {
   if(empty($_COOKIE['sortowanie'])) {
     setcookie("sortowanie", null);
   }
+}
 
+
+if (isset($_POST['czas'])) {
+    setcookie("czas", $_POST['czas']);
+    header("Refresh:0");
+} else {
+  if(empty($_COOKIE['czas'])) {
+    setcookie("czas", null);
+  }
 }
 
 
@@ -65,7 +71,7 @@ if (isset($_POST['sort'])) {
             <option value="20">20 min</option>
             <option value="30">30 min</option>
             <option value="45">45 min</option>
-            <option value="45">45 min</option>
+            <option value="50">50 min</option>
           </select>
         </div>
         <div class="search__form__select">
@@ -124,379 +130,591 @@ if (isset($_POST['sort'])) {
 
 
 
-
-
-
-
-//if(isset($_COOKIE["sortowanie"]) && $_COOKIE["sortowanie"]=="czas"){ //po ustawieniu sortowania dopiero po przejsciu na kolejna strone lub odswiezeniu obecnej zaczyna dzialac i dziala tyko przy jednej odslonie (????)
-if (empty($_COOKIE['sortowanie'])) {
-    $y=1;
-    for ($y; $y<=$totalPages; $y++) {
-        if ($pageNumber==$y) {
-            echo '</br>Strona: ';
-            echo $pageNumber;
-            echo '</br>Brak ustawionego sortowania';
-            //echo $_COOKIE["sortowanie"];
-            $przepisyID = PrzepisQuery::create()
-              ->select(array('IdPrzepis'))
-              ->paginate($page = $y, $rowsPerPage = 5);
-
-            foreach ($przepisyID as $ID) {
-                $pDane = PrzepisQuery::create()->findPk($ID);
-                $zdj = $pDane->getZdjecieOgolne();
-                if ($zdj !== null) {
-                    echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                } else {
-                    echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-                }
-            }
-        }
-    }
-} else {
-    if ($_COOKIE["sortowanie"]=="czas") {
-        $y=1;
-        for ($y; $y<=$totalPages; $y++) {
-            if ($pageNumber==$y) {
-                echo '</br>Strona: ';
-                echo $pageNumber;
-                echo '</br>Sortowanie po: ';
-                echo $_COOKIE["sortowanie"];
-                //setcookie($cookie_value);
-                $przepisyID1 = PrzepisQuery::create()
-                    ->select(array('IdPrzepis'))
-                    ->orderByCzasPrzygotowania()
-                    ->paginate($page = $y, $rowsPerPage = 5);
-
-                foreach ($przepisyID1 as $ID) {
-                    $pDane = PrzepisQuery::create()->findPk($ID);
-
-                    $zdj = $pDane->getZdjecieOgolne();
-                    if ($zdj !== null) {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                    } else {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-                    }
-                }
-            }
-        }
-    } elseif ($_COOKIE["sortowanie"]=="nazwa") {
-        $y=1;
-        for ($y; $y<=$totalPages; $y++) {
-            if ($pageNumber==$y) {
-                echo '</br>Strona: ';
-                echo $pageNumber;
-                echo '</br>Sortowanie po: ';
-                echo $_COOKIE["sortowanie"];
-                $przepisyID2 = PrzepisQuery::create()
-                      ->select(array('IdPrzepis'))
-                      ->orderByNazwa()
-                      ->paginate($page = $y, $rowsPerPage = 5);
-
-                foreach ($przepisyID2 as $ID) {
-                    $pDane = PrzepisQuery::create()->findPk($ID);
-
-                    $zdj = $pDane->getZdjecieOgolne();
-                    if ($zdj !== null) {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                    } else {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-                    }
-                }
-            }
-        }
-    } elseif ($_COOKIE["sortowanie"]=="poziom") {
-        $y=1;
-        for ($y; $y<=$totalPages; $y++) {
-            if ($pageNumber==$y) {
-                echo '</br>Strona: ';
-                echo $pageNumber;
-                echo '</br>Sortowanie po: ';
-                echo $_COOKIE["sortowanie"];
-                $przepisyID3 = PrzepisQuery::create()
+      if (empty($_COOKIE['sortowanie'])) {
+          $y=1;
+          for ($y; $y<=$totalPages; $y++) {
+              if ($pageNumber==$y) {
+                  echo '</br>Strona: ';
+                  echo $pageNumber;
+                  echo '</br>Brak ustawionego sortowania';
+                  // if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="15"){
+                  if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne"){
+                    echo '</br> dziala1 </br>';
+                      $przepisyID = PrzepisQuery::create()
                         ->select(array('IdPrzepis'))
-                        ->orderByStopienTrudnosci()
+                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
                         ->paginate($page = $y, $rowsPerPage = 5);
 
-                foreach ($przepisyID3 as $ID) {
-                    $pDane = PrzepisQuery::create()->findPk($ID);
-
-                    $zdj = $pDane->getZdjecieOgolne();
-                    if ($zdj !== null) {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                    } else {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-                    }
-                }
-            }
-        }
-    } elseif ($_COOKIE["sortowanie"]=="oceny") {
-        $y=1;
-        for ($y; $y<=$totalPages; $y++) {
-            if ($pageNumber==$y) {
-                echo '</br> Sortowanie po ocenach jeszcze niedostępne!</br></br></br>';
-                echo '</br>Strona: ';
-                echo $pageNumber;
-                echo '</br>Sortowanie po: ';
-                echo $_COOKIE["sortowanie"];
-            }
-        }
-    } elseif ($_COOKIE["sortowanie"]=="Dowolne") {
-        $y=1;
-        for ($y; $y<=$totalPages; $y++) {
-            if ($pageNumber==$y) {
-                echo '</br>Strona: ';
-                echo $pageNumber;
-                echo '</br>Sortowanie dowolne';
-                //echo $_COOKIE["sortowanie"];
-                $przepisyID4 = PrzepisQuery::create()
+                        foreach($przepisyID as $ID)
+                        {
+                          $pDane = PrzepisQuery::create()->findPk($ID);
+                          $zdj = $pDane->getZdjecieOgolne();
+                          if ($zdj !== null) {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                          }
+                          else{
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                          }
+                        }
+                  }else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ){
+                    echo '</br> dziala2 </br>';
+                  $przepisyID = PrzepisQuery::create()
                       ->select(array('IdPrzepis'))
                       ->paginate($page = $y, $rowsPerPage = 5);
 
-                foreach ($przepisyID4 as $ID) {
-                    $pDane = PrzepisQuery::create()->findPk($ID);
-                    $zdj = $pDane->getZdjecieOgolne();
-                    if ($zdj !== null) {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                    } else {
-                        echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                      foreach($przepisyID as $ID)
+                      {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null) {
+                          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else{
+                          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                      }
                     }
-                }
-            }
-        }
-    }
-}
+              }
+          }
+      } else {
+          if ($_COOKIE["sortowanie"]=="czas") {
+              $y=1;
+              for ($y; $y<=$totalPages; $y++) {
+                  if ($pageNumber==$y) {
+                      echo '</br>Strona: ';
+                      echo $pageNumber;
+                      echo '</br>Sortowanie po: ';
+                      echo $_COOKIE["sortowanie"];
+
+                      if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne"){
+                        echo '</br> dziala3 </br>';
+                        $przepisyID1 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                            foreach($przepisyID1 as $ID)
+                            {
+                              $pDane = PrzepisQuery::create()->findPk($ID);
+                              $zdj = $pDane->getZdjecieOgolne();
+                              if ($zdj !== null) {
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                              }
+                              else{
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                              }
+                            }
+                      }
+                      else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ){
+                        echo '</br> dziala4 </br>';
+                        $przepisyID1 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->orderByCzasPrzygotowania()
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                          foreach($przepisyID1 as $ID)
+                          {
+                            $pDane = PrzepisQuery::create()->findPk($ID);
+                            $zdj = $pDane->getZdjecieOgolne();
+                            if ($zdj !== null) {
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                            }
+                            else{
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                            }
+                          }
+                        }
+                  }
+              }
+          } elseif ($_COOKIE["sortowanie"]=="nazwa") {
+              $y=1;
+              for ($y; $y<=$totalPages; $y++) {
+                  if ($pageNumber==$y) {
+                      echo '</br>Strona: ';
+                      echo $pageNumber;
+                      echo '</br>Sortowanie po: ';
+                      echo $_COOKIE["sortowanie"];
+
+                      if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne"){
+                        echo '</br> dziala5 </br>';
+                        $przepisyID2 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                            ->orderByNazwa()
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                            foreach($przepisyID2 as $ID)
+                            {
+                              $pDane = PrzepisQuery::create()->findPk($ID);
+                              $zdj = $pDane->getZdjecieOgolne();
+                              if ($zdj !== null) {
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                              }
+                              else{
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                              }
+                            }
+                      }
+                      else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ){
+                        echo '</br> dziala6 </br>';
+                        $przepisyID2 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->orderByNazwa()
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                          foreach($przepisyID2 as $ID)
+                          {
+                            $pDane = PrzepisQuery::create()->findPk($ID);
+                            $zdj = $pDane->getZdjecieOgolne();
+                            if ($zdj !== null) {
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                            }
+                            else{
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                            }
+                          }
+                        }
+                  }
+              }
+          } elseif ($_COOKIE["sortowanie"]=="poziom") {
+              $y=1;
+              for ($y; $y<=$totalPages; $y++) {
+                  if ($pageNumber==$y) {
+                      echo '</br>Strona: ';
+                      echo $pageNumber;
+                      echo '</br>Sortowanie po: ';
+                      echo $_COOKIE["sortowanie"];
+
+                      if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne"){
+                        echo '</br> dziala7 </br>';
+                        $przepisyID3 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                            ->orderByStopienTrudnosci()
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                            foreach($przepisyID3 as $ID)
+                            {
+                              $pDane = PrzepisQuery::create()->findPk($ID);
+                              $zdj = $pDane->getZdjecieOgolne();
+                              if ($zdj !== null) {
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                              }
+                              else{
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                              }
+                            }
+                      }
+                      else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ){
+                        echo '</br> dziala8 </br>';
+                        $przepisyID3 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->orderByStopienTrudnosci()
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                          foreach($przepisyID3 as $ID)
+                          {
+                            $pDane = PrzepisQuery::create()->findPk($ID);
+                            $zdj = $pDane->getZdjecieOgolne();
+                            if ($zdj !== null) {
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                            }
+                            else{
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                            }
+                          }
+                        }
+                  }
+              }
+          } elseif ($_COOKIE["sortowanie"]=="oceny") {
+              $y=1;
+              for ($y; $y<=$totalPages; $y++) {
+                  if ($pageNumber==$y) {
+                      echo '</br> Sortowanie po ocenach jeszcze niedostępne!</br></br></br>';
+                      echo '</br>Strona: ';
+                      echo $pageNumber;
+                      echo '</br>Sortowanie po: ';
+                      echo $_COOKIE["sortowanie"];
+                  }
+              }
+          } elseif ($_COOKIE["sortowanie"]=="Dowolne") {
+              $y=1;
+              for ($y; $y<=$totalPages; $y++) {
+                  if ($pageNumber==$y) {
+                      echo '</br>Strona: ';
+                      echo $pageNumber;
+                      echo '</br>Sortowanie dowolne';
+
+                      if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne"){
+                        echo '</br> dziala11 </br>';
+                        $przepisyID4 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                            foreach($przepisyID4 as $ID)
+                            {
+                              $pDane = PrzepisQuery::create()->findPk($ID);
+                              $zdj = $pDane->getZdjecieOgolne();
+                              if ($zdj !== null) {
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                              }
+                              else{
+                                echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                              }
+                            }
+                      }
+                      else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ){
+                        echo '</br> dziala12 </br>';
+                        $przepisyID4 = PrzepisQuery::create()
+                            ->select(array('IdPrzepis'))
+                            ->paginate($page = $y, $rowsPerPage = 5);
+
+                          foreach($przepisyID4 as $ID)
+                          {
+                            $pDane = PrzepisQuery::create()->findPk($ID);
+                            $zdj = $pDane->getZdjecieOgolne();
+                            if ($zdj !== null) {
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                            }
+                            else{
+                              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                            }
+                          }
+                        }
+                  }
+              }
+          }
+      }
 
 
 
 
 
-//$sortBy;
-// if(isset($_POST['sort']))
-// {
-//   echo '</br> isset($_POST[ ]) wynosi true. </br>';
-//   $sortBy = $_POST['sort']; ///zmienna przechowujaca jaki rodzaj sortowania wybrano
-//   $_SESSION["sortBy"] = $sortBy;
-//   //echo '</br> Zawartosc: '.$sortBy.'</br>';
-//
-//   if($sortBy=="czas")
-//   {
-//     //echo '</br> Sortujemy po czasie!</br>';
-//
+
+
+
+//if(isset($_COOKIE["sortowanie"]) && $_COOKIE["sortowanie"]=="czas") //po ustawieniu sortowania dopiero po przejsciu na kolejna strone lub odswiezeniu obecnej zaczyna dzialac i dziala tyko przy jednej odslonie (????)
+// if (empty($_COOKIE['sortowanie'])) {
 //     $y=1;
-//     for($y; $y<=$totalPages; $y++)
-//     {
-//       if($pageNumber==$y)
-//       {
-//       $przepisyID1 = PrzepisQuery::create()
+//     for ($y; $y<=$totalPages; $y++) {
+//         if ($pageNumber==$y) {
+//             echo '</br>Strona: ';
+//             echo $pageNumber;
+//             echo '</br>Brak ustawionego sortowania';
+//             //echo $_COOKIE["sortowanie"];
+//             $przepisyID = PrzepisQuery::create()
 //               ->select(array('IdPrzepis'))
-//               ->orderByCzasPrzygotowania()
 //               ->paginate($page = $y, $rowsPerPage = 5);
 //
-//           foreach($przepisyID1 as $ID)
-//           {
-//             $pDane = PrzepisQuery::create()->findPk($ID);
-//
-//             $zdj = $pDane->getZdjecieOgolne();
-//             if ($zdj !== null) {
-//               echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//             foreach ($przepisyID as $ID) {
+//                 $pDane = PrzepisQuery::create()->findPk($ID);
+//                 $zdj = $pDane->getZdjecieOgolne();
+//                 if ($zdj !== null) {
+//                     echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                 } else {
+//                     echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                 }
 //             }
-//             else{
-//               echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//             }
-//           }
-//       }
-//     }
-//   }
-// }
-// else
-// {
-//   echo '</br> isset($_POST[ ]) wynosi false. </br>';
-//   $y=1;
-//   for($y; $y<=$totalPages; $y++)
-//   {
-//         if($pageNumber==$y)
-//         {
-//         $przepisyID = PrzepisQuery::create()
-//             ->select(array('IdPrzepis'))
-//             ->paginate($page = $y, $rowsPerPage = 5);
-//
-//             foreach($przepisyID as $ID)
-//             {
-//               $pDane = PrzepisQuery::create()->findPk($ID);
-//               $zdj = $pDane->getZdjecieOgolne();
-//               if ($zdj !== null) {
-//                 echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-//               }
-//               else{
-//                 echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//               }
-//             }
-//           }
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $sortBy;
-// if(isset($_POST['sort']))
-// {
-//   $sortBy = $_POST['sort']; ///zmienna przechowujaca jaki rodzaj sortowania wybrano
-//   //echo '</br> Zawartosc: '.$sortBy.'</br>';
-//
-//   if($sortBy=="czas")
-//   {
-//     //echo '</br> Sortujemy po czasie!</br>';
-//
-//     $y=1;
-//     for($y; $y<=$totalPages; $y++)
-//     {
-//       if($pageNumber==$y)
-//       {
-//       $przepisyID1 = PrzepisQuery::create()
-//               ->select(array('IdPrzepis'))
-//               ->orderByCzasPrzygotowania()
-//               ->paginate($page = $y, $rowsPerPage = 5);
-//
-//           foreach($przepisyID1 as $ID)
-//           {
-//             $pDane = PrzepisQuery::create()->findPk($ID);
-//
-//             $zdj = $pDane->getZdjecieOgolne();
-//             if ($zdj !== null) {
-//               echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-//             }
-//             else{
-//               echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//             }
-//           }
-//       }
-//     }
-//   }
-//   if($sortBy=="nazwa")
-//   {
-//     //echo '</br> Sortujemy po czasie!</br>';
-//     $y=1;
-//     for($y; $y<=$totalPages; $y++)
-//     {
-//       if($pageNumber==$y)
-//       {
-//         $przepisyID2 = PrzepisQuery::create()
-//                 ->select(array('IdPrzepis'))
-//                 ->orderByNazwa()
-//                 ->paginate($page = $y, $rowsPerPage = 5);
-//
-//         foreach($przepisyID2 as $ID)
-//         {
-//           $pDane = PrzepisQuery::create()->findPk($ID);
-//
-//           $zdj = $pDane->getZdjecieOgolne();
-//           if ($zdj !== null) {
-//             echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-//           }
-//           else{
-//             echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//           }
 //         }
-//       }
 //     }
-//   }
-//   if($sortBy=="poziom")
-//   {
-//     //echo '</br> Sortujemy dowolnie!</br>';
-//     $y=1;
-//     for($y; $y<=$totalPages; $y++)
-//     {
-//       if($pageNumber==$y)
-//       {
-//         $przepisyID3 = PrzepisQuery::create()
-//             ->orderByStopienTrudnosci()
-//             ->select(array('IdPrzepis'))
-//             ->paginate($page = $y, $rowsPerPage = 5);
-//
-//         foreach($przepisyID3 as $ID)
-//         {
-//           $pDane = PrzepisQuery::create()->findPk($ID);
-//
-//           $zdj = $pDane->getZdjecieOgolne();
-//           if ($zdj !== null) {
-//             echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-//           }
-//           else{
-//             echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//           }
-//         }
-//       }
-//     }
-//   }
-//   if($sortBy=="oceny")
-//   {
-//
-//     echo '</br> Sortowanie po ocenach jeszcze niedostępne!</br>';
-//
-//   }
-//   if($sortBy=="Dowolne")
-//   {
-//     //echo '</br> Sortujemy dowolnie!</br>';
+// } else {
+//     if ($_COOKIE["sortowanie"]=="czas") {
 //         $y=1;
-//         for($y; $y<=$totalPages; $y++)
-//         {
-//           if($pageNumber==$y)
-//           {
-//           $przepisyID = PrzepisQuery::create()
-//               ->select(array('IdPrzepis'))
-//               ->paginate($page = $y, $rowsPerPage = 5);
-//               foreach($przepisyID as $ID)
-//               {
-//                   $pDane = PrzepisQuery::create()->findPk($ID);
-//                   $zdj = $pDane->getZdjecieOgolne();
-//                   if ($zdj !== null) {
-//                   echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-//                   }
-//                   else{
-//                   echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//                   }
-//               }
-//           }
-//         }
-//   }
-// }
-// else
-// {
-//   $y=1;
-//   for($y; $y<=$totalPages; $y++)
-//   {
-//         if($pageNumber==$y)
-//         {
-//         $przepisyID = PrzepisQuery::create()
-//             ->select(array('IdPrzepis'))
-//             ->paginate($page = $y, $rowsPerPage = 5);
+//         for ($y; $y<=$totalPages; $y++) {
+//             if ($pageNumber==$y) {
+//                 echo '</br>Strona: ';
+//                 echo $pageNumber;
+//                 echo '</br>Sortowanie po: ';
+//                 echo $_COOKIE["sortowanie"];
+//                 //setcookie($cookie_value);
+//                 $przepisyID1 = PrzepisQuery::create()
+//                     ->select(array('IdPrzepis'))
+//                     ->orderByCzasPrzygotowania()
+//                     ->paginate($page = $y, $rowsPerPage = 5);
 //
-//             foreach($przepisyID as $ID)
-//             {
-//               $pDane = PrzepisQuery::create()->findPk($ID);
-//               $zdj = $pDane->getZdjecieOgolne();
-//               if ($zdj !== null) {
-//                 echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-//               }
-//               else{
-//                 echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-//               }
+//                 foreach ($przepisyID1 as $ID) {
+//                     $pDane = PrzepisQuery::create()->findPk($ID);
+//
+//                     $zdj = $pDane->getZdjecieOgolne();
+//                     if ($zdj !== null) {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                     } else {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                     }
+//                 }
 //             }
-//           }
+//         }
+//     } elseif ($_COOKIE["sortowanie"]=="nazwa") {
+//         $y=1;
+//         for ($y; $y<=$totalPages; $y++) {
+//             if ($pageNumber==$y) {
+//                 echo '</br>Strona: ';
+//                 echo $pageNumber;
+//                 echo '</br>Sortowanie po: ';
+//                 echo $_COOKIE["sortowanie"];
+//                 $przepisyID2 = PrzepisQuery::create()
+//                       ->select(array('IdPrzepis'))
+//                       ->orderByNazwa()
+//                       ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                 foreach ($przepisyID2 as $ID) {
+//                     $pDane = PrzepisQuery::create()->findPk($ID);
+//
+//                     $zdj = $pDane->getZdjecieOgolne();
+//                     if ($zdj !== null) {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                     } else {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                     }
+//                 }
+//             }
+//         }
+//     } elseif ($_COOKIE["sortowanie"]=="poziom") {
+//         $y=1;
+//         for ($y; $y<=$totalPages; $y++) {
+//             if ($pageNumber==$y) {
+//                 echo '</br>Strona: ';
+//                 echo $pageNumber;
+//                 echo '</br>Sortowanie po: ';
+//                 echo $_COOKIE["sortowanie"];
+//                 $przepisyID3 = PrzepisQuery::create()
+//                         ->select(array('IdPrzepis'))
+//                         ->orderByStopienTrudnosci()
+//                         ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                 foreach ($przepisyID3 as $ID) {
+//                     $pDane = PrzepisQuery::create()->findPk($ID);
+//
+//                     $zdj = $pDane->getZdjecieOgolne();
+//                     if ($zdj !== null) {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                     } else {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                     }
+//                 }
+//             }
+//         }
+//     } elseif ($_COOKIE["sortowanie"]=="oceny") {
+//         $y=1;
+//         for ($y; $y<=$totalPages; $y++) {
+//             if ($pageNumber==$y) {
+//                 echo '</br> Sortowanie po ocenach jeszcze niedostępne!</br></br></br>';
+//                 echo '</br>Strona: ';
+//                 echo $pageNumber;
+//                 echo '</br>Sortowanie po: ';
+//                 echo $_COOKIE["sortowanie"];
+//             }
+//         }
+//     } elseif ($_COOKIE["sortowanie"]=="Dowolne") {
+//         $y=1;
+//         for ($y; $y<=$totalPages; $y++) {
+//             if ($pageNumber==$y) {
+//                 echo '</br>Strona: ';
+//                 echo $pageNumber;
+//                 echo '</br>Sortowanie dowolne';
+//                 //echo $_COOKIE["sortowanie"];
+//                 $przepisyID4 = PrzepisQuery::create()
+//                       ->select(array('IdPrzepis'))
+//                       ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                 foreach ($przepisyID4 as $ID) {
+//                     $pDane = PrzepisQuery::create()->findPk($ID);
+//                     $zdj = $pDane->getZdjecieOgolne();
+//                     if ($zdj !== null) {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                     } else {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                     }
+//                 }
+//             }
+//         }
 //     }
 // }
 
+
+
+// if($_COOKIE["sortowanie"]=="czas"){
+//           $y=1;
+//           for($y; $y<=$totalPages; $y++)
+//             {
+//                 if($pageNumber==$y)
+//                 {
+//                   echo '</br>Strona: ';
+//                   echo $pageNumber;
+//                   echo '</br>Sortowanie po: ';
+//                   echo $_COOKIE["sortowanie"];
+//
+//                 $przepisyID1 = PrzepisQuery::create()
+//                         ->select(array('IdPrzepis'))
+//                         ->orderByCzasPrzygotowania()
+//                         ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                     foreach($przepisyID1 as $ID)
+//                     {
+//                       $pDane = PrzepisQuery::create()->findPk($ID);
+//
+//                       $zdj = $pDane->getZdjecieOgolne();
+//                       if ($zdj !== null) {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                       }
+//                       else{
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                       }
+//                     }
+//                   }
+//             }
+//         }
+//         else if($_COOKIE["sortowanie"]=="nazwa"){
+//             $y=1;
+//             for($y; $y<=$totalPages; $y++)
+//             {
+//               if($pageNumber==$y)
+//                   {
+//                     echo '</br>Strona: ';
+//                     echo $pageNumber;
+//                     echo '</br>Sortowanie po: ';
+//                     echo $_COOKIE["sortowanie"];
+//                   $przepisyID2 = PrzepisQuery::create()
+//                           ->select(array('IdPrzepis'))
+//                           ->orderByNazwa()
+//                           ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                       foreach($przepisyID2 as $ID)
+//                       {
+//                         $pDane = PrzepisQuery::create()->findPk($ID);
+//
+//                         $zdj = $pDane->getZdjecieOgolne();
+//                         if ($zdj !== null) {
+//                           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                         }
+//                         else{
+//                           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                         }
+//                       }
+//                   }
+//               }
+//           }
+//           else if($_COOKIE["sortowanie"]=="poziom"){
+//               $y=1;
+//               for($y; $y<=$totalPages; $y++)
+//               {
+//                 if($pageNumber==$y)
+//                     {
+//                       echo '</br>Strona: ';
+//                       echo $pageNumber;
+//                       echo '</br>Sortowanie po: ';
+//                       echo $_COOKIE["sortowanie"];
+//                     $przepisyID3 = PrzepisQuery::create()
+//                             ->select(array('IdPrzepis'))
+//                             ->orderByStopienTrudnosci()
+//                             ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                         foreach($przepisyID3 as $ID)
+//                         {
+//                           $pDane = PrzepisQuery::create()->findPk($ID);
+//
+//                           $zdj = $pDane->getZdjecieOgolne();
+//                           if ($zdj !== null) {
+//                             echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                           }
+//                           else{
+//                             echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                           }
+//                         }
+//                     }
+//                 }
+//             }
+//             else if($_COOKIE["sortowanie"]=="oceny"){
+//                 $y=1;
+//                 for($y; $y<=$totalPages; $y++)
+//                 {
+//                   if($pageNumber==$y)
+//                       {
+//
+//                         echo '</br> Sortowanie po ocenach jeszcze niedostępne!</br></br></br>';
+//                         echo '</br>Strona: ';
+//                         echo $pageNumber;
+//                         echo '</br>Sortowanie po: ';
+//                         echo $_COOKIE["sortowanie"];
+//                       }
+//                   }
+//               }
+//               else if($_COOKIE["sortowanie"]=="Dowolne"){
+//                 $y=1;
+//                 for($y; $y<=$totalPages; $y++)
+//                 {
+//                       if($pageNumber==$y)
+//                       {
+//                               echo '</br>Strona: ';
+//                               echo $pageNumber;
+//                               echo '</br>Sortowanie dowolne';
+//                               //echo $_COOKIE["sortowanie"];
+//                       $przepisyID4 = PrzepisQuery::create()
+//                           ->select(array('IdPrzepis'))
+//                           ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                           foreach($przepisyID4 as $ID)
+//                           {
+//                             $pDane = PrzepisQuery::create()->findPk($ID);
+//                             $zdj = $pDane->getZdjecieOgolne();
+//                             if ($zdj !== null) {
+//                               echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                             }
+//                             else{
+//                               echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                             }
+//                           }
+//                         }
+//                   }
+//                 }
+//         else
+//         {
+//           $y=1;
+//           for($y; $y<=$totalPages; $y++)
+//           {
+//                 if($pageNumber==$y)
+//                 {
+//                         echo '</br>Strona: ';
+//                         echo $pageNumber;
+//                         echo '</br>Brak ustawionego sortowania';
+//                 if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="15"){
+//                     $przepisyID = PrzepisQuery::create()
+//                       ->select(array('IdPrzepis'))
+//                       ->where('CzasPrzygotowania = ?', 15)
+//                       ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                       foreach($przepisyID as $ID)
+//                       {
+//                         $pDane = PrzepisQuery::create()->findPk($ID);
+//                         $zdj = $pDane->getZdjecieOgolne();
+//                         if ($zdj !== null) {
+//                           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                         }
+//                         else{
+//                           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                         }
+//                       }
+//                 }else{
+//                 $przepisyID = PrzepisQuery::create()
+//                     ->select(array('IdPrzepis'))
+//                     ->paginate($page = $y, $rowsPerPage = 5);
+//
+//                     foreach($przepisyID as $ID)
+//                     {
+//                       $pDane = PrzepisQuery::create()->findPk($ID);
+//                       $zdj = $pDane->getZdjecieOgolne();
+//                       if ($zdj !== null) {
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//                       }
+//                       else{
+//                         echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//                       }
+//                     }
+//                   }
+//                 }
+//             }
+//         }
 
 
 

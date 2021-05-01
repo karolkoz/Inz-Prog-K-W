@@ -1,7 +1,11 @@
  <?php
  if (isset($_COOKIE['sortowanie'])) {
   setcookie("sortowanie", null);
-}
+  }
+
+  if (isset($_COOKIE['czas'])) {
+   setcookie("czas", null);
+  }
 ?>
 <html>
 
@@ -54,7 +58,7 @@
             <option value="20">20 min</option>
             <option value="30">30 min</option>
             <option value="45">45 min</option>
-            <option value="45">45 min</option>
+            <option value="50">50 min</option>
           </select>
         </div>
         <div class="search__form__select">
