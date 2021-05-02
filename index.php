@@ -1,11 +1,29 @@
  <?php
- if (isset($_COOKIE['sortowanie'])) {
+  if (isset($_COOKIE['sortowanie'])) {
   setcookie("sortowanie", null);
   }
 
   if (isset($_COOKIE['czas'])) {
    setcookie("czas", null);
   }
+
+  if (isset($_COOKIE['przepis'])) {
+   setcookie("przepis", null);
+  }
+
+
+
+
+
+
+  // if (isset($_COOKIE['categories'])) {
+  //   // foreach ($_COOKIE['categories'] as $name_categories)
+  //   // {
+  //   //   setcookie("kategoria", null);
+  //   // }
+  //  setcookie("kategoria", null);
+  // }
+
 ?>
 <html>
 
