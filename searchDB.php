@@ -123,10 +123,9 @@ if (isset($_POST['przepis'])) {
         <?php
         require_once __DIR__.'/vendor/autoload.php';
         require_once __DIR__.'/generated-conf/config.php';
-
+        include("funkcje.php");
 
         $pageNumber = $_GET['currentPage'];
-
 
 
         $pID = PrzepisQuery::create()
@@ -138,78 +137,6 @@ if (isset($_POST['przepis'])) {
         $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
 
-
-        function numeryStron($iloscStron) //wyswietlanie numeracji na dole strony
-        {
-          echo '</div>
-          <div class="content__search-counter" id="search-counter">';
-            $num=1;
-            for ($num; $num<=$iloscStron; $num++)
-            {
-                echo '<div class="content__search-counter__element"><a href="searchDB.php?currentPage='.$num.'">'.$num.'</a></div>';
-            }
-          echo '</div>
-          <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
-        }
-
-
-
-        function ileStronCzas()  //funkcja ktora sprawdza ile stron bedzie 'wykorzystanych' do wyswietlania przepisow w zaleznosci od ilosci wynikow dla wybrnegogo czasu
-        {
-          $przepisyID_0 = PrzepisQuery::create()
-                          ->select(array('IdPrzepis'))
-                          ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                          ->find();
-          $num = count($przepisyID_0);
-          $ileStron = ceil($num / 5);
-
-          return $ileStron;
-        }
-
-
-        function ileStronNazwa()  //funkcja analogiczna dla ileStronCzas
-        {
-          $przepisyID_1 = PrzepisQuery::create()
-                          ->select(array('IdPrzepis'))
-                          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-                          ->find();
-          $num = count($przepisyID_1);
-          $ileStron = ceil($num / 5);
-
-          return $ileStron;
-        }
-
-
-        function ileStronNazwaCzas()  //liczy ile stron przy kombinacji nazwa+czas
-        {
-          $przepisyID_2 = PrzepisQuery::create()
-                          ->select(array('IdPrzepis'))
-                          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-                          ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                          ->find();
-          $num = count($przepisyID_2);
-          $ileStron = ceil($num / 5);
-
-          return $ileStron;
-        }
-
-
-
-
-        function dopasujNazwe() //znajduje przepisy zawierajace podane slowo/nazwe/czesc nazwy
-        {
-          $przepisyID_1 = PrzepisQuery::create()
-                          ->select(array('IdPrzepis'))
-                          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-                          ->find();
-          // foreach($przepisyID_1 as $wynik)
-          // {
-          //   echo '</br> przepis o nazwie: '.$wynik.'</br>';
-          // }
-
-        }
-
-        dopasujNazwe();
 
 
 
@@ -377,15 +304,88 @@ else //sortowanie bedzie ustawione
 {
     if ($_COOKIE["sortowanie"]=="czas")
     {
+      if(!(empty($_COOKIE['przepis']))) //sortowanie po czasie + wyszukiwanie po nazwie ustawione
+      {
         if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny np 10min
         {
-            // $przepisyID_0 = PrzepisQuery::create()
-            //                 ->select(array('IdPrzepis'))
-            //                 ->filterByCzasPrzygotowania($_COOKIE["czas"])
-            //                 ->find();
-            // $num = count($przepisyID_0);
-            // $ileStron = ceil($num / 5);
+            numeryStron(ileStronNazwaCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
 
+            $y=1;
+            for ($y; $y<=ileStronNazwaCzas(); $y++)
+            {
+                if ($pageNumber==$y)
+                {
+
+                    echo '</br>Strona: ';
+                    echo $pageNumber;
+                    echo '</br>Sortowanie po: ';
+                    echo $_COOKIE["sortowanie"];
+                    echo '</br> dziala3 </br>';
+                    echo '</br> sorowanie po czasie + czas ustawiony + nazwa ustawiona </br>';
+                    $przepisyID1 = PrzepisQuery::create()
+                                   ->select(array('IdPrzepis'))
+                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                                   ->paginate($page = $y, $rowsPerPage = 5);
+
+                    foreach($przepisyID1 as $ID)
+                    {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null)
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                    }
+                }
+            }
+        }
+        else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+        {
+            numeryStron(ileStronNazwa()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+
+            $y=1;
+            for ($y; $y<=ileStronNazwa(); $y++)
+            {
+                if ($pageNumber==$y)
+                {
+                    echo '</br>Strona: ';
+                    echo $pageNumber;
+                    echo '</br>Sortowanie po: ';
+                    echo $_COOKIE["sortowanie"];
+                    echo '</br> dziala4 </br>';
+                    echo '</br> sorowanie po czasie + czas nieustawiony + nazwa ustawiona </br>';
+                    $przepisyID1 = PrzepisQuery::create()
+                                   ->select(array('IdPrzepis'))
+                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                                   ->orderByCzasPrzygotowania()
+                                   ->paginate($page = $y, $rowsPerPage = 5);
+
+                    foreach($przepisyID1 as $ID)
+                    {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null)
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                    }
+                }
+            }
+        }
+      }
+      else //sortowanie po czasie ale bez ustawionej nazwy
+      {
+        if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny np 10min
+        {
             numeryStron(ileStronCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
 
             $y=1;
@@ -399,7 +399,7 @@ else //sortowanie bedzie ustawione
                     echo '</br>Sortowanie po: ';
                     echo $_COOKIE["sortowanie"];
                     echo '</br> dziala3 </br>';
-
+                    echo '</br> sorowanie po czasie + czas ustawiony + nazwa nieustawiona </br>';
                     $przepisyID1 = PrzepisQuery::create()
                                    ->select(array('IdPrzepis'))
                                    ->filterByCzasPrzygotowania($_COOKIE["czas"])
@@ -435,6 +435,7 @@ else //sortowanie bedzie ustawione
                     echo '</br>Sortowanie po: ';
                     echo $_COOKIE["sortowanie"];
                     echo '</br> dziala4 </br>';
+                    echo '</br> sorowanie po czasie + czas nieustawiony + nazwa nieustawiona </br>';
                     $przepisyID1 = PrzepisQuery::create()
                                    ->select(array('IdPrzepis'))
                                    ->orderByCzasPrzygotowania()
@@ -456,88 +457,165 @@ else //sortowanie bedzie ustawione
                 }
             }
         }
+      }
     }
     elseif ($_COOKIE["sortowanie"]=="nazwa")
     {
-      if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
+      if(!(empty($_COOKIE['przepis']))) //sortowanie po nazwie alfabetycznie + wyszukiwanie po nazwie ustawione
       {
-          // $przepisyID_0 = PrzepisQuery::create()
-          //                 ->select(array('IdPrzepis'))
-          //                 ->filterByCzasPrzygotowania($_COOKIE["czas"])
-          //                 ->find();
-          // $num = count($przepisyID_0);
-          // $ileStron = ceil($num / 5);
+        if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
+        {
+            numeryStron(ileStronNazwaCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
 
-          numeryStron(ileStronCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+            $y=1;
+            for ($y; $y<=ileStronNazwaCzas(); $y++)
+            {
+                if ($pageNumber==$y)
+                {
 
-          $y=1;
-          for ($y; $y<=ileStronCzas(); $y++)
-          {
-              if ($pageNumber==$y)
-              {
+                    echo '</br>Strona: ';
+                    echo $pageNumber;
+                    echo '</br>Sortowanie po: ';
+                    echo $_COOKIE["sortowanie"];
+                    echo '</br> dziala5 </br>';
+                    echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa ustawiona </br>';
+                    $przepisyID2 = PrzepisQuery::create()
+                                   ->select(array('IdPrzepis'))
+                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                                   ->orderByNazwa()
+                                   ->paginate($page = $y, $rowsPerPage = 5);
 
-                  echo '</br>Strona: ';
-                  echo $pageNumber;
-                  echo '</br>Sortowanie po: ';
-                  echo $_COOKIE["sortowanie"];
-                  echo '</br> dziala5 </br>';
+                    foreach($przepisyID2 as $ID)
+                    {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null)
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                    }
+                }
+            }
+        }
+        else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+        {
+            numeryStron(ileStronNazwa()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
 
-                  $przepisyID2 = PrzepisQuery::create()
-                                 ->select(array('IdPrzepis'))
-                                 ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                 ->orderByNazwa()
-                                 ->paginate($page = $y, $rowsPerPage = 5);
+            $y=1;
+            for ($y; $y<=ileStronNazwa(); $y++)
+            {
+                if ($pageNumber==$y)
+                {
+                    echo '</br>Strona: ';
+                    echo $pageNumber;
+                    echo '</br>Sortowanie po: ';
+                    echo $_COOKIE["sortowanie"];
+                    echo '</br> dziala6 </br>';
+                    echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa ustawiona </br>';
+                    $przepisyID2 = PrzepisQuery::create()
+                                   ->select(array('IdPrzepis'))
+                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                                   ->orderByNazwa()
+                                   ->paginate($page = $y, $rowsPerPage = 5);
 
-                  foreach($przepisyID2 as $ID)
-                  {
-                      $pDane = PrzepisQuery::create()->findPk($ID);
-                      $zdj = $pDane->getZdjecieOgolne();
-                      if ($zdj !== null)
-                      {
-                          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                      }
-                      else
-                      {
-                          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-                      }
-                  }
-              }
-          }
+                    foreach($przepisyID2 as $ID)
+                    {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null)
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                    }
+                }
+            }
+        }
       }
-      else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+      else
       {
-          numeryStron($totalPages); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+        if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
+        {
+            numeryStron(ileStronCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
 
-          $y=1;
-          for ($y; $y<=$totalPages; $y++)
-          {
-              if ($pageNumber==$y)
-              {
-                  echo '</br>Strona: ';
-                  echo $pageNumber;
-                  echo '</br>Sortowanie po: ';
-                  echo $_COOKIE["sortowanie"];
-                  echo '</br> dziala6 </br>';
-                  $przepisyID2 = PrzepisQuery::create()
-                                 ->select(array('IdPrzepis'))
-                                 ->orderByNazwa()
-                                 ->paginate($page = $y, $rowsPerPage = 5);
+            $y=1;
+            for ($y; $y<=ileStronCzas(); $y++)
+            {
+                if ($pageNumber==$y)
+                {
 
-                  foreach($przepisyID2 as $ID)
-                  {
-                      $pDane = PrzepisQuery::create()->findPk($ID);
-                      $zdj = $pDane->getZdjecieOgolne();
-                      if ($zdj !== null)
-                      {
-                          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-                      }
-                      else
-                      {
-                          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-                      }
-                  }
-              }
-          }
+                    echo '</br>Strona: ';
+                    echo $pageNumber;
+                    echo '</br>Sortowanie po: ';
+                    echo $_COOKIE["sortowanie"];
+                    echo '</br> dziala5 </br>';
+                    echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa nieustawiona </br>';
+                    $przepisyID2 = PrzepisQuery::create()
+                                   ->select(array('IdPrzepis'))
+                                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                                   ->orderByNazwa()
+                                   ->paginate($page = $y, $rowsPerPage = 5);
+
+                    foreach($przepisyID2 as $ID)
+                    {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null)
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                    }
+                }
+            }
+        }
+        else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+        {
+            numeryStron($totalPages); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+
+            $y=1;
+            for ($y; $y<=$totalPages; $y++)
+            {
+                if ($pageNumber==$y)
+                {
+                    echo '</br>Strona: ';
+                    echo $pageNumber;
+                    echo '</br>Sortowanie po: ';
+                    echo $_COOKIE["sortowanie"];
+                    echo '</br> dziala6 </br>';
+                    echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa nieustawiona </br>';
+                    $przepisyID2 = PrzepisQuery::create()
+                                   ->select(array('IdPrzepis'))
+                                   ->orderByNazwa()
+                                   ->paginate($page = $y, $rowsPerPage = 5);
+
+                    foreach($przepisyID2 as $ID)
+                    {
+                        $pDane = PrzepisQuery::create()->findPk($ID);
+                        $zdj = $pDane->getZdjecieOgolne();
+                        if ($zdj !== null)
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+                        }
+                        else
+                        {
+                            echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+                        }
+                    }
+                }
+            }
+        }
       }
     }
     elseif ($_COOKIE["sortowanie"]=="poziom")
