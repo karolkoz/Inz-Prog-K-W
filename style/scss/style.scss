@@ -533,6 +533,73 @@ nav {
     margin: 0;
   }
 }
+
+@media only screen and (min-width: 1200px) {
+  .content__recipe__author {
+    align-self: center;
+  }
+  .content__recipe__row:nth-child(1) {
+    justify-content: flex-start;
+  }
+  form.content__recipe__element {
+    width: auto;
+  }
+  .content__recipe__element {
+    width: 50%;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .content__recipe__element__desc {
+    font-size: 1.5em;
+    padding: 10px;
+  }
+  .content__recipe__stats__element {
+    font-size: 2vw;
+    img {
+      width: 3vw;
+      height: 3vw;
+    }
+  }
+  .content__recipe__image {
+    max-height: 500px;
+    width: 100%;
+    max-width: 800px;
+  }
+  .content__recipe__buttons {
+    width: 100%;
+    max-width: 800px;
+    button {
+      font-size: 2em;
+      img {
+        max-width: 75px;
+        max-height: 75px;
+      }
+    }
+  }
+  .content__recipe__ingredientsTable {
+    font-size: 1.5em;
+    td:nth-child(1) {
+      width: auto;
+      min-width: 250px;
+      max-width: 400px;
+    }
+  }
+  .content__recipe__stage {
+    h2 {
+      font-size: 2em;
+    }
+  }
+  .content__recipe__stage__data {
+    align-items: flex-start;
+    p {
+      font-size: 1.4em;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
 ////////////////////////////////////////////////FORMULARZ DODAWANIA PRZEPISU////////////////////////////////////////////////////
 .content__form {
   width: 100%;
