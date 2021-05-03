@@ -230,6 +230,8 @@ nav {
     .content__search-counter .content__search-counter__element > a {
       color: white;
       text-decoration: none; }
+  .content__search-counter .content__search-counter__element--current {
+    background-color: #84DEB8; }
   .content__search-counter .content__search-counter__element:hover {
     background-color: #03ab79; }
 

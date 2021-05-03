@@ -304,6 +304,9 @@ nav {
       text-decoration: none;
     }
   }
+  .content__search-counter__element--current {
+    background-color: $search_color_light;
+  }
   .content__search-counter__element:hover {
     background-color: $button_color_light;
   }

@@ -9,7 +9,11 @@ function numeryStron($iloscStron) //wyswietlanie numeracji na dole strony
     $num=1;
     for ($num; $num<=$iloscStron; $num++)
     {
+      if($num == $_GET['currentPage']) {
+        echo '<div class="content__search-counter__element content__search-counter__element--current"><a href="searchDB.php?currentPage='.$num.'">'.$num.'</a></div>';
+      } else {
         echo '<div class="content__search-counter__element"><a href="searchDB.php?currentPage='.$num.'">'.$num.'</a></div>';
+      }
     }
   echo '</div>
   <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
