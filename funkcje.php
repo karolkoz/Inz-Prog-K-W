@@ -87,15 +87,15 @@ function ileStronNazwaKategoria()  //liczy ile stron przy kombinacji nazwa+czas+
          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
          ->select(array('Przepis.IdPrzepis'));
 
-foreach($kat as $k)
-{
-  echo '</br> id:'.$k.'</br>';
-}
+// foreach($kat as $k)
+// {
+//   echo '</br> id:'.$k.'</br>';
+// }
 
-  // $num = count($kat);
-  // $ileStron = ceil($num / 5);
-  //
-  // return $ileStron;
+  $num = count($kat);
+  $ileStron = ceil($num / 5);
+
+  return $ileStron;
 }
 
 function ileStronCzasNazwaKategoria()  //liczy ile stron przy kombinacji nazwa+czas+kategoria
@@ -108,8 +108,15 @@ function ileStronCzasNazwaKategoria()  //liczy ile stron przy kombinacji nazwa+c
          ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
          ->select(array('Przepis.IdPrzepis'));
 
-  $num = count($kat);
-  $ileStron = ceil($num / 5);
+$x=0;
+         foreach($kat as $k)
+         {
+           //echo '</br> id:'.$k.'</br>';
+           $x++;
+         }
+
+  //$num = count($kat);
+  $ileStron = ceil($x / 5);
 
   return $ileStron;
 }
