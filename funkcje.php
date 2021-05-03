@@ -65,11 +65,25 @@ function dopasujNazwe() //znajduje przepisy zawierajace podane slowo/nazwe/czesc
                   ->select(array('IdPrzepis'))
                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                   ->find();
-  // foreach($przepisyID_1 as $wynik)
-  // {
-  //   echo '</br> przepis o nazwie: '.$wynik.'</br>';
-  // }
+}
 
+
+
+function wypiszPrzepis($przepisyID)
+{
+  foreach($przepisyID as $ID)
+  {
+      $pDane = PrzepisQuery::create()->findPk($ID);
+      $zdj = $pDane->getZdjecieOgolne();
+      if ($zdj !== null)
+      {
+          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+      }
+      else
+      {
+          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+      }
+  }
 }
 
 ?>
