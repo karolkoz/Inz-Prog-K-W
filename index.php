@@ -11,18 +11,15 @@
    setcookie("przepis", null);
   }
 
+///////////////kategorie///////////
 
-
-
-
-
-  // if (isset($_COOKIE['categories'])) {
-  //   // foreach ($_COOKIE['categories'] as $name_categories)
-  //   // {
-  //   //   setcookie("kategoria", null);
-  //   // }
-  //  setcookie("kategoria", null);
-  // }
+  if (isset($_COOKIE['categories'])) {
+    // foreach ($_COOKIE['categories'] as $name_categories)
+    // {
+    //   setcookie("kategoria", null);
+    // }
+   setcookie("kategoria", null);
+  }
 
 ?>
 <html>
@@ -99,65 +96,18 @@
       </div>
 
 <?php
-echo ' </br> Witaj na stronie Pyszniutkie.pl !!! </br>';
-echo ' </br> Tysiące pomysłów na dania, każdy znajdzie coś dla siebie! </br>';
+
+echo '<h1 class="content__recipe__title"></br>Witaj na stronie Pyszniutkie.pl !!!</br></h1>';
+echo '<h2 class="content__recipe__author"><i></br> Tysiące przepisów, każdy znajdzie coś dla siebie. </br></i></h2>';
+echo '<h2 class="content__recipe__author"><i> Wyłącznie sprawdzone i proste w przygotowaniu dania! </br></i></h2>';
+
 ?>
 
 
 
 
 
-      <!-- <?php
-      //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
-      require_once __DIR__.'/vendor/autoload.php';
-      require_once __DIR__.'/generated-conf/config.php';
 
-      $pID = PrzepisQuery::create()
-        ->select(array('IdPrzepis'))
-        ->find();
-
-      $ileID = count($pID); //ilosc wszystkich przepisow w bazie
-      $rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
-      $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
-
-
-
-    echo '</div>
-    <div class="content__search-counter" id="search-counter">';
-      $num=1;
-      for($num; $num<=$totalPages; $num++)
-      {
-        echo '<div class="content__search-counter__element"><a href="searchDB.php?currentPage='.$num.'">'.$num.'</a></div>';
-      }
-    echo '</div>
-    <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//////----------OD TEGO MIEJSCA WYSWIETLANIE WSZSYTKICH PRZEPISOW Z BAZY DANYCH-----------------////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-      $przepisyID = PrzepisQuery::create()
-              ->select(array('IdPrzepis'))
-              ->paginate($page = 1, $rowsPerPage = 5);
-
-
-      foreach($przepisyID as $ID)
-      {
-        $pDane = PrzepisQuery::create()->findPk($ID);
-        $zdj = $pDane->getZdjecieOgolne();
-        if ($zdj !== null) {
-          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-        }
-        else{
-          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-        }
-      }
-
-
-
-
-      ?> -->
     </section>
 
     <?php include 'footer.php' ?>
