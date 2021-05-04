@@ -17,7 +17,7 @@
     <div class="nav__list" id="navmenu">
       <a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>
       <a href="#" class="nav__list__button nav__list__button--fav"></a>
-      <a href="#" class="nav__list__button nav__list__button--user"></a>
+      <a href="login.php" class="nav__list__button nav__list__button--user"></a>
     </div>
   </div>
 </nav>
