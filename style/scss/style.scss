@@ -40,14 +40,25 @@ body {
 //////////////////////////////////////NAWIGACJA/////////////////////////////////////////////////////////////////////
 
 nav {
-  background-color: $header_color;
-  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  //position: fixed;
+  //width: 100%;
+}
+.nav__barElements {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  //position: fixed;
-  //width: 100%;
+  background-color: $header_color;
+  padding: 5px 10px;
+}
+.nav__username {
+  align-self: center;
+  padding: 10px;
+  background-color: $header_color;
+  font-size: 2.4em;
+  color: white;
 }
 
 .nav__name {
