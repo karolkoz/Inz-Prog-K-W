@@ -37,6 +37,11 @@ body {
   margin: 0;
   font-family: Roboto;
 }
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 //////////////////////////////////////NAWIGACJA/////////////////////////////////////////////////////////////////////
 
 nav {
@@ -44,7 +49,9 @@ nav {
   flex-direction: column;
   //position: fixed;
   //width: 100%;
+  //z-index: 5;
 }
+
 .nav__barElements {
   display: flex;
   flex-direction: row;
@@ -54,7 +61,8 @@ nav {
   padding: 5px 10px;
 }
 .nav__username {
-  align-self: center;
+  align-self: flex-start;
+  //width: 100%;
   padding: 10px;
   background-color: $header_color;
   font-size: 2.4em;
@@ -219,6 +227,39 @@ nav {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
+  >h1 {
+    font-size: 3em;
+  }
+}
+.content__user {
+  width: 80%;
+  padding: 10px;
+  background-color: $content_element_color;
+  h2 {
+    margin: 0;
+    font-size: 3em;
+  }
+  > .row {
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 30px;
+    > span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 2.0em;
+      > b {
+        padding-right: 15px;
+      }
+    }
+  }
+  .content__form__button {
+    padding: 0 10px 0 10px;
+  }
+
+}
+.content__user__logout {
+  align-self: flex-end;
 }
 
 .content__elements {
@@ -745,7 +786,7 @@ nav {
 .content__form__button {
   position: relative;
   display: flex;
-  width: 80%;
+  //width: 80%;
   padding: 20px 0;
 
   > button {
@@ -769,6 +810,26 @@ nav {
 
   > button:hover {
     background-color: $button_color_light;
+  }
+}
+.content__form__button--yellow {
+  > button {
+    background-color: $button_edit_color;
+  }
+}
+.content__form__button--yellow:hover {
+  > button {
+    background-color: $button_edit_color_dark;
+  }
+}
+.content__form__button--red {
+  > button {
+    background-color: $remove_color;
+  }
+}
+.content__form__button--red:hover {
+  > button {
+    background-color: $remove_color_light;
   }
 }
 
@@ -925,6 +986,7 @@ nav {
   font-size: 2em;
 }
 .content__form__button--login {
+  width: 80%;
   justify-content: flex-end;
 
 }
