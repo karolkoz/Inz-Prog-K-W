@@ -16,7 +16,7 @@
       <form class="content__form" id="form" action="dodaj_przepisDB.php" method="post" enctype="multipart/form-data" onsubmit="return form_validation()">
         <h1>Formularz dodawania przepisu</h1>
         <div class="content__form__input">
-          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" onchange="name_validation()" required />
+          <input type="text" id="nazwa" name="nazwa" placeholder="Nazwa" onchange="name_validation()" maxlength="40" required />
         </div>
         <div class="content__form__input">
           <img src="img/difficulty icon.png" />

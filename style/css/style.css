@@ -16,13 +16,33 @@ body {
   margin: 0;
   font-family: Roboto; }
 
+.row {
+  display: flex;
+  flex-direction: row; }
+
 nav {
-  background-color: #36CFAB;
-  padding: 5px 10px;
+  display: flex;
+  flex-direction: column; }
+
+.nav__barElements {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center; }
+  align-items: center;
+  background-color: #36CFAB;
+  padding: 5px 10px; }
+
+.nav__username {
+  display: flex;
+  visibility: hidden;
+  align-self: flex-start;
+  padding: 10px;
+  background-color: #36CFAB;
+  font-size: 2.4em;
+  color: white; }
+
+nav:hover .nav__username {
+  visibility: visible; }
 
 .nav__name a {
   font-family: Rancho;
@@ -148,6 +168,32 @@ nav {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap; }
+  .content > h1 {
+    font-size: 3em; }
+
+.content__user {
+  width: 80%;
+  padding: 10px;
+  background-color: #AFE7DD; }
+  .content__user h2 {
+    margin: 0;
+    font-size: 3em; }
+  .content__user > .row {
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 30px; }
+    .content__user > .row > span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      font-size: 2.0em; }
+      .content__user > .row > span > b {
+        padding-right: 15px; }
+  .content__user .content__form__button {
+    padding: 0 10px 0 10px; }
+
+.content__user__logout {
+  align-self: flex-end; }
 
 .content__elements {
   display: flex;
@@ -175,7 +221,7 @@ nav {
 .content__element__right {
   display: flex;
   flex-direction: column;
-  max-width: 70%; }
+  width: 70%; }
 
 .content__element__right__title {
   max-width: 100%;
@@ -208,6 +254,21 @@ nav {
     width: 75px;
     height: 75px;
     padding-right: 10px; }
+
+.content__element__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: 100%;
+  color: white;
+  font-size: 2em; }
+
+.content__element__status--accepted {
+  background-color: #34C34B; }
+
+.content__element__status--toEdit {
+  background-color: #e28f01; }
 
 .content__search-counter {
   display: flex;
@@ -571,25 +632,37 @@ nav {
 .content__form__button {
   position: relative;
   display: flex;
-  width: 80%;
   padding: 20px 0; }
-  .content__form__button > button {
+  .content__form__button > button, .content__form__button a {
     display: flex;
     align-items: center;
     border: none;
     background-color: #058B63;
     color: white;
+    text-decoration: none;
     font-weight: bold;
     font-size: 35px;
     text-align: center;
     padding: 15px;
     cursor: pointer; }
-    .content__form__button > button img {
+    .content__form__button > button img, .content__form__button a img {
       width: 35px;
       height: 35px;
       padding-right: 8px; }
-  .content__form__button > button:hover {
+  .content__form__button > button:hover, .content__form__button a:hover {
     background-color: #03ab79; }
+
+.content__form__button--yellow > button, .content__form__button--yellow a {
+  background-color: #e28f01; }
+
+.content__form__button--yellow:hover > button, .content__form__button--yellow:hover a {
+  background-color: #c67d00; }
+
+.content__form__button--red > button, .content__form__button--red a {
+  background-color: #a80909; }
+
+.content__form__button--red:hover > button, .content__form__button--red:hover a {
+  background-color: #db0909; }
 
 .content__form__button--submit {
   justify-content: center; }
@@ -703,6 +776,7 @@ nav {
   font-size: 2em; }
 
 .content__form__button--login {
+  width: 80%;
   justify-content: flex-end; }
 
 footer {
