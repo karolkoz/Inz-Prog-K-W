@@ -172,3 +172,29 @@ function addPageButton(x) {
   new_element.appendChild(link);
   document.getElementById("search-counter").appendChild(new_element);
 }
+
+function timeSelect(val) {
+  var time = document.getElementById("czas");
+  var children = time.children;
+  for (var i = 0; i < children.length; i++) {
+    var tableChild = children[i];
+    if(tableChild.value == val) {
+      time.options[i].selected = 'selected';
+    }
+  }
+}
+
+function nameSelect(val) {
+  document.getElementById("przepis").value = val;
+}
+
+function sortSelect(val) {
+  var sort = document.getElementById("sort");
+  var children = sort.children;
+  for (var i = 0; i < children.length; i++) {
+    var tableChild = children[i];
+    if(tableChild.value == val) {
+      sort.options[i].selected = 'selected';
+    }
+  }
+}

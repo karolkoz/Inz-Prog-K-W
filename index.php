@@ -37,7 +37,7 @@
     <?php include 'nav.php' ?>
 
     <section class="search-section">
-      <form class="search__form" action="searchDB.php?currentPage=1" method="post">
+      <form class="search__form" action="searchDB.php?currentPage=1" method="post" id="form">
         <div class="search__form__searchbar">
           <input type="text" name="przepis" placeholder="Szukaj przepisu...">
           <input type="submit" value="">
@@ -45,7 +45,7 @@
         <script type="text/javascript" src="script - Categories.js"></script>
         <div class="search__form__categories" id="categories">
           <div class="search__form__select" id="category_1">
-            <select name="categories[]">
+            <select name="categories[]" onchange="category_validation()">
               <option value=""disabled selected>Kategoria</option>
               <option value="Dowolne">Dowolna Kategoria</option>
 
