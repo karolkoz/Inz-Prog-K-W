@@ -21,19 +21,29 @@ function przepisy_ID_Kategoria_sortCzas($y)
 
   $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
 
-
   if($ileKat == 1){
-    //echo '</br>ileKat==1</br>';
-  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-         ->join('Przepis')
-         ->join('Kategoria')
-         ->where('Kategoria.Nazwa = ?', $tab[0])
-         ->orderBy('Przepis.CzasPrzygotowania')
-         ->select(array('Przepis.IdPrzepis'))
-         ->paginate($page = $y, $rowsPerPage = 5);
+    if($tab[0]=='Dowolne')
+    {
+      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+             ->orderBy('Przepis.CzasPrzygotowania')
+             ->select(array('Przepis.IdPrzepis'))
+             ->paginate($page = $y, $rowsPerPage = 5);
 
- return $kat;
- }
+      return $kat;
+    }
+    else{
+      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+             ->join('Przepis')
+             ->join('Kategoria')
+             ->where('Kategoria.Nazwa = ?', $tab[0])
+             ->orderBy('Przepis.CzasPrzygotowania')
+             ->select(array('Przepis.IdPrzepis'))
+             ->paginate($page = $y, $rowsPerPage = 5);
+
+      return $kat;
+    }
+  }
+
  else if($ileKat == 2){
   // echo '</br>ileKat==2</br>';
  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
@@ -210,20 +220,31 @@ function przepisy_ID_KategoriaNazwa_sortCzas($y)
 
   $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
 
-
   if($ileKat == 1){
-    //echo '</br>ileKat==1</br>';
-  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-         ->join('Przepis')
-         ->join('Kategoria')
-         ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-         ->where('Kategoria.Nazwa = ?', $tab[0])
-         ->orderBy('Przepis.CzasPrzygotowania' )
-         ->select(array('Przepis.IdPrzepis'))
-         ->paginate($page = $y, $rowsPerPage = 5);
+    if($tab[0]=='Dowolne')
+    {
+      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+             ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+             ->orderBy('Przepis.CzasPrzygotowania' )
+             ->select(array('Przepis.IdPrzepis'))
+             ->paginate($page = $y, $rowsPerPage = 5);
 
- return $kat;
- }
+      return $kat;
+    }
+    else{
+      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+             ->join('Przepis')
+             ->join('Kategoria')
+             ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+             ->where('Kategoria.Nazwa = ?', $tab[0])
+             ->orderBy('Przepis.CzasPrzygotowania' )
+             ->select(array('Przepis.IdPrzepis'))
+             ->paginate($page = $y, $rowsPerPage = 5);
+
+      return $kat;
+    }
+  }
+
  else if($ileKat == 2){
   // echo '</br>ileKat==2</br>';
  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
