@@ -40,7 +40,7 @@
          <input type="text" id="login" name="login" placeholder="login" required />
        </div>
        <div class="content__form__input">
-         <input type="password" id="password" name="password" placeholder="haslo" required />
+         <input type="password" id="password" name="password" placeholder="haslo" onchange="password_validation('password')" required />
        </div>
        <div class="content__form__button content__form__button--login">
          <button type="submit"> Zaloguj</button>
@@ -48,6 +48,7 @@
        <div class="content__form__link">
          <a href="register.php">Nie masz konta? Zarejestruj się</a>
        </div>
+       <script src="script-Haslo.js"></script>
      </form>
 
    </section>
