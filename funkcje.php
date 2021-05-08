@@ -62,67 +62,6 @@ function ileStronNazwaCzas()  //liczy ile stron przy kombinacji nazwa+czas
 
 
 
-function ileStronKategoria()  //liczy ile stron przy kombinacji nazwa+czas+kategoria
-{
-  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-         ->join('Przepis')
-         ->join('Kategoria')
-         ->filterByKategoriaNazwa($_COOKIE['kategoria'])
-         ->select(array('Przepis.IdPrzepis'));
-
-
-
-  $num = count($kat);
-  $ileStron = ceil($num / 5);
-
-  return $ileStron;
-}
-
-function ileStronNazwaKategoria()  //liczy ile stron przy kombinacji nazwa+czas+kategoria
-{
-  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-         ->join('Przepis')
-         ->join('Kategoria')
-         ->filterByKategoriaNazwa($_COOKIE['kategoria'])
-         ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-         ->select(array('Przepis.IdPrzepis'));
-
-// foreach($kat as $k)
-// {
-//   echo '</br> id:'.$k.'</br>';
-// }
-
-  $num = count($kat);
-  $ileStron = ceil($num / 5);
-
-  return $ileStron;
-}
-
-function ileStronCzasNazwaKategoria()  //liczy ile stron przy kombinacji nazwa+czas+kategoria
-{
-  $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-         ->join('Przepis')
-         ->join('Kategoria')
-         ->filterByKategoriaNazwa($_COOKIE['kategoria'])
-         ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-         ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-         ->select(array('Przepis.IdPrzepis'));
-
-$x=0;
-         foreach($kat as $k)
-         {
-           //echo '</br> id:'.$k.'</br>';
-           $x++;
-         }
-
-  //$num = count($kat);
-  $ileStron = ceil($x / 5);
-
-  return $ileStron;
-}
-
-
-
 
 function dopasujNazwe() //znajduje przepisy zawierajace podane slowo/nazwe/czesc nazwy
 {
