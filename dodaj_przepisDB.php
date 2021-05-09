@@ -1,4 +1,5 @@
 <?php
+include 'session.php';
 require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/generated-conf/config.php';
 // use Propel\Runtime\ActiveQuery\Criteria;
@@ -10,7 +11,8 @@ $ile_osob = $_POST['ile_osob'];
 $opis = $_POST['opis'];
 $data=date("Y-m-d");
 $status = 1;
-$UZYTKOWNIK_login = "dummy123";
+//$UZYTKOWNIK_login = $_SESSION['name'];
+//$UZYTKOWNIK_login = "dummy123";
 
 
 /////////////////dodawanie do tabeli przepis/////////////////////////////
@@ -39,7 +41,11 @@ else{
   $przepis->setZdjecieOgolne(null);
 }
 
-$przepis->setUzytkownikLogin($UZYTKOWNIK_login);
+$UZYTKOWNIK_login = $_SESSION['login'];
+//echo ' login: '.$UZYTKOWNIK_login.' ';
+
+$przepis->setUzytkownikLogin("$UZYTKOWNIK_login");
+
 
 if($przepis->save())
 {
