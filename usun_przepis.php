@@ -1,8 +1,9 @@
 <?php
 include 'session.php';
-if(isset($_SESSION['login'])) {
+if(!isset($_SESSION['login'])) {
   header("Location: user.php");
 }
+else{
 require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/generated-conf/config.php';
 
@@ -36,5 +37,9 @@ echo ' Usunieto wpis w tabeli NALEZY dla przepisu o ID: '.$przepis->getIdPrzepis
 $przepis->delete();
 echo ' Usunieto przepis o ID: '.$przepis->getIdPrzepis();
 
+
+header("Location: user.php"); //po usunieciu przepisu przekierowanie na strone uzytkownika
+
+}
 
 ?>
