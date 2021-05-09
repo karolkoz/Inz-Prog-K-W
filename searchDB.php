@@ -30,27 +30,7 @@ if (isset($_POST['przepis'])) {
 
 ///////////kategorie//////////
 
-$i=0;
-if (isset($_POST['categories'])) {
-  foreach ($_POST['categories'] as $name_categories)
-  {
-    setcookie("kategoria[$i]", $name_categories);
-    // $i++;
-    header("Refresh:0");
-    $i++;
-  }
-  //header("Refresh:0");
-} else {
-  if(!(empty($_COOKIE['kategoria']))) {
-    $j=0;
-      foreach ($_COOKIE['kategoria'] as $name_categories)
-      {
-        setcookie("kategoria[$j]", null);
-        $j++;
-      }
-  }
-}
-
+//dziala na pierwszej stronie
 // $i=0;
 // if (isset($_POST['categories'])) {
 //   foreach ($_POST['categories'] as $name_categories)
@@ -60,17 +40,117 @@ if (isset($_POST['categories'])) {
 //     header("Refresh:0");
 //     $i++;
 //   }
-//   header("Refresh:0");
-//   } else {
-//     if(empty($_COOKIE['kategoria'])) {
-//       $j=0;
-//         foreach ($_COOKIE['kategoria'] as $name_categories)
-//         {
-//           setcookie("kategoria[$j]", null);
-//           $j++;
-//         }
-//     }
+//   //header("Refresh:0");
+// } else {
+//   if(!(empty($_COOKIE['kategoria']))) {
+//     $j=0;
+//       foreach ($_COOKIE['kategoria'] as $name_categories)
+//       {
+//         setcookie("kategoria[$j]", null);
+//         $j++;
+//       }
 //   }
+// }
+
+
+// if (isset($_POST['categories'])) {
+//   if(!(empty($_COOKIE['kategoria'])))
+//   {
+//     $w=0;
+//     foreach ($_COOKIE['kategoria'] as $name_categories)
+//     {
+//       setcookie("kategoria[$w]", null);
+//       echo 'jesli ciastko ustawione to je usun';
+//       $w++;
+//     }
+//     $z=0;
+//     foreach ($_POST['categories'] as $name_categories)
+//     {
+//       setcookie("kategoria[$z]", $name_categories);
+//       // $i++;
+//       header("Refresh:0");
+//       $z++;
+//     }
+//
+//   }
+//   else{
+//   $i=0;
+//   foreach ($_POST['categories'] as $name_categories)
+//   {
+//     setcookie("kategoria[$i]", $name_categories);
+//     // $i++;
+//     header("Refresh:0");
+//     $i++;
+//   }
+//   //header("Refresh:0");
+//   }
+// }
+// else {
+//   if((empty($_COOKIE['kategoria']))) {
+//     $j=0;
+//       foreach ($_COOKIE['kategoria'] as $name_categories)
+//       {
+//         setcookie("kategoria[$j]", null);
+//         $j++;
+//       }
+//   }
+// }
+
+
+//dziala ok v2
+// $i=0;
+// if (isset($_POST['categories'])) {
+//   foreach ($_POST['categories'] as $name_categories)
+//   {
+//     setcookie("kategoria[$i]", $name_categories);
+//     $i++;
+//   }
+//   header("Refresh:0");
+// } else {
+//   if(empty($_COOKIE['kategoria'])) {
+//     //$j=0;
+//       //foreach ($_COOKIE['kategoria'] as $name_categories)
+//       //{
+//         setcookie("kategoria", null);
+//         //$j++;
+//       //}
+//   }
+// }
+
+
+
+
+$i=0;
+if (isset($_POST['categories'])) {
+  //tu usuwanie ciastek
+  if(!(empty($_COOKIE['kategoria'])))//jesli juz jest ustawione jakies ciastko to je usun
+  {
+    $z=0;
+    foreach ($_COOKIE['kategoria'] as $name_categories)
+    {
+      setcookie("kategoria[$z]", null);
+      echo 'jesli juz jest ustawione jakies ciastko to je usun ';
+      $z++;
+    }
+  }
+  foreach ($_POST['categories'] as $name_categories) //i dopiero ustawiaj nowe
+  {
+    setcookie("kategoria[$i]", $name_categories);
+    $i++;
+  }
+  header("Refresh:0");
+} 
+else
+{
+  if(empty($_COOKIE['kategoria'])) {
+    //$j=0;
+      //foreach ($_COOKIE['kategoria'] as $name_categories)
+      //{
+        setcookie("kategoria", null);
+        //$j++;
+      //}
+  }
+}
 
 
 ?>
