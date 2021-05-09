@@ -1,18 +1,19 @@
 <?php
+include 'session.php';
+if(isset($_SESSION['login'])) {
+  header("Location: user.php");
+}
+
  if (isset($_COOKIE['sortowanie'])) {
      setcookie("sortowanie", null);
  }
-
  if (isset($_COOKIE['czas'])) {
      setcookie("czas", null);
  }
-
  if (isset($_COOKIE['przepis'])) {
      setcookie("przepis", null);
  }
-
 ///////////////kategorie///////////
-
  if (isset($_COOKIE['categories'])) {
      // foreach ($_COOKIE['categories'] as $name_categories)
      // {
@@ -20,7 +21,6 @@
      // }
      setcookie("kategoria", null);
  }
-
 ?>
 <html>
 
@@ -49,8 +49,33 @@
          <a href="register.php">Nie masz konta? Zarejestruj się</a>
        </div>
        <script src="script-Haslo.js"></script>
+       <?php
+       require_once __DIR__.'/vendor/autoload.php';
+       require_once __DIR__.'/generated-conf/config.php';
+         if(isset($_POST['login'])) {
+           $login = $_POST['login'];
+           $checkLogin = UzytkownikQuery::create()
+           ->filterByLogin($login)
+           ->find();
+           if(count($checkLogin) == 1) {
+             $user = UzytkownikQuery::create()->findPk($login);
+             $userPassword = $user->getHaslo();
+             if(isset($_POST['password'])) {
+               $passwd = $_POST['password'];
+               if(password_verify($passwd, $userPassword)) {
+                 $_SESSION['login'] = $login;
+                 $_SESSION['name'] = $user->getNazwa();
+                 header("Location: user.php");
+               } else {
+                 echo 'Zle haslo!';
+               }
+             }
+           } else {
+             echo 'Nie ma takiego loginu!';
+           }
+         }
+       ?>
      </form>
-
    </section>
 
    <?php include 'footer.php' ?>

@@ -1,4 +1,5 @@
 <?php
+include 'session.php';
 if (isset($_POST['sort'])) {
     setcookie("sortowanie", $_POST['sort']);
     header("Refresh:0");
@@ -139,7 +140,7 @@ if (isset($_POST['categories'])) {
     $i++;
   }
   header("Refresh:0");
-} 
+}
 else
 {
   if(empty($_COOKIE['kategoria'])) {

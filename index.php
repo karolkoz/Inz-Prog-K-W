@@ -1,4 +1,5 @@
 <?php
+ include 'session.php';
  if (isset($_COOKIE['sortowanie'])) {
  setcookie("sortowanie", null);
  }

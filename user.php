@@ -1,3 +1,8 @@
+<?php include 'session.php';
+if(!isset($_SESSION['login'])) {
+  header("Location: login.php");
+}
+ ?>
 <html>
 
 <head>
@@ -19,7 +24,7 @@
           </div>
         </div>
         <div class="row">
-          <span><b>Nazwa Użytkownika: </b>Użytkownik3434</span>
+          <span><b>Nazwa Użytkownika: </b><?php echo $_SESSION['name']; ?></span>
         </div>
         <div class="row">
           <div class="content__form__button">

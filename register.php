@@ -1,4 +1,9 @@
 <?php
+ include 'session.php';
+ if(isset($_SESSION['login'])) {
+   header("Location: user.php");
+ }
+
  if (isset($_COOKIE['sortowanie'])) {
      setcookie("sortowanie", null);
  }
@@ -43,19 +48,43 @@
          <input type="password" id="password" name="password" placeholder="haslo" onchange="password_validation('password')" required />
        </div>
        <div class="content__form__input">
-         <input type="text" id="name" name="name" placeholder="Nazwa użytkownika" required />
+         <input type="text" id="name" name="name" placeholder="Nazwa użytkownika" maxlength="40" required />
        </div>
        <div class="content__form__button content__form__button--login">
          <button type="submit"> Zarejestruj</button>
        </div>
        <script src="script-Haslo.js"></script>
        <?php
+       require_once __DIR__.'/vendor/autoload.php';
+       require_once __DIR__.'/generated-conf/config.php';
           if(isset($_POST['login'])) {
             $login = $_POST['login'];
-            echo 'Nowy login = '.$login.'</br>';
-          } else {
-            echo 'Błąd';
+            $checkLogin = UzytkownikQuery::create()
+            ->filterByLogin($login)
+            ->find();
+            if(count($checkLogin) == 0) {
+              if(isset($_POST['name'])) {
+                $name = $_POST['name'];
+                if(isset($_POST['password'])) {
+                  $passwd = $_POST['password'];
+                  $passwd_hash = password_hash($passwd, PASSWORD_BCRYPT);
+                  $newUser = new Uzytkownik();
+                  $newUser->setLogin($login);
+                  $newUser->setHaslo($passwd_hash);
+                  $newUser->setNazwa($name);
+                  $newUser->setRodzajKonta(1);
+                  $newUser->setStatusKonta(1);
+                  $newUser->save();
+                  $_SESSION['login'] = $login;
+                  $_SESSION['name'] = $name;
+                  header("Location: user.php");
+                }
+              }
+            } else {
+              echo 'Taki login juz istnieje';
+            }
           }
+
        ?>
      </form>
 

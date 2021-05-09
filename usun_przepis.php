@@ -1,4 +1,8 @@
 <?php
+include 'session.php';
+if(isset($_SESSION['login'])) {
+  header("Location: user.php");
+}
 require_once __DIR__.'/vendor/autoload.php';
 require_once __DIR__.'/generated-conf/config.php';
 

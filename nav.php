@@ -22,9 +22,12 @@
       </div>
     </div>
   </div>
-  <?php echo
-  '<div class="nav__username">
-    <span>Zalogowany jako: Użytkownik34353</span>
-  </div>';
+  <?php
+  if(isset($_SESSION['name'])) {
+    echo
+    '<div class="nav__username">
+      <span>Zalogowany jako: '.$_SESSION['name'].'</span>
+    </div>';
+  }
   ?>
 </nav>
