@@ -51,227 +51,27 @@ function ileStronKategoria_sortNazwa()  //liczy ile stron bedzie po paginacji dl
   $ileStron = ceil($x / 5);
   return $ileStron;
  }
+ else
+ {
+   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->orderBy('Przepis.Nazwa')
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
- else if($ileKat == 2){
-   //echo '</br> jestem w ileKat==2</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+          $x=0;
+          foreach($kat as $k)
+          {
+            $x++;
+          }
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
+   $ileStron = ceil($x / 5);
+   return $ileStron;
  }
- else if($ileKat == 3){
-   //echo '</br> jestem w ileKat==3</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 4){
-   //echo '</br> jestem w ileKat==4</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 5){
-   //echo '</br> jestem w ileKat==5</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 6){
-   //echo '</br> jestem w ileKat==6</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 7){
-   //echo '</br> jestem w ileKat==7</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 8){
-   //echo '</br> jestem w ileKat==8</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 9){
-   //echo '</br> jestem w ileKat==9</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 10){
-   //echo '</br> jestem w ileKat==10</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 11){
-   //echo '</br> jestem w ileKat==11</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 12){
-   //echo '</br> jestem w ileKat==12</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10],$tab[11]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
 }
 
 /////////////////////////////////////////////////ILE STRON  KATEGORIA+CZAS + sort nazwa/////////////////////////////////////////
@@ -325,238 +125,28 @@ function ileStronKategoriaCzas_sortNazwa()  //liczy ile stron bedzie po paginacj
   $ileStron = ceil($x / 5);
   return $ileStron;
  }
+ else
+ {
+   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->orderBy('Przepis.Nazwa')
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
- else if($ileKat == 2){
-   //echo '</br> jestem w ileKat==2</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+          $x=0;
+          foreach($kat as $k)
+          {
+            $x++;
+          }
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
+   $ileStron = ceil($x / 5);
+   return $ileStron;
  }
- else if($ileKat == 3){
-   //echo '</br> jestem w ileKat==3</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 4){
-   //echo '</br> jestem w ileKat==4</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 5){
-   //echo '</br> jestem w ileKat==5</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 6){
-   //echo '</br> jestem w ileKat==6</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 7){
-   //echo '</br> jestem w ileKat==7</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 8){
-   //echo '</br> jestem w ileKat==8</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 9){
-   //echo '</br> jestem w ileKat==9</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 10){
-   //echo '</br> jestem w ileKat==10</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 11){
-   //echo '</br> jestem w ileKat==11</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 12){
-   //echo '</br> jestem w ileKat==12</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10],$tab[11]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
 }
 
 
@@ -613,238 +203,28 @@ function ileStronKategoriaNazwa_sortNazwa()  //liczy ile stron bedzie po paginac
   $ileStron = ceil($x / 5);
   return $ileStron;
  }
+ else
+ {
+   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->orderBy('Przepis.Nazwa')
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
- else if($ileKat == 2){
-   //echo '</br> jestem w ileKat==2</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+          $x=0;
+          foreach($kat as $k)
+          {
+            $x++;
+          }
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
+   $ileStron = ceil($x / 5);
+   return $ileStron;
  }
- else if($ileKat == 3){
-   //echo '</br> jestem w ileKat==3</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 4){
-   //echo '</br> jestem w ileKat==4</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 5){
-   //echo '</br> jestem w ileKat==5</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 6){
-   //echo '</br> jestem w ileKat==6</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 7){
-   //echo '</br> jestem w ileKat==7</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 8){
-   //echo '</br> jestem w ileKat==8</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 9){
-   //echo '</br> jestem w ileKat==9</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 10){
-   //echo '</br> jestem w ileKat==10</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 11){
-   //echo '</br> jestem w ileKat==11</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 12){
-   //echo '</br> jestem w ileKat==12</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10],$tab[11]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
 }
 
 
@@ -908,250 +288,29 @@ function ileStronKategoriaCzasNazwa_sortNazwa()  //liczy ile stron bedzie po pag
   $ileStron = ceil($x / 5);
   return $ileStron;
  }
+ else
+ {
+   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+          ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->orderBy('Przepis.Nazwa')
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
+          $x=0;
+          foreach($kat as $k)
+          {
+            $x++;
+          }
 
- else if($ileKat == 2){
-   //echo '</br> jestem w ileKat==2</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
+   $ileStron = ceil($x / 5);
+   return $ileStron;
  }
- else if($ileKat == 3){
-   //echo '</br> jestem w ileKat==3</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 4){
-   //echo '</br> jestem w ileKat==4</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 5){
-   //echo '</br> jestem w ileKat==5</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 6){
-   //echo '</br> jestem w ileKat==6</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 7){
-   //echo '</br> jestem w ileKat==7</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 8){
-   //echo '</br> jestem w ileKat==8</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 9){
-   //echo '</br> jestem w ileKat==9</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 10){
-   //echo '</br> jestem w ileKat==10</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 11){
-   //echo '</br> jestem w ileKat==11</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
- else if($ileKat == 12){
-   //echo '</br> jestem w ileKat==12</br>';
- $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-        ->join('Przepis')
-        ->join('Kategoria')
-        ->select(array('Przepis.IdPrzepis'))
-        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-        ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-        ->where('Kategoria.Nazwa IN ?', array($tab[0],$tab[1],$tab[2],$tab[3],$tab[4],$tab[5],$tab[6],$tab[7],$tab[8],$tab[9],$tab[10],$tab[11]))
-        ->orderBy('Przepis.Nazwa')
-        ->groupBy(array('Przepis.IdPrzepis'))
-        ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
-
-        $x=0;
-        foreach($kat as $k)
-        {
-          $x++;
-        }
-
- $ileStron = ceil($x / 5);
- return $ileStron;
- }
 }
 
 
