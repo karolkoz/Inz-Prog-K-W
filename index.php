@@ -12,19 +12,6 @@
   setcookie("przepis", null);
  }
 
-//ok?
-//$i=0;
-
- // if (isset($_COOKIE['categories'])) {
- //   $i=0;
- //   foreach ($_COOKIE['categories'] as $name_categories)
- //   {
- //     setcookie("kategoria[$i]", null);
- //     $i++;
- //   }
- //  //setcookie("kategoria", null);
- // }
-
 
 //dziala ok - po powrocie na strone index sa zerowane wszelkie ciasteczka dla kategorii
  if (isset($_COOKIE['kategoria'])) {
@@ -32,7 +19,7 @@
    foreach ($_COOKIE['kategoria'] as $name_categories)
    {
      setcookie("kategoria[$i]", null);
-     echo 'tu jestem';
+     //echo 'tu jestem';
      $i++;
    }
  }
