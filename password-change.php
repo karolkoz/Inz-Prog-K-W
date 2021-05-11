@@ -1,3 +1,6 @@
+<?php
+include 'session.php';
+?>
 <html>
 
 <head>
@@ -26,8 +29,44 @@
        </div>
        <script src="script-Haslo.js"></script>
        <?php
-          if(!isset($_POST['currentPassword'])) {
-            echo 'Błąd';
+       require_once __DIR__.'/vendor/autoload.php';
+       require_once __DIR__.'/generated-conf/config.php';
+
+          if(!isset($_POST['currentPassword']) || !isset($_POST['newPassword']) || !isset($_POST['confirmPassword'])) {
+            echo 'Nie wprowadzono danych!';
+          }
+          else if(isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmPassword']))
+          {
+            $sendedCurrentPassword = $_POST['currentPassword'];
+            $userLogin = $_SESSION['login'];
+            $user = UzytkownikQuery::create()
+                          ->filterByLogin($userLogin)
+                          ->findOne();
+            $currentPasswd = $user->getHaslo();
+
+            if(password_verify($sendedCurrentPassword, $currentPasswd))
+            {
+              echo ' obecne haslo podane prawidlowo!';
+              $sendedNewPasswd = $_POST['newPassword'];
+              $sendedConfirmPasswd = $_POST['confirmPassword'];
+
+              if($sendedNewPasswd == $sendedConfirmPasswd)
+              {
+                echo ' nowe hasla podane prawidlowo!';
+                $passwd_hash = password_hash($sendedNewPasswd, PASSWORD_BCRYPT);
+                $user->setHaslo($passwd_hash);
+                $user->save();
+                header("Location: user.php");
+              }
+              // else
+              // {
+              //   echo ' zle podane nowe hasla!';
+              // }
+            }
+            else
+            {
+              echo 'Błędnie podane obecne haslo!';
+            }
           }
        ?>
      </form>
