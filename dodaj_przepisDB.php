@@ -42,7 +42,7 @@ else{
 }
 
 $UZYTKOWNIK_login = $_SESSION['login'];
-//echo ' login: '.$UZYTKOWNIK_login.' ';
+
 
 $przepis->setUzytkownikLogin("$UZYTKOWNIK_login");
 

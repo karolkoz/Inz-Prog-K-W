@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/generated-conf/config.php';
+include 'session.php';
+
  if (isset($_COOKIE['sortowanie'])) {
      setcookie("sortowanie", null);
  }
@@ -42,11 +46,26 @@
          <button type="submit"> Zmień Nazwę</button>
        </div>
        <?php
+       require_once __DIR__.'/vendor/autoload.php';
+       require_once __DIR__.'/generated-conf/config.php';
+
           if(isset($_POST['name'])) {
             $newName = $_POST['name'];
-            echo 'Zmiana nazwy na '.$newName.'</br>';
+
+            $userLogin = $_SESSION['login'];
+            $user = UzytkownikQuery::create()//->findByLogin($userLogin);
+                          ->filterByLogin($userLogin)
+                          ->findOne();
+                          // ->select(array('Uzytkownik.Nazwa'))
+                          // ->findOne();
+            //echo 'wyslano: '.$user->getLogin().' ';
+            $user->setNazwa($newName);
+            $user->save();
+
+            $_SESSION['name'] = $user->getNazwa();
+            header("Location: user.php");
           } else {
-            echo 'Błąd';
+            echo ' ';
           }
        ?>
      </form>

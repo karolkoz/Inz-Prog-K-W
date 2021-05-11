@@ -49,7 +49,16 @@
 
             $przepis = PrzepisQuery::create()->findPk($id_przepis);
             echo '<h1 class="content__recipe__title">'.$przepis->getNazwa().'</h1>'; //wyswietla nazwe przepisu o id=24
-            echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$przepis->getUzytkownikLogin().'</i></h2>'; //wyswietla login autora przepisu o id=24
+
+            $userLogin = $przepis->getUzytkownikLogin();
+
+            $userName = UzytkownikQuery::create()
+                          ->filterByLogin($userLogin)
+                          ->select(array('Uzytkownik.Nazwa'))
+                          ->findOne();
+
+            echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$userName.'</i></h2>'; //wyswietlanie nazwy uzytkownika (wyfiltrowanej po jego loginie (PK))
+            // echo '<h2 class="content__recipe__author">Autor przepisu: <i>'.$przepis->getUzytkownikLogin().'</i></h2>'; //wyswietla login autora przepisu o id=24
 
             ?>
 
