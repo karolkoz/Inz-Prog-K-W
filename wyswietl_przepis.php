@@ -17,11 +17,26 @@
       <div class="content__recipe">
         <div class="content__recipe__row">
           <form class="content__recipe__element content__recipe__form" method="post" action="usun_przepis.php?przepisID=<?php echo $_GET['przepisID'] ?>">
-              <button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>
+            <?php
+            require_once __DIR__.'/vendor/autoload.php';
+            require_once __DIR__.'/generated-conf/config.php';
+
+            if(isset($_SESSION['login'])) {
+                  echo '<button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>';
+            }
+            ?>
           </form>
-            <form class="content__recipe__element content__recipe__form" method="post" action="edytuj_przepis.php?przepisID=<?php echo $_GET['przepisID'] ?>">
-                <button class="content__recipe__button" type="submit" name="przepis" value="10"><img src="img/edit icon.png" />Edycja przepisu</button>
-            </form>
+
+          <form class="content__recipe__element content__recipe__form" method="post" action="edytuj_przepis.php?przepisID=<?php echo $_GET['przepisID'] ?>">
+          <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+
+          if(isset($_SESSION['login'])) {
+                echo '<button class="content__recipe__button" type="submit" name="przepis" value="10"><img src="img/edit icon.png" />Edycja przepisu</button>';
+          }
+          ?>
+          </form>
         </div>
         <div class="content__recipe__row">
           <div class="content__recipe__element">
