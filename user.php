@@ -46,8 +46,12 @@ if(!isset($_SESSION['login'])) {
         require_once __DIR__.'/vendor/autoload.php';
         require_once __DIR__.'/generated-conf/config.php';
 
+        $userLogin = $_SESSION['login'];
+
+
         $pID = PrzepisQuery::create()
-          ->select(array('IdPrzepis'))
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.UzytkownikLogin = ?', $userLogin)
           ->find();
 
         $ileID = count($pID); //ilosc wszystkich przepisow w bazie
@@ -71,6 +75,7 @@ if(!isset($_SESSION['login'])) {
       }
         $przepisyID = PrzepisQuery::create()
                 ->select(array('IdPrzepis'))
+                ->where('Przepis.UzytkownikLogin = ?', $userLogin)
                 ->paginate($page = $pageNumber, $rowsPerPage = 5);
         foreach($przepisyID as $ID)
         {
