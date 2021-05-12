@@ -21,7 +21,10 @@
             require_once __DIR__.'/vendor/autoload.php';
             require_once __DIR__.'/generated-conf/config.php';
 
-            if(isset($_SESSION['login'])) {
+            $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
+            $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
+
+            if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login']) {
                   echo '<button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>';
             }
             ?>
@@ -32,7 +35,10 @@
           require_once __DIR__.'/vendor/autoload.php';
           require_once __DIR__.'/generated-conf/config.php';
 
-          if(isset($_SESSION['login'])) {
+          $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
+          $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
+
+          if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login']) {
                 echo '<button class="content__recipe__button" type="submit" name="przepis" value="10"><img src="img/edit icon.png" />Edycja przepisu</button>';
           }
           ?>
