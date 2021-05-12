@@ -7,6 +7,7 @@
   <link rel="Stylesheet" type="text/css" href="style/css/style.css" />
   <meta charset="utf-8" />
   <title>Pyszniutkie.pl</title>
+  <script src="jquery.min.js"></script>
 </head>
 
 <body>
@@ -89,10 +90,28 @@
 
             ?>
             <div class="content__recipe__buttons">
-              <button class="content__recipe__button--favourite"><span>Ulubione </span> <img src="img/star black icon.png" /></button>
-              <button class="content__recipe__button--like"><span>Lubię to!</span><img src="img/like white.png" /></button>
+              <script src="script-AJAX.js"></script>
+              <button id="favourite" class="content__recipe__button--favourite">
+                <span>Ulubione </span> <img src="img/star black icon.png" />
+              </button>
+              <?php
+              if(isset($_SESSION['login'])) {
+                echo '<button id="like" onclick="addLike('.$id_przepis.', &#039'.$_SESSION['login'].'&#039)" class="content__recipe__button--like">
+                  <span id="likeText">Lubię to!</span><img src="img/like white.png" />
+                </button>';
+                /*echo '<button id="like" class="content__recipe__button--like--active" onclick="addLike('.$id_przepis.', "'.$_SESSION['login'].'")">
+                  <span id="likeText">Lubisz to!</span><img src="img/like white.png" />
+                </button>';*/
+              } else {
+                echo '<a href="login.php" id="like" class="content__recipe__button--like">
+                  <span>Lubię to!</span><img src="img/like white.png" />
+                </a>';
+              }
+              ?>
+
             </div>
           </div>
+
           <div class="content__recipe__element">
 
             <?php
