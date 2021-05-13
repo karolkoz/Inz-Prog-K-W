@@ -52,16 +52,13 @@ include 'session.php';
 
               if($sendedNewPasswd == $sendedConfirmPasswd)
               {
-                echo ' nowe hasla podane prawidlowo!';
+                //echo ' nowe hasla podane prawidlowo!';
                 $passwd_hash = password_hash($sendedNewPasswd, PASSWORD_BCRYPT);
                 $user->setHaslo($passwd_hash);
                 $user->save();
                 header("Location: user.php");
               }
-              // else
-              // {
-              //   echo ' zle podane nowe hasla!';
-              // }
+
             }
             else
             {

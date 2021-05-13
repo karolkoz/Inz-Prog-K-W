@@ -77,6 +77,8 @@ if(!isset($_SESSION['login'])) {
                 ->select(array('IdPrzepis'))
                 ->where('Przepis.UzytkownikLogin = ?', $userLogin)
                 ->paginate($page = $pageNumber, $rowsPerPage = 5);
+    if(count($przepisyID)!==0)
+    {
         foreach($przepisyID as $ID)
         {
           $pDane = PrzepisQuery::create()->findPk($ID);
@@ -88,6 +90,11 @@ if(!isset($_SESSION['login'])) {
             echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 0);</script>';
           }
         }
+    }
+    else
+    {
+      echo '<h2>Nie posiadasz jeszcze własnych przepisów!<i></i></h2></br></br></br></br></br>';
+    }
         ?>
       </div>
     </section>

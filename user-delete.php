@@ -1,8 +1,46 @@
 <?php
-
+include 'session.php';
 //Tutaj sprawdzamy czy jest aktywna sesja
 //Jeśli jest, to usuwamy konto pobrane z sesji
 //Potem zamykamy sesje i przenosimy na strone główną
+require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/generated-conf/config.php';
+
+
+$userPyszniutkie = UzytkownikQuery::create()
+              ->filterByLogin("Pyszniutkie.pl")
+              ->select(array('Uzytkownik.Login'))
+              ->findOne();
+
+$userLogin = $_SESSION['login'];
+
+// $currentUser = UzytkownikQuery::create()
+//               ->filterByLogin($userLogin)
+//               ->findOne();
+
+$przepisyUsera = PrzepisQuery::create()
+              ->select(array('IdPrzepis'))
+              ->where('Przepis.UzytkownikLogin = ?', $userLogin); //tablica wszystkich id przepisow danego usera
+
+foreach($przepisyUsera as $pID) //dla kazdego z tych id przepisow
+{
+  $przepis = PrzepisQuery::create()->findPk($pID); //znajdz przepis o tym id
+  $przepis->setUzytkownikLogin($userPyszniutkie); //ustaw dla niego nowego autora (Pyszniutkie.pl)
+  echo '</> dla przepisu o id: '.$pID.' ustawiam nowego wlasciciela: '.$userPyszniutkie.' </br>';
+  $przepis->save();
+}
+
+$currentUser = UzytkownikQuery::create()
+              ->filterByLogin($userLogin)
+              ->delete();
+
+
+if(isset($_SESSION['login'])) {
+  $_SESSION = array();
+  session_destroy();
+  echo 'Sesja zniszczona';
+}
+
 echo '<script type="text/javascript">
   window.location = "index.php";
 </script>'

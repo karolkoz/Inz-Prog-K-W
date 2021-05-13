@@ -97,8 +97,8 @@
      </div>
 
 <?php
-echo ' </br> Witaj na stronie Pyszniutkie.pl !!! </br>';
-echo ' </br> Tysiące pomysłów na dania, każdy znajdzie coś dla siebie! </br>';
+echo '<h2> Witaj na stronie Pyszniutkie.pl !!! <i></i></h2></br>';
+echo '<h2> Tysiące pomysłów na dania, każdy znajdzie coś dla siebie! <i></i></h2></br>';
 ?>
 
 
