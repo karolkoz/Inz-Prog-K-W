@@ -95,13 +95,31 @@
                 <span>Ulubione </span> <img src="img/star black icon.png" />
               </button>
               <?php
+              require_once __DIR__.'/vendor/autoload.php';
+              require_once __DIR__.'/generated-conf/config.php';
+
               if(isset($_SESSION['login'])) {
+
+                $userLogin = $_SESSION['login'];
+
+                $lubieTo = Lubie_toQuery::create()
+                            ->where('Lubie_to.PrzepisIdPrzepis = ?', $id_przepis)
+                            ->where('Lubie_to.UzytkownikLogin = ?', $userLogin)
+                            ->find();
+
+                if(count($lubieTo)==0)
+                {
                 echo '<button id="like" onclick="addLike('.$id_przepis.', &#039'.$_SESSION['login'].'&#039)" class="content__recipe__button--like">
                   <span id="likeText">Lubię to!</span><img src="img/like white.png" />
                 </button>';
-                /*echo '<button id="like" class="content__recipe__button--like--active" onclick="addLike('.$id_przepis.', "'.$_SESSION['login'].'")">
+                }
+                else
+                {
+                echo '<button id="like" class="content__recipe__button--like--active" onclick="addLike('.$id_przepis.', "'.$_SESSION['login'].'")">
                   <span id="likeText">Lubisz to!</span><img src="img/like white.png" />
-                </button>';*/
+                </button>';
+                }
+
               } else {
                 echo '<a href="login.php" id="like" class="content__recipe__button--like">
                   <span>Lubię to!</span><img src="img/like white.png" />
