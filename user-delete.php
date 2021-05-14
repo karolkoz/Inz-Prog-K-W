@@ -30,6 +30,14 @@ foreach($przepisyUsera as $pID) //dla kazdego z tych id przepisow
   $przepis->save();
 }
 
+$usersLike = Lubie_toQuery::create()
+              ->filterByUzytkownikLogin($userLogin)
+              ->delete();
+
+              $usersFav = UlubioneQuery::create()
+                            ->filterByUzytkownikLogin($userLogin)
+                            ->delete();
+
 $currentUser = UzytkownikQuery::create()
               ->filterByLogin($userLogin)
               ->delete();

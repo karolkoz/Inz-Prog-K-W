@@ -78,11 +78,13 @@ if(!isset($_SESSION['login'])) {
 
           $pDane = PrzepisQuery::create()->findPk($ID);
           $zdj = $pDane->getZdjecieOgolne();
-          if ($zdj !== null) {
-            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 1, "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+          if ($zdj !== null)
+          {
+              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
           }
-          else{
-            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 0);</script>';
+          else
+          {
+              echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
           }
         }
         }
@@ -91,8 +93,6 @@ if(!isset($_SESSION['login'])) {
         echo '<h2>Nie posiadasz jeszcze ulubionych przepisów!<i></i></h2></br></br></br></br></br>';
         }
         ?>
-
-
 
       </div>
     </section>
