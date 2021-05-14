@@ -81,13 +81,22 @@ if(!isset($_SESSION['login'])) {
     {
         foreach($przepisyID as $ID)
         {
+          $lubieTo = Lubie_toQuery::create()
+                      ->filterByPrzepisIdPrzepis($ID)
+                      ->find();
+          $ileLike=0;
+          foreach($lubieTo as $l)
+          {
+            $ileLike++;
+          }
+
           $pDane = PrzepisQuery::create()->findPk($ID);
           $zdj = $pDane->getZdjecieOgolne();
           if ($zdj !== null) {
-            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 1, "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 1, "'.base64_encode(stream_get_contents($zdj)).'");</script>';
           }
           else{
-            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'", 3, "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 0);</script>';
+            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 0);</script>';
           }
         }
     }
