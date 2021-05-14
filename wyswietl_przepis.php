@@ -136,9 +136,9 @@
                 }
                 else
                 {
-                echo '<button id="like" class="content__recipe__button--like--active" onclick="addLike('.$id_przepis.', "'.$_SESSION['login'].'")">
-                  <span id="likeText">Lubisz to!</span><img src="img/like white.png" />
-                </button>';
+                  echo '<button id="like" onclick="addLike('.$id_przepis.', &#039'.$_SESSION['login'].'&#039)" class="content__recipe__button--like--active">
+                    <span id="likeText">Lubisz to!</span><img src="img/like white.png" />
+                  </button>';
                 }
 
               } else {
@@ -226,7 +226,7 @@
                   $ileLike++;
                 }
 
-                echo '<span>'.$ileLike.'</span>';
+                echo '<span id="likeNum">'.$ileLike.'</span>';
                 ?>
               </div>
             </div>
