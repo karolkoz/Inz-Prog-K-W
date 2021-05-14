@@ -33,7 +33,7 @@ if(!isset($_SESSION['login'])) {
           <div class="content__form__button content__form__button--yellow">
             <a href="password-change.php"> <img src="img/edit icon.png" /> Zmień hasło</a>
           </div>
-          <div class="content__form__button content__form__button--red">
+          <div class="content__form__button content__form__button--red" onclick="return confirm('Czy na pewno chcesz usunąć konto?')">
             <a href="user-delete.php"> <img src="img/x icon.png" /> Usuń konto</a>
           </div>
         </div>

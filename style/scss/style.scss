@@ -524,12 +524,14 @@ nav:hover .nav__username {
   }
 
 
-  .content__recipe__button--favourite {
+  .content__recipe__button--favourite, .content__recipe__button--favourite--active:hover {
     background-color: $button_fav_color;
+    color: black;
   }
 
-  .content__recipe__button--favourite:hover {
+  .content__recipe__button--favourite:hover, .content__recipe__button--favourite--active {
     background-color: $button_fav_color_dark;
+    color: black;
   }
 }
 

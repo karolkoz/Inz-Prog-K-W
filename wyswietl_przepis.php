@@ -91,17 +91,38 @@
             ?>
             <div class="content__recipe__buttons">
               <script src="script-AJAX.js"></script>
-              <button id="favourite" class="content__recipe__button--favourite">
-                <span>Ulubione </span> <img src="img/star black icon.png" />
-              </button>
               <?php
               require_once __DIR__.'/vendor/autoload.php';
               require_once __DIR__.'/generated-conf/config.php';
 
               if(isset($_SESSION['login'])) {
-
                 $userLogin = $_SESSION['login'];
+                $ulubione = UlubioneQuery::create()
+                            ->where('Ulubione.PrzepisIdPrzepis = ?', $id_przepis)
+                            ->where('Ulubione.UzytkownikLogin = ?', $userLogin)
+                            ->find();
 
+                if(count($ulubione)==0)
+                {
+                echo '<button id="favourite" onclick="addFavourite('.$id_przepis.', &#039'.$_SESSION['login'].'&#039)" class="content__recipe__button--favourite">
+                  <span>Ulubione</span><img id="favouriteImg" src="img/star black icon.png" />
+                </button>';
+                }
+                else
+                {
+                echo '<button id="favourite" onclick="addFavourite('.$id_przepis.', &#039'.$_SESSION['login'].'&#039)" class="content__recipe__button--favourite--active">
+                  <span>Ulubione</span><img id="favouriteImg" src="img/confirm icon.png" />
+                </button>';
+                }
+
+              } else {
+                echo '<a href="login.php" id="favourite" class="content__recipe__button--favourite">
+                  <span>Ulubione</span><img id="favouriteImg" src="img/star black icon.png" />
+                </a>';
+              }
+
+              if(isset($_SESSION['login'])) {
+                $userLogin = $_SESSION['login'];
                 $lubieTo = Lubie_toQuery::create()
                             ->where('Lubie_to.PrzepisIdPrzepis = ?', $id_przepis)
                             ->where('Lubie_to.UzytkownikLogin = ?', $userLogin)

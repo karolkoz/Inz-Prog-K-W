@@ -30,3 +30,35 @@ function addLike(id_przepis, login) {
         }
     });
 }
+
+function addFavourite(id_przepis, login) {
+  $("#favourite").attr("disabled", "disabled");
+  $.ajax({
+      url: "favourite.php",
+      type: "POST",
+      data: {
+          id: id_przepis,
+          login: login
+      },
+      cache: false,
+      success: function(dataResult) {
+          var dataResult = JSON.parse(dataResult);
+          if (dataResult.statusCode == 200) {
+              $("#favourite").removeAttr("disabled");
+              var img = document.getElementById("favouriteImg");
+              var favButton = document.getElementById("favourite");
+              if(favButton.classList.contains("content__recipe__button--favourite")) {
+                img.src = "img/confirm icon.png";
+                favButton.classList.remove("content__recipe__button--favourite");
+                favButton.classList.add("content__recipe__button--favourite--active");
+              } else {
+                img.src = "img/star black icon.png";
+                favButton.classList.remove("content__recipe__button--favourite--active");
+                favButton.classList.add("content__recipe__button--favourite");
+              }
+          } else if (dataResult.statusCode == 201) {
+              alert("Error occured !");
+          }
+      }
+  });
+}
