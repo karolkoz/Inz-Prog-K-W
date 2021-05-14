@@ -17,10 +17,14 @@ function addLike(id_przepis, login) {
                 var likeButton = document.getElementById("like");
                 if(span.innerHTML == "Lubię to!") {
                   span.innerHTML = "Lubisz to!";
+                  var num = parseInt(document.getElementById("likeNum").innerHTML) + 1;
+                  document.getElementById("likeNum").innerHTML = num;
                   likeButton.classList.remove("content__recipe__button--like");
                   likeButton.classList.add("content__recipe__button--like--active");
                 } else {
                   span.innerHTML = "Lubię to!";
+                  var num = parseInt(document.getElementById("likeNum").innerHTML) - 1;
+                  document.getElementById("likeNum").innerHTML = num;
                   likeButton.classList.remove("content__recipe__button--like--active");
                   likeButton.classList.add("content__recipe__button--like");
                 }
