@@ -213,7 +213,21 @@
               </div>
               <div class="content__recipe__stats__element">
                 <img src="img/like green.png" />
-                <span>325</span>
+                <?php
+                require_once __DIR__.'/vendor/autoload.php';
+                require_once __DIR__.'/generated-conf/config.php';
+
+                $lubieTo = Lubie_toQuery::create()
+                            ->filterByPrzepisIdPrzepis($id_przepis)
+                            ->find();
+                $ileLike=0;
+                foreach($lubieTo as $l)
+                {
+                  $ileLike++;
+                }
+
+                echo '<span>'.$ileLike.'</span>';
+                ?>
               </div>
             </div>
           </div>
