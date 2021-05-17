@@ -43,11 +43,34 @@ function CategorySelect(id, j) {
   }
 }
 
+function category_clear() {
+  var categories = document.getElementById("categories").getElementsByTagName("select");
+  var catID = [];
+  //console.log(categories.length);
+  var i;
+  var ile = categories.length;
+  for(i=0; i<ile; i++) {
+    catID[i] = categories[i].parentNode.id;
+  }
+  for(i=1; i<ile; i++) {
+    //console.log(categories[i].parentNode);
+    document.getElementById(catID[i]).remove();
+  }
+  ileKategorii = 1;
+}
+
 function category_validation() {
   var categories = document.forms["form"].getElementsByTagName("select");
   var i=0;
+  document.getElementById("categoryButton").disabled = false;
   for(i=0; i<ileKategorii; i++) {
     categories[i].style.backgroundColor = "#FFFFFF";
+    if(categories[i].value == "Dowolne") {
+      document.getElementById("categoryButton").disabled = true;
+      category_clear();
+      CategorySelect(1, "Dowolne");
+      return true;
+    }
   }
   var isValid = true;
   var j;
