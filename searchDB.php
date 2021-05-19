@@ -170,6 +170,8 @@ else
         include("fun_ileStronKat_sortowanieNazwa.php");
         include("funkcje_sortowanie_poziom.php");
         include("fun_ileStronKat_sortowaniePoziom.php");
+        include("funkcje_sortowanie_oceny.php");
+        include("fun_ileStronKat_sortowanieOceny.php");
 
         $pageNumber = $_GET['currentPage'];
 
@@ -855,21 +857,201 @@ else
 
 //////////////////////////////////////////////////////////////////SORTOWANIE - OCENY//////////////////////////////////////////////////////////////////
 
+///do edycji
 
     elseif ($_COOKIE["sortowanie"]=="oceny")
     {
-        $y=1;
-        for ($y; $y<=$totalPages; $y++)
+      if(!(empty($_COOKIE['kategoria'])))
+      {
+        if(!(empty($_COOKIE['przepis']))) //sortowanie po nazwie alfabetycznie + wyszukiwanie po nazwie ustawione + kat
         {
-            if ($pageNumber==$y)
+            if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
             {
-                echo '</br> Sortowanie po ocenach jeszcze niedostępne!</br></br></br>';
-                echo '</br>Strona: ';
-                echo $pageNumber;
-                echo '</br>Sortowanie po: ';
-                echo $_COOKIE["sortowanie"];
+                numeryStron(ileStronKategoriaCzasNazwa_sortOceny());
+
+                $y=1;
+                for ($y; $y<=ileStronKategoriaCzasNazwa_sortOceny(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+
+                        //wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa_sortNazwa($y));
+                    }
+                }
+            }
+            else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+            {
+                numeryStron(ileStronKategoriaNazwa_sortOceny());
+
+                $y=1;
+                for ($y; $y<=ileStronKategoriaNazwa_sortOceny(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+
+                        //wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortNazwa($y));
+                    }
+                }
             }
         }
+        else
+        {
+            if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
+            {
+                numeryStron(ileStronKategoriaCzas_sortOceny());
+
+                $y=1;
+                for ($y; $y<=ileStronKategoriaCzas_sortOceny(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+
+                        //wypiszPrzepis(przepisy_ID_KategoriaCzas_sortCzas($y));
+                    }
+                }
+            }
+            else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+            {
+                numeryStron(ileStronKategoria_sortOceny());
+
+                $y=1;
+                for ($y; $y<=ileStronKategoria_sortOceny(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+
+                        foreach(przepisy_ID_Kategoria_sortOceny($y) as $ID2)
+                        {
+                          $IDprzepisu = $ID2->getIdPrzepis();
+                          wypiszPrzepisOceny($IDprzepisu);
+                        }
+                    }
+                }
+            }
+        }
+      }
+      else///////////////////////////////////////brak ustawionej kategorii
+      {
+        if(!(empty($_COOKIE['przepis']))) //sortowanie po nazwie alfabetycznie + wyszukiwanie po nazwie ustawione
+        {
+            if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
+            {
+                numeryStron(ileStronNazwaCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+
+                $y=1;
+                for ($y; $y<=ileStronNazwaCzas(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria nie ustawiona</br>';
+
+                        $przepisyID2 = PrzepisQuery::create()
+                                      ->leftJoinLubie_to('Lubie_to')
+                                      ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                                      ->groupByIdPrzepis()
+                                      ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                                      ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                                      ->orderBy('nb', 'desc')
+                                      ->paginate($page = $y, $rowsPerPage = 5);
+
+                                      foreach($przepisyID2 as $ID2)
+                                      {
+                                        $IDprzepisu = $ID2->getIdPrzepis();
+                                        wypiszPrzepisOceny($IDprzepisu);
+                                      }
+                    }
+                }
+            }
+            else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+            {
+                numeryStron(ileStronNazwa()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+
+                $y=1;
+                for ($y; $y<=ileStronNazwa(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa ustawiona  + kategoria nie ustawiona</br>';
+
+                        $przepisyID2 = PrzepisQuery::create()
+                                      ->leftJoinLubie_to('Lubie_to')
+                                      ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                                      ->groupByIdPrzepis()
+                                      ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                                      ->orderBy('nb', 'desc')
+                                      ->paginate($page = $y, $rowsPerPage = 5);
+
+                                      foreach($przepisyID2 as $ID2)
+                                      {
+                                        $IDprzepisu = $ID2->getIdPrzepis();
+                                        wypiszPrzepisOceny($IDprzepisu);
+                                      }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(isset($_COOKIE["czas"]) && $_COOKIE["czas"]!=="Dowolne") //czas wybrany konkretny no 10min
+            {
+                numeryStron(ileStronCzas()); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+
+                $y=1;
+                for ($y; $y<=ileStronCzas(); $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
+
+                        $przepisyID2 = PrzepisQuery::create()
+                                      ->leftJoinLubie_to('Lubie_to')
+                                      ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                                      ->groupByIdPrzepis()
+                                      ->filterByCzasPrzygotowania($_COOKIE["czas"])
+                                      ->orderBy('nb', 'desc')
+                                      ->paginate($page = $y, $rowsPerPage = 5);
+
+                                      foreach($przepisyID2 as $ID2)
+                                      {
+                                        $IDprzepisu = $ID2->getIdPrzepis();
+                                        wypiszPrzepisOceny($IDprzepisu);
+                                      }
+                    }
+                }
+            }
+            else if((isset($_COOKIE["czas"]) && $_COOKIE["czas"]=="Dowolne") || !(isset($_COOKIE["czas"])) ) //czas dowolny lub wcale nie ustawiony
+            {
+                numeryStron($totalPages); //wysweitlanie odpowiedniej ilosci numerow stron w zaleznosci od ilosci oczekiwanych wynikow (ilosci przepisow)
+
+                $y=1;
+                for ($y; $y<=$totalPages; $y++)
+                {
+                    if ($pageNumber==$y)
+                    {
+                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
+
+                        $przepisyID2 = PrzepisQuery::create()
+                                      ->leftJoinLubie_to('Lubie_to')
+                                      ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                                      ->groupByIdPrzepis()
+                                      ->orderBy('nb', 'desc')
+                                      ->paginate($page = $y, $rowsPerPage = 5);
+
+                                      foreach($przepisyID2 as $ID2)
+                                      {
+                                        $IDprzepisu = $ID2->getIdPrzepis();
+                                        wypiszPrzepisOceny($IDprzepisu);
+                                      }
+
+                    }
+                }
+            }
+        }
+      }
     }
 
 
