@@ -3,6 +3,9 @@ include 'session.php';
 if(!isset($_SESSION['login'])) {
   header("Location: login.php");
 }
+if($_SESSION['level'] == 2) {
+  header("Location: admin.php");
+}
 ?>
 <html>
 

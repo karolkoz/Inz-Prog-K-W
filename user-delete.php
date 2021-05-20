@@ -12,7 +12,14 @@ $userPyszniutkie = UzytkownikQuery::create()
               ->select(array('Uzytkownik.Login'))
               ->findOne();
 
-$userLogin = $_SESSION['login'];
+if(!isset($_GET['login'])) {
+  $userLogin = $_SESSION['login'];
+} else {
+  if($_SESSION['level']==2) {
+    $userLogin = $_GET['login'];
+  }
+}
+
 
 // $currentUser = UzytkownikQuery::create()
 //               ->filterByLogin($userLogin)
@@ -42,11 +49,14 @@ $currentUser = UzytkownikQuery::create()
               ->filterByLogin($userLogin)
               ->delete();
 
-
-if(isset($_SESSION['login'])) {
-  $_SESSION = array();
-  session_destroy();
-  echo 'Sesja zniszczona';
+if(!isset($_GET['login'])) {
+  if(isset($_SESSION['login'])) {
+    $_SESSION = array();
+    session_destroy();
+    echo 'Sesja zniszczona';
+  }
+} else {
+  header("Location: admin-users.php");
 }
 
 echo '<script type="text/javascript">

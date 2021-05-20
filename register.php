@@ -77,6 +77,7 @@
                   $newUser->save();
                   $_SESSION['login'] = $login;
                   $_SESSION['name'] = $name;
+                  $_SESSION['level'] = 1;
                   header("Location: user.php");
                 }
               }

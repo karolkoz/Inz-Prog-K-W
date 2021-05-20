@@ -1,9 +1,6 @@
 <?php include 'session.php';
-if(!isset($_SESSION['login'])) {
+if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
   header("Location: login.php");
-}
-if($_SESSION['level'] == 2) {
-  header("Location: admin.php");
 }
  ?>
 <html>
@@ -18,31 +15,25 @@ if($_SESSION['level'] == 2) {
   <main>
     <?php include 'nav.php' ?>
     <section class="content">
-      <h1>Twój profil</h1>
+      <h1>Panel Administracyjny</h1>
       <div class="content__user">
         <div class="row">
-          <h2>Zarządzanie kontem</h2>
+          <h2>Zarządzanie kontami</h2>
           <div class="content__form__button content__user__logout">
             <a href="logout.php"> <img src="img/logout icon.png" /> Wyloguj</a>
           </div>
         </div>
         <div class="row">
-          <span><b>Nazwa Użytkownika: </b><?php echo $_SESSION['name']; ?></span>
-        </div>
-        <div class="row">
-          <div class="content__form__button">
-            <a href="user-change.php"> <img src="img/edit icon.png" /> Zmień nazwę</a>
-          </div>
           <div class="content__form__button content__form__button--yellow">
-            <a href="password-change.php"> <img src="img/edit icon.png" /> Zmień hasło</a>
+            <a href="password-change.php"> <img src="img/edit icon.png" /> Zmień hasło admina</a>
           </div>
-          <div class="content__form__button content__form__button--red" onclick="return confirm('Czy na pewno chcesz usunąć konto?')">
-            <a href="user-delete.php"> <img src="img/x icon.png" /> Usuń konto</a>
+          <div class="content__form__button">
+            <a href="admin-users.php"> <img src="img/user icon.png" /> Lista użytkowników</a>
           </div>
         </div>
       </div>
 
-      <h1>Twoje przepisy</h1>
+      <h1>Oczekujące przepisy</h1>
       <div class="content__elements" id="search-results">
         <?php
         //id, nazwa, ile lajków, czas, osoby, trudnosc, obrazek(taki sam sposób jak był do etapów podawany)
@@ -66,7 +57,7 @@ if($_SESSION['level'] == 2) {
         $num=1;
         for($num; $num<=$totalPages; $num++)
         {
-          echo '<div class="content__search-counter__element"><a href="user.php?currentPage='.$num.'">'.$num.'</a></div>';
+          echo '<div class="content__search-counter__element"><a href="admin.php?currentPage='.$num.'">'.$num.'</a></div>';
         }
       echo '</div>
       <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
@@ -105,7 +96,7 @@ if($_SESSION['level'] == 2) {
     }
     else
     {
-      echo '<h2>Nie posiadasz jeszcze własnych przepisów!<i></i></h2></br></br></br></br></br>';
+      echo '<h2>Brak przepisów oczekujących na zatwierdzenie<i></i></h2></br></br></br></br></br>';
     }
         ?>
       </div>

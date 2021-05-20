@@ -32,6 +32,7 @@ $button_like_color_dark: #2ba13e;
 $button_fav_color: #FAFF05;
 $button_fav_color_dark: #d8dd06;
 $content_element_color: #AFE7DD;
+$content_element_color_dark: #7dc7ba;
 
 body {
   margin: 0;
@@ -40,6 +41,9 @@ body {
 .row {
   display: flex;
   flex-direction: row;
+}
+.justify-flex-start {
+  justify-content: flex-start;
 }
 
 //////////////////////////////////////NAWIGACJA/////////////////////////////////////////////////////////////////////
@@ -246,7 +250,10 @@ nav:hover .nav__username {
     margin: 0;
     font-size: 3em;
   }
-  > .row {
+  .justify-flex-start {
+    justify-content: flex-start;
+  }
+  .row {
     justify-content: space-between;
     width: 100%;
     padding-bottom: 30px;
@@ -387,6 +394,42 @@ nav:hover .nav__username {
   }
 }
 
+.content__list {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 30px 0 30px 0;
+  table {
+    background-color: $content_element_color;
+    padding: 10px;
+    tr {
+      flex-direction: row;
+      th {
+        //display: flex;
+        text-align: justify;
+        font-size: 1.7em;
+      }
+      td {
+        border-bottom: 2px solid $button_color;
+        font-size: 1.3em;
+      }
+      td:nth-child(3) {
+        width: 10%;
+        max-width: 100px;
+      }
+      th:nth-child(3) {
+        visibility: hidden;
+      }
+    }
+    tr:hover > td {
+      background-color: $content_element_color_dark;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
 
 ////////////////////////////////////////////////PRZEPIS////////////////////////////////////////////////////////////////////////
 

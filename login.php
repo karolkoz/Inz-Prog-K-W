@@ -65,7 +65,13 @@ if(isset($_SESSION['login'])) {
                if(password_verify($passwd, $userPassword)) {
                  $_SESSION['login'] = $login;
                  $_SESSION['name'] = $user->getNazwa();
-                 header("Location: user.php");
+                 $_SESSION['level'] = $user->getRodzajKonta();
+                 if($_SESSION['level'] == 1) {
+                   header("Location: user.php");
+                 } else if($_SESSION['level'] == 2) {
+                   header("Location: admin.php");
+                 }
+
                } else {
                  echo 'Zle haslo!';
                }
