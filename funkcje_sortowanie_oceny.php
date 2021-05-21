@@ -29,52 +29,167 @@ function przepisy_ID_Kategoria_sortOceny($y)
                     ->leftJoinLubie_to('Lubie_to')
                     ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
                     ->groupByIdPrzepis()
-                    //->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-                    //->filterByCzasPrzygotowania($_COOKIE["czas"])
                     ->orderBy('nb', 'desc')
                     ->paginate($page = $y, $rowsPerPage = 5);
 
-      return $kat;
+                    $num=0;
+                    $tab1=[];
+
+                    foreach($kat as $ID2)
+                    {
+                      $IDprzepisu = $ID2->getIdPrzepis();
+                      $tab1[$num]=$IDprzepisu;
+                      $num++;
+                    }
+
+      return $tab1;
     }
     else{
-      // $kat = PrzepisQuery::create()
-      //               ->leftJoinLubie_to('Lubie_to')
-      //               ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
-      //               ->groupByIdPrzepis()
-      //               ->orderBy('nb', 'desc');
-      // $tabOceny=[];
-      // $ileOceny=0;
-      //
-      // foreach($kat as $k)
-      // {
-      //   $tabOceny[$ileOceny] = $k;
-      //   $ileOceny++;
-      // }
+
+      $przepisyID2 = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc');
+
+      $num=0;
+      $tab1=[];
+
+      foreach($przepisyID2 as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tab1[$num]=$IDprzepisu;
+        $num++;
+      }
 
       $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             //->orderBy('Przepis.Nazwa')
+             ->select(array('Przepis.IdPrzepis'));
 
-      return $kat;
+             $num2=0;
+             $tab2=[];
+
+             foreach($kat as $k)
+             {
+               $tab2[$num2]=$k;
+               $num2++;
+             }
+
+      $ileTab2=count($tab2);
+
+      $tabWynik=[];
+      $numWynik=0;
+      foreach($tab1 as $t)
+      {
+        for($i=0; $i<$ileTab2; $i++)
+        {
+          if($t==$tab2[$i])
+          {
+            $tabWynik[$numWynik]=$t;
+            $numWynik++;
+          }
+        }
+      }
+
+
+      $wyniki = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
+
+      $numW=0;
+      $tabW=[];
+
+      foreach($wyniki as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tabW[$numW]=$IDprzepisu;
+        $numW++;
+      }
+
+
+      return $tabW;
     }
   }
   else
   {
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-           ->join('Przepis')
-           ->join('Kategoria')
-           ->select(array('Przepis.IdPrzepis'))
-           ->where('Kategoria.Nazwa IN ?', $tab)
-           ->orderBy('Przepis.Nazwa')
-           ->groupBy(array('Przepis.IdPrzepis'))
-           ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+          $przepisyID2 = PrzepisQuery::create()
+                        ->leftJoinLubie_to('Lubie_to')
+                        ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                        ->groupByIdPrzepis()
+                        ->orderBy('nb', 'desc');
 
-    return $kat;
+          $num=0;
+          $tab1=[];
+
+          foreach($przepisyID2 as $ID2)
+          {
+            $IDprzepisu = $ID2->getIdPrzepis();
+            $tab1[$num]=$IDprzepisu;
+            $num++;
+          }
+
+          $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+                ->join('Przepis')
+                ->join('Kategoria')
+                ->select(array('Przepis.IdPrzepis'))
+                ->where('Kategoria.Nazwa IN ?', $tab)
+                //->orderBy('Przepis.Nazwa')
+                ->groupBy(array('Przepis.IdPrzepis'))
+                ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+
+                 $num2=0;
+                 $tab2=[];
+
+                 foreach($kat as $k)
+                 {
+                   $tab2[$num2]=$k;
+                   $num2++;
+                 }
+
+          $ileTab2=count($tab2);
+
+          $tabWynik=[];
+          $numWynik=0;
+          foreach($tab1 as $t)
+          {
+            for($i=0; $i<$ileTab2; $i++)
+            {
+              if($t==$tab2[$i])
+              {
+                $tabWynik[$numWynik]=$t;
+                $numWynik++;
+              }
+            }
+          }
+
+
+          $wyniki = PrzepisQuery::create()
+                        ->leftJoinLubie_to('Lubie_to')
+                        ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                        ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                        ->groupByIdPrzepis()
+                        ->orderBy('nb', 'desc')
+                        ->paginate($page = $y, $rowsPerPage = 5);
+
+          $numW=0;
+          $tabW=[];
+
+          foreach($wyniki as $ID2)
+          {
+            $IDprzepisu = $ID2->getIdPrzepis();
+            $tabW[$numW]=$IDprzepisu;
+            $numW++;
+          }
+
+
+          return $tabW;
   }
 
 }
@@ -86,7 +201,7 @@ function przepisy_ID_Kategoria_sortOceny($y)
 
 
 
-///////////////////////////////////////KATEGORIA TAK + CZAS TAK + NAZWA NIE + sort nazwa////////////////////////////////////////////////////////////////
+///////////////////////////////////////KATEGORIA TAK + CZAS TAK + NAZWA NIE + sort oceny////////////////////////////////////////////////////////////////
 
 function przepisy_ID_KategoriaCzas_sortOceny($y)
 {
@@ -107,41 +222,171 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-             ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+      $kat = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
 
-      return $kat;
+                    $num=0;
+                    $tab1=[];
+
+                    foreach($kat as $ID2)
+                    {
+                      $IDprzepisu = $ID2->getIdPrzepis();
+                      $tab1[$num]=$IDprzepisu;
+                      $num++;
+                    }
+
+      return $tab1;
     }
     else{
+      $przepisyID2 = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc');
+
+      $num=0;
+      $tab1=[];
+
+      foreach($przepisyID2 as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tab1[$num]=$IDprzepisu;
+        $num++;
+      }
+
       $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Kategoria.Nazwa = ?', $tab[0])
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->select(array('Przepis.IdPrzepis'));
 
-      return $kat;
+             $num2=0;
+             $tab2=[];
+
+             foreach($kat as $k)
+             {
+               $tab2[$num2]=$k;
+               $num2++;
+             }
+
+      $ileTab2=count($tab2);
+
+      $tabWynik=[];
+      $numWynik=0;
+      foreach($tab1 as $t)
+      {
+        for($i=0; $i<$ileTab2; $i++)
+        {
+          if($t==$tab2[$i])
+          {
+            $tabWynik[$numWynik]=$t;
+            $numWynik++;
+          }
+        }
+      }
+
+
+      $wyniki = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
+
+      $numW=0;
+      $tabW=[];
+
+      foreach($wyniki as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tabW[$numW]=$IDprzepisu;
+        $numW++;
+      }
+
+
+      return $tabW;
     }
   }
   else
   {
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-           ->join('Przepis')
-           ->join('Kategoria')
-           ->select(array('Przepis.IdPrzepis'))
-           ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-           ->where('Kategoria.Nazwa IN ?', $tab)
-           ->orderBy('Przepis.Nazwa')
-           ->groupBy(array('Przepis.IdPrzepis'))
-           ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+    $przepisyID2 = PrzepisQuery::create()
+                  ->leftJoinLubie_to('Lubie_to')
+                  ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                  ->groupByIdPrzepis()
+                  ->orderBy('nb', 'desc');
 
-    return $kat;
+    $num=0;
+    $tab1=[];
+
+    foreach($przepisyID2 as $ID2)
+    {
+      $IDprzepisu = $ID2->getIdPrzepis();
+      $tab1[$num]=$IDprzepisu;
+      $num++;
+    }
+
+    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+
+           $num2=0;
+           $tab2=[];
+
+           foreach($kat as $k)
+           {
+             $tab2[$num2]=$k;
+             $num2++;
+           }
+
+    $ileTab2=count($tab2);
+
+    $tabWynik=[];
+    $numWynik=0;
+    foreach($tab1 as $t)
+    {
+      for($i=0; $i<$ileTab2; $i++)
+      {
+        if($t==$tab2[$i])
+        {
+          $tabWynik[$numWynik]=$t;
+          $numWynik++;
+        }
+      }
+    }
+
+
+    $wyniki = PrzepisQuery::create()
+                  ->leftJoinLubie_to('Lubie_to')
+                  ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                  ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                  ->groupByIdPrzepis()
+                  ->orderBy('nb', 'desc')
+                  ->paginate($page = $y, $rowsPerPage = 5);
+
+    $numW=0;
+    $tabW=[];
+
+    foreach($wyniki as $ID2)
+    {
+      $IDprzepisu = $ID2->getIdPrzepis();
+      $tabW[$numW]=$IDprzepisu;
+      $numW++;
+    }
+
+
+    return $tabW;
   }
 
 }
@@ -149,7 +394,6 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
 
 
 // ///////////////////////////////////////KATEGORIA TAK + CZAS nie + NAZWA tak////////////////////////////////////////////////////////////////
-
 function przepisy_ID_KategoriaNazwa_sortOceny($y)
 {
   $tab=[];
@@ -169,41 +413,171 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-             ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+      $kat = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
 
-      return $kat;
+                    $num=0;
+                    $tab1=[];
+
+                    foreach($kat as $ID2)
+                    {
+                      $IDprzepisu = $ID2->getIdPrzepis();
+                      $tab1[$num]=$IDprzepisu;
+                      $num++;
+                    }
+
+      return $tab1;
     }
     else{
+      $przepisyID2 = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc');
+
+      $num=0;
+      $tab1=[];
+
+      foreach($przepisyID2 as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tab1[$num]=$IDprzepisu;
+        $num++;
+      }
+
       $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Kategoria.Nazwa = ?', $tab[0])
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->select(array('Przepis.IdPrzepis'));
 
-      return $kat;
+             $num2=0;
+             $tab2=[];
+
+             foreach($kat as $k)
+             {
+               $tab2[$num2]=$k;
+               $num2++;
+             }
+
+      $ileTab2=count($tab2);
+
+      $tabWynik=[];
+      $numWynik=0;
+      foreach($tab1 as $t)
+      {
+        for($i=0; $i<$ileTab2; $i++)
+        {
+          if($t==$tab2[$i])
+          {
+            $tabWynik[$numWynik]=$t;
+            $numWynik++;
+          }
+        }
+      }
+
+
+      $wyniki = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
+
+      $numW=0;
+      $tabW=[];
+
+      foreach($wyniki as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tabW[$numW]=$IDprzepisu;
+        $numW++;
+      }
+
+
+      return $tabW;
     }
   }
   else
   {
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-           ->join('Przepis')
-           ->join('Kategoria')
-           ->select(array('Przepis.IdPrzepis'))
-           ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-           ->where('Kategoria.Nazwa IN ?', $tab)
-           ->orderBy('Przepis.Nazwa')
-           ->groupBy(array('Przepis.IdPrzepis'))
-           ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+    $przepisyID2 = PrzepisQuery::create()
+                  ->leftJoinLubie_to('Lubie_to')
+                  ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                  ->groupByIdPrzepis()
+                  ->orderBy('nb', 'desc');
 
-    return $kat;
+    $num=0;
+    $tab1=[];
+
+    foreach($przepisyID2 as $ID2)
+    {
+      $IDprzepisu = $ID2->getIdPrzepis();
+      $tab1[$num]=$IDprzepisu;
+      $num++;
+    }
+
+    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+
+           $num2=0;
+           $tab2=[];
+
+           foreach($kat as $k)
+           {
+             $tab2[$num2]=$k;
+             $num2++;
+           }
+
+    $ileTab2=count($tab2);
+
+    $tabWynik=[];
+    $numWynik=0;
+    foreach($tab1 as $t)
+    {
+      for($i=0; $i<$ileTab2; $i++)
+      {
+        if($t==$tab2[$i])
+        {
+          $tabWynik[$numWynik]=$t;
+          $numWynik++;
+        }
+      }
+    }
+
+
+    $wyniki = PrzepisQuery::create()
+                  ->leftJoinLubie_to('Lubie_to')
+                  ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                  ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                  ->groupByIdPrzepis()
+                  ->orderBy('nb', 'desc')
+                  ->paginate($page = $y, $rowsPerPage = 5);
+
+    $numW=0;
+    $tabW=[];
+
+    foreach($wyniki as $ID2)
+    {
+      $IDprzepisu = $ID2->getIdPrzepis();
+      $tabW[$numW]=$IDprzepisu;
+      $numW++;
+    }
+
+
+    return $tabW;
   }
 
 }
@@ -211,8 +585,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
 
 
 
-// ///////////////////////////////////////KATEGORIA TAK + CZAS TAK + NAZWA TAK + sort nazwa////////////////////////////////////
-
+// ///////////////////////////////////////KATEGORIA TAK + CZAS TAK + NAZWA TAK + sort oceny////////////////////////////////////
 function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
 {
   $tab=[];
@@ -232,50 +605,177 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-             ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-             ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+      $kat = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                    ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
 
-      return $kat;
+                    $num=0;
+                    $tab1=[];
+
+                    foreach($kat as $ID2)
+                    {
+                      $IDprzepisu = $ID2->getIdPrzepis();
+                      $tab1[$num]=$IDprzepisu;
+                      $num++;
+                    }
+
+      return $tab1;
     }
     else{
+      $przepisyID2 = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc');
+
+      $num=0;
+      $tab1=[];
+
+      foreach($przepisyID2 as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tab1[$num]=$IDprzepisu;
+        $num++;
+      }
+
       $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Kategoria.Nazwa = ?', $tab[0])
-             ->orderBy('Przepis.Nazwa')
-             ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->select(array('Przepis.IdPrzepis'));
 
-      return $kat;
+             $num2=0;
+             $tab2=[];
+
+             foreach($kat as $k)
+             {
+               $tab2[$num2]=$k;
+               $num2++;
+             }
+
+      $ileTab2=count($tab2);
+
+      $tabWynik=[];
+      $numWynik=0;
+      foreach($tab1 as $t)
+      {
+        for($i=0; $i<$ileTab2; $i++)
+        {
+          if($t==$tab2[$i])
+          {
+            $tabWynik[$numWynik]=$t;
+            $numWynik++;
+          }
+        }
+      }
+
+
+      $wyniki = PrzepisQuery::create()
+                    ->leftJoinLubie_to('Lubie_to')
+                    ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                    ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                    ->groupByIdPrzepis()
+                    ->orderBy('nb', 'desc')
+                    ->paginate($page = $y, $rowsPerPage = 5);
+
+      $numW=0;
+      $tabW=[];
+
+      foreach($wyniki as $ID2)
+      {
+        $IDprzepisu = $ID2->getIdPrzepis();
+        $tabW[$numW]=$IDprzepisu;
+        $numW++;
+      }
+
+
+      return $tabW;
     }
   }
   else
   {
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
-           ->join('Przepis')
-           ->join('Kategoria')
-           ->select(array('Przepis.IdPrzepis'))
-           ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-           ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
-           ->where('Kategoria.Nazwa IN ?', $tab)
-           ->orderBy('Przepis.Nazwa')
-           ->groupBy(array('Przepis.IdPrzepis'))
-           ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+    $przepisyID2 = PrzepisQuery::create()
+                  ->leftJoinLubie_to('Lubie_to')
+                  ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                  ->groupByIdPrzepis()
+                  ->orderBy('nb', 'desc');
 
-    return $kat;
+    $num=0;
+    $tab1=[];
+
+    foreach($przepisyID2 as $ID2)
+    {
+      $IDprzepisu = $ID2->getIdPrzepis();
+      $tab1[$num]=$IDprzepisu;
+      $num++;
+    }
+
+    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          ->join('Przepis')
+          ->join('Kategoria')
+          ->select(array('Przepis.IdPrzepis'))
+          ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+          ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+          ->where('Kategoria.Nazwa IN ?', $tab)
+          ->groupBy(array('Przepis.IdPrzepis'))
+          ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
+
+           $num2=0;
+           $tab2=[];
+
+           foreach($kat as $k)
+           {
+             $tab2[$num2]=$k;
+             $num2++;
+           }
+
+    $ileTab2=count($tab2);
+
+    $tabWynik=[];
+    $numWynik=0;
+    foreach($tab1 as $t)
+    {
+      for($i=0; $i<$ileTab2; $i++)
+      {
+        if($t==$tab2[$i])
+        {
+          $tabWynik[$numWynik]=$t;
+          $numWynik++;
+        }
+      }
+    }
+
+
+    $wyniki = PrzepisQuery::create()
+                  ->leftJoinLubie_to('Lubie_to')
+                  ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
+                  ->where('Przepis.IdPrzepis IN ?', $tabWynik)
+                  ->groupByIdPrzepis()
+                  ->orderBy('nb', 'desc')
+                  ->paginate($page = $y, $rowsPerPage = 5);
+
+    $numW=0;
+    $tabW=[];
+
+    foreach($wyniki as $ID2)
+    {
+      $IDprzepisu = $ID2->getIdPrzepis();
+      $tabW[$numW]=$IDprzepisu;
+      $numW++;
+    }
+
+
+    return $tabW;
   }
 
 }
-
-
-
 
 
 ?>

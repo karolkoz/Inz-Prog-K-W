@@ -876,7 +876,7 @@ else
                     {
                         echo '</br> sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
-                        //wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa_sortNazwa($y));
+                        wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa_sortOceny($y));
                     }
                 }
             }
@@ -891,7 +891,7 @@ else
                     {
                         echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
-                        //wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortNazwa($y));
+                        wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortOceny($y));
                     }
                 }
             }
@@ -909,7 +909,7 @@ else
                     {
                         echo '</br> sortowanie po ocenach + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
-                        //wypiszPrzepis(przepisy_ID_KategoriaCzas_sortCzas($y));
+                        wypiszPrzepis(przepisy_ID_KategoriaCzas_sortOceny($y));
                     }
                 }
             }
@@ -924,11 +924,8 @@ else
                     {
                         echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
-                        foreach(przepisy_ID_Kategoria_sortOceny($y) as $ID2)
-                        {
-                          $IDprzepisu = $ID2->getIdPrzepis();
-                          wypiszPrzepisOceny($IDprzepisu);
-                        }
+                        wypiszPrzepis(przepisy_ID_Kategoria_sortOceny($y));
+
                     }
                 }
             }
@@ -958,11 +955,18 @@ else
                                       ->orderBy('nb', 'desc')
                                       ->paginate($page = $y, $rowsPerPage = 5);
 
+                                      $num=0;
+                                      $tab1=[];
+
                                       foreach($przepisyID2 as $ID2)
                                       {
                                         $IDprzepisu = $ID2->getIdPrzepis();
-                                        wypiszPrzepisOceny($IDprzepisu);
+                                        $tab1[$num]=$IDprzepisu;
+                                        $num++;
+                                        //wypiszPrzepisOceny($IDprzepisu);
                                       }
+
+                                      wypiszPrzepis($tab1);
                     }
                 }
             }
@@ -985,11 +989,18 @@ else
                                       ->orderBy('nb', 'desc')
                                       ->paginate($page = $y, $rowsPerPage = 5);
 
+                                      $num=0;
+                                      $tab2=[];
+
                                       foreach($przepisyID2 as $ID2)
                                       {
                                         $IDprzepisu = $ID2->getIdPrzepis();
-                                        wypiszPrzepisOceny($IDprzepisu);
+                                        $tab2[$num]=$IDprzepisu;
+                                        $num++;
+                                        //wypiszPrzepisOceny($IDprzepisu);
                                       }
+
+                                      wypiszPrzepis($tab2);
                     }
                 }
             }
@@ -1015,11 +1026,18 @@ else
                                       ->orderBy('nb', 'desc')
                                       ->paginate($page = $y, $rowsPerPage = 5);
 
+                                      $num=0;
+                                      $tab3=[];
+
                                       foreach($przepisyID2 as $ID2)
                                       {
                                         $IDprzepisu = $ID2->getIdPrzepis();
-                                        wypiszPrzepisOceny($IDprzepisu);
+                                        $tab3[$num]=$IDprzepisu;
+                                        $num++;
+                                        //wypiszPrzepisOceny($IDprzepisu);
                                       }
+
+                                      wypiszPrzepis($tab3);
                     }
                 }
             }
@@ -1041,11 +1059,18 @@ else
                                       ->orderBy('nb', 'desc')
                                       ->paginate($page = $y, $rowsPerPage = 5);
 
+                                      $num=0;
+                                      $tab4=[];
+
                                       foreach($przepisyID2 as $ID2)
                                       {
                                         $IDprzepisu = $ID2->getIdPrzepis();
-                                        wypiszPrzepisOceny($IDprzepisu);
+                                        $tab4[$num]=$IDprzepisu;
+                                        $num++;
+                                        //wypiszPrzepisOceny($IDprzepisu);
                                       }
+
+                                      wypiszPrzepis($tab4);
 
                     }
                 }
