@@ -468,6 +468,22 @@ nav:hover .nav__username {
   justify-content: flex-start;
 }
 
+.content__recipe__status {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+.content__recipe__status__list {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  > button {
+    width: 100%;
+  }
+}
+
 .content__recipe__button {
   display: flex;
   align-items: center;
@@ -725,6 +741,7 @@ nav:hover .nav__username {
     }
   }
 }
+
 ////////////////////////////////////////////////FORMULARZ DODAWANIA PRZEPISU////////////////////////////////////////////////////
 .content__form {
   width: 100%;

@@ -358,6 +358,20 @@ nav:hover .nav__username {
   flex-direction: row;
   justify-content: flex-start; }
 
+.content__recipe__status {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative; }
+
+.content__recipe__status__list {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute; }
+  .content__recipe__status__list > button {
+    width: 100%; }
+
 .content__recipe__button {
   display: flex;
   align-items: center;
