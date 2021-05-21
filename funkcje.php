@@ -101,27 +101,27 @@ function wypiszPrzepis($przepisyID)
 
 
 
-function wypiszPrzepisOceny($ID)
-{
-    $lubieTo = Lubie_toQuery::create()
-                ->filterByPrzepisIdPrzepis($ID)
-                ->find();
-    $ileLike=0;
-    foreach($lubieTo as $l)
-    {
-      $ileLike++;
-    }
-
-      $pDane = PrzepisQuery::create()->findPk($ID);
-      $zdj = $pDane->getZdjecieOgolne();
-      if ($zdj !== null)
-      {
-          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-      }
-      else
-      {
-          echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-      }
-}
+// function wypiszPrzepisOceny($ID)
+// {
+//     $lubieTo = Lubie_toQuery::create()
+//                 ->filterByPrzepisIdPrzepis($ID)
+//                 ->find();
+//     $ileLike=0;
+//     foreach($lubieTo as $l)
+//     {
+//       $ileLike++;
+//     }
+//
+//       $pDane = PrzepisQuery::create()->findPk($ID);
+//       $zdj = $pDane->getZdjecieOgolne();
+//       if ($zdj !== null)
+//       {
+//           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+//       }
+//       else
+//       {
+//           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
+//       }
+// }
 
 ?>
