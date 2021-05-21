@@ -494,6 +494,9 @@ nav:hover .nav__username {
 .content__recipe__button--remove:hover {
     background-color: $remove_color_light;
 }
+.content__recipe__button--green {
+  background-color: $button_color;
+}
 
 .content__recipe__element__desc {
   margin: 0;

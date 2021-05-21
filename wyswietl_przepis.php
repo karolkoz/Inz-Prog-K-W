@@ -8,6 +8,7 @@
   <meta charset="utf-8" />
   <title>Pyszniutkie.pl</title>
   <script src="jquery.min.js"></script>
+  <script src="script-AJAX.js"></script>
 </head>
 
 <body>
@@ -25,7 +26,7 @@
             $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
             $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
 
-            if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login']) {
+            if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login'] || $_SESSION['level']==2) {
                   echo '<button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>';
             }
             ?>
@@ -41,6 +42,21 @@
 
           if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login']) {
                 echo '<button class="content__recipe__button" type="submit" name="przepis" value="10"><img src="img/edit icon.png" />Edycja przepisu</button>';
+          }
+          ?>
+          </form>
+
+          <form class="content__recipe__element content__recipe__form">
+          <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+
+          $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
+          $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
+
+          if(isset($_SESSION['login']) && $_SESSION['level']==2) {
+            if($przepis->getStatus)
+                echo '<button class="content__recipe__button" type="button" name="status" value="10"><img src="img/edit icon.png" /></button>';
           }
           ?>
           </form>
@@ -90,7 +106,6 @@
 
             ?>
             <div class="content__recipe__buttons">
-              <script src="script-AJAX.js"></script>
               <?php
               require_once __DIR__.'/vendor/autoload.php';
               require_once __DIR__.'/generated-conf/config.php';

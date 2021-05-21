@@ -10,7 +10,7 @@ $czas_przygotowania = $_POST['czas_przygotowania'];
 $ile_osob = $_POST['ile_osob'];
 $opis = $_POST['opis'];
 $data=date("Y-m-d");
-$status = 1;
+$status = 2;
 //$UZYTKOWNIK_login = $_SESSION['name'];
 //$UZYTKOWNIK_login = "dummy123";
 

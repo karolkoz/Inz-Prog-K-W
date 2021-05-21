@@ -69,7 +69,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
       }
         $przepisyID = PrzepisQuery::create()
                 ->select(array('IdPrzepis'))
-                ->where('Przepis.UzytkownikLogin = ?', $userLogin)
+                ->where('Przepis.Status = ?', 2)
                 ->paginate($page = $pageNumber, $rowsPerPage = 5);
     if(count($przepisyID)!==0)
     {
@@ -87,10 +87,10 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
           $pDane = PrzepisQuery::create()->findPk($ID);
           $zdj = $pDane->getZdjecieOgolne();
           if ($zdj !== null) {
-            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 1, "'.base64_encode(stream_get_contents($zdj)).'");</script>';
+            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", '.$pDane->getStatus().', "'.base64_encode(stream_get_contents($zdj)).'");</script>';
           }
           else{
-            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", 0);</script>';
+            echo '<script>addUserContentElement("'.$ID.'", "'.$pDane->getNazwa().'","'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", '.$pDane->getStatus().');</script>';
           }
         }
     }

@@ -69,7 +69,7 @@ $przepis->setCzasPrzygotowania($czas_przygotowania);
 $przepis->setDlaIluOsob($ile_osob);
 $przepis->setOpis($opis);
 $przepis->setDataDodania($data);
-//$przepis->setStatus($status);
+$przepis->setStatus(2);
 
 
 switch($_POST['mainImageStatus']) {

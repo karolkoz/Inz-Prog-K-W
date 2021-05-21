@@ -383,6 +383,9 @@ nav:hover .nav__username {
 .content__recipe__button--remove:hover {
   background-color: #db0909; }
 
+.content__recipe__button--green {
+  background-color: #058B63; }
+
 .content__recipe__element__desc {
   margin: 0;
   font-size: 2em;

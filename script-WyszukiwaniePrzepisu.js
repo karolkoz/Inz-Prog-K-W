@@ -150,12 +150,16 @@ function addUserContentElement(recipeID, name, likes, time, people, difficulty, 
 
   div = document.createElement("div");
   div.classList.add("content__element__status");
+
   if(status==1) {
     div.classList.add("content__element__status--accepted");
     div.appendChild(document.createTextNode("Zaakceptowany"));
   } else if(status==0) {
     div.classList.add("content__element__status--toEdit");
     div.appendChild(document.createTextNode("Do poprawy"));
+  } else if(status==2) {
+    div.classList.add("content__element__status--toEdit");
+    div.appendChild(document.createTextNode("Oczekujący"));
   }
   new_element.appendChild(div);
 
