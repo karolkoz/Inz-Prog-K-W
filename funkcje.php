@@ -25,6 +25,7 @@ function ileStronCzas()  //funkcja ktora sprawdza ile stron bedzie 'wykorzystany
 {
   $przepisyID_0 = PrzepisQuery::create()
                   ->select(array('IdPrzepis'))
+                  ->where('Przepis.Status = ?', 1)
                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
                   ->find();
   $num = count($przepisyID_0);
@@ -39,6 +40,7 @@ function ileStronNazwa()  //funkcja analogiczna dla ileStronCzas
   $przepisyID_1 = PrzepisQuery::create()
                   ->select(array('IdPrzepis'))
                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                  ->where('Przepis.Status = ?', 1)
                   ->find();
   $num = count($przepisyID_1);
   $ileStron = ceil($num / 5);
@@ -52,6 +54,7 @@ function ileStronNazwaCzas()  //liczy ile stron przy kombinacji nazwa+czas
   $przepisyID_2 = PrzepisQuery::create()
                   ->select(array('IdPrzepis'))
                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+                  ->where('Przepis.Status = ?', 1)
                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
                   ->find();
   $num = count($przepisyID_2);
@@ -87,6 +90,9 @@ function wypiszPrzepis($przepisyID)
     }
 
       $pDane = PrzepisQuery::create()->findPk($ID);
+
+    if($pDane->getStatus()==1)
+    {
       $zdj = $pDane->getZdjecieOgolne();
       if ($zdj !== null)
       {
@@ -96,6 +102,7 @@ function wypiszPrzepis($przepisyID)
       {
           echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
       }
+    }
   }
 }
 

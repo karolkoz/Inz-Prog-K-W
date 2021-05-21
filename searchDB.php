@@ -178,6 +178,7 @@ else
 
         $pID = PrzepisQuery::create()
           ->select(array('IdPrzepis'))
+          ->where('Przepis.Status = ?', 1)
           ->find();
 
         $ileID = count($pID); //ilosc wszystkich przepisow w bazie

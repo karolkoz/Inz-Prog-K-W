@@ -24,7 +24,8 @@ function ileStronKategoria()  //liczy ile stron bedzie po paginacji dla ustawion
     if($tab[0]=='Dowolne')
     {
       $kat = PrzepisQuery::create()
-             ->select(array('Przepis.IdPrzepis'));
+             ->select(array('Przepis.IdPrzepis'))
+             ->where('Przepis.Status = ?', 1);
 
              $x=0;
              foreach($kat as $k)
@@ -37,6 +38,7 @@ function ileStronKategoria()  //liczy ile stron bedzie po paginacji dla ustawion
            ->join('Przepis')
            ->join('Kategoria')
            ->where('Kategoria.Nazwa = ?', $tab[0])
+           ->where('Przepis.Status = ?', 1)
            ->select(array('Przepis.IdPrzepis'));
 
            $x=0;
@@ -56,6 +58,7 @@ function ileStronKategoria()  //liczy ile stron bedzie po paginacji dla ustawion
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
@@ -96,6 +99,7 @@ function ileStronKategoriaCzas()  //liczy ile stron bedzie po paginacji dla usta
     {
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
 
              $x=0;
@@ -110,6 +114,7 @@ function ileStronKategoriaCzas()  //liczy ile stron bedzie po paginacji dla usta
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
 
            $x=0;
@@ -130,6 +135,7 @@ function ileStronKategoriaCzas()  //liczy ile stron bedzie po paginacji dla usta
           ->select(array('Przepis.IdPrzepis'))
           ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
@@ -171,6 +177,7 @@ function ileStronKategoriaNazwa()  //liczy ile stron bedzie po paginacji dla ust
     {
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+             ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
 
              $x=0;
@@ -185,6 +192,7 @@ function ileStronKategoriaNazwa()  //liczy ile stron bedzie po paginacji dla ust
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Kategoria.Nazwa = ?', $tab[0])
+             ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
 
            $x=0;
@@ -205,6 +213,7 @@ function ileStronKategoriaNazwa()  //liczy ile stron bedzie po paginacji dla ust
           ->select(array('Przepis.IdPrzepis'))
           ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
@@ -253,6 +262,7 @@ function ileStronKategoriaCzasNazwa()  //liczy ile stron bedzie po paginacji dla
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
 
              $x=0;
@@ -267,6 +277,7 @@ function ileStronKategoriaCzasNazwa()  //liczy ile stron bedzie po paginacji dla
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->select(array('Przepis.IdPrzepis'));
 
@@ -289,6 +300,7 @@ function ileStronKategoriaCzasNazwa()  //liczy ile stron bedzie po paginacji dla
           ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
           ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 

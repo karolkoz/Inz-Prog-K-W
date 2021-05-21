@@ -25,6 +25,7 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
     {
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->orderBy('Przepis.StopienTrudnosci')
+             ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
 
              $x=0;
@@ -38,6 +39,7 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
+             ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
 
@@ -58,6 +60,7 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->orderBy('Przepis.StopienTrudnosci')
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
@@ -97,6 +100,7 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
     {
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
 
@@ -112,6 +116,7 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
 
@@ -133,6 +138,7 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
           ->select(array('Przepis.IdPrzepis'))
           ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->orderBy('Przepis.StopienTrudnosci')
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
@@ -175,6 +181,7 @@ function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po pagina
     {
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
+             ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
 
@@ -190,6 +197,7 @@ function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po pagina
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Kategoria.Nazwa = ?', $tab[0])
+             ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
 
@@ -211,6 +219,7 @@ function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po pagina
           ->select(array('Przepis.IdPrzepis'))
           ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->orderBy('Przepis.StopienTrudnosci')
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
@@ -259,6 +268,7 @@ function ileStronKategoriaCzasNazwa_sortPoziom()
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
 
@@ -274,6 +284,7 @@ function ileStronKategoriaCzasNazwa_sortPoziom()
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
+             ->where('Przepis.Status = ?', 1)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'));
@@ -297,6 +308,7 @@ function ileStronKategoriaCzasNazwa_sortPoziom()
           ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
           ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
           ->where('Kategoria.Nazwa IN ?', $tab)
+          ->where('Przepis.Status = ?', 1)
           ->orderBy('Przepis.StopienTrudnosci')
           ->groupBy(array('Przepis.IdPrzepis'))
           ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
