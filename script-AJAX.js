@@ -66,3 +66,45 @@ function addFavourite(id_przepis, login) {
       }
   });
 }
+
+function changeStatus(status, id_przepis) {
+  $("#"+status).attr("disabled", "disabled");
+  $.ajax({
+      url: "admin-recipeStatus.php",
+      type: "POST",
+      data: {
+          id: id_przepis,
+          status: status
+      },
+      cache: false,
+      success: function(dataResult) {
+          var dataResult = JSON.parse(dataResult);
+          if (dataResult.statusCode == 200) {
+              $("#"+status).removeAttr("disabled");
+              var button = document.getElementById("statusListButton");
+              button.innerHTML = "";
+              var img = document.createElement("img");
+              img.src="img/menu icon.png";
+              button.appendChild(img);
+              switch(status) {
+                case '0':
+                  button.appendChild(document.createTextNode("Status: Do poprawy"));
+                  button.classList.remove("content__recipe__button--green");
+                break;
+                case '1':
+                  button.appendChild(document.createTextNode("Status: Zatwierdzony"));
+                  button.classList.remove("content__recipe__button--green");
+                  button.classList.add("content__recipe__button--green");
+                break;
+                case '2':
+                  button.appendChild(document.createTextNode("Status: Oczekujący"));
+                  button.classList.remove("content__recipe__button--green");
+                break;
+              }
+
+          } else if (dataResult.statusCode == 201) {
+              alert("Error occured !");
+          }
+      }
+  });
+}

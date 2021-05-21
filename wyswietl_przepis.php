@@ -26,7 +26,7 @@
             $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
             $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
 
-            if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login'] || $_SESSION['level']==2) {
+            if(isset($_SESSION['login']) && $wlascicielPrzepisu == $_SESSION['login'] || isset($_SESSION['login']) && $_SESSION['level']==2) {
                   echo '<button class="content__recipe__button content__recipe__button--remove" type="submit" name="przepis" value="10"><img src="img/x icon.png" />Usuń przepis</button>';
             }
             ?>
@@ -47,18 +47,39 @@
           </form>
 
           <form class="content__recipe__element content__recipe__form">
-          <?php
-          require_once __DIR__.'/vendor/autoload.php';
-          require_once __DIR__.'/generated-conf/config.php';
+          <div class="content__recipe__status">
+            <?php
+            $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
+            $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
 
-          $przepis = PrzepisQuery::create()->findPk($_GET['przepisID']);
-          $wlascicielPrzepisu = $przepis->getUzytkownikLogin();
+            if(isset($_SESSION['login']) && $_SESSION['level']==2) {
+              if($przepis->getStatus() == 2) {
+                echo '<button id="statusListButton" class="content__recipe__button" type="button"><img src="img/menu icon.png" />Status: Oczekujący</button>';
+              }
+              if($przepis->getStatus() == 1) {
+                echo '<button id="statusListButton" class="content__recipe__button content__recipe__button--green" type="button"><img src="img/menu icon.png" />Status: Zatwierdzony</button>';
+              }
+              if($przepis->getStatus() == 0) {
+                echo '<button id="statusListButton" class="content__recipe__button" type="button"><img src="img/menu icon.png" />Status: Do poprawy</button>';
+              }
+            }
+            ?>
+            <script src="script-ListaStatusow.js"></script>
+            <div class="content__recipe__status__dropdown">
+              <div class="content__recipe__status__list" id="list">
+                <button id="1" onclick="changeStatus(this.id, <?php echo $przepis->getIdPrzepis(); ?>)" class="content__recipe__button content__recipe__button--green" type="button">
+                  <img src="img/edit icon.png" />Zatwierdź
+                </button>
+                <button id="2" onclick="changeStatus(this.id, <?php echo $przepis->getIdPrzepis(); ?>)" class="content__recipe__button" type="button">
+                  <img src="img/edit icon.png" />Oczekujący
+                </button>
+                <button id="0" onclick="changeStatus(this.id, <?php echo $przepis->getIdPrzepis(); ?>)" class="content__recipe__button" type="button">
+                  <img src="img/edit icon.png" />Do poprawy
+                </button>
+              </div>
+            </div>
 
-          if(isset($_SESSION['login']) && $_SESSION['level']==2) {
-            if($przepis->getStatus)
-                echo '<button class="content__recipe__button" type="button" name="status" value="10"><img src="img/edit icon.png" /></button>';
-          }
-          ?>
+          </div>
           </form>
         </div>
         <div class="content__recipe__row">
