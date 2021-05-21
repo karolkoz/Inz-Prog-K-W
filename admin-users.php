@@ -29,28 +29,56 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
               Usuń
             </th>
           </tr>
-          <tr>
-            <td>
-              <a href="przepisy_uzytkownika.php">111111567805436685434111111567805436685434</a>
-            </td>
-            <td>
-              ile przepisów
-            </td>
-            <td>
-              <a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="przepisy_uzytkownika.php">Nazwa Uzytkownika</a>
-            </td>
-            <td>
-              ile przepisów
-            </td>
-            <td>
-              <a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>
-            </td>
-          </tr>
+
+          <?php
+          require_once __DIR__.'/vendor/autoload.php';
+          require_once __DIR__.'/generated-conf/config.php';
+
+          $users = UzytkownikQuery::create()
+                    ->select(array('Login'))
+                    ->where('Uzytkownik.RodzajKonta = ?', 1)
+                    ->where('Uzytkownik.Login NOT IN ?', 'Pyszniutkie.pl');
+
+
+          foreach($users as $user)
+          {
+            echo '<tr>';
+              echo '<td>';
+                echo '<a href="przepisy_uzytkownika.php">'.$user.'</a>';
+              echo '</td>';
+
+              $przepisy = PrzepisQuery::create()
+                      ->select(array('Przepis.IdPrzepis'))
+                      ->where('Przepis.UzytkownikLogin = ?', $user);
+
+              $x=0;
+              foreach($przepisy as $p)
+              {
+                $x++;
+              }
+
+
+              echo '<td>';
+                echo $x;
+              echo '</td>';
+              echo '<td>';
+                echo '<a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>';
+              echo '</td>';
+            echo '</tr>';
+          }
+          // <tr>
+          //   <td>
+          //     <a href="przepisy_uzytkownika.php">Nazwa Uzytkownika</a>
+          //   </td>
+          //   <td>
+          //     ile przepisów
+          //   </td>
+          //   <td>
+          //     <a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>
+          //   </td>
+          // </tr>
+          ?>
+
         </table>
       </div>
     </section>
