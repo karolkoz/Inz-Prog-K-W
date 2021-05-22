@@ -62,7 +62,8 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
                 echo $x;
               echo '</td>';
               echo '<td>';
-                echo '<a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>';
+                echo '<a href="user-delete.php?login='.$user.'" class="content__form__removeButton"><img src="img/x icon.png"></a>';
+                //echo '<a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>';
               echo '</td>';
             echo '</tr>';
           }
