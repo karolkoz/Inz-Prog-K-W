@@ -77,6 +77,12 @@
                   <img src="img/edit icon.png" />Do poprawy
                 </button>
               </div>
+              <!-- <?php
+              require_once __DIR__.'/vendor/autoload.php';
+              require_once __DIR__.'/generated-conf/config.php';
+
+              $przepis->setStatus('id');
+              ?> -->
             </div>
 
           </div>
