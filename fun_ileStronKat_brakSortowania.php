@@ -48,7 +48,7 @@ function ileStronKategoria()  //liczy ile stron bedzie po paginacji dla ustawion
            }
     }
 
-  $ileStron = ceil($x / 5);
+  $ileStron = ceil($x / 6);
   return $ileStron;
  }
  else
@@ -68,7 +68,7 @@ function ileStronKategoria()  //liczy ile stron bedzie po paginacji dla ustawion
             $x++;
           }
 
-   $ileStron = ceil($x / 5);
+   $ileStron = ceil($x / 6);
    return $ileStron;
  }
 
@@ -124,7 +124,7 @@ function ileStronKategoriaCzas()  //liczy ile stron bedzie po paginacji dla usta
            }
     }
 
-  $ileStron = ceil($x / 5);
+  $ileStron = ceil($x / 6);
   return $ileStron;
  }
  else
@@ -145,7 +145,7 @@ function ileStronKategoriaCzas()  //liczy ile stron bedzie po paginacji dla usta
             $x++;
           }
 
-   $ileStron = ceil($x / 5);
+   $ileStron = ceil($x / 6);
    return $ileStron;
  }
 
@@ -202,7 +202,7 @@ function ileStronKategoriaNazwa()  //liczy ile stron bedzie po paginacji dla ust
            }
     }
 
-  $ileStron = ceil($x / 5);
+  $ileStron = ceil($x / 6);
   return $ileStron;
  }
  else
@@ -223,7 +223,7 @@ function ileStronKategoriaNazwa()  //liczy ile stron bedzie po paginacji dla ust
             $x++;
           }
 
-   $ileStron = ceil($x / 5);
+   $ileStron = ceil($x / 6);
    return $ileStron;
  }
 
@@ -288,7 +288,7 @@ function ileStronKategoriaCzasNazwa()  //liczy ile stron bedzie po paginacji dla
            }
     }
 
-  $ileStron = ceil($x / 5);
+  $ileStron = ceil($x / 6);
   return $ileStron;
  }
  else
@@ -310,7 +310,7 @@ function ileStronKategoriaCzasNazwa()  //liczy ile stron bedzie po paginacji dla
             $x++;
           }
 
-   $ileStron = ceil($x / 5);
+   $ileStron = ceil($x / 6);
    return $ileStron;
  }
 

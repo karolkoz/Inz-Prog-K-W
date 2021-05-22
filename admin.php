@@ -49,7 +49,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
           ->find();
 
         $ileID = count($pID); //ilosc wszystkich przepisow w bazie
-        $rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
+        $rowsPerPage = 6; //ilosc przepisow wyswietlanych na jednej stronie
         $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
       echo '</div>
@@ -70,7 +70,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
         $przepisyID = PrzepisQuery::create()
                 ->select(array('IdPrzepis'))
                 ->where('Przepis.Status = ?', 2)
-                ->paginate($page = $pageNumber, $rowsPerPage = 5);
+                ->paginate($page = $pageNumber, $rowsPerPage = 6);
     if(count($przepisyID)!==0)
     {
         foreach($przepisyID as $ID)

@@ -31,7 +31,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
                 ->find();
 
                 $ileID = count($pID); //ilosc wszystkich przepisow uzytkownika w bazie
-                $rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
+                $rowsPerPage = 6; //ilosc przepisow wyswietlanych na jednej stronie
                 $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
               echo '</div>
@@ -52,7 +52,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
                 $przepisyID = PrzepisQuery::create()
                         ->select(array('IdPrzepis'))
                         ->where('Przepis.UzytkownikLogin = ?', $userLogin)
-                        ->paginate($page = $pageNumber, $rowsPerPage = 5);
+                        ->paginate($page = $pageNumber, $rowsPerPage = 6);
             if(count($przepisyID)!==0)
             {
                 foreach($przepisyID as $ID)
@@ -81,81 +81,6 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
               echo '<h2>Ten uzytkownik nie posiada własnych przepisów!<i></i></h2></br></br></br></br></br>';
             }
 
-
-        //<?php
-        // require_once __DIR__.'/vendor/autoload.php';
-        // require_once __DIR__.'/generated-conf/config.php';
-        //
-        // //$userLogin = $_GET['loginUser'];
-        //
-        //
-        // $pID = UlubioneQuery::create()
-        //   ->join('Uzytkownik')
-        //   ->join('Przepis')
-        //   ->where('Ulubione.UzytkownikLogin = ?', $userLogin)
-        //   ->select(array('Przepis.IdPrzepis'));
-        //   //->find();
-        //
-        // $ilosc=0;
-        // foreach($pID as $pid)
-        // {
-        //   $ilosc++;
-        // }
-        // //$ileID = count($pID); //ilosc wszystkich przepisow w bazie
-        // $ileID = $ilosc; //ilosc wszystkich przepisow w bazie
-        // $rowsPerPage = 5; //ilosc przepisow wyswietlanych na jednej stronie
-        // $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
-        //
-        // echo '</div>
-        // <div class="content__search-counter" id="search-counter">';
-        // $num=1;
-        // for($num; $num<=$totalPages; $num++)
-        // {
-        //   echo '<div class="content__search-counter__element"><a href="user.php?currentPage='.$num.'">'.$num.'</a></div>';
-        // }
-        // echo '</div>
-        // <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';
-        //
-        // if(isset($_GET['currentPage'])) {
-        //   $pageNumber = $_GET['currentPage'];
-        // } else {
-        // $pageNumber = 1;
-        // }
-        // $ulubionePrzepisyID = UlubioneQuery::create()
-        //         ->join('Uzytkownik')
-        //         ->join('Przepis')
-        //         ->where('Ulubione.UzytkownikLogin = ?', $userLogin)
-        //         ->select(array('Przepis.IdPrzepis'))
-        //         ->paginate($page = $pageNumber, $rowsPerPage = 5);
-        // if(count($ulubionePrzepisyID)!==0)
-        // {
-        // foreach($ulubionePrzepisyID as $ID)
-        // {
-        //   $lubieTo = Lubie_toQuery::create()
-        //               ->filterByPrzepisIdPrzepis($ID)
-        //               ->find();
-        //   $ileLike=0;
-        //   foreach($lubieTo as $l)
-        //   {
-        //     $ileLike++;
-        //   }
-        //
-        //   $pDane = PrzepisQuery::create()->findPk($ID);
-        //   $zdj = $pDane->getZdjecieOgolne();
-        //   if ($zdj !== null)
-        //   {
-        //       echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'", "'.base64_encode(stream_get_contents($zdj)).'");</script>';
-        //   }
-        //   else
-        //   {
-        //       echo '<script>addContentElement("'.$ID.'", "'.$pDane->getNazwa().'", "'.$ileLike.'", "'.$pDane->getCzasPrzygotowania().'", "'.$pDane->getDlaIluOsob().'", "'.$pDane->getStopienTrudnosci().'");</script>';
-        //   }
-        // }
-        // }
-        // else
-        // {
-        // echo '<h2>Nie posiadasz jeszcze ulubionych przepisów!<i></i></h2></br></br></br></br></br>';
-        // }
         ?>
 
       </div>

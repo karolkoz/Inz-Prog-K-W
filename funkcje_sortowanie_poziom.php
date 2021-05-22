@@ -28,7 +28,7 @@ function przepisy_ID_Kategoria_sortPoziom($y)
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -39,7 +39,7 @@ function przepisy_ID_Kategoria_sortPoziom($y)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -54,7 +54,7 @@ function przepisy_ID_Kategoria_sortPoziom($y)
            ->orderBy('Przepis.StopienTrudnosci')
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+           ->paginate($page = $y, $rowsPerPage = 6);
 
     return $kat;
   }
@@ -93,7 +93,7 @@ function przepisy_ID_KategoriaCzas_sortPoziom($y)
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -105,7 +105,7 @@ function przepisy_ID_KategoriaCzas_sortPoziom($y)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -121,7 +121,7 @@ function przepisy_ID_KategoriaCzas_sortPoziom($y)
            ->orderBy('Przepis.StopienTrudnosci')
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+           ->paginate($page = $y, $rowsPerPage = 6);
 
     return $kat;
   }
@@ -155,7 +155,7 @@ function przepisy_ID_KategoriaNazwa_sortPoziom($y)
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -167,7 +167,7 @@ function przepisy_ID_KategoriaNazwa_sortPoziom($y)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -183,7 +183,7 @@ function przepisy_ID_KategoriaNazwa_sortPoziom($y)
            ->orderBy('Przepis.StopienTrudnosci')
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+           ->paginate($page = $y, $rowsPerPage = 6);
 
     return $kat;
   }
@@ -219,7 +219,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortPoziom($y)
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -232,7 +232,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortPoziom($y)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.StopienTrudnosci')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 5);
+             ->paginate($page = $y, $rowsPerPage = 6);
 
       return $kat;
     }
@@ -249,7 +249,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortPoziom($y)
            ->orderBy('Przepis.StopienTrudnosci')
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 5);
+           ->paginate($page = $y, $rowsPerPage = 6);
 
     return $kat;
   }

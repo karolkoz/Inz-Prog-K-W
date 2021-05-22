@@ -29,7 +29,7 @@ function ileStronCzas()  //funkcja ktora sprawdza ile stron bedzie 'wykorzystany
                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
                   ->find();
   $num = count($przepisyID_0);
-  $ileStron = ceil($num / 5);
+  $ileStron = ceil($num / 6);
 
   return $ileStron;
 }
@@ -43,7 +43,7 @@ function ileStronNazwa()  //funkcja analogiczna dla ileStronCzas
                   ->where('Przepis.Status = ?', 1)
                   ->find();
   $num = count($przepisyID_1);
-  $ileStron = ceil($num / 5);
+  $ileStron = ceil($num / 6);
 
   return $ileStron;
 }
@@ -58,7 +58,7 @@ function ileStronNazwaCzas()  //liczy ile stron przy kombinacji nazwa+czas
                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
                   ->find();
   $num = count($przepisyID_2);
-  $ileStron = ceil($num / 5);
+  $ileStron = ceil($num / 6);
 
   return $ileStron;
 }
