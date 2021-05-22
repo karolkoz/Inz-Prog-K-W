@@ -44,7 +44,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
           {
             echo '<tr>';
               echo '<td>';
-                echo '<a href="przepisy_uzytkownika.php">'.$user.'</a>';
+                echo '<a href="przepisy_uzytkownika.php?userLogin='.$user.'">'.$user.'</a>';
               echo '</td>';
 
               $przepisy = PrzepisQuery::create()

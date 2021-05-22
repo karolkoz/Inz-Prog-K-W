@@ -16,8 +16,25 @@
       </script>
       <button class="nav__list__button nav__list__button--menu" onClick="drop()"></button>
       <div class="nav__list" id="navmenu">
-        <a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>
-        <a href="user-favourites.php" class="nav__list__button nav__list__button--fav"></a>
+        <?php
+        //include 'session.php';
+        require_once __DIR__.'/vendor/autoload.php';
+        require_once __DIR__.'/generated-conf/config.php';
+
+        if(isset($_SESSION['login']))
+        {
+          if($_SESSION['level'] == 1)
+          {
+            echo '<a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>';
+            echo '<a href="user-favourites.php" class="nav__list__button nav__list__button--fav"></a>';
+          }
+        }
+        else
+        {
+          echo '<a href="dodaj_przepis.php" class="nav__list__button nav__list__button--plus"></a>';
+          echo '<a href="user-favourites.php" class="nav__list__button nav__list__button--fav"></a>';
+        }
+        ?>
         <a href="login.php" class="nav__list__button nav__list__button--user"></a>
       </div>
     </div>

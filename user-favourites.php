@@ -47,7 +47,7 @@ if(!isset($_SESSION['login'])) {
         $num=1;
         for($num; $num<=$totalPages; $num++)
         {
-          echo '<div class="content__search-counter__element"><a href="user.php?currentPage='.$num.'">'.$num.'</a></div>';
+          echo '<div class="content__search-counter__element"><a href="user-favourites.php?currentPage='.$num.'">'.$num.'</a></div>';
         }
         echo '</div>
         <script type="text/javascript" src="script-WyszukiwaniePrzepisu.js"></script>';

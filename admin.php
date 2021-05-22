@@ -45,7 +45,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
 
         $pID = PrzepisQuery::create()
           ->select(array('Przepis.IdPrzepis'))
-          ->where('Przepis.UzytkownikLogin = ?', $userLogin)
+          ->where('Przepis.Status = ?', 2)
           ->find();
 
         $ileID = count($pID); //ilosc wszystkich przepisow w bazie

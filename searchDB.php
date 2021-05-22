@@ -206,7 +206,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
              {
                  if ($pageNumber==$y)
                  {
-                     echo '</br> brak sortowania + ustawiony czas + ustawiona nazwa + ustawiona kategoria</br>';
+                     //echo '</br> brak sortowania + ustawiony czas + ustawiona nazwa + ustawiona kategoria</br>';
 
                      wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa($y));
                  }
@@ -222,7 +222,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
              {
                  if ($pageNumber==$y)
                  {
-                     echo '</br> brak sortowania + brak czasu + ustawiona nazwa + ustawiona kategoria</br>';
+                     //echo '</br> brak sortowania + brak czasu + ustawiona nazwa + ustawiona kategoria</br>';
 
                      wypiszPrzepis(przepisy_ID_KategoriaNazwa($y));
                  }
@@ -240,7 +240,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
              {
                  if ($pageNumber==$y)
                  {
-                     echo '</br> brak sortowania + czas ustawiony + brak nazwy + kategoria ustawiona</br>';
+                     //echo '</br> brak sortowania + czas ustawiony + brak nazwy + kategoria ustawiona</br>';
 
                      wypiszPrzepis(przepisy_ID_KategoriaCzas($y));
                  }
@@ -255,7 +255,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
              {
                  if ($pageNumber==$y)
                  {
-                     echo '</br> brak sortowania + czas nieustawiony + brak nazwy + kategoria ustawiona</br>';
+                     //echo '</br> brak sortowania + czas nieustawiony + brak nazwy + kategoria ustawiona</br>';
 
                      wypiszPrzepis(przepisy_ID_Kategoria($y));
                  }
@@ -276,8 +276,8 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
             {
                 if ($pageNumber==$y)
                 {
-                    echo '</br>Brak ustawionego sortowania';
-                    echo '</br> brak sortowania + ustawiony czas + ustawiona nazwa</br>';
+                    //echo '</br>Brak ustawionego sortowania';
+                    //echo '</br> brak sortowania + ustawiony czas + ustawiona nazwa</br>';
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -298,8 +298,8 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
             {
                 if ($pageNumber==$y)
                 {
-                    echo '</br>Brak ustawionego sortowania';
-                    echo '</br> brak sortowania + brak czasu + ustawiona nazwa </br>';
+                //    echo '</br>Brak ustawionego sortowania';
+                  //  echo '</br> brak sortowania + brak czasu + ustawiona nazwa </br>';
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -321,8 +321,8 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
             {
                 if ($pageNumber==$y)
                 {
-                    echo '</br> dziala1 </br>';
-                    echo '</br> brak sortowania + czas ustawiony + brak nazwy </br>';
+                    //echo '</br> dziala1 </br>';
+                    //echo '</br> brak sortowania + czas ustawiony + brak nazwy </br>';
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
                                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
@@ -342,8 +342,8 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
             {
                 if ($pageNumber==$y)
                 {
-                    echo '</br> dziala2 </br>';
-                    echo '</br> brak sortowania + czas nieustawiony + brak nazwy </br>';
+                    //echo '</br> dziala2 </br>';
+                    // brak sortowania + czas nieustawiony + brak nazwy </br>';
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
                                   ->paginate($page = $y, $rowsPerPage = 5);
@@ -374,7 +374,7 @@ else
                  {
                      if ($pageNumber==$y)
                      {
-                         echo '</br> sorowanie po czasie + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                         //echo '</br> sorowanie po czasie + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                          wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa($y));
                      }
@@ -389,7 +389,7 @@ else
                  {
                      if ($pageNumber==$y)
                      {
-                         echo '</br> sorowanie po czasie + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                         //echo '</br> sorowanie po czasie + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                          wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortCzas($y));
                      }
@@ -408,7 +408,7 @@ else
                  {
                      if ($pageNumber==$y)
                      {
-                         echo '</br> sorowanie po czasie + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                         //echo '</br> sorowanie po czasie + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                          wypiszPrzepis(przepisy_ID_KategoriaCzas($y));
                      }
@@ -423,7 +423,7 @@ else
                  {
                      if ($pageNumber==$y)
                      {
-                         echo '</br> sorowanie po czasie + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                         //echo '</br> sorowanie po czasie + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                          wypiszPrzepis(przepisy_ID_Kategoria_sortCzas($y));
                      }
@@ -444,7 +444,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sorowanie po czasie + czas ustawiony + nazwa ustawiona + kat nieustawiona</br>';
+                        //echo '</br> sorowanie po czasie + czas ustawiony + nazwa ustawiona + kat nieustawiona</br>';
                         $przepisyID1 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -464,7 +464,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sorowanie po czasie + czas nieustawiony + nazwa ustawiona + kat nieustawiona</br>';
+                        //echo '</br> sorowanie po czasie + czas nieustawiony + nazwa ustawiona + kat nieustawiona</br>';
                         $przepisyID1 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -487,7 +487,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sorowanie po czasie + czas ustawiony + nazwa nieustawiona + kat nieustawiona</br>';
+                        //echo '</br> sorowanie po czasie + czas ustawiony + nazwa nieustawiona + kat nieustawiona</br>';
                         $przepisyID1 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
@@ -506,7 +506,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sorowanie po czasie + czas nieustawiony + nazwa nieustawiona + kat nieustawiona</br>';
+                        //echo '</br> sorowanie po czasie + czas nieustawiony + nazwa nieustawiona + kat nieustawiona</br>';
                         $przepisyID1 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->orderByCzasPrzygotowania()
@@ -539,7 +539,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                        //echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa_sortNazwa($y));
                     }
@@ -554,7 +554,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                        //echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortNazwa($y));
                     }
@@ -572,7 +572,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                        //echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzas_sortCzas($y));
                     }
@@ -587,7 +587,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                        //echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_Kategoria_sortNazwa($y));
                     }
@@ -608,7 +608,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa ustawiona + kategoria nie ustawiona</br>';
+                        // sortowanie alfabetyczne + czas ustawiony + nazwa ustawiona + kategoria nie ustawiona</br>';
                         $przepisyID2 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -629,7 +629,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa ustawiona  + kategoria nie ustawiona</br>';
+                        // sortowanie alfabetyczne + czas nieustawiony + nazwa ustawiona  + kategoria nie ustawiona</br>';
                         $przepisyID2 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -652,7 +652,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas ustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
+                        // sortowanie alfabetyczne + czas ustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
                         $przepisyID2 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
@@ -672,7 +672,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie alfabetyczne + czas nieustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
+                        // sortowanie alfabetyczne + czas nieustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
                         $przepisyID2 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->orderByNazwa()
@@ -707,7 +707,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas ustawiony + nazwa ustawiona + kategoria ustwaiona</br>';
+                        // sortowanie po poziomie + czas ustawiony + nazwa ustawiona + kategoria ustwaiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa_sortPoziom($y));
                     }
@@ -722,7 +722,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas nieustawiony + nazwa ustawiona + kategoria ustwaiona</br>';
+                        // sortowanie po poziomie + czas nieustawiony + nazwa ustawiona + kategoria ustwaiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortPoziom($y));
                     }
@@ -740,7 +740,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas ustawiony + nazwa nieustawiona + kategoria ustwaiona</br>';
+                        // sortowanie po poziomie + czas ustawiony + nazwa nieustawiona + kategoria ustwaiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzas_sortPoziom($y));
                     }
@@ -755,7 +755,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas nieustawiony + nazwa nieustawiona + kategoria ustwaiona</br>';
+                        // sortowanie po poziomie + czas nieustawiony + nazwa nieustawiona + kategoria ustwaiona</br>';
 
                         wypiszPrzepis(przepisy_ID_Kategoria_sortPoziom($y));
                     }
@@ -776,7 +776,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas ustawiony + nazwa ustawiona + kategoria nieustwaiona</br>';
+                        // sortowanie po poziomie + czas ustawiony + nazwa ustawiona + kategoria nieustwaiona</br>';
                         $przepisyID3 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -797,7 +797,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas nieustawiony + nazwa ustawiona + kategoria nieustwaiona</br>';
+                        // sortowanie po poziomie + czas nieustawiony + nazwa ustawiona + kategoria nieustwaiona</br>';
                         $przepisyID3 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -820,7 +820,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas ustawiony + nazwa nieustawiona + kategoria nieustwaiona</br>';
+                        // sortowanie po poziomie + czas ustawiony + nazwa nieustawiona + kategoria nieustwaiona</br>';
                         $przepisyID3 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
@@ -840,7 +840,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po poziomie + czas nieustawiony + nazwa nieustawiona + kategoria nieustwaiona</br>';
+                        // sortowanie po poziomie + czas nieustawiony + nazwa nieustawiona + kategoria nieustwaiona</br>';
                         $przepisyID3 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->orderByStopienTrudnosci()
@@ -875,7 +875,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                        // sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa_sortOceny($y));
                     }
@@ -890,7 +890,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                        // sortowanie po ocenach + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaNazwa_sortOceny($y));
                     }
@@ -908,7 +908,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                        // sortowanie po ocenach + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzas_sortOceny($y));
                     }
@@ -923,7 +923,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                        // sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_Kategoria_sortOceny($y));
 
@@ -945,7 +945,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria nie ustawiona</br>';
+                        // sortowanie po ocenach + czas ustawiony + nazwa ustawiona + kategoria nie ustawiona</br>';
 
                         $przepisyID2 = PrzepisQuery::create()
                                       ->leftJoinLubie_to('Lubie_to')
@@ -980,7 +980,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa ustawiona  + kategoria nie ustawiona</br>';
+                        // sortowanie po ocenach + czas nieustawiony + nazwa ustawiona  + kategoria nie ustawiona</br>';
 
                         $przepisyID2 = PrzepisQuery::create()
                                       ->leftJoinLubie_to('Lubie_to')
@@ -1017,7 +1017,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas ustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
+                        // sortowanie po ocenach + czas ustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
 
                         $przepisyID2 = PrzepisQuery::create()
                                       ->leftJoinLubie_to('Lubie_to')
@@ -1051,7 +1051,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
+                        // sortowanie po ocenach + czas nieustawiony + nazwa nieustawiona  + kategoria nie ustawiona</br>';
 
                         $przepisyID2 = PrzepisQuery::create()
                                       ->leftJoinLubie_to('Lubie_to')
@@ -1102,7 +1102,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                        // sortowanie po "Dowolne" + czas ustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzasNazwa($y));
                     }
@@ -1118,7 +1118,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
+                        // sortowanie po "Dowolne" + czas nieustawiony + nazwa ustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaNazwa($y));
                     }
@@ -1137,7 +1137,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                        // sortowanie po "Dowolne" + czas ustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_KategoriaCzas($y));
                     }
@@ -1153,7 +1153,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
+                        // sortowanie po "Dowolne" + czas nieustawiony + nazwa nieustawiona + kategoria ustawiona</br>';
 
                         wypiszPrzepis(przepisy_ID_Kategoria($y));
                     }
@@ -1174,7 +1174,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas ustawiony + nazwa ustawiona + kategoria nieustawiona</br>';
+                        // sortowanie po "Dowolne" + czas ustawiony + nazwa ustawiona + kategoria nieustawiona</br>';
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -1194,7 +1194,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas nieustawiony + nazwa ustawiona + kategoria nieustawiona</br>';
+                        // sortowanie po "Dowolne" + czas nieustawiony + nazwa ustawiona + kategoria nieustawiona</br>';
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -1216,7 +1216,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas ustawiony + nazwa nieustawiona + kategoria nieustawiona</br>';
+                        // sortowanie po "Dowolne" + czas ustawiony + nazwa nieustawiona + kategoria nieustawiona</br>';
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
@@ -1235,7 +1235,7 @@ else
                 {
                     if ($pageNumber==$y)
                     {
-                        echo '</br> sortowanie po "Dowolne" + czas nieustawiony + nazwa nieustawiona + kategoria nieustawiona</br>';
+                        // sortowanie po "Dowolne" + czas nieustawiony + nazwa nieustawiona + kategoria nieustawiona</br>';
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->paginate($page = $y, $rowsPerPage = 5);
