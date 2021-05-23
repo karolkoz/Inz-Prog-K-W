@@ -1,27 +1,26 @@
 <?php
  include 'session.php';
  if (isset($_COOKIE['sortowanie'])) {
- setcookie("sortowanie", null);
+     setcookie("sortowanie", null);
  }
 
  if (isset($_COOKIE['czas'])) {
-  setcookie("czas", null);
+     setcookie("czas", null);
  }
 
  if (isset($_COOKIE['przepis'])) {
-  setcookie("przepis", null);
+     setcookie("przepis", null);
  }
 
 
 //dziala ok - po powrocie na strone index sa zerowane wszelkie ciasteczka dla kategorii
  if (isset($_COOKIE['kategoria'])) {
-   $i=0;
-   foreach ($_COOKIE['kategoria'] as $name_categories)
-   {
-     setcookie("kategoria[$i]", null);
-     //echo 'tu jestem';
-     $i++;
-   }
+     $i=0;
+     foreach ($_COOKIE['kategoria'] as $name_categories) {
+         setcookie("kategoria[$i]", null);
+         //echo 'tu jestem';
+         $i++;
+     }
  }
 
 ?>
@@ -55,8 +54,8 @@
              require_once __DIR__.'/generated-conf/config.php';
 
              $kategorie = KategoriaQuery::create()->find();
-               foreach($kategorie as $kat) {
-                 echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
+               foreach ($kategorie as $kat) {
+                   echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
                }
 
              ?>
@@ -92,14 +91,35 @@
 
 
    <section class="content">
-     <div class="content__elements" id="search-results">
-
+     <h1>Witamy na <i>Pyszniutkie.pl</i></h1>
+     <div class="content__main_element">
+       <p class="content__main__element__text">
+         Nasza strona gromadzi ludzi, którzy chcą się dzielić swoimi kulinarnymi pomysłami.
+         Serdecznie zapraszamy do założenia konta użytkownika, co umożliwi wam:
+       </p>
      </div>
-
-<?php
-echo '<h2> Witaj na stronie Pyszniutkie.pl !!! <i></i></h2></br>';
-echo '<h2> Tysiące pomysłów na dania, każdy znajdzie coś dla siebie! <i></i></h2></br>';
-?>
+     <div class="content__main_element">
+       <ul class="content__main__element__list">
+         <li>
+           Dodawanie własnych przepisów
+         </li>
+         <li>
+           Tworzenie listy swoich ulubionych przepisów
+         </li>
+         <li>
+           Polubienie przepisów innych użytkowników
+         </li>
+       </ul>
+     </div>
+     <div class="content__main_element">
+       <p class="content__main__element__text">
+          Na naszej stronie, każdy przepis przed opublikowaniem jest sprawdzany przez moderatora, dzięki
+          czemu wszystkie opublikowane przepisy spełniają zasady naszego regulaminu.
+       </p>
+     </div>
+     <div class="content__main_element">
+       <span class="content__main__element__closing">Smacznego! Życzy zespół Pyszniutkie.pl</span>
+     </div>
 
 
    </section>

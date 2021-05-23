@@ -33,7 +33,7 @@ include 'session.php';
        require_once __DIR__.'/generated-conf/config.php';
 
           if(!isset($_POST['currentPassword']) || !isset($_POST['newPassword']) || !isset($_POST['confirmPassword'])) {
-            echo 'Nie wprowadzono danych!';
+
           }
           else if(isset($_POST['currentPassword']) && isset($_POST['newPassword']) && isset($_POST['confirmPassword']))
           {
@@ -46,17 +46,20 @@ include 'session.php';
 
             if(password_verify($sendedCurrentPassword, $currentPasswd))
             {
-              echo ' obecne haslo podane prawidlowo!';
+              echo 'obecne haslo podane prawidlowo!';
               $sendedNewPasswd = $_POST['newPassword'];
               $sendedConfirmPasswd = $_POST['confirmPassword'];
 
               if($sendedNewPasswd == $sendedConfirmPasswd)
               {
-                //echo ' nowe hasla podane prawidlowo!';
                 $passwd_hash = password_hash($sendedNewPasswd, PASSWORD_BCRYPT);
                 $user->setHaslo($passwd_hash);
                 $user->save();
-                header("Location: user.php");
+                echo "<script>
+                alert('Hasło zmienione');
+                window.location = 'user.php';
+                 </script>";
+                //header("Location: user.php");
               }
 
             }

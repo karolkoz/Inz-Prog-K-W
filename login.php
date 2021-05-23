@@ -37,7 +37,7 @@ if(isset($_SESSION['login'])) {
      <form class="content__form content__form--login" id="login_form" method="post" action="login.php">
        <h1>Formularz logowania</h1>
        <div class="content__form__input">
-         <input type="text" id="login" name="login" placeholder="login" required />
+         <input type="text" id="login" name="login" onchange="login_validation('login')" placeholder="login" required />
        </div>
        <div class="content__form__input">
          <input type="password" id="password" name="password" placeholder="haslo" onchange="password_validation('password')" required />

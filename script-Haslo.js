@@ -20,15 +20,19 @@ function password_validation(id) {
 
 function change_password_validation() {
   if(!password_validation('currentPassword')) {
+    alert('Obecne hasło zawiera niepoprawne znaki');
     return false;
   }
   if(!password_validation('newPassword')) {
+    alert('Nowe hasło zawiera niepoprawne znaki');
     return false;
   }
   if(!password_validation('confirmPassword')) {
+    alert('Potwierdzenie hasła zawiera niepoprawne znaki');
     return false;
   }
   if(!confirmPasswd()) {
+    alert('Potwierdź hasło');
     return false;
   }
   return true;

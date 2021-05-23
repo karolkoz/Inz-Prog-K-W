@@ -54,11 +54,11 @@ if($_SESSION['level'] == 2) {
         </div>
         <div class="content__form__input">
           <img src="img/people icon.png" />
-          <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" required />
+          <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" min="1" required />
         </div>
         <div class="content__form__input">
           <img src="img/clock icon.png" />
-          <input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" required />
+          <input type="number" id="czas_przygotowania" name="czas_przygotowania" min="1" placeholder="Czas przygotowania w minutach" required />
         </div>
         <div class="content__form__input">
           <textarea name="opis" id="opis" placeholder="Opis przepisu" required></textarea>

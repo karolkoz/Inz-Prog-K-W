@@ -238,6 +238,7 @@ nav:hover .nav__username {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
+  //height: 100%;
   >h1 {
     font-size: 3em;
   }
@@ -292,6 +293,35 @@ nav:hover .nav__username {
   padding: 10px;
   margin: 15px;
   width: 800px;
+}
+.content__main_element {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  //padding: 0 20px 0 20px;
+  width: 90%;
+}
+.content__main__element__text {
+  font-size: 1.5em;
+  white-space: wrap;
+}
+.content__main__element__list {
+  font-size: 1.5em;
+  list-style: none;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  li::before {
+    content: "•";
+    width: 2em;
+    font-size: 1.8em;
+    text-align: center;
+    color: $search_color;
+  }
+}
+.content__main__element__closing {
+  align-self: flex-end;
 }
 
 .content__element__left {
@@ -541,13 +571,13 @@ nav:hover .nav__username {
 
 .content__recipe__image {
   display: flex;
-  width: 80%;
+  width: 90%;
 }
 
 .content__recipe__buttons {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 90%;
 
   button, a {
     width: 50%;
@@ -674,7 +704,7 @@ nav:hover .nav__username {
     margin: 0;
   }
 }
-
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++PRZEPIS NA WIĘKSZYCH EKRANACH++++++++++++++++++++++++++++++++++
 @media only screen and (min-width: 1200px) {
   .content__recipe__author {
     align-self: center;
@@ -691,29 +721,32 @@ nav:hover .nav__username {
     align-items: flex-start;
   }
   .content__recipe__element__desc {
-    font-size: 1.5em;
+    font-size: 1.3em;
     padding: 10px;
   }
+  .content__recipe__h2 {
+    font-size: 2em;
+  }
   .content__recipe__stats__element {
-    font-size: 2vw;
+    font-size: 1.3em;
     img {
-      width: 3vw;
-      height: 3vw;
+      width: 2.5vw;
+      height: 2.5vw;
     }
   }
   .content__recipe__image {
     max-height: 500px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
   }
   .content__recipe__buttons {
     width: 100%;
-    max-width: 800px;
-    button {
-      font-size: 2em;
+    max-width: 700px;
+    button, a {
+      font-size: 1.5em;
       img {
-        max-width: 75px;
-        max-height: 75px;
+        max-width: 55px;
+        max-height: 55px;
       }
     }
   }
@@ -727,7 +760,7 @@ nav:hover .nav__username {
   }
   .content__recipe__stage {
     h2 {
-      font-size: 2em;
+      font-size: 1.5em;
     }
   }
   .content__recipe__stage__data {
