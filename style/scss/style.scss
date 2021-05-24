@@ -212,24 +212,48 @@ nav:hover .nav__username {
       background-color: $button_color_light;
     }
   }
-
+}
+.search__form__categories {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+  border: solid 2px $search_color_light;
+  border-radius: 20px;
+  margin: 10px 0 10px 0;
+  > .content__form__button {
+    width: 100%;
+  }
+}
+.search__form__select {
+  > select {
+    width: 100%;
+  }
+}
+//++++++++++++++++++++++++++++++++++++++++++++++++SEARCH SECTION NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++
+@media only screen and (min-width: 1200px) {
+  .search__form {
+    width: auto;
+  }
+  .search__form .search__form__searchbar input[type=text] {
+    font-size: 1.3em;
+    width: 100%;
+  }
+  .search__form .search__form__searchbar input[type=submit] {
+    width: 100px;
+  }
   .search__form__categories {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    padding: 10px;
-    border: solid 2px $search_color_light;
-    border-radius: 20px;
-    margin: 10px 0 10px 0;
-    > .content__form__button {
-      width: 100%;
-    }
-    > .search__form__select {
-      > select {
-        width: 100%;
-      }
+    width: 500px;
+  }
+  .search__form .search__form__select {
+    height: auto;
+    min-height: 50px;
+    select {
+      width: 500px;
+      font-size: 1.5em;
     }
   }
+
 }
 ////////////////////////////////////////////////////CONTENT///////////////////////////////////////////////////////
 
@@ -458,6 +482,28 @@ nav:hover .nav__username {
   a {
     text-decoration: none;
     color: black;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .content__element {
+    width: auto;
+  }
+  .content__element__right {
+    width: 300px;
+  }
+  .content__element__right__title {
+    font-size: 1.6em;
+  }
+  .content__element__right__data__part {
+    font-size: 1.3em;
+    img {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  .content__search-counter .content__search-counter__element {
+    font-size: 1.8em;
   }
 }
 
@@ -1091,6 +1137,26 @@ nav:hover .nav__username {
   select:focus {
     outline: none;
   }
+}
+//++++++++++++++++++++++++++++++++++++++++++++CONTENT FORM NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++++++++++++++++
+@media only screen and (min-width: 1200px) {
+  .content__form__button {
+    > button, a {
+      font-size: 20px;
+      padding: 15px;
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+  .content__form__removeButton {
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
 }
 
 /////////////////////////////////////////////FORMULARZ LOGOWANIA / REJESTRACJI ////////////////////////////////////////

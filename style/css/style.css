@@ -154,19 +154,41 @@ nav:hover .nav__username {
       border: 0; }
     .search__form .search__form__searchbar input[type=submit]:hover {
       background-color: #03ab79; }
-  .search__form .search__form__categories {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    padding: 10px;
-    border: solid 2px #84DEB8;
-    border-radius: 20px;
-    margin: 10px 0 10px 0; }
-    .search__form .search__form__categories > .content__form__button {
-      width: 100%; }
-    .search__form .search__form__categories > .search__form__select > select {
-      width: 100%; }
 
+.search__form__categories {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 10px;
+  border: solid 2px #84DEB8;
+  border-radius: 20px;
+  margin: 10px 0 10px 0; }
+  .search__form__categories > .content__form__button {
+    width: 100%; }
+
+.search__form__select > select {
+  width: 100%; }
+
+@media only screen and (min-width: 1200px) {
+  .search__form {
+    width: auto; }
+
+  .search__form .search__form__searchbar input[type=text] {
+    font-size: 1.3em;
+    width: 100%; }
+
+  .search__form .search__form__searchbar input[type=submit] {
+    width: 100px; }
+
+  .search__form__categories {
+    width: 500px; }
+
+  .search__form .search__form__select {
+    height: auto;
+    min-height: 50px; }
+    .search__form .search__form__select select {
+      width: 500px;
+      font-size: 1.5em; } }
 .content {
   display: flex;
   flex-direction: column;
@@ -356,6 +378,24 @@ nav:hover .nav__username {
     text-decoration: none;
     color: black; }
 
+@media only screen and (min-width: 1200px) {
+  .content__element {
+    width: auto; }
+
+  .content__element__right {
+    width: 300px; }
+
+  .content__element__right__title {
+    font-size: 1.6em; }
+
+  .content__element__right__data__part {
+    font-size: 1.3em; }
+    .content__element__right__data__part img {
+      width: 45px;
+      height: 45px; }
+
+  .content__search-counter .content__search-counter__element {
+    font-size: 1.8em; } }
 .content__recipe {
   display: flex;
   flex-direction: column;
@@ -844,6 +884,17 @@ nav:hover .nav__username {
   .content__form__category select:focus {
     outline: none; }
 
+@media only screen and (min-width: 1200px) {
+  .content__form__button > button, .content__form__button a {
+    font-size: 20px;
+    padding: 15px; }
+    .content__form__button > button img, .content__form__button a img {
+      width: 25px;
+      height: 25px; }
+
+  .content__form__removeButton img {
+    width: 25px;
+    height: 25px; } }
 .content__form--login {
   width: 80%;
   border: solid 2px #40B196;
