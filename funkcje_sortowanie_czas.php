@@ -27,7 +27,7 @@ function przepisy_ID_Kategoria_sortCzas($y)
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->orderBy('Przepis.CzasPrzygotowania')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -38,7 +38,7 @@ function przepisy_ID_Kategoria_sortCzas($y)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.CzasPrzygotowania')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -53,7 +53,7 @@ function przepisy_ID_Kategoria_sortCzas($y)
            ->orderBy('Przepis.CzasPrzygotowania')
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 6);
+           ->paginate($page = $y, $rowsPerPage = 10);
 
     return $kat;
   }
@@ -87,7 +87,7 @@ function przepisy_ID_KategoriaNazwa_sortCzas($y)
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->orderBy('Przepis.CzasPrzygotowania' )
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -99,7 +99,7 @@ function przepisy_ID_KategoriaNazwa_sortCzas($y)
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->orderBy('Przepis.CzasPrzygotowania' )
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -115,7 +115,7 @@ function przepisy_ID_KategoriaNazwa_sortCzas($y)
            ->orderBy('Przepis.CzasPrzygotowania' )
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 6);
+           ->paginate($page = $y, $rowsPerPage = 10);
 
     return $kat;
   }

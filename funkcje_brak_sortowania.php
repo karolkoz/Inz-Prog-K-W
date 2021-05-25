@@ -27,7 +27,7 @@ function przepisy_ID_Kategoria($y)
     {
        $kat = PrzepisQuery::create()
               ->select(array('Przepis.IdPrzepis'))
-              ->paginate($page = $y, $rowsPerPage = 6);
+              ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -38,7 +38,7 @@ function przepisy_ID_Kategoria($y)
               //->where('Kategoria.Nazwa = ?', $tab[0])
               ->where('Kategoria.Nazwa IN ?', $tab)
               ->select(array('Przepis.IdPrzepis'))
-              ->paginate($page = $y, $rowsPerPage = 6);
+              ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -52,7 +52,7 @@ function przepisy_ID_Kategoria($y)
            ->where('Kategoria.Nazwa IN ?', $tab)
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 6);
+           ->paginate($page = $y, $rowsPerPage = 10);
 
     return $kat;
   }
@@ -89,7 +89,7 @@ function przepisy_ID_KategoriaCzas($y)
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -100,7 +100,7 @@ function przepisy_ID_KategoriaCzas($y)
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -115,7 +115,7 @@ function przepisy_ID_KategoriaCzas($y)
            ->where('Kategoria.Nazwa IN ?', $tab)
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 6);
+           ->paginate($page = $y, $rowsPerPage = 10);
 
     return $kat;
   }
@@ -147,7 +147,7 @@ function przepisy_ID_KategoriaNazwa($y)
       $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -158,7 +158,7 @@ function przepisy_ID_KategoriaNazwa($y)
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -173,7 +173,7 @@ function przepisy_ID_KategoriaNazwa($y)
            ->where('Kategoria.Nazwa IN ?', $tab)
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 6);
+           ->paginate($page = $y, $rowsPerPage = 10);
 
     return $kat;
   }
@@ -209,7 +209,7 @@ function przepisy_ID_KategoriaCzasNazwa($y)
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -221,7 +221,7 @@ function przepisy_ID_KategoriaCzasNazwa($y)
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->select(array('Przepis.IdPrzepis'))
-             ->paginate($page = $y, $rowsPerPage = 6);
+             ->paginate($page = $y, $rowsPerPage = 10);
 
       return $kat;
     }
@@ -237,7 +237,7 @@ function przepisy_ID_KategoriaCzasNazwa($y)
            ->where('Kategoria.Nazwa IN ?', $tab)
            ->groupBy(array('Przepis.IdPrzepis'))
            ->having("count(Przepis.IdPrzepis) = ?", $ileKat)
-           ->paginate($page = $y, $rowsPerPage = 6);
+           ->paginate($page = $y, $rowsPerPage = 10);
 
     return $kat;
   }

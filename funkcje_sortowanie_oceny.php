@@ -30,7 +30,7 @@ function przepisy_ID_Kategoria_sortOceny($y)
                     ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
                     $num=0;
                     $tab1=[];
@@ -101,7 +101,7 @@ function przepisy_ID_Kategoria_sortOceny($y)
                     ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
       $numW=0;
       $tabW=[];
@@ -176,7 +176,7 @@ function przepisy_ID_Kategoria_sortOceny($y)
                         ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                         ->groupByIdPrzepis()
                         ->orderBy('nb', 'desc')
-                        ->paginate($page = $y, $rowsPerPage = 6);
+                        ->paginate($page = $y, $rowsPerPage = 10);
 
           $numW=0;
           $tabW=[];
@@ -228,7 +228,7 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
                     ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
                     $num=0;
                     $tab1=[];
@@ -298,7 +298,7 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
                     ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
       $numW=0;
       $tabW=[];
@@ -373,7 +373,7 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
                   ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                   ->groupByIdPrzepis()
                   ->orderBy('nb', 'desc')
-                  ->paginate($page = $y, $rowsPerPage = 6);
+                  ->paginate($page = $y, $rowsPerPage = 10);
 
     $numW=0;
     $tabW=[];
@@ -419,7 +419,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
                     ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
                     $num=0;
                     $tab1=[];
@@ -489,7 +489,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
                     ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
       $numW=0;
       $tabW=[];
@@ -564,7 +564,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
                   ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                   ->groupByIdPrzepis()
                   ->orderBy('nb', 'desc')
-                  ->paginate($page = $y, $rowsPerPage = 6);
+                  ->paginate($page = $y, $rowsPerPage = 10);
 
     $numW=0;
     $tabW=[];
@@ -612,7 +612,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
                     ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
                     $num=0;
                     $tab1=[];
@@ -683,7 +683,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
                     ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                     ->groupByIdPrzepis()
                     ->orderBy('nb', 'desc')
-                    ->paginate($page = $y, $rowsPerPage = 6);
+                    ->paginate($page = $y, $rowsPerPage = 10);
 
       $numW=0;
       $tabW=[];
@@ -759,7 +759,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
                   ->where('Przepis.IdPrzepis IN ?', $tabWynik)
                   ->groupByIdPrzepis()
                   ->orderBy('nb', 'desc')
-                  ->paginate($page = $y, $rowsPerPage = 6);
+                  ->paginate($page = $y, $rowsPerPage = 10);
 
     $numW=0;
     $tabW=[];

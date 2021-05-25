@@ -182,7 +182,7 @@ else
           ->find();
 
         $ileID = count($pID); //ilosc wszystkich przepisow w bazie
-        $rowsPerPage = 6; //ilosc przepisow wyswietlanych na jednej stronie
+        $rowsPerPage = 10; //ilosc przepisow wyswietlanych na jednej stronie
         $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
 
@@ -282,7 +282,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
                                   ->select(array('IdPrzepis'))
                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                  ->paginate($page = $y, $rowsPerPage = 6);
+                                  ->paginate($page = $y, $rowsPerPage = 10);
 
                     wypiszPrzepis($przepisyID);
                 }
@@ -303,7 +303,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
                                   ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-                                  ->paginate($page = $y, $rowsPerPage = 6);
+                                  ->paginate($page = $y, $rowsPerPage = 10);
 
                     wypiszPrzepis($przepisyID);
                 }
@@ -326,7 +326,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
                                   ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                  ->paginate($page = $y, $rowsPerPage = 6);
+                                  ->paginate($page = $y, $rowsPerPage = 10);
 
                     wypiszPrzepis($przepisyID);
                 }
@@ -346,7 +346,7 @@ if (empty($_COOKIE['sortowanie'])) //brak ustawionego sortowania
                     // brak sortowania + czas nieustawiony + brak nazwy </br>';
                     $przepisyID = PrzepisQuery::create()
                                   ->select(array('IdPrzepis'))
-                                  ->paginate($page = $y, $rowsPerPage = 6);
+                                  ->paginate($page = $y, $rowsPerPage = 10);
 
                     wypiszPrzepis($przepisyID);
                 }
@@ -449,7 +449,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID1);
                     }
@@ -469,7 +469,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->orderByCzasPrzygotowania()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID1);
                     }
@@ -491,7 +491,7 @@ else
                         $przepisyID1 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID1);
                     }
@@ -510,7 +510,7 @@ else
                         $przepisyID1 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->orderByCzasPrzygotowania()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID1);
                     }
@@ -614,7 +614,7 @@ else
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
                                        ->orderByNazwa()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID2);
                     }
@@ -634,7 +634,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->orderByNazwa()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID2);
                     }
@@ -657,7 +657,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
                                        ->orderByNazwa()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID2);
                     }
@@ -676,7 +676,7 @@ else
                         $przepisyID2 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->orderByNazwa()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID2);
                     }
@@ -782,7 +782,7 @@ else
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
                                        ->orderByStopienTrudnosci()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID3);
                     }
@@ -802,7 +802,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->orderByStopienTrudnosci()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID3);
                     }
@@ -825,7 +825,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
                                        ->orderByStopienTrudnosci()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID3);
                     }
@@ -844,7 +844,7 @@ else
                         $przepisyID3 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->orderByStopienTrudnosci()
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID3);
                     }
@@ -954,7 +954,7 @@ else
                                       ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                       ->filterByCzasPrzygotowania($_COOKIE["czas"])
                                       ->orderBy('nb', 'desc')
-                                      ->paginate($page = $y, $rowsPerPage = 6);
+                                      ->paginate($page = $y, $rowsPerPage = 10);
 
                                       $num=0;
                                       $tab1=[];
@@ -988,7 +988,7 @@ else
                                       ->groupByIdPrzepis()
                                       ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                       ->orderBy('nb', 'desc')
-                                      ->paginate($page = $y, $rowsPerPage = 6);
+                                      ->paginate($page = $y, $rowsPerPage = 10);
 
                                       $num=0;
                                       $tab2=[];
@@ -1025,7 +1025,7 @@ else
                                       ->groupByIdPrzepis()
                                       ->filterByCzasPrzygotowania($_COOKIE["czas"])
                                       ->orderBy('nb', 'desc')
-                                      ->paginate($page = $y, $rowsPerPage = 6);
+                                      ->paginate($page = $y, $rowsPerPage = 10);
 
                                       $num=0;
                                       $tab3=[];
@@ -1058,7 +1058,7 @@ else
                                       ->withColumn('COUNT(Lubie_to.PrzepisIdPrzepis)', 'nb')
                                       ->groupByIdPrzepis()
                                       ->orderBy('nb', 'desc')
-                                      ->paginate($page = $y, $rowsPerPage = 6);
+                                      ->paginate($page = $y, $rowsPerPage = 10);
 
                                       $num=0;
                                       $tab4=[];
@@ -1179,7 +1179,7 @@ else
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID4);
                     }
@@ -1198,7 +1198,7 @@ else
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID4);
                     }
@@ -1220,7 +1220,7 @@ else
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
                                        ->filterByCzasPrzygotowania($_COOKIE["czas"])
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID4);
                     }
@@ -1238,7 +1238,7 @@ else
                         // sortowanie po "Dowolne" + czas nieustawiony + nazwa nieustawiona + kategoria nieustawiona</br>';
                         $przepisyID4 = PrzepisQuery::create()
                                        ->select(array('IdPrzepis'))
-                                       ->paginate($page = $y, $rowsPerPage = 6);
+                                       ->paginate($page = $y, $rowsPerPage = 10);
 
                         wypiszPrzepis($przepisyID4);
                     }

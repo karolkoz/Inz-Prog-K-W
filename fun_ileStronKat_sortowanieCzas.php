@@ -50,7 +50,7 @@ function ileStronKategoria_sortCzas()  //liczy ile stron bedzie po paginacji dla
            }
     }
 
-  $ileStron = ceil($x / 6);
+  $ileStron = ceil($x / 10);
   return $ileStron;
  }
  else
@@ -71,7 +71,7 @@ function ileStronKategoria_sortCzas()  //liczy ile stron bedzie po paginacji dla
             $x++;
           }
 
-   $ileStron = ceil($x / 6);
+   $ileStron = ceil($x / 10);
    return $ileStron;
  }
 
@@ -132,7 +132,7 @@ function ileStronKategoriaNazwa_sortCzas()  //liczy ile stron bedzie po paginacj
            }
     }
 
-  $ileStron = ceil($x / 6);
+  $ileStron = ceil($x / 10);
   return $ileStron;
  }
  else
@@ -154,7 +154,7 @@ function ileStronKategoriaNazwa_sortCzas()  //liczy ile stron bedzie po paginacj
             $x++;
           }
 
-   $ileStron = ceil($x / 6);
+   $ileStron = ceil($x / 10);
    return $ileStron;
  }
 

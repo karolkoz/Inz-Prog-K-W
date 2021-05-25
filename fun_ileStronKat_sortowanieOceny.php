@@ -50,7 +50,7 @@ function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dl
            }
     }
 
-  $ileStron = ceil($x / 6);
+  $ileStron = ceil($x / 10);
   return $ileStron;
  }
  else
@@ -71,7 +71,7 @@ function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dl
             $x++;
           }
 
-   $ileStron = ceil($x / 6);
+   $ileStron = ceil($x / 10);
    return $ileStron;
  }
 
@@ -127,7 +127,7 @@ function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacj
            }
     }
 
-  $ileStron = ceil($x / 6);
+  $ileStron = ceil($x / 10);
   return $ileStron;
  }
  else
@@ -149,7 +149,7 @@ function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacj
             $x++;
           }
 
-   $ileStron = ceil($x / 6);
+   $ileStron = ceil($x / 10);
    return $ileStron;
  }
 
@@ -208,7 +208,7 @@ function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginac
            }
     }
 
-  $ileStron = ceil($x / 6);
+  $ileStron = ceil($x / 10);
   return $ileStron;
  }
  else
@@ -230,7 +230,7 @@ function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginac
             $x++;
           }
 
-   $ileStron = ceil($x / 6);
+   $ileStron = ceil($x / 10);
    return $ileStron;
  }
 
@@ -296,7 +296,7 @@ function ileStronKategoriaCzasNazwa_sortOceny()  //liczy ile stron bedzie po pag
            }
     }
 
-  $ileStron = ceil($x / 6);
+  $ileStron = ceil($x / 10);
   return $ileStron;
  }
  else
@@ -319,7 +319,7 @@ function ileStronKategoriaCzasNazwa_sortOceny()  //liczy ile stron bedzie po pag
             $x++;
           }
 
-   $ileStron = ceil($x / 6);
+   $ileStron = ceil($x / 10);
    return $ileStron;
  }
 

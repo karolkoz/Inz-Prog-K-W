@@ -39,7 +39,7 @@ if(!isset($_SESSION['login'])) {
         }
         //$ileID = count($pID); //ilosc wszystkich przepisow w bazie
         $ileID = $ilosc; //ilosc wszystkich przepisow w bazie
-        $rowsPerPage = 6; //ilosc przepisow wyswietlanych na jednej stronie
+        $rowsPerPage = 10; //ilosc przepisow wyswietlanych na jednej stronie
         $totalPages = ceil($ileID / $rowsPerPage); //wyikowa ilosc wszsytkich stron
 
         echo '</div>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['login'])) {
                 ->join('Przepis')
                 ->where('Ulubione.UzytkownikLogin = ?', $userLogin)
                 ->select(array('Przepis.IdPrzepis'))
-                ->paginate($page = $pageNumber, $rowsPerPage = 6);
+                ->paginate($page = $pageNumber, $rowsPerPage = 10);
         if(count($ulubionePrzepisyID)!==0)
         {
         foreach($ulubionePrzepisyID as $ID)
