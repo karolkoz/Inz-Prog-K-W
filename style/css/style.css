@@ -26,7 +26,8 @@ body {
 
 nav {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  position: relative; }
 
 .nav__barElements {
   display: flex;
@@ -37,16 +38,30 @@ nav {
   padding: 5px 10px; }
 
 .nav__username {
-  display: flex;
+  display: none;
   visibility: hidden;
   align-self: flex-start;
   padding: 10px;
   background-color: #36CFAB;
   font-size: 2.4em;
-  color: white; }
+  color: white;
+  border-radius: 0 0 25px 0;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center; }
 
+@keyframes growDown {
+  0% {
+    transform: scaleY(0); }
+  80% {
+    transform: scaleY(1.1); }
+  100% {
+    transform: scaleY(1); } }
 nav:hover .nav__username {
-  visibility: visible; }
+  visibility: visible;
+  display: flex; }
 
 .nav__name a {
   font-family: Rancho;
@@ -60,11 +75,14 @@ nav:hover .nav__username {
   position: relative; }
 
 .nav__list {
-  display: none;
+  display: flex;
   flex-direction: row;
   position: absolute;
   z-index: 1;
   right: 0; }
+
+.nav__list--none {
+  display: none; }
 
 .nav__list__button {
   background-color: #058B63;
@@ -91,6 +109,17 @@ nav:hover .nav__username {
 .nav__list__button--menu {
   background-image: url("../../img/menu icon.png"); }
 
+@media only screen and (min-width: 1200px) {
+  .nav__list--none {
+    display: flex; }
+
+  .nav__list__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 35px; }
+
+  .nav__username {
+    font-size: 1.4em; } }
 .search-section {
   display: flex;
   flex-direction: column;
@@ -379,8 +408,17 @@ nav:hover .nav__username {
     color: black; }
 
 @media only screen and (min-width: 1200px) {
+  .content > h1 {
+    font-size: 2em; }
+
   .content__element {
-    width: auto; }
+    width: 500px; }
+
+  .content__elements {
+    justify-content: flex-start; }
+
+  .content__element__status {
+    font-size: 1.4em; }
 
   .content__element__right {
     width: 300px; }
@@ -395,7 +433,19 @@ nav:hover .nav__username {
       height: 45px; }
 
   .content__search-counter .content__search-counter__element {
-    font-size: 1.8em; } }
+    font-size: 1.8em; }
+
+  .content__main__element__text, .content__main__element__list {
+    font-size: 1.3em; }
+
+  .content__user h2 {
+    font-size: 2em; }
+  .content__user .row {
+    justify-content: flex-start; }
+    .content__user .row span {
+      font-size: 1.5em; }
+  .content__user .row:first-child {
+    justify-content: space-between; } }
 .content__recipe {
   display: flex;
   flex-direction: column;
@@ -634,6 +684,12 @@ nav:hover .nav__username {
         max-width: 55px;
         max-height: 55px; }
 
+  .content__recipe__button {
+    font-size: 25px; }
+    .content__recipe__button > img {
+      width: 30px;
+      height: 30px; }
+
   .content__recipe__ingredientsTable {
     font-size: 1.5em; }
     .content__recipe__ingredientsTable td:nth-child(1) {
@@ -687,20 +743,22 @@ nav:hover .nav__username {
     height: 200px; }
   .content__form__input input[type="file"] {
     display: none; }
-  .content__form__input > .form__label__forImage {
-    border: 1px solid #ccc;
-    background-color: #e0d101;
-    font-weight: bold;
-    font-size: 35px;
-    display: inline-block;
-    padding: 15px;
-    cursor: pointer; }
-    .content__form__input > .form__label__forImage img {
-      width: 35px;
-      height: 35px;
-      padding-right: 8px; }
-  .content__form__input > .form__label__forImage:hover {
-    background-color: #f0e006; }
+
+.form__label__forImage {
+  border: 1px solid #ccc;
+  background-color: #e0d101;
+  font-weight: bold;
+  font-size: 35px;
+  display: inline-block;
+  padding: 15px;
+  cursor: pointer; }
+  .form__label__forImage img {
+    width: 35px;
+    height: 35px;
+    padding-right: 8px; }
+
+.form__label__forImage:hover {
+  background-color: #f0e006; }
 
 .content__form__rating {
   display: flex;
@@ -821,31 +879,34 @@ nav:hover .nav__username {
   .content__form__stage > h2 {
     font-size: 40px;
     margin: 0 0 5px; }
-  .content__form__stage .content__form__stage__inputs {
-    display: flex;
-    flex-direction: row; }
-    .content__form__stage .content__form__stage__inputs > .form__label__stage {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #ccc;
-      background-color: #e0d101;
-      font-weight: bold;
-      padding: 15px;
-      cursor: pointer; }
-      .content__form__stage .content__form__stage__inputs > .form__label__stage img {
-        width: 35px;
-        height: 35px; }
-      .content__form__stage .content__form__stage__inputs > .form__label__stage input[type="file"] {
-        display: none; }
-    .content__form__stage .content__form__stage__inputs > .form__label__stage--uploaded {
-      background-color: #21d503; }
-    .content__form__stage .content__form__stage__inputs > textarea {
-      flex-grow: 50;
-      height: 200px;
-      font-size: 30px;
-      resize: vertical; }
+
+.content__form__stage__inputs {
+  display: flex;
+  flex-direction: row; }
+  .content__form__stage__inputs > textarea {
+    flex-grow: 50;
+    height: 200px;
+    font-size: 30px;
+    resize: vertical; }
+
+.form__label__stage {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: #e0d101;
+  font-weight: bold;
+  padding: 15px;
+  cursor: pointer; }
+  .form__label__stage img {
+    width: 35px;
+    height: 35px; }
+  .form__label__stage input[type="file"] {
+    display: none; }
+
+.form__label__stage--uploaded {
+  background-color: #21d503; }
 
 .content__form__ingredient {
   display: flex;
@@ -885,6 +946,11 @@ nav:hover .nav__username {
     outline: none; }
 
 @media only screen and (min-width: 1200px) {
+  .content__form {
+    align-items: flex-start;
+    padding-left: 50px;
+    box-sizing: border-box; }
+
   .content__form__button > button, .content__form__button a {
     font-size: 20px;
     padding: 15px; }
@@ -892,9 +958,81 @@ nav:hover .nav__username {
       width: 25px;
       height: 25px; }
 
+  .content__form__button--submit {
+    align-self: center; }
+
   .content__form__removeButton img {
     width: 25px;
+    height: 25px; }
+
+  .content__form h1 {
+    font-size: 1.8em; }
+
+  .content__form__uploadedMainImage {
+    width: 60%;
+    height: 350px; }
+
+  .content__form__input {
+    width: 80%; }
+    .content__form__input > input {
+      font-size: 25px; }
+    .content__form__input > textarea {
+      font-size: 25px; }
+    .content__form__input > img {
+      width: 50px;
+      height: 50px; }
+
+  #ile_osob {
+    width: 400px; }
+
+  #czas_przygotowania {
+    width: 400px; }
+
+  .content__form__rating:not(:checked) > label {
+    height: 45px; }
+
+  .form__label__forImage {
+    font-size: 25px; }
+    .form__label__forImage img {
+      width: 25px;
+      height: 25px; }
+
+  .content__form__dynamicInputs {
+    padding: 10px;
+    border: 1px solid #058B63;
+    border-radius: 20px;
+    width: 700px; }
+    .content__form__dynamicInputs > h2 {
+      font-size: 2em; }
+
+  #stages {
+    width: 60%; }
+
+  .content__form__category select {
+    font-size: 25px; }
+
+  .content__form__ingredient {
+    max-width: 600px; }
+    .content__form__ingredient > input {
+      font-size: 25px;
+      flex-grow: 2; }
+    .content__form__ingredient > input[name="skladnik_ilosc[]"] {
+      max-width: 150px; }
+
+  .content__form__stage > h2 {
+    font-size: 2em; }
+
+  .content__form__stage__inputs > textarea {
+    flex-grow: 50;
+    height: 140px;
+    font-size: 20px; }
+
+  .form__label__stage > img {
+    width: 25px;
     height: 25px; } }
+@media only screen and (min-width: 1500px) {
+  .content__form__input {
+    width: 50%; } }
 .content__form--login {
   width: 80%;
   border: solid 2px #40B196;
@@ -913,6 +1051,23 @@ nav:hover .nav__username {
   width: 80%;
   justify-content: flex-end; }
 
+@media only screen and (min-width: 1200px) {
+  .content--flex-start {
+    align-items: flex-start;
+    padding: 0 20px 0 20px; }
+
+  .content__form--login {
+    margin-bottom: 500px;
+    align-items: flex-start;
+    padding-left: 50px; }
+    .content__form--login > .content__form__input {
+      width: 50%; }
+
+  .content__form__button--login {
+    justify-content: flex-start; }
+
+  .content__form__link {
+    font-size: 1.5em; } }
 footer {
   display: flex;
   flex-direction: row;

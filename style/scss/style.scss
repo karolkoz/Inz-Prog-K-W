@@ -51,6 +51,7 @@ body {
 nav {
   display: flex;
   flex-direction: column;
+  position: relative;
   //position: fixed;
   //width: 100%;
   //z-index: 5;
@@ -65,18 +66,36 @@ nav {
   padding: 5px 10px;
 }
 .nav__username {
-  display: flex;
+  display: none;
   visibility: hidden;
   align-self: flex-start;
-  //width: 100%;
   padding: 10px;
   background-color: $header_color;
   font-size: 2.4em;
   color: white;
+  border-radius: 0 0 25px 0;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  animation: growDown 300ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes growDown {
+  0% {
+    transform: scaleY(0)
+  }
+  80% {
+    transform: scaleY(1.1)
+  }
+  100% {
+    transform: scaleY(1)
+  }
 }
 
 nav:hover .nav__username {
-      visibility:visible;
+  visibility:visible;
+  display: flex;
 }
 
 
@@ -97,11 +116,15 @@ nav:hover .nav__username {
 
 
 .nav__list {
-  display: none;
+  display: flex;
   flex-direction: row;
   position: absolute;
   z-index: 1;
   right: 0;
+}
+
+.nav__list--none {
+  display: none;
 }
 
 .nav__list__button {
@@ -133,6 +156,21 @@ nav:hover .nav__username {
 .nav__list__button--menu {
   background-image: url("../../img/menu icon.png");
 }
+
+@media only screen and (min-width: 1200px) {
+  .nav__list--none {
+    display: flex;
+  }
+  .nav__list__button {
+    width: 100px;
+    height: 100px;
+    border-radius: 35px;
+  }
+  .nav__username {
+    font-size: 1.4em;
+  }
+}
+
 ////////////////////////////////////////////////////SEARCH FORM//////////////////////////////////////////////////
 
 .search-section {
@@ -484,10 +522,24 @@ nav:hover .nav__username {
     color: black;
   }
 }
-
+//+++++++++++++++++++++++++++++++++++++++++++++++++CONTENT NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++
 @media only screen and (min-width: 1200px) {
+  .content {
+    > h1 {
+      font-size: 2em;
+    }
+  }
   .content__element {
-    width: auto;
+    width: 500px;
+  }
+  .content__elements {
+    //width: 100%;
+    //padding: 0 5% 0 5%;
+    justify-content: flex-start;
+    //box-sizing: border-box;
+  }
+  .content__element__status {
+    font-size: 1.4em;
   }
   .content__element__right {
     width: 300px;
@@ -504,6 +556,24 @@ nav:hover .nav__username {
   }
   .content__search-counter .content__search-counter__element {
     font-size: 1.8em;
+  }
+  .content__main__element__text, .content__main__element__list {
+    font-size: 1.3em;
+  }
+
+  .content__user {
+    h2 {
+      font-size: 2em;
+    }
+    .row {
+      span {
+        font-size: 1.5em;
+      }
+      justify-content: flex-start;
+    }
+    .row:first-child {
+      justify-content: space-between;
+    }
   }
 }
 
@@ -796,6 +866,13 @@ nav:hover .nav__username {
       }
     }
   }
+  .content__recipe__button {
+    font-size: 25px;
+    > img {
+      width: 30px;
+      height: 30px;
+    }
+  }
   .content__recipe__ingredientsTable {
     font-size: 1.5em;
     td:nth-child(1) {
@@ -871,26 +948,26 @@ nav:hover .nav__username {
   input[type="file"] {
     display: none;
   }
+}
 
-  > .form__label__forImage {
-    border: 1px solid #ccc;
-    background-color: $button_special_color;
-    font-weight: bold;
-    font-size: 35px;
-    display: inline-block;
-    padding: 15px;
-    cursor: pointer;
+.form__label__forImage {
+  border: 1px solid #ccc;
+  background-color: $button_special_color;
+  font-weight: bold;
+  font-size: 35px;
+  display: inline-block;
+  padding: 15px;
+  cursor: pointer;
 
-    img {
-      width: 35px;
-      height: 35px;
-      padding-right: 8px;
-    }
+  img {
+    width: 35px;
+    height: 35px;
+    padding-right: 8px;
   }
+}
 
-  > .form__label__forImage:hover {
-    background-color: $button_special_color_light;
-  }
+.form__label__forImage:hover {
+  background-color: $button_special_color_light;
 }
 
 .content__form__rating {
@@ -1047,43 +1124,42 @@ nav:hover .nav__username {
     font-size: 40px;
     margin: 0 0 5px;
   }
+}
 
-  .content__form__stage__inputs {
-    display: flex;
-    flex-direction: row;
-
-    > .form__label__stage {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #ccc;
-      background-color: $button_special_color;
-      font-weight: bold;
-      padding: 15px;
-      cursor: pointer;
-
-      img {
-        width: 35px;
-        height: 35px;
-      }
-
-      input[type="file"] {
-        display: none;
-      }
-    }
-
-    > .form__label__stage--uploaded {
-      background-color: $accept_color;
-    }
-
-    > textarea {
-      flex-grow: 50;
-      height: 200px;
-      font-size: 30px;
-      resize: vertical;
-    }
+.content__form__stage__inputs {
+  display: flex;
+  flex-direction: row;
+  > textarea {
+    flex-grow: 50;
+    height: 200px;
+    font-size: 30px;
+    resize: vertical;
   }
+}
+
+.form__label__stage {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: $button_special_color;
+  font-weight: bold;
+  padding: 15px;
+  cursor: pointer;
+
+  img {
+    width: 35px;
+    height: 35px;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+}
+
+.form__label__stage--uploaded {
+  background-color: $accept_color;
 }
 
 .content__form__ingredient {
@@ -1140,6 +1216,11 @@ nav:hover .nav__username {
 }
 //++++++++++++++++++++++++++++++++++++++++++++CONTENT FORM NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++++++++++++++++
 @media only screen and (min-width: 1200px) {
+  .content__form {
+    align-items: flex-start;
+    padding-left: 50px;
+    box-sizing: border-box;
+  }
   .content__form__button {
     > button, a {
       font-size: 20px;
@@ -1150,13 +1231,107 @@ nav:hover .nav__username {
       }
     }
   }
+  .content__form__button--submit {
+    align-self: center;
+  }
   .content__form__removeButton {
     img {
       width: 25px;
       height: 25px;
     }
   }
+  .content__form h1 {
+    font-size: 1.8em;
+    //padding-left: 50px;
+  }
+  .content__form__uploadedMainImage {
+    width: 60%;
+    height: 350px;
+  }
+  .content__form__input  {
+    width: 80%;
+    > input {
+      font-size: 25px;
+    }
+    > textarea {
+      font-size: 25px;
+    }
+    > img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  #ile_osob {
+    width: 400px;
+  }
+  #czas_przygotowania {
+      width: 400px;
+  }
+  .content__form__rating:not(:checked) > label {
+    height: 45px;
+  }
+  .form__label__forImage {
+    font-size: 25px;
+    img {
+      width: 25px;
+      height: 25px;
+    }
+  }
+  .content__form__dynamicInputs {
+    padding: 10px;
+    border: 1px solid $button_color;
+    border-radius: 20px;
+    width: 700px;
+    > h2 {
+      font-size: 2em;
+    }
+  }
+  #stages {
+    width: 60%;
+  }
+  .content__form__category {
+    select {
+      font-size: 25px;
+    }
+  }
+  .content__form__ingredient {
+    max-width: 600px;
+    > input {
+      font-size: 25px;
+      flex-grow: 2;
+    }
+    > input[name="skladnik_ilosc[]"] {
+      max-width: 150px;
+    }
+  }
+  .content__form__stage {
+    //width: 80%;
+    > h2 {
+      font-size: 2em;
+    }
+  }
+  .content__form__stage__inputs {
+    > textarea {
+      flex-grow: 50;
+      height: 140px;
+      font-size: 20px;
+    }
+  }
+  .form__label__stage {
+    >img {
+      width: 25px;
+      height: 25px;
+    }
+  }
 
+}
+@media only screen and (min-width: 1500px) {
+  .content__form__input  {
+    width: 50%;
+  }
+  .content__form__stage {
+    //width: 70%;
+  }
 }
 
 /////////////////////////////////////////////FORMULARZ LOGOWANIA / REJESTRACJI ////////////////////////////////////////
@@ -1181,6 +1356,28 @@ nav:hover .nav__username {
 
 }
 
+//+++++++++++++++++++++++++++++++++++++++++++++++FORMULARZ LOGOWANIA NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++++++++++++
+@media only screen and (min-width: 1200px) {
+  .content--flex-start {
+    align-items: flex-start;
+    padding: 0 20px 0 20px;
+  }
+  .content__form--login {
+    margin-bottom: 500px;
+    align-items: flex-start;
+    padding-left: 50px;
+     > .content__form__input {
+       width: 50%;
+       //padding-left: 50px;
+     }
+  }
+  .content__form__button--login {
+    justify-content: flex-start;
+  }
+  .content__form__link {
+    font-size: 1.5em;
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 footer {

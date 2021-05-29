@@ -6,16 +6,16 @@
     <div class="nav__menu">
       <script>
         function drop() {
-          document.getElementById("navmenu").style.display = "flex";
+          document.getElementById("navmenu").classList.remove("nav__list--none")
         }
         window.onclick = function(event) {
           if (!event.target.matches('.nav__list__button')) {
-            document.getElementById("navmenu").style.display = "none";
+              document.getElementById("navmenu").classList.add("nav__list--none");
           }
         }
       </script>
       <button class="nav__list__button nav__list__button--menu" onClick="drop()"></button>
-      <div class="nav__list" id="navmenu">
+      <div class="nav__list nav__list--none" id="navmenu">
         <?php
         //include 'session.php';
         require_once __DIR__.'/vendor/autoload.php';
