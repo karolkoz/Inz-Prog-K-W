@@ -945,6 +945,19 @@ nav:hover .nav__username {
   .content__form__category select:focus {
     outline: none; }
 
+.content__form__error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px 30px 10px;
+  min-width: 90%;
+  color: white;
+  background-color: #c15c5c;
+  border: 2px solid #a80909;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 2em; }
+
 @media only screen and (min-width: 1200px) {
   .content__form {
     align-items: flex-start;
@@ -1029,7 +1042,12 @@ nav:hover .nav__username {
 
   .form__label__stage > img {
     width: 25px;
-    height: 25px; } }
+    height: 25px; }
+
+  .content__form__error {
+    align-self: center;
+    min-width: 40%;
+    font-size: 1.5em; } }
 @media only screen and (min-width: 1500px) {
   .content__form__input {
     width: 50%; } }

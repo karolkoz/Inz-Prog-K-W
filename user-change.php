@@ -37,10 +37,11 @@ include 'session.php';
  <main>
    <?php include 'nav.php' ?>
    <section class="content">
-     <form class="content__form content__form--login" id="userNameChange" method="post" action="user-change.php">
+     <form class="content__form content__form--login" id="userNameChange" method="post" action="user-change.php" onsubmit="return password_validation('userName')">
+       <script src="script-Haslo.js"></script>
        <h1>Formularz zmiany nazwy</h1>
        <div class="content__form__input">
-         <input type="text" id="userName" name="name" placeholder="Wpisz nową nazwę" required />
+         <input type="text" id="userName" name="name" placeholder="Wpisz nową nazwę" onchange="password_validation('userName')" required />
        </div>
        <div class="content__form__button content__form__button--login">
          <button type="submit"> Zmień Nazwę</button>

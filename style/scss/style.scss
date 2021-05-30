@@ -22,6 +22,7 @@ $button_color: #058B63;
 $button_color_light: #03ab79;
 $remove_color: #a80909;
 $remove_color_light: #db0909;
+$error_color: #c15c5c;
 $button_special_color: #e0d101;
 $button_special_color_light: #f0e006;
 $button_edit_color: #e28f01;
@@ -1214,6 +1215,20 @@ nav:hover .nav__username {
     outline: none;
   }
 }
+
+.content__form__error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 10px 30px 10px;
+  min-width: 90%;
+  color: white;
+  background-color: $error_color;
+  border: 2px solid $remove_color;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 2em;
+}
 //++++++++++++++++++++++++++++++++++++++++++++CONTENT FORM NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++++++++++++++++
 @media only screen and (min-width: 1200px) {
   .content__form {
@@ -1322,6 +1337,11 @@ nav:hover .nav__username {
       width: 25px;
       height: 25px;
     }
+  }
+  .content__form__error {
+    align-self: center;
+    min-width: 40%;
+    font-size: 1.5em;
   }
 
 }

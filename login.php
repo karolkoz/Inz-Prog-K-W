@@ -73,11 +73,15 @@ if(isset($_SESSION['login'])) {
                  }
 
                } else {
-                 echo 'Zle haslo!';
+                 echo '<div class="content__form__error">
+                 Hasło niepoprawne
+                 </div>';
                }
              }
            } else {
-             echo 'Nie ma takiego loginu!';
+             echo '<div class="content__form__error">
+             Nie ma użytkownika o podanym loginie.
+             </div>';
            }
          }
        ?>

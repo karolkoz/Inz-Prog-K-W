@@ -82,7 +82,9 @@
                 }
               }
             } else {
-              echo 'Taki login juz istnieje';
+              echo '<div class="content__form__error">
+               Taki login już istnieje. Prosimy wybrać inny
+              </div>';
             }
           }
 

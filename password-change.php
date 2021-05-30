@@ -65,7 +65,9 @@ include 'session.php';
             }
             else
             {
-              echo 'Błędnie podane obecne haslo!';
+              echo '<div class="content__form__error">
+              Błędnie podane obecne hasło
+              </div>';
             }
           }
        ?>
