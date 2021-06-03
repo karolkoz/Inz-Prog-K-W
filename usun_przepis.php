@@ -14,7 +14,7 @@ require_once __DIR__.'/generated-conf/config.php';
 /////zamiast tworzyc kolejny skladnik (na potrzebe innego przepisu) o nazwie 'herbata' i ID = 3
 ////wykorzystamy juz istniejący skladnik o ID = 2
 
-$id_przepisu = $_GET['przepisID']; //zmienną zmieniamy w zależności od tego jaki przepis chcemy usunąć (o jakim ID)
+$id_przepisu = $_GET['przepisID']; //zmienną ustawiamy w zależności od tego jaki przepis chcemy usunąć (o jakim ID)
                   //tą zmienną wstawiamy do findPk w PrzepisQuery
 
 $przepis = PrzepisQuery::create()->findPk($id_przepisu);
@@ -38,7 +38,7 @@ $przepis->delete();
 echo ' Usunieto przepis o ID: '.$przepis->getIdPrzepis();
 
 
-header("Location: user.php"); //po usunieciu przepisu przekierowanie na strone uzytkownika
+header("Location: user.php"); 
 
 }
 

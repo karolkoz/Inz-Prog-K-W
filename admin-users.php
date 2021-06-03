@@ -63,21 +63,9 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
               echo '</td>';
               echo '<td>';
                 echo '<a href="user-delete.php?login='.$user.'" class="content__form__removeButton"><img src="img/x icon.png"></a>';
-                //echo '<a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>';
               echo '</td>';
             echo '</tr>';
           }
-          // <tr>
-          //   <td>
-          //     <a href="przepisy_uzytkownika.php">Nazwa Uzytkownika</a>
-          //   </td>
-          //   <td>
-          //     ile przepisów
-          //   </td>
-          //   <td>
-          //     <a href="#" class="content__form__removeButton"><img src="img/x icon.png"></a>
-          //   </td>
-          // </tr>
           ?>
 
         </table>

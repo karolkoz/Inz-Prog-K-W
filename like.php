@@ -11,7 +11,7 @@ $lubieTo = Lubie_toQuery::create()
             ->where('Lubie_to.UzytkownikLogin = ?', $userLogin)
             ->find();
 
-if(count($lubieTo)==0) //nie bylo lajka - dodaje go
+if(count($lubieTo)==0)
 {
   $like = new Lubie_to();
   $like->setPrzepisIdPrzepis($przepisID);
@@ -26,7 +26,7 @@ if(count($lubieTo)==0) //nie bylo lajka - dodaje go
     echo json_encode(array("statusCode"=>201));
   }
 }
-else //byl lajk - usuwam
+else
 {
     if($lubieTo->delete()==false)
     {
@@ -37,11 +37,5 @@ else //byl lajk - usuwam
       echo json_encode(array("statusCode"=>201));
     }
 }
-
-//Jeśli się uda to zwróć 200
-//echo json_encode(array("statusCode"=>200));
-
-//Jeśli się nie uda to zwróć 201
-//echo json_encode(array("statusCode"=>201));
 
 ?>

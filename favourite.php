@@ -11,7 +11,7 @@ $ulubione = UlubioneQuery::create()
             ->where('Ulubione.UzytkownikLogin = ?', $userLogin)
             ->find();
 
-if(count($ulubione)==0) //nie bylo dodane do ulubionych - dodaje
+if(count($ulubione)==0)
 {
   $ulub = new Ulubione();
   $ulub->setPrzepisIdPrzepis($przepisID);
@@ -26,7 +26,7 @@ if(count($ulubione)==0) //nie bylo dodane do ulubionych - dodaje
     echo json_encode(array("statusCode"=>201));
   }
 }
-else //jest juz w ulubionych - usuwam
+else
 {
     if($ulubione->delete()==false)
     {
@@ -37,11 +37,5 @@ else //jest juz w ulubionych - usuwam
       echo json_encode(array("statusCode"=>201));
     }
 }
-
-//Jeśli się uda to zwróć 200
-//echo json_encode(array("statusCode"=>200));
-
-//Jeśli się nie uda to zwróć 201
-//echo json_encode(array("statusCode"=>201));
 
 ?>

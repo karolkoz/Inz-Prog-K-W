@@ -21,10 +21,6 @@ if(!isset($_GET['login'])) {
 }
 
 
-// $currentUser = UzytkownikQuery::create()
-//               ->filterByLogin($userLogin)
-//               ->findOne();
-
 $przepisyUsera = PrzepisQuery::create()
               ->select(array('IdPrzepis'))
               ->where('Przepis.UzytkownikLogin = ?', $userLogin); //tablica wszystkich id przepisow danego usera

@@ -4,7 +4,7 @@ require_once __DIR__.'/generated-conf/config.php';
 
 //funkcje liczace ilosc stron do paginacji (gdy ustawione sa kategorie) - 'sortowanie po ocenach'
 
-function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dla ustawionej kategorii + sortowaniu po 'oceny'
+function ileStronKategoria_sortOceny()
 {
   $tab=[];
   $y=0;
@@ -17,13 +17,13 @@ function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dl
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              //->orderBy('Przepis.Nazwa')
              ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
@@ -35,7 +35,7 @@ function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dl
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
@@ -55,7 +55,7 @@ function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dl
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -79,7 +79,7 @@ function ileStronKategoria_sortOceny()  //liczy ile stron bedzie po paginacji dl
 
 /////////////////////////////////////////////////ILE STRON  KATEGORIA+CZAS + sort oceny/////////////////////////////////////////
 
-function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacji dla ustawionej kategorii + czas + sort oceny
+function ileStronKategoriaCzas_sortOceny()
 {
   $tab=[];
   $y=0;
@@ -92,13 +92,13 @@ function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacj
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Przepis.Status = ?', 1)
              //->orderBy('Przepis.Nazwa')
@@ -111,7 +111,7 @@ function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacj
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
@@ -132,7 +132,7 @@ function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacj
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -160,7 +160,7 @@ function ileStronKategoriaCzas_sortOceny()  //liczy ile stron bedzie po paginacj
 
 // //////////////////////////////////////////////////ILE STRON KATEGORIA + NAZWA + sort oceny//////////////////////////////////////////////////
 
-function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginacji dla ustawionej kategorii + nazwy + sortowaniu po oceny
+function ileStronKategoriaNazwa_sortOceny()
 {
   $tab=[];
   $y=0;
@@ -173,16 +173,15 @@ function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginac
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.Status = ?', 1)
-             //->orderBy('Przepis.Nazwa')
              ->select(array('Przepis.IdPrzepis'));
 
              $x=0;
@@ -192,13 +191,12 @@ function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginac
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Kategoria.Nazwa = ?', $tab[0])
              ->where('Przepis.Status = ?', 1)
-             //->orderBy('Przepis.Nazwa')
              ->select(array('Przepis.IdPrzepis'));
 
            $x=0;
@@ -213,7 +211,7 @@ function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginac
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -246,7 +244,7 @@ function ileStronKategoriaNazwa_sortOceny()  //liczy ile stron bedzie po paginac
 
 // //////////////////////////////////////////////////ILE STRON KATEGORIA + CZAS + NAZWA + sort oceny//////////////////////////////////////////////////
 
-function ileStronKategoriaCzasNazwa_sortOceny()  //liczy ile stron bedzie po paginacji dla ustawionej kategori+czasu+nazwy+sort oceny
+function ileStronKategoriaCzasNazwa_sortOceny()
 {
   $tab=[];
   $y=0;
@@ -259,13 +257,13 @@ function ileStronKategoriaCzasNazwa_sortOceny()  //liczy ile stron bedzie po pag
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Przepis.Status = ?', 1)
@@ -279,7 +277,7 @@ function ileStronKategoriaCzasNazwa_sortOceny()  //liczy ile stron bedzie po pag
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -301,7 +299,7 @@ function ileStronKategoriaCzasNazwa_sortOceny()  //liczy ile stron bedzie po pag
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))

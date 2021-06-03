@@ -4,7 +4,7 @@ require_once __DIR__.'/generated-conf/config.php';
 
 //funkcje liczace ilosc stron do paginacji (gdy ustawione sa kategorie) - 'portowanie po poziomie'
 
-function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji dla ustawionej  kategorii + sortowaniu po poziomie
+function ileStronKategoria_sortPoziom()
 {
   $tab=[];
   $y=0;
@@ -17,13 +17,13 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->orderBy('Przepis.StopienTrudnosci')
              ->where('Przepis.Status = ?', 1)
              ->select(array('Przepis.IdPrzepis'));
@@ -35,7 +35,7 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
@@ -55,7 +55,7 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -79,7 +79,7 @@ function ileStronKategoria_sortPoziom()  //liczy ile stron bedzie po paginacji d
 
 /////////////////////////////////////////////////ILE STRON  KATEGORIA+CZAS+sort poziom/////////////////////////////////////////
 
-function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginacji dla ustawionej kategorii + czas +sort poziom
+function ileStronKategoriaCzas_sortPoziom()
 {
   $tab=[];
   $y=0;
@@ -92,13 +92,13 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
@@ -111,7 +111,7 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
@@ -132,7 +132,7 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -160,7 +160,7 @@ function ileStronKategoriaCzas_sortPoziom()  //liczy ile stron bedzie po paginac
 
 // //////////////////////////////////////////////////ILE STRON KATEGORIA + NAZWA +sort poziom//////////////////////////////////////////////////
 
-function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po paginacji dla ustawionej samej kategorii + sort poziom
+function ileStronKategoriaNazwa_sortPoziom()
 {
   $tab=[];
   $y=0;
@@ -173,13 +173,13 @@ function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po pagina
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.Status = ?', 1)
              ->orderBy('Przepis.StopienTrudnosci')
@@ -192,7 +192,7 @@ function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po pagina
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -213,7 +213,7 @@ function ileStronKategoriaNazwa_sortPoziom()  //liczy ile stron bedzie po pagina
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -259,13 +259,13 @@ function ileStronKategoriaCzasNazwa_sortPoziom()
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
     if($tab[0]=='Dowolne')
     {
-      $kat = PrzepisQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = PrzepisQuery::create()
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
              ->where('Przepis.Status = ?', 1)
@@ -279,7 +279,7 @@ function ileStronKategoriaCzasNazwa_sortPoziom()
              }
     }
     else{
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -301,7 +301,7 @@ function ileStronKategoriaCzasNazwa_sortPoziom()
  }
  else
  {
-   $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+   $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))

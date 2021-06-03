@@ -19,7 +19,7 @@ function przepisy_ID_Kategoria_sortOceny($y)
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
@@ -62,11 +62,10 @@ function przepisy_ID_Kategoria_sortOceny($y)
         $num++;
       }
 
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Kategoria.Nazwa = ?', $tab[0])
-             //->orderBy('Przepis.Nazwa')
              ->select(array('Przepis.IdPrzepis'));
 
              $num2=0;
@@ -135,12 +134,11 @@ function przepisy_ID_Kategoria_sortOceny($y)
             $num++;
           }
 
-          $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+          $kat = NalezyQuery::create()
                 ->join('Przepis')
                 ->join('Kategoria')
                 ->select(array('Przepis.IdPrzepis'))
                 ->where('Kategoria.Nazwa IN ?', $tab)
-                //->orderBy('Przepis.Nazwa')
                 ->groupBy(array('Przepis.IdPrzepis'))
                 ->having("count(Przepis.IdPrzepis) = ?", $ileKat);
 
@@ -216,7 +214,7 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
@@ -259,7 +257,7 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
         $num++;
       }
 
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.CzasPrzygotowania = ?', $_COOKIE["czas"])
@@ -332,7 +330,7 @@ function przepisy_ID_KategoriaCzas_sortOceny($y)
       $num++;
     }
 
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+    $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -407,7 +405,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
@@ -450,7 +448,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
         $num++;
       }
 
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -523,7 +521,7 @@ function przepisy_ID_KategoriaNazwa_sortOceny($y)
       $num++;
     }
 
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+    $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
@@ -599,7 +597,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
       }
   }
 
-  $ileKat = count($tab);  //liczymy ile kategorii jest przekazanych
+  $ileKat = count($tab);
 
 
   if($ileKat == 1){
@@ -643,7 +641,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
         $num++;
       }
 
-      $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+      $kat = NalezyQuery::create()
              ->join('Przepis')
              ->join('Kategoria')
              ->where('Przepis.Nazwa LIKE ?', '%'.$_COOKIE['przepis'].'%')
@@ -717,7 +715,7 @@ function przepisy_ID_KategoriaCzasNazwa_sortOceny($y)
       $num++;
     }
 
-    $kat = NalezyQuery::create() //pobierane jest ID przepisu który nalezy do zadanej kategorii
+    $kat = NalezyQuery::create()
           ->join('Przepis')
           ->join('Kategoria')
           ->select(array('Przepis.IdPrzepis'))
