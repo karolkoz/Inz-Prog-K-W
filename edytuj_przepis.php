@@ -59,6 +59,7 @@ if(!isset($_SESSION['login'])) {
             ?>
           </div>
         </div>
+          <div class="content__form__inputsGroup">
         <div class="content__form__input">
           <img src="img/people icon.png" />
           <?php
@@ -81,6 +82,7 @@ if(!isset($_SESSION['login'])) {
           echo '<input type="number" id="czas_przygotowania" name="czas_przygotowania" placeholder="Czas przygotowania w minutach" value="'.$przepis->getCzasPrzygotowania().'" required />'
           ?>
         </div>
+      </div>
         <div class="content__form__input">
           <?php
           require_once __DIR__.'/vendor/autoload.php';
@@ -108,6 +110,7 @@ if(!isset($_SESSION['login'])) {
           </label>
         </div>
 
+        <div class="content__form__inputsGroup">
         <div class="content__form__dynamicInputs" id="categories">
           <h2>Kategorie</h2>
           <script type="text/javascript" src="script - Categories.js"></script>
@@ -170,6 +173,7 @@ if(!isset($_SESSION['login'])) {
             <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
           </div>
         </div>
+      </div>
 
         <div class="content__form__dynamicInputs" id="stages">
           <div id="buttonDiv" class="content__form__button">

@@ -52,13 +52,15 @@ if($_SESSION['level'] == 2) {
             <label for="trudnosc1"></label>
           </div>
         </div>
-        <div class="content__form__input">
-          <img src="img/people icon.png" />
-          <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" min="1" required />
-        </div>
-        <div class="content__form__input">
-          <img src="img/clock icon.png" />
-          <input type="number" id="czas_przygotowania" name="czas_przygotowania" min="1" placeholder="Czas przygotowania w minutach" required />
+        <div class="content__form__inputsGroup">
+          <div class="content__form__input">
+            <img src="img/people icon.png" />
+            <input type="number" id="ile_osob" name="ile_osob" placeholder="Dla ilu osób" min="1" required />
+          </div>
+          <div class="content__form__input">
+            <img src="img/clock icon.png" />
+            <input type="number" id="czas_przygotowania" name="czas_przygotowania" min="1" placeholder="Czas przygotowania w minutach" required />
+          </div>
         </div>
         <div class="content__form__input">
           <textarea name="opis" id="opis" placeholder="Opis przepisu" required></textarea>
@@ -79,43 +81,45 @@ if($_SESSION['level'] == 2) {
           </label>
         </div>
 
-        <div class="content__form__dynamicInputs" id="categories">
-          <h2>Kategorie</h2>
-          <script type="text/javascript" src="script - Categories.js"></script>
-          <div class="content__form__category" id="category_1">
-            <select name="categories[]" onchange="category_validation()" required>
-              <option value=""disabled selected>Kategoria</option>
+        <div class="content__form__inputsGroup">
+          <div class="content__form__dynamicInputs" id="categories">
+            <h2>Kategorie</h2>
+            <script type="text/javascript" src="script - Categories.js"></script>
+            <div class="content__form__category" id="category_1">
+              <select name="categories[]" onchange="category_validation()" required>
+                <option value=""disabled selected>Kategoria</option>
 
-              <?php
-              require_once __DIR__.'/vendor/autoload.php';
-              require_once __DIR__.'/generated-conf/config.php';
+                <?php
+                require_once __DIR__.'/vendor/autoload.php';
+                require_once __DIR__.'/generated-conf/config.php';
 
-              $kategorie = KategoriaQuery::create()->find();
-                foreach ($kategorie as $kat) {
-                    echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
-                }
+                $kategorie = KategoriaQuery::create()->find();
+                  foreach ($kategorie as $kat) {
+                      echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
+                  }
 
-              ?>
+                ?>
 
-            </select>
+              </select>
+            </div>
+
+            <div id="categoryButtonDiv" class="content__form__button">
+              <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
+            </div>
           </div>
 
-          <div id="categoryButtonDiv" class="content__form__button">
-            <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj nową kategorię</button>
+          <div class="content__form__dynamicInputs" id="ingredients">
+            <h2>Lista Składników</h2>
+            <div class="content__form__ingredient" id="skladnik_1">
+              <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" onchange="ingredients_validation()" required />
+              <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
+            </div>
+            <div id="ingredientButtonDiv" class="content__form__button">
+              <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
+            </div>
           </div>
         </div>
 
-        <div class="content__form__dynamicInputs" id="ingredients">
-          <h2>Lista Składników</h2>
-          <div class="content__form__ingredient" id="skladnik_1">
-            <input type="text" name="skladnik_nazwa[]" placeholder="Nazwa składnika" onchange="ingredients_validation()" required />
-            <input type="text" name="skladnik_ilosc[]" placeholder="Ilość (np.: 2 kg)" />
-          </div>
-          <div id="ingredientButtonDiv" class="content__form__button">
-            <button id="ingredientButton" type="button" onClick="addIngredient()" > <img src="img/plus icon.png" /> Dodaj nowy składnik</button>
-          </div>
-
-        </div>
 
         <div class="content__form__dynamicInputs" id="stages">
           <div class="content__form__stage" id="etap_1">

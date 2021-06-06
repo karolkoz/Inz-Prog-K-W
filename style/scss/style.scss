@@ -43,6 +43,10 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+.row-wrap {
+  flex-wrap: wrap;
+}
 .justify-flex-start {
   justify-content: flex-start;
 }
@@ -157,15 +161,15 @@ nav:hover .nav__username {
 .nav__list__button--menu {
   background-image: url("../../img/menu icon.png");
 }
-
+//++++++++++++++++++++++++++++++++++++++++++++++++NAWIGACJA na większych ekranach+++++++++++++++++++++++++++++
 @media only screen and (min-width: 1200px) {
   .nav__list--none {
     display: flex;
   }
   .nav__list__button {
-    width: 100px;
-    height: 100px;
-    border-radius: 35px;
+    width: 45px;
+    height: 45px;
+    border-radius: 15px;
   }
   .nav__username {
     font-size: 1.4em;
@@ -188,41 +192,6 @@ nav:hover .nav__username {
   flex-direction: column;
   padding: 20px 0;
   width: 80%;
-  .search__form__select {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    height: 120px;
-    padding: 5px 0;
-    select {
-      position: relative;
-      width: 80%;
-      background-color: white;
-      border: none;
-      border-radius: 4px;
-      //border-bottom: solid 3px $button_color;
-      display: inline-block;
-      font: inherit;
-      font-size: 3em;
-      padding: 0.2em 0 0.2em 0.5em;
-      margin: 0;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-    }
-    option:nth-child(2) {
-      color: blue;
-    }
-    option:nth-child(2):checked {
-      color: blue;
-    }
-    select:active {
-      background-color: $search_color_light;
-    }
-}
-
   .search__form__searchbar {
     display: flex;
     flex-wrap: nowrap;
@@ -252,6 +221,46 @@ nav:hover .nav__username {
     }
   }
 }
+.search__form__select {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 120px;
+  padding: 5px 0;
+  select {
+    position: relative;
+    width: 80%;
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    //border-bottom: solid 3px $button_color;
+    display: inline-block;
+    font: inherit;
+    font-size: 3em;
+    padding: 0.2em 0 0.2em 0.5em;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  option:nth-child(2) {
+    color: blue;
+  }
+  option:nth-child(2):checked {
+    color: blue;
+  }
+  select:active {
+    background-color: $search_color_light;
+  }
+}
+
+.search__form__selects {
+display: flex;
+flex-direction: column;
+}
+
 .search__form__categories {
   display: flex;
   flex-direction: column;
@@ -273,23 +282,31 @@ nav:hover .nav__username {
 @media only screen and (min-width: 1200px) {
   .search__form {
     width: auto;
+    //flex-direction: row;
+    //flex-wrap: wrap;
+  }
+  .search__form__selects {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 0;
   }
   .search__form .search__form__searchbar input[type=text] {
-    font-size: 1.3em;
-    width: 100%;
+    font-size: 1.1em;
+    width: 60%;
   }
   .search__form .search__form__searchbar input[type=submit] {
     width: 100px;
   }
   .search__form__categories {
     width: 500px;
+    margin: 0px 0px 0px 10px;
   }
   .search__form .search__form__select {
     height: auto;
     min-height: 50px;
     select {
       width: 500px;
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
   }
 
@@ -302,6 +319,7 @@ nav:hover .nav__username {
   align-items: center;
   flex-wrap: wrap;
   //height: 100%;
+  //padding-bottom: 400px;
   >h1 {
     font-size: 3em;
   }
@@ -527,32 +545,42 @@ nav:hover .nav__username {
 @media only screen and (min-width: 1200px) {
   .content {
     > h1 {
-      font-size: 2em;
+      font-size: 1.6em;
     }
   }
   .content__element {
-    width: 500px;
+    width: 450px;
+    margin: 5px;
+    padding: 5px;
   }
   .content__elements {
     //width: 100%;
     //padding: 0 5% 0 5%;
-    justify-content: flex-start;
+    //justify-content: flex-start;
     //box-sizing: border-box;
   }
   .content__element__status {
     font-size: 1.4em;
   }
+
+  .content__element__left {
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
   .content__element__right {
     width: 300px;
   }
   .content__element__right__title {
-    font-size: 1.6em;
+    font-size: 1.4em;
   }
   .content__element__right__data__part {
-    font-size: 1.3em;
+    font-size: 1.2em;
+    padding: 5px 10px 2px;
     img {
-      width: 45px;
-      height: 45px;
+      width: 40px;
+      height: 40px;
     }
   }
   .content__search-counter .content__search-counter__element {
@@ -563,12 +591,13 @@ nav:hover .nav__username {
   }
 
   .content__user {
+    width: auto;
     h2 {
-      font-size: 2em;
+      font-size: 1.3em;
     }
     .row {
       span {
-        font-size: 1.5em;
+        font-size: 1.3em;
       }
       justify-content: flex-start;
     }
@@ -951,6 +980,17 @@ nav:hover .nav__username {
   }
 }
 
+.content__form__inputsGroup {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  > .content__form__input {
+    width: 100%;
+    margin-right: 15px;
+  }
+}
+
 .form__label__forImage {
   border: 1px solid #ccc;
   background-color: $button_special_color;
@@ -1229,17 +1269,20 @@ nav:hover .nav__username {
   font-weight: bold;
   font-size: 2em;
 }
+
 //++++++++++++++++++++++++++++++++++++++++++++CONTENT FORM NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++++++++++++++++
 @media only screen and (min-width: 1200px) {
   .content__form {
     align-items: flex-start;
+    //align-items: center;
     padding-left: 50px;
     box-sizing: border-box;
   }
   .content__form__button {
+    padding: 10px 0;
     > button, a {
       font-size: 20px;
-      padding: 15px;
+      padding: 10px;
       img {
         width: 25px;
         height: 25px;
@@ -1258,22 +1301,39 @@ nav:hover .nav__username {
   .content__form h1 {
     font-size: 1.8em;
     //padding-left: 50px;
+    align-self: center;
   }
   .content__form__uploadedMainImage {
-    width: 60%;
-    height: 350px;
+    width: 300px;
+    height: 250px;
   }
   .content__form__input  {
-    width: 80%;
     > input {
-      font-size: 25px;
+      font-size: 18px;
     }
     > textarea {
-      font-size: 25px;
+      font-size: 18px;
     }
     > img {
       width: 50px;
       height: 50px;
+    }
+  }
+  .content__form__rating {
+    width: 80%;
+  }
+
+  .content__form__inputsGroup {
+    flex-direction: row;
+    //justify-content: space-around;
+    width: 100%;
+    > .content__form__input {
+      margin-right: 15px;
+      width: auto;
+    }
+    > .content__form__dynamicInputs:nth-child(1) {
+      order: 2;
+      margin-left: 30px;
     }
   }
   #ile_osob {
@@ -1296,23 +1356,23 @@ nav:hover .nav__username {
     padding: 10px;
     border: 1px solid $button_color;
     border-radius: 20px;
-    width: 700px;
+    width: fit-content;
+    height: fit-content;
     > h2 {
-      font-size: 2em;
+      font-size: 1.6em;
     }
   }
   #stages {
-    width: 60%;
+    width: 90%;
   }
   .content__form__category {
     select {
-      font-size: 25px;
+      font-size: 18px;
     }
   }
   .content__form__ingredient {
-    max-width: 600px;
     > input {
-      font-size: 25px;
+      font-size: 18px;
       flex-grow: 2;
     }
     > input[name="skladnik_ilosc[]"] {
@@ -1320,19 +1380,32 @@ nav:hover .nav__username {
     }
   }
   .content__form__stage {
-    //width: 80%;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
     > h2 {
-      font-size: 2em;
+      font-size: 1.6em;
+      width: 100%;
     }
   }
   .content__form__stage__inputs {
+    width: 70%;
     > textarea {
       flex-grow: 50;
       height: 140px;
-      font-size: 20px;
+      font-size: 18px;
+    }
+    .content__form__removeButton {
+      height: 140px;
     }
   }
+  .content__form__inputImage {
+    width: auto;
+    align-items: flex-start;
+  }
   .form__label__stage {
+    height: 140px;
+    padding: 0px 15px;
     >img {
       width: 25px;
       height: 25px;
@@ -1347,7 +1420,7 @@ nav:hover .nav__username {
 }
 @media only screen and (min-width: 1500px) {
   .content__form__input  {
-    width: 50%;
+    //width: 50%;
   }
   .content__form__stage {
     //width: 70%;
@@ -1360,7 +1433,7 @@ nav:hover .nav__username {
   border: solid 2px $search_color;
   border-radius: 20px;
   margin: 60px 0 60px 0;
-  > .content__form__input {
+   .content__form__input {
     width: 90%;
   }
 }
@@ -1373,7 +1446,13 @@ nav:hover .nav__username {
 .content__form__button--login {
   width: 80%;
   justify-content: flex-end;
+}
 
+.content__form__login__inputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++FORMULARZ LOGOWANIA NA WIĘKSZYCH EKRANACH+++++++++++++++++++++++++++++++++
@@ -1386,10 +1465,18 @@ nav:hover .nav__username {
     margin-bottom: 500px;
     align-items: flex-start;
     padding-left: 50px;
-     > .content__form__input {
+      .content__form__input {
        width: 50%;
        //padding-left: 50px;
      }
+  }
+  .content__form__login__inputs {
+    .content__form__input {
+      input {
+        margin-right: 15px;
+      }
+
+    }
   }
   .content__form__button--login {
     justify-content: flex-start;
@@ -1406,6 +1493,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   background-color: $header_color;
+  //margin-top: 200px;
 }
 
 .footer__element {

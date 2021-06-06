@@ -42,49 +42,53 @@
          <input type="text" name="przepis" placeholder="Szukaj przepisu...">
          <input type="submit" value="">
        </div>
-       <script type="text/javascript" src="script - Categories.js"></script>
-       <div class="search__form__categories" id="categories">
-         <div class="search__form__select" id="category_1">
-           <select name="categories[]" onchange="category_validation()">
-             <option value=""disabled selected>Kategoria</option>
-             <option value="Dowolne">Dowolna Kategoria</option>
-
-             <?php
-             require_once __DIR__.'/vendor/autoload.php';
-             require_once __DIR__.'/generated-conf/config.php';
-
-             $kategorie = KategoriaQuery::create()->find();
-               foreach ($kategorie as $kat) {
-                   echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
-               }
-
-             ?>
-           </select>
+       <div class="search__form__selects">
+         <div>
+           <div class="search__form__select">
+             <select id="czas" name="czas">
+               <option value="" disabled selected>Czas przygotowania</option>
+               <option value="Dowolne">Dowolny czas</option>
+               <option value="15">15 min</option>
+               <option value="20">20 min</option>
+               <option value="30">30 min</option>
+               <option value="45">45 min</option>
+               <option value="50">50 min</option>
+             </select>
+           </div>
+           <div class="search__form__select">
+             <select id="sort" name="sort">
+               <option value="" disabled selected>Sortuj po...</option>
+               <option value="Dowolne">Dowolne sortowanie</option>
+               <option value="nazwa">nazwa</option>
+               <option value="oceny">oceny</option>
+               <option value="czas">czas</option>
+               <option value="poziom">poziom trudnosci</option>
+             </select>
          </div>
-         <div id="categoryButtonDiv" class="content__form__button">
-           <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj kolejną kategorię do wyszukania</button>
          </div>
-       </div>
-       <div class="search__form__select">
-         <select id="czas" name="czas">
-           <option value="" disabled selected>Czas przygotowania</option>
-           <option value="Dowolne">Dowolny czas</option>
-           <option value="15">15 min</option>
-           <option value="20">20 min</option>
-           <option value="30">30 min</option>
-           <option value="45">45 min</option>
-           <option value="50">50 min</option>
-         </select>
-       </div>
-       <div class="search__form__select">
-         <select id="sort" name="sort">
-           <option value="" disabled selected>Sortuj po...</option>
-           <option value="Dowolne">Dowolne sortowanie</option>
-           <option value="nazwa">nazwa</option>
-           <option value="oceny">oceny</option>
-           <option value="czas">czas</option>
-           <option value="poziom">poziom trudnosci</option>
-         </select>
+         <script type="text/javascript" src="script - Categories.js"></script>
+         <div class="search__form__categories" id="categories">
+           <div class="search__form__select" id="category_1">
+             <select name="categories[]" onchange="category_validation()">
+               <option value=""disabled selected>Kategoria</option>
+               <option value="Dowolne">Dowolna Kategoria</option>
+
+               <?php
+               require_once __DIR__.'/vendor/autoload.php';
+               require_once __DIR__.'/generated-conf/config.php';
+
+               $kategorie = KategoriaQuery::create()->find();
+                 foreach ($kategorie as $kat) {
+                     echo '<option value="'.$kat->getNazwa().'">'.$kat->getNazwa().'</option>';
+                 }
+
+               ?>
+             </select>
+           </div>
+           <div id="categoryButtonDiv" class="content__form__button">
+             <button id="categoryButton" type="button" onClick="addCategory()" > <img src="img/plus icon.png" /> Dodaj kolejną kategorię do wyszukania</button>
+           </div>
+         </div>
        </div>
      </form>
    </section>
