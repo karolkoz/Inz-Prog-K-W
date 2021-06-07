@@ -14,7 +14,7 @@ if(!isset($_SESSION['login']) || $_SESSION['level'] != 2) {
 <body>
   <main>
     <?php include 'nav.php' ?>
-    <section class="content content--flex-start">
+    <section class="content">
       <h1>Panel Administracyjny</h1>
       <div class="content__user">
         <div class="row">
